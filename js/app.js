@@ -13,19 +13,20 @@ Calculator.prototype.getHistoryAsString = function() {
 }
 
 Calculator.prototype.add = function(num1, num2) {
-Number.isNaN(num1)
-Number.isNaN(num2)
-
-
-    if(Number.isNaN(num1) === false && Number.isNaN(num2) === false)
-   {
+//Number.isNaN(num1)
+//Number.isNaN(num2)
     let a = parseInt(num1)
     let b = parseInt(num2)
+
+    if(typeof a === 'number' && typeof b === 'number'){
+    if(Number.isNaN(num1) === false && Number.isNaN(num2) === false)
+   {
+   
         const addResult = a + b
         result = a+ ' + ' + b + ' = ' + addResult;
         //console.log(result); 
         this.history.push(result)  
-   }
+   }}
     else
    alert('podane dane nie są liczbą')
 }
@@ -34,9 +35,12 @@ Number.isNaN(num2)
     // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
     // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
     Calculator.prototype.diff = function(num1, num2) {
-        Number.isNaN(num1)
-        Number.isNaN(num2)
-        
+        //Number.isNaN(num1)
+        //Number.isNaN(num2)
+        let a = parseInt(num1)
+        let b = parseInt(num2)
+
+    if(typeof a === 'number' && typeof b === 'number'){
             if(Number.isNaN(num1) === false && Number.isNaN(num2) === false)
            {
             let a = parseInt(num1)
@@ -45,15 +49,18 @@ Number.isNaN(num2)
                 result = a+ ' - ' + b + ' = ' + addResult;
                 //console.log(result);
                 this.history.push(result)  
-           }
+           }}
     else
     alert('podane dane nie są liczbą')
 }
 
     Calculator.prototype.mult = function(num1, num2) {
-        Number.isNaN(num1)
-        Number.isNaN(num2)
+        //Number.isNaN(num1)
+        //Number.isNaN(num2)
+        let a = parseInt(num1)
+        let b = parseInt(num2)
 
+        if(typeof a === 'number' && typeof b === 'number'){
         if(Number.isNaN(num1) === false && Number.isNaN(num2) === false)
         {
         let a = parseInt(num1)
@@ -62,15 +69,18 @@ Number.isNaN(num2)
         result = a+ ' * ' + b + ' = ' + addResult;
         //console.log(result);
         this.history.push(result)  
-        }
+        }}
         else
         alert('podane dane nie są liczbą')
 }
 
 Calculator.prototype.div = function(num1, num2) {
-    Number.isNaN(num1)
-    Number.isNaN(num2)
+   // Number.isNaN(num1)
+    //Number.isNaN(num2)
+    let a = parseInt(num1)
+    let b = parseInt(num2)
 
+    if(typeof a === 'number' && typeof b === 'number'){
     if(Number.isNaN(num1) === false && Number.isNaN(num2) === false)
    {
     let a = parseInt(num1)
@@ -79,14 +89,18 @@ Calculator.prototype.div = function(num1, num2) {
         result = a+ ' / ' + b + ' = ' + addResult;
         //console.log(result);
         this.history.push(result)  
-   }
+   }}
     else
     alert('podane dane nie są liczbą')
 }
 
 Calculator.prototype.pow = function(num1, num2) {
-    Number.isNaN(num1)
-    Number.isNaN(num2)
+    //Number.isNaN(num1)
+    //Number.isNaN(num2)
+
+    let a = parseInt(num1)
+    let b = parseInt(num2)
+    if(typeof a === 'number' && typeof b === 'number'){
     
     if(Number.isNaN(num1) === false && Number.isNaN(num2) === false)
         {   
@@ -110,7 +124,7 @@ Calculator.prototype.pow = function(num1, num2) {
           
             this.history.push(str + ' = ' + result) 
 
-    }
+    }}
     else
     alert('podane dane nie są liczbą')
 }
