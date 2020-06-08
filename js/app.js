@@ -12,13 +12,23 @@ Calculator.prototype.getHistoryAsString = function() {
   return this.history.join('\n');
 }
 
+// EXTRA. sprawdzanie poprawności argumentow
+Calculator.prototype.numIsValid = function (num1, num2) {
+  const val1 = parseInt(num1);
+  const val2 = parseInt(num2);
+  if (Number.isNaN(val1) && Number.isNaN(val2)) {
+    return (val1, val2);
+}
+
 // ********** ADD **********
 Calculator.prototype.add = function(num1, num2) {
   // 1. zamień wartości przekazane przez parametr na typ number
   const val1 = parseInt(num1);
   const val2 = parseInt(num2);
   // 2. sprawdź czy są one poprawne
-  if (typeof val1 === 'number' && typeof val2 === 'number') {
+
+  // if (typeof val1 === 'number' && typeof val2 === 'number') {
+  if (Number.isNaN(val1) && Number.isNaN(val2)) {
     // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
     const result = val1 + val2;
 
@@ -33,6 +43,7 @@ Calculator.prototype.add = function(num1, num2) {
 
 Calculator.prototype.subtract = function(num1, num2) {
   // 1. zamień wartości przekazane przez parametr na typ number
+
   const val1 = parseInt(num1);
   const val2 = parseInt(num2);
   // 2. sprawdź czy są one poprawne
