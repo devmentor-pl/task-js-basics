@@ -13,7 +13,7 @@ Calculator.prototype.getHistoryAsString = function() {
 }
 
 // EXTRA. sprawdzanie poprawności argumentow
-Calculator.prototype.numIsValid = function (num1, num2) {
+Calculator.prototype.isNumValid = function (num1, num2) {
   const val1 = parseInt(num1);
   const val2 = parseInt(num2);
   if (Number.isNaN(val1) && Number.isNaN(val2)) {
