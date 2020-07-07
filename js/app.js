@@ -55,6 +55,22 @@ Calculator.prototype.divide = function(num1, num2) {
     }
 }
 
+Calculator.prototype.power = function(num1, num2) {
+    const number1 = parseInt(num1);
+    const number2 = parseInt(num2);
+    if (typeof number1 === 'number' && typeof number2 === 'number') {
+        let i = 0;
+        let result = 1;
+
+        while (i < number2) {
+            result = result * number1;
+            i++;
+            console.log(result);
+        }
+        this.history.push(`${number1} ^ ${number2} = ${result}`)
+    }
+}
+
 const calc = new Calculator();
 const prototype = Object.getPrototypeOf(calc);
 console.log(prototype);
@@ -77,7 +93,9 @@ do {
         } else if (action === '*') {
             calc.multiply(number1, number2);
         } else if (action === '/') {
-            calc.divide(number1, number2)
+            calc.divide(number1, number2);
+        } else if (action === '^') {
+            calc.power(number1, number2);
         }
 
     }
