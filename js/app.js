@@ -11,6 +11,10 @@ Calculator.prototype.getHistoryAsString = function() {
     return this.history.join('\n');
 }
 
+Calculator.prototype.checkNaN = function (n) {
+    return Number.isNaN(n)
+}
+
 Calculator.prototype.add = function(num1, num2) {
     const result = parseFloat((num1 + num2).toFixed(10));
     this.history.push(`${(num1)} + ${num2} = ${result}`)
@@ -62,16 +66,16 @@ do {
     }
     isCorrectAction = calc.isCorrectAction(action);
     if(isCorrectAction) {
-        function checkNaN(n1, n2) {
-            return (Number.isNaN(n1) || Number.isNaN(n2))
-        }
+        // function checkNaN(n1, n2) {
+        //     return (Number.isNaN(n1) || Number.isNaN(n2))
+        // }
         number1 = parseFloat(prompt('Podaj liczbę nr 1'));
-        while (checkNaN(number1)) {
+        while (calc.checkNaN(number1)) {
             alert('You can\'t use characters that are not numbers or live an empty slot.')
             number1 = parseFloat(prompt('Podaj liczbę nr 1'));
         }
         number2 = parseFloat(prompt('Podaj liczbę nr 2'));
-        while (checkNaN(number2)) {
+        while (calc.checkNaN(number2)) {
             alert('You can\'t use characters that are not numbers or live an empty slot.')
             number2 = parseFloat(prompt('Podaj liczbę nr 2'));
         }
