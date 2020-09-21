@@ -60,17 +60,23 @@ do {
     promptContent += 'Previous operations: \n' + history;
 
     action = prompt(promptContent);
-    while (!calc.isCorrectAction(action)) {
+
+
+    while (action === '') {
         alert('You are supposed to choose one of these: +, -, *, /, ^.');
         action = prompt(promptContent)
     }
+
+    if (action === null) {
+        if (!confirm('Czy zakończyć działanie kalkulatora?')) {
+            action = prompt(promptContent);
+        };
+    }
+
     isCorrectAction = calc.isCorrectAction(action);
-    if(isCorrectAction) {
-        // function checkNaN(n1, n2) {
-        //     return (Number.isNaN(n1) || Number.isNaN(n2))
-        // }
+    if (isCorrectAction) {
         number1 = parseFloat(prompt('Podaj liczbę nr 1'));
-        while (calc.checkNaN(number1)) {
+        while (calc.checkNaN(number1) || prompt === 'null') {
             alert('You can\'t use characters that are not numbers or live an empty slot.')
             number1 = parseFloat(prompt('Podaj liczbę nr 1'));
         }
@@ -96,4 +102,5 @@ do {
                 calc.power(number1, number2)
         }
     }
+
 } while(calc.isCorrectAction(action));
