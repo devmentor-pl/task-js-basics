@@ -16,60 +16,44 @@ Calculator.prototype.add = function(num1, num2) {
     // 2. sprawdź czy są one poprawne
     // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
     // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
-    const num1AsNumber = Number(num1);
-    const num2AsNumber = Number(num2);
     let result;
 
-    if(!Number.isNaN(num1AsNumber) && !Number.isNaN(num2AsNumber)) {
-        result = num1AsNumber + num2AsNumber;
-        this.history.push(num1 + " + " + num2 + " = " + result);
-    }
+    result = num1 + num2;
+    this.history.push(num1 + " + " + num2 + " = " + result);
 }
 
 Calculator.prototype.sub = function(num1, num2) {
-    const num1AsNumber = Number(num1);
-    const num2AsNumber = Number(num2);
     let result;
 
-    if(!Number.isNaN(num1AsNumber) && !Number.isNaN(num2AsNumber)) {
-        result = num1AsNumber - num2AsNumber;
-        this.history.push(num1 + " - " + num2 + " = " + result);
-    }
+    result = num1 - num2;
+    this.history.push(num1 + " - " + num2 + " = " + result);
 }
 
 Calculator.prototype.multi = function(num1, num2) {
-    const num1AsNumber = Number(num1);
-    const num2AsNumber = Number(num2);
     let result;
 
-    if(!Number.isNaN(num1AsNumber) && !Number.isNaN(num2AsNumber)) {
-        result = num1AsNumber * num2AsNumber;
+        result = num1 * num2;
         this.history.push(num1 + " * " + num2 + " = " + result);
-    }
 }
 
 Calculator.prototype.div = function(num1, num2) {
-    const num1AsNumber = Number(num1);
-    const num2AsNumber = Number(num2);
     let result;
 
-    if(!Number.isNaN(num1AsNumber) && !Number.isNaN(num2AsNumber) && num2AsNumber !== 0) {
-        result = num1AsNumber / num2AsNumber;
+    if(num2 !== 0) {
+        result = num1 / num2;
         this.history.push(num1 + " / " + num2 + " = " + result);
     }
 }
 
 Calculator.prototype.pow = function(num1, num2) {
-    const num1AsNumber = Number(num1);
-    const num2AsNumber = Number(num2);
     let result = 1;
 
-    if(!Number.isNaN(num1AsNumber) && !Number.isNaN(num2AsNumber) && num2AsNumber >= 0) {
-        for (let i=1; i<=Math.trunc(num2AsNumber); i++){
-            result *= num1AsNumber;
+    if(num2 >= 0) {
+        for (let i=1; i<=Math.trunc(num2); i++){
+            result *= num1;
         }
         
-        this.history.push(num1 + " ^ " + Math.trunc(num2AsNumber) + " = " + result);
+        this.history.push(num1 + " ^ " + Math.trunc(num2) + " = " + result);
     }
 }
 
@@ -85,21 +69,25 @@ do {
     if(isCorrectAction) {
         number1 = prompt('Podaj liczbę nr 1');
         number2 = prompt('Podaj liczbę nr 2');
+        number1 = Number(number1);
+        number2 = Number(number2);
 
-        if(action === '+') {
-            calc.add(number1, number2);
-        }
-        if(action === '-') {
-            calc.sub(number1, number2);
-        }
-        if(action === '*') {
-            calc.multi(number1, number2);
-        }
-        if(action === '/') {
-            calc.div(number1, number2);
-        }
-        if(action === '^') {
-            calc.pow(number1, number2);
+        if(!Number.isNaN(number1) && !Number.isNaN(number2)) {
+            if(action === '+') {
+                calc.add(number1, number2);
+            }
+            if(action === '-') {
+                calc.sub(number1, number2);
+            }
+            if(action === '*') {
+                calc.multi(number1, number2);
+            }
+            if(action === '/') {
+                calc.div(number1, number2);
+            }
+            if(action === '^') {
+                calc.pow(number1, number2);
+            }
         }
     }
     
