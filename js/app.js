@@ -67,10 +67,10 @@ do {
         action = prompt(promptContent)
     }
 
-    if (action === null) {
+    while (action === null) {
         if (!confirm('Czy zakończyć działanie kalkulatora?')) {
             action = prompt(promptContent);
-        };
+        } else { break };
     }
 
     isCorrectAction = calc.isCorrectAction(action);
