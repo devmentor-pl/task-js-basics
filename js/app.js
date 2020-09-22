@@ -7,91 +7,101 @@ Calculator.prototype.isCorrectAction = function (action) {
   return this.actions.includes(action);
 };
 
-Calculator.prototype.areNumbersCorrect = function (num1, num2) {
-  return !isNaN(num1) && !isNaN(num2);
+Calculator.prototype.isNumberCorrect = function (num) {
+  return !Number.isNaN(num);
+};
+
+Calculator.prototype.checkNumber = function (num) {
+  const number = parseInt(num);
+
+  if (this.isNumberCorrect(number)) {
+    return number;
+  } else {
+    throw new Error(`${num} is not a number.`);
+  }
 };
 
 Calculator.prototype.getHistoryAsString = function () {
   return this.history.join("\n");
 };
 
-Calculator.prototype.add = function (num1, num2) {
-  num1 = parseInt(num1);
-  num2 = parseInt(num2);
+Calculator.prototype.addToHistory = function (num1, num2, result, operation) {
+  this.history.push(`${num1} ${operation} ${num2} = ${result}`);
+};
 
-  if (this.areNumbersCorrect(num1, num2)) {
+Calculator.prototype.add = function (num1, num2) {
+  try {
+    num1 = this.checkNumber(num1);
+    num2 = this.checkNumber(num2);
+
     const result = num1 + num2;
 
-    this.history.push(`${num1} + ${num2} = ${result}`);
+    this.addToHistory(num1, num2, result, "+");
 
     return result;
-  } else {
-    alert("Please enter numbers");
+  } catch (e) {
+    alert(e);
   }
 
   return null;
 };
 
 Calculator.prototype.subtract = function (num1, num2) {
-  num1 = parseInt(num1);
-  num2 = parseInt(num2);
-
-  if (this.areNumbersCorrect(num1, num2)) {
+  try {
+    num1 = this.checkNumber(num1);
+    num2 = this.checkNumber(num2);
     const result = num1 - num2;
 
-    this.history.push(`${num1} - ${num2} = ${result}`);
+    this.addToHistory(num1, num2, result, "-");
 
     return result;
-  } else {
-    alert("Please enter numbers");
+  } catch (e) {
+    alert(e);
   }
 
   return null;
 };
 
 Calculator.prototype.multiply = function (num1, num2) {
-  num1 = parseInt(num1);
-  num2 = parseInt(num2);
-
-  if (this.areNumbersCorrect(num1, num2)) {
+  try {
+    num1 = this.checkNumber(num1);
+    num2 = this.checkNumber(num2);
     const result = num1 * num2;
 
-    this.history.push(`${num1} * ${num2} = ${result}`);
+    this.addToHistory(num1, num2, result, "*");
 
     return result;
-  } else {
-    alert("Please enter numbers");
+  } catch (e) {
+    alert(e);
   }
 
   return null;
 };
 
 Calculator.prototype.divide = function (num1, num2) {
-  num1 = parseInt(num1);
-  num2 = parseInt(num2);
-
-  if (this.areNumbersCorrect(num1, num2)) {
+  try {
+    num1 = this.checkNumber(num1);
+    num2 = this.checkNumber(num2);
     if (num2 !== 0) {
       const result = num1 / num2;
 
-      this.history.push(`${num1} / ${num2} = ${result}`);
+      this.addToHistory(num1, num2, result, "/");
 
       return result;
     } else {
       alert("You cannot divide by zero.");
     }
-  } else {
-    alert("Please enter numbers");
+  } catch (e) {
+    alert(e);
   }
 
   return null;
 };
 
 Calculator.prototype.power = function (num1, num2) {
-  num1 = parseInt(num1);
-  num2 = parseInt(num2);
-
-  if (this.areNumbersCorrect(num1, num2)) {
+  try {
+    num1 = this.checkNumber(num1);
+    num2 = this.checkNumber(num2);
     let result = 1;
 
     if (num2 !== 0) {
@@ -103,11 +113,11 @@ Calculator.prototype.power = function (num1, num2) {
       } while (count > 0);
     }
 
-    this.history.push(`${num1} ^ ${num2} = ${result}`);
+    this.addToHistory(num1, num2, result, "^");
 
     return result;
-  } else {
-    alert("Please enter numbers");
+  } catch (e) {
+    alert(e);
   }
 
   return null;
