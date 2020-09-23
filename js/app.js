@@ -11,7 +11,7 @@ Calculator.prototype.isNumberCorrect = function (num) {
   return !Number.isNaN(num);
 };
 
-Calculator.prototype.checkNumber = function (num) {
+Calculator.prototype.parseNumber = function (num) {
   const number = parseInt(num);
 
   if (this.isNumberCorrect(number)) {
@@ -30,97 +30,68 @@ Calculator.prototype.addToHistory = function (num1, num2, result, operation) {
 };
 
 Calculator.prototype.add = function (num1, num2) {
-  try {
-    num1 = this.checkNumber(num1);
-    num2 = this.checkNumber(num2);
+  num1 = this.parseNumber(num1);
+  num2 = this.parseNumber(num2);
 
-    const result = num1 + num2;
+  const result = num1 + num2;
 
-    this.addToHistory(num1, num2, result, "+");
+  this.addToHistory(num1, num2, result, "+");
 
-    return result;
-  } catch (e) {
-    alert(e);
-  }
-
-  return null;
+  return result;
 };
 
 Calculator.prototype.subtract = function (num1, num2) {
-  try {
-    num1 = this.checkNumber(num1);
-    num2 = this.checkNumber(num2);
-    const result = num1 - num2;
+  num1 = this.parseNumber(num1);
+  num2 = this.parseNumber(num2);
+  const result = num1 - num2;
 
-    this.addToHistory(num1, num2, result, "-");
+  this.addToHistory(num1, num2, result, "-");
 
-    return result;
-  } catch (e) {
-    alert(e);
-  }
-
-  return null;
+  return result;
 };
 
 Calculator.prototype.multiply = function (num1, num2) {
-  try {
-    num1 = this.checkNumber(num1);
-    num2 = this.checkNumber(num2);
-    const result = num1 * num2;
+  num1 = this.parseNumber(num1);
+  num2 = this.parseNumber(num2);
+  const result = num1 * num2;
 
-    this.addToHistory(num1, num2, result, "*");
+  this.addToHistory(num1, num2, result, "*");
 
-    return result;
-  } catch (e) {
-    alert(e);
-  }
-
-  return null;
+  return result;
 };
 
 Calculator.prototype.divide = function (num1, num2) {
-  try {
-    num1 = this.checkNumber(num1);
-    num2 = this.checkNumber(num2);
-    if (num2 !== 0) {
-      const result = num1 / num2;
+  num1 = this.parseNumber(num1);
+  num2 = this.parseNumber(num2);
 
-      this.addToHistory(num1, num2, result, "/");
+  if (num2 !== 0) {
+    const result = num1 / num2;
 
-      return result;
-    } else {
-      alert("You cannot divide by zero.");
-    }
-  } catch (e) {
-    alert(e);
+    this.addToHistory(num1, num2, result, "/");
+
+    return result;
+  } else {
+    alert("You cannot divide by zero.");
   }
-
-  return null;
 };
 
 Calculator.prototype.power = function (num1, num2) {
-  try {
-    num1 = this.checkNumber(num1);
-    num2 = this.checkNumber(num2);
-    let result = 1;
+  num1 = this.parseNumber(num1);
+  num2 = this.parseNumber(num2);
+  let result = 1;
 
-    if (num2 !== 0) {
-      let count = Math.abs(num2);
+  if (num2 !== 0) {
+    let count = Math.abs(num2);
 
-      do {
-        result *= num2 > 0 ? num1 : 1 / num1;
-        count--;
-      } while (count > 0);
-    }
-
-    this.addToHistory(num1, num2, result, "^");
-
-    return result;
-  } catch (e) {
-    alert(e);
+    do {
+      result *= num2 > 0 ? num1 : 1 / num1;
+      count--;
+    } while (count > 0);
   }
 
-  return null;
+  this.addToHistory(num1, num2, result, "^");
+
+  return result;
 };
 
 const calc = new Calculator();
@@ -137,16 +108,20 @@ do {
     number1 = prompt("Podaj liczbę nr 1");
     number2 = prompt("Podaj liczbę nr 2");
 
-    if (action === "+") {
-      calc.add(number1, number2);
-    } else if (action === "-") {
-      calc.subtract(number1, number2);
-    } else if (action === "*") {
-      calc.multiply(number1, number2);
-    } else if (action === "/") {
-      calc.divide(number1, number2);
-    } else if (action === "^") {
-      calc.power(number1, number2);
+    try {
+      if (action === "+") {
+        calc.add(number1, number2);
+      } else if (action === "-") {
+        calc.subtract(number1, number2);
+      } else if (action === "*") {
+        calc.multiply(number1, number2);
+      } else if (action === "/") {
+        calc.divide(number1, number2);
+      } else if (action === "^") {
+        calc.power(number1, number2);
+      }
+    } catch (e) {
+      alert(e);
     }
   }
 } while (calc.isCorrectAction(action));
