@@ -49,7 +49,7 @@ Calculator.prototype.subtract = function (num1, num2) {
         result = floatNum1 - floatNum2;
         resultString = floatNum1 + " - " + floatNum2 + " = " + result;
 
-        // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
+        // 4. dodaj do historii operacji to działanie w fomie: 1 - 1 = 0
         this.history.push(resultString)
         return result;
 
@@ -73,7 +73,7 @@ Calculator.prototype.multiply = function (num1, num2) {
         result = floatNum1 * floatNum2;
         resultString = floatNum1 + " x " + floatNum2 + " = " + result;
 
-        // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
+        // 4. dodaj do historii operacji to działanie w fomie: 1 * 3 = 3
         this.history.push(resultString)
         return result;
 
@@ -97,7 +97,7 @@ Calculator.prototype.divide = function (num1, num2) {
         result = floatNum1 / floatNum2;
         resultString = floatNum1 + " / " + floatNum2 + " = " + result;
 
-        // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
+        // 4. dodaj do historii operacji to działanie w fomie: 12 / 2 = 6
         this.history.push(resultString)
         return result;
 
@@ -119,15 +119,15 @@ Calculator.prototype.power = function (num1, num2) {
 
     // 2. sprawdź czy są one poprawne
     if ((!isNaN(floatNum1) && !isNaN(floatNum2)) && floatNum2 > 0) {
-        // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
 
+        // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
         while (j <= floatNum2) {
             result *= floatNum1;
             resultArray.push(floatNum1);
             j++;
         }
 
-        // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
+        // 4. dodaj do historii operacji to działanie w fomie: 3 * 3 * 3 = 27
         resultString = resultArray.join(' * ') + ' = ' + result;
         this.history.push(resultString)
         return result;
