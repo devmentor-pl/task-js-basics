@@ -30,8 +30,7 @@ Calculator.prototype.add = function (num1, num2) {
         return result;
 
     } else {
-        const error = 'Wprowadzone dane nie są liczbami';
-        return error;
+        return false;
     }
 }
 
@@ -54,8 +53,7 @@ Calculator.prototype.subtract = function (num1, num2) {
         return result;
 
     } else {
-        const error = 'Wprowadzone dane nie są liczbami';
-        return error;
+        return false
     }
 }
 
@@ -78,8 +76,7 @@ Calculator.prototype.multiply = function (num1, num2) {
         return result;
 
     } else {
-        const error = 'Wprowadzone dane nie są liczbami';
-        return error;
+        return false;
     }
 }
 
@@ -102,8 +99,7 @@ Calculator.prototype.divide = function (num1, num2) {
         return result;
 
     } else {
-        const error = 'Wprowadzone dane nie są poprawnymi liczbami';
-        return error;
+        return false;
     }
 }
 
@@ -133,8 +129,7 @@ Calculator.prototype.power = function (num1, num2) {
         return result;
 
     } else {
-        const error = 'Wprowadzone dane nie są poprawnymi liczbami';
-        return error;
+        return false;
     }
 }
 
@@ -153,24 +148,53 @@ do {
 
         if (action === '+') {
             const addResult = calc.add(number1, number2);
-            alert('Wynik: ' + addResult);
+            if (addResult) {
+                alert('Wynik: ' + addResult);
+            } else {
+                alertUser('Wprowadzone dane nie są poprawnymi liczbami');
+            }
         }
         if (action === '-') {
             const subResult = calc.subtract(number1, number2);
-            alert('Wynik: ' + subResult);
+            if (subResult) {
+                alert('Wynik: ' + subResult);
+            } else {
+                alertUser('Wprowadzone dane nie są poprawnymi liczbami');
+            }
+
         }
         if (action === '*') {
             const multiResult = calc.multiply(number1, number2);
-            alert('Wynik: ' + multiResult);
+            if (multiResult) {
+                alert('Wynik: ' + multiResult);
+            } else {
+                alertUser('Wprowadzone dane nie są poprawnymi liczbami');
+            }
+
         }
         if (action === '/') {
             const divResult = calc.divide(number1, number2);
-            alert('Wynik: ' + divResult);
+            if (divResult) {
+                alert('Wynik: ' + divResult);
+            } else {
+                alertUser('Wprowadzone dane nie są poprawnymi liczbami');
+            }
+
         }
+
         if (action === '^') {
             const powResult = calc.power(number1, number2);
-            alert('Wynik: ' + powResult);
+            if (powResult) {
+                alert('Wynik: ' + powResult);
+            } else {
+                alertUser('Wprowadzone dane nie są poprawnymi liczbami');
+            }
+
         }
     }
 
 } while (calc.isCorrectAction(action));
+
+function alertUser(text) {
+    alert(text);
+}
