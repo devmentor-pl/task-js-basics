@@ -3,37 +3,125 @@ function Calculator() {
     this.history = [];
 }
 
-Calculator.prototype.isCorrectAction = function(action) {
+Calculator.prototype.isCorrectAction = function (action) {
     return this.actions.includes(action);
 }
 
-Calculator.prototype.getHistoryAsString = function() {
+Calculator.prototype.getHistoryAsString = function () {
     return this.history.join('\n');
 }
 
-Calculator.prototype.add = function(num1, num2) {
+Calculator.prototype.add = function (num1, num2) {
     // 1. zamień wartości przekazane przez parametr na typ number
     // 2. sprawdź czy są one poprawne
     // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
     // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
+    const numberAdd1 = parseFloat(num1);
+    const numberAdd2 = parseFloat(num2);
+
+    if (isNaN(numberAdd1) || isNaN(numberAdd2) === true) {
+        alert('Co najmniej jedna z podanych danych nie jest liczbą !!!')
+    } else {
+        const resultAdd = numberAdd1 + numberAdd2;
+        this.history.push(numberAdd1 + ' + ' + numberAdd2 + ' = ' + resultAdd);
+    }
 }
+
+Calculator.prototype.sub = function (num1, num2) {
+
+    const numberSub1 = parseFloat(num1);
+    const numberSub2 = parseFloat(num2);
+
+    if (isNaN(numberSub1) || isNaN(numberSub2) === true) {
+        alert('Co najmniej jedna z podanych danych nie jest liczbą !!!')
+    } else {
+        const resultSub = numberSub1 - numberSub2;
+        this.history.push(numberSub1 + ' - ' + numberSub2 + ' = ' + resultSub);
+    }
+}
+
+Calculator.prototype.mul = function (num1, num2) {
+
+    const numberMul1 = parseFloat(num1);
+    const numberMul2 = parseFloat(num2);
+
+    if (isNaN(numberMul1) || isNaN(numberMul2) === true) {
+        alert('Co najmniej jedna z podanych danych nie jest liczbą !!!')
+    } else {
+        const resultMul = numberMul1 * numberMul2;
+        this.history.push(numberMul1 + ' * ' + numberMul2 + ' = ' + resultMul);
+    }
+}
+
+Calculator.prototype.div = function (num1, num2) {
+
+    const numberDiv1 = parseFloat(num1);
+    const numberDiv2 = parseFloat(num2);
+
+    if (isNaN(numberDiv1) || isNaN(numberDiv2) === true) {
+        alert('Co najmniej jedna z podanych danych nie jest liczbą !!!')
+    } else {
+        const resultDiv = numberDiv1 / numberDiv2;
+        this.history.push(numberDiv1 + ' / ' + numberDiv2 + ' = ' + resultDiv);
+    }
+}
+
+Calculator.prototype.pow = function (num1, num2) {
+
+    const numberPow1 = parseFloat(num1);
+    const numberPow2 = parseFloat(num2);
+
+    if (isNaN(numberPow1) || isNaN(numberPow2) === true) {
+        alert('Co najmniej jedna z podanych danych nie jest liczbą !!!')
+    } else {
+        if (numberPow2 > 0) {
+            let resultPow = 1;
+            for (let i = 0; i < numberPow2; i++) {
+                resultPow *= numberPow1;
+            }
+            this.history.push(numberPow1 + ' ^ ' + numberPow2 + ' = ' + resultPow);
+        } else if (numberPow2 === 0) {
+            let resultPow = 1;
+            this.history.push(numberPow1 + ' ^ ' + numberPow2 + ' = ' + resultPow);
+        } else {
+            let resultPow = 0;
+            let resultPowNegative = 1;
+            let positiveNumberPow2 = numberPow2 * (-1);
+
+            for (let i = 0; i < positiveNumberPow2; i++) {
+                resultPowNegative *= numberPow1;
+                resultPow = 1 / resultPowNegative;
+            }
+            this.history.push(numberPow1 + ' ^ ' + numberPow2 + ' = ' + resultPow);
+        }
+    }
+}
+
 
 const calc = new Calculator();
 let action, promptContent, isCorrectAction, number1, number2;
-do { 
+do {
     promptContent = 'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n'; // \n - znak nowej linii
     promptContent += 'Jeśli chcesz zrezygnować wciśnij Anuluj. \n';
     promptContent += 'Lista poprzednich operacji: \n' + calc.getHistoryAsString();
 
     action = prompt(promptContent);
     isCorrectAction = calc.isCorrectAction(action);
-    if(isCorrectAction) {
+    if (isCorrectAction) {
         number1 = prompt('Podaj liczbę nr 1');
         number2 = prompt('Podaj liczbę nr 2');
 
-        if(action === '+') {
+        if (action === '+') {
             calc.add(number1, number2);
+        } else if (action === '-') {
+            calc.sub(number1, number2);
+        } else if (action === '*') {
+            calc.mul(number1, number2);
+        } else if (action === '/') {
+            calc.div(number1, number2);
+        } else if (action === '^') {
+            calc.pow(number1, number2);
         }
     }
-    
-} while(calc.isCorrectAction(action));
+
+} while (calc.isCorrectAction(action));
