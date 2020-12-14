@@ -19,11 +19,11 @@ Calculator.prototype.add = function (num1, num2) {
     const numberAdd1 = parseFloat(num1);
     const numberAdd2 = parseFloat(num2);
 
-    if (isNaN(numberAdd1) || isNaN(numberAdd2) === true) {
-        alert('Co najmniej jedna z podanych danych nie jest liczbą !!!')
-    } else {
+    const checkNumAdd = checkNumbers(numberAdd1, numberAdd2);
+
+    if (checkNumAdd === false) {
         const resultAdd = numberAdd1 + numberAdd2;
-        this.history.push(numberAdd1 + ' + ' + numberAdd2 + ' = ' + resultAdd);
+        arrPushResult(this.history, numberAdd1, numberAdd2, resultAdd, action);
     }
 }
 
@@ -32,11 +32,11 @@ Calculator.prototype.sub = function (num1, num2) {
     const numberSub1 = parseFloat(num1);
     const numberSub2 = parseFloat(num2);
 
-    if (isNaN(numberSub1) || isNaN(numberSub2) === true) {
-        alert('Co najmniej jedna z podanych danych nie jest liczbą !!!')
-    } else {
+    const checkNumSub = checkNumbers(numberSub1, numberSub2);
+
+    if (checkNumSub === false) {
         const resultSub = numberSub1 - numberSub2;
-        this.history.push(numberSub1 + ' - ' + numberSub2 + ' = ' + resultSub);
+        arrPushResult(this.history, numberSub1, numberSub2, resultSub, action);
     }
 }
 
@@ -45,11 +45,11 @@ Calculator.prototype.mul = function (num1, num2) {
     const numberMul1 = parseFloat(num1);
     const numberMul2 = parseFloat(num2);
 
-    if (isNaN(numberMul1) || isNaN(numberMul2) === true) {
-        alert('Co najmniej jedna z podanych danych nie jest liczbą !!!')
-    } else {
+    const checkNumMul = checkNumbers(numberMul1, numberMul2);
+
+    if (checkNumMul === false) {
         const resultMul = numberMul1 * numberMul2;
-        this.history.push(numberMul1 + ' * ' + numberMul2 + ' = ' + resultMul);
+        arrPushResult(this.history, numberMul1, numberMul2, resultMul, action);
     }
 }
 
@@ -58,11 +58,11 @@ Calculator.prototype.div = function (num1, num2) {
     const numberDiv1 = parseFloat(num1);
     const numberDiv2 = parseFloat(num2);
 
-    if (isNaN(numberDiv1) || isNaN(numberDiv2) === true) {
-        alert('Co najmniej jedna z podanych danych nie jest liczbą !!!')
-    } else {
+    const checkNumDiv = checkNumbers(numberDiv1, numberDiv2);
+
+    if (checkNumDiv === false) {
         const resultDiv = numberDiv1 / numberDiv2;
-        this.history.push(numberDiv1 + ' / ' + numberDiv2 + ' = ' + resultDiv);
+        arrPushResult(this.history, numberDiv1, numberDiv2, resultDiv, action);
     }
 }
 
@@ -71,18 +71,18 @@ Calculator.prototype.pow = function (num1, num2) {
     const numberPow1 = parseFloat(num1);
     const numberPow2 = parseFloat(num2);
 
-    if (isNaN(numberPow1) || isNaN(numberPow2) === true) {
-        alert('Co najmniej jedna z podanych danych nie jest liczbą !!!')
-    } else {
+    const checkNumPow = checkNumbers(numberPow1, numberPow2);
+
+    if (checkNumPow === false) {
         if (numberPow2 > 0) {
             let resultPow = 1;
             for (let i = 0; i < numberPow2; i++) {
                 resultPow *= numberPow1;
             }
-            this.history.push(numberPow1 + ' ^ ' + numberPow2 + ' = ' + resultPow);
+            arrPushResult(this.history, numberPow1, numberPow2, resultPow, action);
         } else if (numberPow2 === 0) {
             let resultPow = 1;
-            this.history.push(numberPow1 + ' ^ ' + numberPow2 + ' = ' + resultPow);
+            arrPushResult(this.history, numberPow1, numberPow2, resultPow, action);
         } else {
             let resultPow = 0;
             let resultPowNegative = 1;
@@ -92,7 +92,7 @@ Calculator.prototype.pow = function (num1, num2) {
                 resultPowNegative *= numberPow1;
                 resultPow = 1 / resultPowNegative;
             }
-            this.history.push(numberPow1 + ' ^ ' + numberPow2 + ' = ' + resultPow);
+            arrPushResult(this.history, numberPow1, numberPow2, resultPow, action);
         }
     }
 }
@@ -125,3 +125,20 @@ do {
     }
 
 } while (calc.isCorrectAction(action));
+
+
+function checkNumbers(checkNum1, checkNum2) {
+
+    if (isNaN(checkNum1) || isNaN(checkNum2)) {
+        alert('Co najmniej jedna z podanych danych nie jest liczbą !!!');
+
+        return true;
+    }
+
+    return false;
+}
+
+
+function arrPushResult(arr, num1, num2, result, actions) {
+    return arr.push(num1 + ' ' + actions + ' ' + num2 + ' = ' + result);
+}
