@@ -15,10 +15,10 @@ Calculator.prototype.areCorrectNumbers = function (checkNum1, checkNum2) {
     if (isNaN(checkNum1) || isNaN(checkNum2)) {
         alert('Co najmniej jedna z podanych danych nie jest liczbą !!!');
 
-        return true;
+        return false;
     }
 
-    return false;
+    return true;
 }
 
 Calculator.prototype.arrPushResult = function (num1, num2, result, actions) {
@@ -35,7 +35,7 @@ Calculator.prototype.add = function (num1, num2) {
     const numberAdd1 = parseFloat(num1);
     const numberAdd2 = parseFloat(num2);
 
-    if (calc.areCorrectNumbers(numberAdd1, numberAdd2) === false) {
+    if (calc.areCorrectNumbers(numberAdd1, numberAdd2) === true) {
         const resultAdd = numberAdd1 + numberAdd2;
         calc.arrPushResult(numberAdd1, numberAdd2, resultAdd, action);
     }
@@ -46,7 +46,7 @@ Calculator.prototype.sub = function (num1, num2) {
     const numberSub1 = parseFloat(num1);
     const numberSub2 = parseFloat(num2);
 
-    if (calc.areCorrectNumbers(numberSub1, numberSub2) === false) {
+    if (calc.areCorrectNumbers(numberSub1, numberSub2) === true) {
         const resultSub = numberSub1 - numberSub2;
         calc.arrPushResult(numberSub1, numberSub2, resultSub, action);
     }
@@ -57,7 +57,7 @@ Calculator.prototype.mul = function (num1, num2) {
     const numberMul1 = parseFloat(num1);
     const numberMul2 = parseFloat(num2);
 
-    if (calc.areCorrectNumbers(numberMul1, numberMul2) === false) {
+    if (calc.areCorrectNumbers(numberMul1, numberMul2) === true) {
         const resultMul = numberMul1 * numberMul2;
         calc.arrPushResult(numberMul1, numberMul2, resultMul, action);
     }
@@ -68,7 +68,7 @@ Calculator.prototype.div = function (num1, num2) {
     const numberDiv1 = parseFloat(num1);
     const numberDiv2 = parseFloat(num2);
 
-    if (calc.areCorrectNumbers(numberDiv1, numberDiv2) === false) {
+    if (calc.areCorrectNumbers(numberDiv1, numberDiv2) === true) {
         const resultDiv = numberDiv1 / numberDiv2;
         calc.arrPushResult(numberDiv1, numberDiv2, resultDiv, action);
     }
@@ -79,7 +79,7 @@ Calculator.prototype.pow = function (num1, num2) {
     const numberPow1 = parseFloat(num1);
     const numberPow2 = parseFloat(num2);
 
-    if (calc.areCorrectNumbers(numberPow1, numberPow2) === false) {
+    if (calc.areCorrectNumbers(numberPow1, numberPow2) === true) {
         if (numberPow2 > 0) {
             let resultPow = 1;
             for (let i = 0; i < numberPow2; i++) {
