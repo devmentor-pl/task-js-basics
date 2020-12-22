@@ -16,6 +16,19 @@ Calculator.prototype.add = function(num1, num2) {
     // 2. sprawdź czy są one poprawne
     // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
     // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
+
+    const checkNumberOne = parseInt(num1);
+    const checkNumberTwo = parseInt(num2);
+    let result = 0;
+
+    if (!isNaN(checkNumberOne) && !isNaN(checkNumberTwo)) {
+        result = checkNumberOne + checkNumberTwo;
+        this.history.push(`${checkNumberOne} + ${checkNumberTwo} = ${result}`);
+    } else {
+        return null;
+    }
+
+    return result;
 }
 
 const calc = new Calculator();
@@ -36,4 +49,4 @@ do {
         }
     }
     
-} while(calc.isCorrectAction(action));
+} while(calc.isCorrectAction(action));Ø
