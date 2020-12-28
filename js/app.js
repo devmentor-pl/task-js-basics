@@ -15,7 +15,8 @@ Calculator.prototype.checkInput = function(txt) {
     return alert(txt);
 }
 
-Calculator.prototype.validation = function(num1, num2) {
+Calculator.prototype.areCorrectNumber = function(num1, num2) {
+
     if (!isNaN(num1) && !isNaN(num2)) {
         return true;
     } else {
@@ -30,21 +31,15 @@ Calculator.prototype.add = function(num1, num2) {
     // 2. sprawdź czy są one poprawne
     // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
     // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
-    const checkNumberOne = parseInt(num1);
-    const checkNumberTwo = parseInt(num2);
     
-
-
     let result = 0;
 
+    if (this.areCorrectNumber(num1,num2) === true) {
+        result = num1 + num2;
+        this.history.push(`${num1} + ${num2} = ${result}`);
+    } 
 
-    if (calc.validation(checkNumberOne, checkNumberTwo) === true) {
-        result = checkNumberOne + checkNumberTwo;
-        this.history.push(`${checkNumberOne} + ${checkNumberTwo} = ${result}`);
-    } else {
-        return null;
-    }
-    return result;
+    return null;
     
 }
 
@@ -54,17 +49,15 @@ Calculator.prototype.substract = function(num1, num2) {
     // 2. sprawdź czy są one poprawne
     // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
     // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
-    const checkNumberOne = parseInt(num1);
-    const checkNumberTwo = parseInt(num2);
+
     let result = 0;
 
-    if (calc.validation(checkNumberOne, checkNumberTwo) === true) {
-        result = checkNumberOne - checkNumberTwo;
-        this.history.push(`${checkNumberOne} - ${checkNumberTwo} = ${result}`);
-    } else {
-        return null;
+    if (calc.areCorrectNumber(num1, num2) === true) {
+        result = num1 - num2;
+        this.history.push(`${num1} - ${num2} = ${result}`);
     }
-    return result;
+
+    return null;
 }
 
 // Multiplication
@@ -73,18 +66,14 @@ Calculator.prototype.multiplication = function(num1, num2) {
     // 2. sprawdź czy są one poprawne
     // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
     // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
-    const checkNumberOne = parseInt(num1);
-    const checkNumberTwo = parseInt(num2);
     let result = 0;
 
-    if (calc.validation(checkNumberOne, checkNumberTwo) === true) {
-        result = checkNumberOne * checkNumberTwo;
-        this.history.push(`${checkNumberOne} * ${checkNumberTwo} = ${result}`);
-    } else {
-        return null;
+    if (calc.areCorrectNumber(num1, num2) === true) {
+        result = num1 * num2;
+        this.history.push(`${num1} * ${num2} = ${result}`);
     }
 
-    return result;
+    return null;
 }
 
 //Devide
@@ -93,18 +82,15 @@ Calculator.prototype.devide = function(num1, num2) {
     // 2. sprawdź czy są one poprawne
     // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
     // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
-    const checkNumberOne = parseInt(num1);
-    const checkNumberTwo = parseInt(num2);
     let result = 0;
+    
 
-    if (calc.validation(checkNumberOne, checkNumberTwo) === true) {
-        result = checkNumberOne / checkNumberTwo;
-        this.history.push(`${checkNumberOne} / ${checkNumberTwo} = ${result}`);
-    } else {
-        return null;
+    if (calc.areCorrectNumber(num1, num2) === true) {
+        result = (num2 !== 0) ? (num1 / num2) : 0;
+        this.history.push(`${num1} / ${num2} = ${result}`);
     }
 
-    return result;
+    return null;
 }
 
 //Expentation
@@ -113,21 +99,18 @@ Calculator.prototype.exponentiation = function(num1, num2) {
     // 2. sprawdź czy są one poprawne
     // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
     // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
-    const checkNumberOne = parseInt(num1);
-    const checkNumberTwo = parseInt(num2);
     let result = 1;
 
-    if (!isNaN(checkNumberOne) && !isNaN(checkNumberTwo)) {
+    if (this.areCorrectNumber(num1, num2) === true) {
         
-        for(let i = 1; i <= checkNumberTwo; i++) {
-            result *= checkNumberOne;
+        for(let i = 1; i <= num2; i++) {
+            result *= num1;
         }
-        this.history.push(`${checkNumberOne}^${checkNumberTwo} = ${result}`);
-    } else {
-        return null;
+        this.history.push(`${num1}^${num2} = ${result}`);
     }
 
-    return result;
+
+    return null;
 }
 
 
@@ -140,9 +123,10 @@ do {
 
     action = prompt(promptContent);
     isCorrectAction = calc.isCorrectAction(action);
+    
     if(isCorrectAction) {
-        number1 = prompt('Podaj liczbę nr 1');
-        number2 = prompt('Podaj liczbę nr 2');
+        number1 = parseInt(prompt('Podaj liczbę nr 1'));
+        number2 = parseInt(prompt('Podaj liczbę nr 2'));
 
         if(action === '+') {
             calc.add(number1, number2);
