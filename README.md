@@ -1,4 +1,4 @@
-# JavaScript: Podstawy
+# JavaScript: Podstawy 2
 
 Twoim zadaniem będzie dopisanie do istniejącego kodu niezbędnych elementów, które pozwolą wykonywać obliczenia oraz przechowywać hostorię wykonanych operacji.
 
