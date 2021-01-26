@@ -20,7 +20,8 @@ Calculator.prototype.add = function(num1, num2) {
     } else {
         const addition = (firstNum + ' + ' + secondNum + ' = ' + (firstNum + secondNum));
         console.log(addition); 
-        return this.history.push(addition);
+        this.history.push(addition);
+        return addition;
     }
     
     // 1. zamień wartości przekazane przez parametr na typ number
@@ -38,7 +39,8 @@ Calculator.prototype.subtract = function(num1, num2) {
     } else {
         const subtraction = (firstNum + ' - ' + secondNum + ' = ' + (firstNum - secondNum));
         console.log(subtraction);
-        return this.history.push(subtraction);
+        this.history.push(subtraction);
+        return subtraction;
     }
 }
 Calculator.prototype.multiply = function(num1, num2) {
@@ -50,7 +52,8 @@ Calculator.prototype.multiply = function(num1, num2) {
     } else {
         const multiplication = (firstNum + ' * ' + secondNum + ' = ' + (firstNum * secondNum));
         console.log(multiplication);
-        return this.history.push(multiplication); 
+        this.history.push(multiplication);
+        return multiplication; 
     }
 }
 Calculator.prototype.divide = function(num1, num2) {
@@ -64,7 +67,8 @@ Calculator.prototype.divide = function(num1, num2) {
     } else {
         const division = (firstNum + ' / ' + secondNum + ' = ' + (firstNum / secondNum)); 
         console.log(division);
-        return this.history.push(division);
+        this.history.push(division);
+        return division;
     }
 }
 
