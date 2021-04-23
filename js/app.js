@@ -1,6 +1,6 @@
 
 function Calculator() {
-    this.actions = ['+', '-', '*', '/', '^'];
+    this.actions = ['+', '-', '*', '/', '^', '%'];
     this.history = [];
 }
 
@@ -83,12 +83,22 @@ Calculator.prototype.exponentiation = function(num1, num2) {
     } while (this.isNumber(num1) && this.isNumber(num2))
 }
 
+// modulo (%)
+Calculator.prototype.modulo = function(num1, num2) {
+    let result = 0;
+    do {
+        result = parseFloat(num1) % parseFloat(num2);
+        this.history.push(`${number1} % ${number2} = ${result}`);
+        return result;
+    } while (this.isNumber(num1) && this.isNumber(num2))
+}
+
 const calc = new Calculator();
 
 let action, promptContent, isCorrectAction, number1, number2;
 
 do { 
-    promptContent = 'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n'; // \n - znak nowej linii
+    promptContent = 'Podaj jaką operację chcesz wykonać (+, -, *, /, ^, %) i potwierdź. \n'; // \n - znak nowej linii
     promptContent += 'Jeśli chcesz zrezygnować wciśnij Anuluj. \n';
     promptContent += 'Lista poprzednich operacji: \n' + calc.getHistoryAsString();
 
@@ -113,6 +123,10 @@ do {
                     } else {
                         if (action === '^') {
                             calc.exponentiation(number1, number2);
+                        } else {
+                            if (action == '%') {
+                                calc.modulo(number1, number2);
+                            }
                         }
                     }
                 }
