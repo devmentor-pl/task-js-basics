@@ -19,16 +19,16 @@ Calculator.prototype.isNumber = function (number) {
     }
 }
 
+Calculator.prototype.addToHistory = function (num1, num2, sign, result) {
+    this.history.push(num1 + sign + num2 + " = " + result);
+}
+
 Calculator.prototype.add = function(num1, num2) {
 
-    let a = num1;
-    let b = num2;
-    let result = 0;
+    if(this.isNumber(num1) && this.isNumber(num2)) {
 
-    while(this.isNumber(num1) && this.isNumber(num2)) {
-
-        result = a + b;
-        this.history.push(a  + " + " + b + " = " + result);
+        const result = num1 + num2;
+        this.addToHistory(num1, num2, " + ", result);
         
         return result;
     
@@ -37,30 +37,22 @@ Calculator.prototype.add = function(num1, num2) {
 
 Calculator.prototype.subtraction = function(num1, num2) {
 
-    let a = num1;
-    let b = num2;
-    let result = 0;
+    if(this.isNumber(num1) && this.isNumber(num2)) {
 
-    while(this.isNumber(num1) && this.isNumber(num2)) {
-
-        result = a - b;
-        this.history.push(a  + " - " + b + " = " + result);
+        const result = num1 - num2;
+        this.addToHistory(num1, num2, " - ", result);
         
         return result;
-    
+
     }
 }
 
 Calculator.prototype.multiplication = function(num1, num2) {
 
-    let a = num1;
-    let b = num2;
-    let result = 0;
+    if(this.isNumber(num1) && this.isNumber(num2)) {
 
-    while(this.isNumber(num1) && this.isNumber(num2)) {
-
-        result = a * b;
-        this.history.push(a  + " * " + b + " = " + result);
+        const result = num1 * num2;
+        this.addToHistory(num1, num2, " * ", result);
         
         return result;
     
@@ -69,14 +61,10 @@ Calculator.prototype.multiplication = function(num1, num2) {
 
 Calculator.prototype.divide = function(num1, num2) {
 
-    let a = num1;
-    let b = num2;
-    let result = 0;
+    if(this.isNumber(num1) && this.isNumber(num2) && num2 !== 0) {
 
-    while(this.isNumber(num1) && this.isNumber(num2) && num2 !== 0) {
-
-        result = a / b;
-        this.history.push(a  + " / " + b + " = " + result);
+        const result = num1 / num2;
+        this.addToHistory(num1, num2, " / ", result);
         
         return result;
     
@@ -85,21 +73,11 @@ Calculator.prototype.divide = function(num1, num2) {
 
 Calculator.prototype.exponentiation = function(num1, num2) {
 
-    let a = num1;
-    let b = num2;
-    let result = 1;
-
-    while(this.isNumber(num1) && this.isNumber(num2) && Math.round(num2) === num2) {
-
-        if(b <= 0) {
-            result = 1;
-        } else {
-            for(let i = 1; i <= b; i++) {
-                result *= a;
-            }
-        }
+    if(this.isNumber(num1) && this.isNumber(num2)) {
         
-        this.history.push(a  + " ^ " + b + " = " + result);
+        const result = Math.pow(num1, num2)
+        this.addToHistory(num1, num2, " ^ ", result);
+
         return result;
     
     }
