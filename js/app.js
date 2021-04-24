@@ -2,6 +2,7 @@
 function Calculator() {
     this.actions = ['+', '-', '*', '/', '^', '%'];
     this.history = [];
+    this.result = 0;
 }
 
 Calculator.prototype.isCorrectAction = function(action) {
@@ -13,13 +14,11 @@ Calculator.prototype.getHistoryAsString = function() {
 }
 
 Calculator.prototype.isNumber = function (number) {
-
-    if (typeof parseFloat(number) === 'number') {  //sprawdź czy number
+    if (typeof parseFloat(number) === 'number' || Number.isNaN(number)) {  //sprawdź czy number jest number lub NaN
         return true;
     } else {
         return alert('Nieprawidłowa wartość!');
     }
-
 }
 
 // 1. zamień wartości przekazane przez parametr na typ number
@@ -28,69 +27,63 @@ Calculator.prototype.isNumber = function (number) {
 // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
 
 // dodawanie (+)
-Calculator.prototype.add = function(num1, num2) {
-    let result = 0;
-    do {
-        result = parseFloat(num1) + parseFloat(num2);
-        this.history.push(`${number1} + ${number2} = ${result}`);
-        return result;
-    } while (this.isNumber(num1) && this.isNumber(num2))
+Calculator.prototype.add = function(number1, number2) {
+    if (this.isNumber(number1) && this.isNumber(number2)) {
+        this.result = parseFloat(number1) + parseFloat(number2);
+        calc.addToHistory();
+    }
 }
 
 // odejmowanie (-)
-Calculator.prototype.substraction = function(num1, num2) {
-    let result = 0;
-    do {
-        result = parseFloat(num1) - parseFloat(num2);
-        this.history.push(`${number1} - ${number2} = ${result}`);
-        return result;
-    } while (this.isNumber(num1) && this.isNumber(num2))
+Calculator.prototype.substraction = function(number1, number2) {
+    if (this.isNumber(number1) && this.isNumber(number2)) {
+        this.result = parseFloat(number1) - parseFloat(number2);
+        calc.addToHistory();
+    }
 }
 
 // mnożenie (*)
-Calculator.prototype.multiplication = function(num1, num2) {
-    let result = 0;
-    do {
-        result = parseFloat(num1) * parseFloat(num2);
-        this.history.push(`${number1} * ${number2} = ${result}`);
-        return result;
-    } while (this.isNumber(num1) && this.isNumber(num2))
+Calculator.prototype.multiplication = function(number1, number2) {
+    if (this.isNumber(number1) && this.isNumber(number2)) {
+        this.result = parseFloat(number1) * parseFloat(number2);
+        calc.addToHistory();
+    }
 }
 
 // dzielenie (/)
-Calculator.prototype.divide = function(num1, num2) {
-    let result = 0;
-    do {
-        result = parseFloat(num1) / parseFloat(num2);
-        this.history.push(`${number1} / ${number2} = ${Math.round(result * 1000) / 1000}`);
-        return Math.round(result * 1000) / 1000;
-    } while (this.isNumber(num1) && this.isNumber(num2))
+Calculator.prototype.divide = function(number1, number2) {
+    if (this.isNumber(number1) && this.isNumber(number2)) {
+        this.result = parseFloat(number1) / parseFloat(number2);
+        calc.addToHistory();
+    }
 }
 
 // potęgowanie (^) - wykonaj to rozwiązanie przy pomocy pętli, nie korzystaj z *Math.pow()*;
-Calculator.prototype.exponentiation = function(num1, num2) {
-    let result = 1;
-    do {
-        if (num2 <= 0) {
-            result = 1;
+Calculator.prototype.exponentiation = function(number1, number2) {
+    this.result = 1;
+    if (this.isNumber(number1) && this.isNumber(number2)) {
+        if (number2 <= 0) {
+            this.result = 1;
         } else {
-            for (let i = 1; i <= num2; i++) {
-                result = result * num1;
+            for (let i = 1; i <= number2; i++) {
+                this.result = this.result * number1;
             }
         }
-        this.history.push(`${number1} ^ ${number2} = ${result}`);
-        return result;
-    } while (this.isNumber(num1) && this.isNumber(num2))
+        calc.addToHistory();
+    }
 }
 
 // modulo (%)
-Calculator.prototype.modulo = function(num1, num2) {
-    let result = 0;
-    do {
-        result = parseFloat(num1) % parseFloat(num2);
-        this.history.push(`${number1} % ${number2} = ${result}`);
-        return result;
-    } while (this.isNumber(num1) && this.isNumber(num2))
+Calculator.prototype.modulo = function(number1, number2) {
+    if (this.isNumber(number1) && this.isNumber(number2)) {
+        this.result = parseFloat(number1) % parseFloat(number2);
+        calc.addToHistory();
+    }
+}
+
+// dodaj do historii
+Calculator.prototype.addToHistory = function () {
+    this.history.push(`${number1} ${action} ${number2} = ${this.result}`);
 }
 
 const calc = new Calculator();
@@ -124,7 +117,7 @@ do {
                         if (action === '^') {
                             calc.exponentiation(number1, number2);
                         } else {
-                            if (action == '%') {
+                            if (action === '%') {
                                 calc.modulo(number1, number2);
                             }
                         }
@@ -135,3 +128,4 @@ do {
     }
     
 } while(calc.isCorrectAction(action));
+
