@@ -11,38 +11,39 @@ Calculator.prototype.getHistoryAsString = function() {
     return this.history.join('\n');
 }
 
+
+Calculator.prototype.isNumber = function(x)  {
+
+    if( Number.isNaN( parseFloat(x) ) || !Number.isFinite( parseFloat(x) ) ) {
+       return null;
+    }
+    else {
+        return parseFloat(x);
+    }
+}
+
+
 Calculator.prototype.add = function(num1, num2) {
     // 1. zamień wartości przekazane przez parametr na typ number
     // 2. sprawdź czy są one poprawne
     // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
     // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
-    const a = parseFloat(num1);
-    const b = parseFloat(num2);
+    const a = this.getNumber(num1);
+    const b = this.getNumber(num2);
 
-    if( Number.isNaN(a) || Number.isNaN(b) ) {
-        this.history.push('Musisz podać liczby');
-    }
-    else if( !Number.isFinite(a) || !Number.isFinite(b) ) {
-        this.history.push('Wyszedłeś poza możliwy zakres liczb');
-    }
-    else {
+    if( a !== null && b !== null ) {
         const result = a + b;
         this.history.push(`${a} + ${b} = ${result}`)
         return result;
     }
 }
 
-Calculator.prototype.subtraction = function(num1, num2) {
-    const a = parseFloat(num1);
-    const b = parseFloat(num2);
 
-    if( Number.isNaN(a) || Number.isNaN(b) ) {
-        this.history.push('Musisz podać liczby');
-    }
-    else if( !Number.isFinite(a) || !Number.isFinite(b) ) {
-        this.history.push( 'wyszedłeś poza możliwy zakres liczb' )
-    }
-    else {
+Calculator.prototype.subtraction = function(num1, num2) {
+    const a = this.getNumber(num1);
+    const b = this.getNumber(num2);
+
+    if( a !== null && b !== null ) {
         const result = a - b;
         this.history.push(`${a} - ${b} = ${result}`)
         return result;
@@ -50,26 +51,11 @@ Calculator.prototype.subtraction = function(num1, num2) {
 }
 
 Calculator.prototype.multiply = function(num1, num2) {
-    const a = parseFloat(num1);
-    const b = parseFloat(num2);
 
-    if( Number.isNaN(a) || Number.isNaN(b)) {
+    const a = this.getNumber(num1);
+    const b = this.getNumber(num2);
 
-        this.history.push('Musisz podać liczby');
-    }
-
-    else if( !Number.isFinite(a) || !Number.isFinite(b) ) {
-        this.history.push('Wyszedłeś poza zakres');
-    }
-
-    else if( a === 0 || b === 0) {
-
-        const result = 0;
-        this.history.push(`${a} * ${b} = ${result} (Mnożenie przez zero? To nie żaden pic! Wynikiem jest zawsze zwyczajne nic.)`)
-        return result;
-    }
-
-    else {
+    if( a !== null && b !== null ) {
         const result = a * b;
         this.history.push(`${a} * ${b} = ${result}`)
         return result;
@@ -77,74 +63,56 @@ Calculator.prototype.multiply = function(num1, num2) {
 }
 
 Calculator.prototype.division = function(num1, num2) {
-    const a = parseFloat(num1);
-    const b = parseFloat(num2);
+    const a = this.getNumber(num1);
+    const b = this.getNumber(num2);
 
-    if( Number.isNaN(a) || Number.isNaN(b) ) {
+    if( a !== null && b !== null ) {
 
-        this.history.push('Musisz podać liczby');
-    }
+        if(a === 0 || b === 0) {
+            const result = 0;
+            this.history.push(`${a} / ${b} = ${result}`)
+            return result;
+        }
 
-    else if( !Number.isFinite(a) || !Number.isFinite(b) ) {
-
-        this.history.push('Wyszedłeś poza zakres');
-    }
-
-    else if( a === 0 || b === 0) {
-
-        const result = 0;
-        this.history.push(`${a} / ${b} = ${result} (Nie dzielimy przez 0, dla potrzeby przyjmijmy, że wynik to 0)`);
-        return result;
-    }
-
-    else {
+        else {
         const result = a / b;
         this.history.push(`${a} / ${b} = ${result}`)
         return result;
+        }
     }
 }
 
 Calculator.prototype.power = function(num1, num2) {
-    const a = parseFloat(num1);
-    const b = parseFloat(num2);
+    const a = this.isNumber(num1);
+    const b = this.isNumber(num2);
+    let pow = 1;
 
-    if( Number.isNaN(a) || Number.isNaN(b)) {
-        this.history.push('Musisz podać liczby');
-    }
-    else if( !Number.isFinite(a) || !Number.isFinite(b) ) {
-        this.history.push('Wyszedłeś poza zakres');
-    }
-    else if( a === 0 && b === 0 ) {
-        const result = 1;
-        this.history.push(`${a} ^ ${b} = ${result} (Wynikiem jest symbol nieoznaczony, dla potrzeby zadania przyjmujemy, że wynik to 1)`);
-        return result;
-    }
-    else if ( b < 0 ) {
+    if( a !== null && b !== null ) {
 
-        const limit = Math.abs(b)
-        let pow = 1;
-        for(let i=1; i<=limit; i++) {
-           pow *= a;
+        if(a === 0 && b === 0) {
+            const result = 1;
+            this.history.push(`${a} ^ ${b} = ${result}`)
+            return result;
         }
-        const result = 1 / pow;
-        console.log(result);
-        this.history.push(`${a} ^ ${b} = ${result}`);
-        return result;
-
-    }
-    else {
-        let pow = 1;
-        for(let i=1; i<=b; i++) {
-           pow *= a;
+        else if ( b < 0 ) {
+            const limit = Math.abs(b)
+            for(let i=1; i<=limit; i++) {
+                pow *= a;
+            }
+            const result = 1 / pow;
+            this.history.push(`${a} ^ ${b} = ${result}`);
+            return result;
         }
-        this.history.push(`${a} ^ ${b} = ${pow}`);
-        return pow;
+        else {
+            for(let i=1; i<=b; i++) {
+                pow *= a;
+            }
+            const result = pow;
+            this.history.push(`${a} ^ ${b} = ${result}`);
+            return result;
+        }
     }
 }
-
-
-
-
 
 
 
@@ -179,3 +147,5 @@ do {
     }
 
 } while(calc.isCorrectAction(action));
+
+
