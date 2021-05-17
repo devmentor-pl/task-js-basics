@@ -28,8 +28,8 @@ Calculator.prototype.add = function(num1, num2) {
     // 2. sprawdź czy są one poprawne
     // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
     // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
-    const a = this.getNumber(num1);
-    const b = this.getNumber(num2);
+    const a = this.isNumber(num1);
+    const b = this.isNumber(num2);
 
     if( a !== null && b !== null ) {
         const result = a + b;
@@ -40,8 +40,8 @@ Calculator.prototype.add = function(num1, num2) {
 
 
 Calculator.prototype.subtraction = function(num1, num2) {
-    const a = this.getNumber(num1);
-    const b = this.getNumber(num2);
+    const a = this.isNumber(num1);
+    const b = this.isNumber(num2);
 
     if( a !== null && b !== null ) {
         const result = a - b;
@@ -52,8 +52,8 @@ Calculator.prototype.subtraction = function(num1, num2) {
 
 Calculator.prototype.multiply = function(num1, num2) {
 
-    const a = this.getNumber(num1);
-    const b = this.getNumber(num2);
+    const a = this.isNumber(num1);
+    const b = this.isNumber(num2);
 
     if( a !== null && b !== null ) {
         const result = a * b;
@@ -63,54 +63,44 @@ Calculator.prototype.multiply = function(num1, num2) {
 }
 
 Calculator.prototype.division = function(num1, num2) {
-    const a = this.getNumber(num1);
-    const b = this.getNumber(num2);
+    const a = this.isNumber(num1);
+    const b = this.isNumber(num2);
+    let result;
 
     if( a !== null && b !== null ) {
 
-        if(a === 0 || b === 0) {
-            const result = 0;
-            this.history.push(`${a} / ${b} = ${result}`)
-            return result;
+        if( a === 0 || b === 0) {
+            result = 0;
         }
-
         else {
-        const result = a / b;
-        this.history.push(`${a} / ${b} = ${result}`)
-        return result;
+            result = a / b;
         }
-    }
+    this.history.push(`${a} / ${b} = ${result}`)
+    return result;
+}
 }
 
 Calculator.prototype.power = function(num1, num2) {
     const a = this.isNumber(num1);
     const b = this.isNumber(num2);
-    let pow = 1;
+    let result = 1;
 
     if( a !== null && b !== null ) {
 
-        if(a === 0 && b === 0) {
-            const result = 1;
-            this.history.push(`${a} ^ ${b} = ${result}`)
-            return result;
-        }
-        else if ( b < 0 ) {
+        if ( b < 0 ) {
             const limit = Math.abs(b)
             for(let i=1; i<=limit; i++) {
-                pow *= a;
+                result *= a;
             }
-            const result = 1 / pow;
-            this.history.push(`${a} ^ ${b} = ${result}`);
-            return result;
+            result = 1 / result
         }
         else {
             for(let i=1; i<=b; i++) {
-                pow *= a;
+                result *= a;
             }
-            const result = pow;
-            this.history.push(`${a} ^ ${b} = ${result}`);
-            return result;
         }
+        this.history.push(`${a} ^ ${b} = ${result}`);
+        return result;
     }
 }
 
@@ -147,5 +137,3 @@ do {
     }
 
 } while(calc.isCorrectAction(action));
-
-
