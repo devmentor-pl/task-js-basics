@@ -98,6 +98,7 @@ do {
         number2 = Number(prompt('Podaj liczbę nr 2'));
 
         if (action === '+') {
+            console.log('add');
             calc.add(number1, number2);
         } else if (action === "-") {
             console.log('subtraction');
