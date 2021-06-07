@@ -11,13 +11,15 @@ Calculator.prototype.getHistoryAsString = function () {
     return this.history.join('\n');
 }
 
-Calculator.prototype.addToHistory = function (number1, number2, result) {
-    return this.history.push();
+Calculator.prototype.addToHistory = function (message) {
+    return this.history.push(message);
 }
 
 Calculator.prototype.isNumber = function (number) {
     if (typeof number === "number" && !Number.isNaN(number)) {
         return true;
+    } else {
+        return false;
     }
 }
 
@@ -26,8 +28,7 @@ Calculator.prototype.add = function (number1, number2) {
 
     if (this.isNumber(number1) && this.isNumber(number2)) {
         let add = number1 + number2;
-        this.addToHistory(parseFloat(number1) + parseFloat(number2));
-        this.history.push(`${number1} + ${number2} = ${add}`);
+        this.addToHistory(${number1} + ${number2} = ${add});
     } return result;
 
 }
@@ -38,10 +39,8 @@ Calculator.prototype.subtraction = function (number1, number2) {
 
     if (this.isNumber(number1) && this.isNumber(number2)) {
         let subtraction = number1 - number2;
-        this.addToHistory(parseFloat(number1) - parseFloat(number2));
-        this.history.push(`${number1} - ${number2} = ${subtraction}`);
+        this.addToHistory(`${number1} - ${number2} = ${subtraction}`);
     } return result;
-
 }
 
 Calculator.prototype.multiplication = function (number1, number2) {
@@ -50,8 +49,7 @@ Calculator.prototype.multiplication = function (number1, number2) {
 
     if (this.isNumber(number1) && this.isNumber(number2)) {
         let multiplication = number1 * number2;
-        this.addToHistory(parseFloat(number1) * parseFloat(number2));
-        this.history.push(`${number1} * ${number2} = ${multiplication}`);
+        this.addToHistory(`${number1} * ${number2} = ${multiplication}`);
     } return result;
 
 }
@@ -60,10 +58,8 @@ Calculator.prototype.divide = function (number1, number2) {
     let result = 0;
     if (this.isNumber(number1) && this.isNumber(number2)) {
         let divide = number1 / number2;
-        this.addToHistory(parseFloat(number1) / parseFloat(number2));
-        this.history.push(`${number1} / ${number2} = ${divide}`);
+        this.addToHistory(`${number1} / ${number2} = ${divide}`);
     } return result;
-
 }
 
 Calculator.prototype.exponentiation = function (number1, number2) {
@@ -72,8 +68,7 @@ Calculator.prototype.exponentiation = function (number1, number2) {
     while (counter < number2) {
         exponentiation = exponentiation * number1;
         counter = counter + 1;
-        this.addToHistory(parseFloat(number1) ^ parseFloat(number2));
-        this.history.push(`${number1} ^ ${number2} = ${exponentiation}`);
+        this.addToHistory(`${number1} ^ ${number2} = ${exponentiation}`);
     }
     return exponentiation;
 }
