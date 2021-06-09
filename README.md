@@ -1,35 +1,42 @@
-> ⭐ ***README** to coś więcej niż opis. Poprzez nie **pokazujesz swoje mocne strony** – swoją dokładność, sposób myślenia i podejście do rozwiązywania problemów. Niech Twoje README pokaże, że masz **świetne predyspozycje do rozwoju!***
-> 
-> 🎁 *Zacznij od razu. Skorzystaj z **[szablonu README i wskazówek](https://github.com/devmentor-pl/readme-template)**.* 
+# JavaScript (basics): calculator
 
-&nbsp;
+## Table of contents
 
-
-
-# JavaScript: Podstawy
-
-Twoim zadaniem będzie dopisanie do istniejącego kodu niezbędnych elementów, które pozwolą wykonywać obliczenia oraz przechowywać hostorię wykonanych operacji.
-
-Nasz kalkulator powinien posiadać następujące opcje:
-
-* dodawanie (+)
-* odejmowanie (-)
-* mnożenie (*)
-* dzielenie (/)
-* potęgowanie (^) - wykonaj to rozwiązanie przy pomocy pętli, nie korzystaj z *Math.pow()*;
-
-Jeśli otworzysz plik `./js/app.js` to zauważysz, że mamy już tam gotowy konstruktor o nazwie `Calculator`, który musimy uzupełnić odpowiednimi metodami.
-
-Powinniśmy się wzorować na metodzie `Calculator.prototype.add`, w której znajdziesz rozpisane kroki do wykonania.
-
-We wspomnianym pliku wykorzystujemy również pętle [do ... while](https://developer.mozilla.org/pl/docs/Web/JavaScript/Referencje/Polecenia/do...while), która w swoim wnętrzu pobiera dane od uzytkwonika. Na ich podstawie są wykonywane odpowiednie czynności. 
-
-To tam należy dopisać kilka instrukcji `if` oraz wywołać odpowiednie metody.
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Links](#links)
+  - [Screenshot](#screenshot)
+  - [Technologies](#Technologies)
+- [Author](#author)
+- [Thanks](#Thanks)
 
 
+## Overview 
 
-&nbsp;
+### The-challenge
 
-> ⭐ ***README** to coś więcej niż opis. Poprzez nie **pokazujesz swoje mocne strony** – swoją dokładność, sposób myślenia i podejście do rozwiązywania problemów. Niech Twoje README pokaże, że masz **świetne predyspozycje do rozwoju!***
-> 
-> 🎁 *Zacznij od razu. Skorzystaj z **[szablonu README i wskazówek](https://github.com/devmentor-pl/readme-template)**.* 
+It was my first challenge that was performed using basics of JavaScript.
+The task was to build the basic calculator. On the basis of data prompted from the user the appropriate activities are performed. The result of the current  as well as the previous mathematical activities are displayed. 
+I was supposed to execute calculator using only if statements and  loops without using Math Methods (like *Math.pow()*).
+
+### Links
+
+- Code: https://github.com/kowackag/html-and-css-rwd.git
+- Live Site URL: https://kowackag.github.io/html-and-css-rwd/ 
+
+### Screenshot
+
+![](./assets/calculator.png)
+
+### Technologies
+
+<img alt="JavaScript" src="https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"/> 
+
+## Author
+
+- Małgorzata Kowacka
+- GitHub - [kowackag](https://github.com/kowackag)
+- Linked - [Małgorzata Kowacka](https://www.linkedin.com/in/ma%C5%82gorzata-kowacka-0258a812a/)
+
+ ## 👏 Thanks
+Thanks to my [Mentor - devmentor.pl](https://devmentor.pl/) - for providing me with this task and for code review.
