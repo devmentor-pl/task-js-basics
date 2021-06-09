@@ -3,6 +3,10 @@ function Calculator() {
     this.history = [];
 }
 
+function isCorrectValue(num1, num2) {
+    return (Number.isNaN(num1)) || Number.isNaN(num2) ? false : true;
+}
+
 Calculator.prototype.isCorrectAction = function (action) {
     return this.actions.includes(action);
 }
@@ -12,58 +16,58 @@ Calculator.prototype.getHistoryAsString = function () {
 }
 
 Calculator.prototype.add = function (num1, num2) {
-    if (!((isNaN(Number(num1))) || isNaN(Number(num2)))) {
-        return this.history.push(`${(Number(num1))} + ${(Number(num2))} = ${(Number(num1))+(Number(num2)) }`);
+    if (isCorrectValue(num1, num2)) {
+        this.history.push(`${num1} + ${num2} = ${num1+num2}`);
     } else {
-        return this.history.push('Podano błędne liczby');
+        this.history.push('Podano błędne liczby');
     }
 }
 
 Calculator.prototype.subtract = function (num1, num2) {
-    if (!((isNaN(Number(num1))) || isNaN(Number(num2)))) {
-        return this.history.push(`${(Number(num1))} - ${(Number(num2))} = ${(Number(num1))-(Number(num2)) }`);
+    if (isCorrectValue(num1, num2)) {
+        this.history.push(`${num1} - ${num2} = ${num1-num2}`);
     } else {
-        return this.history.push('Podano błędne liczby');
+        this.history.push('Podano błędne liczby');
     }
 }
 
 Calculator.prototype.multiply = function (num1, num2) {
-    if (!((isNaN(Number(num1))) || isNaN(Number(num2)))) {
-        return this.history.push(`${(Number(num1))} * ${(Number(num2))} = ${(Number(num1))*(Number(num2)) }`);
+    if (isCorrectValue(num1, num2)) {
+        this.history.push(`${num1} * ${num2} = ${num1*num2}`);
     } else {
-        return this.history.push('Podano błędne liczby');
+        this.history.push('Podano błędne liczby');
     }
 }
 
 Calculator.prototype.divide = function (num1, num2) {
-    if (!((isNaN(Number(num1))) || isNaN(Number(num2)))) {
-        if ((Number(num2) === 0)) {
-            return this.history.push(`Próba dzielenia przez 0`)
+    if (isCorrectValue(num1, num2)) {
+        if (num2 === 0) {
+            this.history.push(`Próba dzielenia przez 0`)
         } else {
-            return this.history.push(`${(Number(num1))} / ${(Number(num2))} = ${(Number(num1))/(Number(num2)) }`);
+            this.history.push(`${num1} / ${num2} = ${num1/num2}`);
         }
     } else {
-        return this.history.push('Podano błędne liczby');
+        this.history.push('Podano błędne liczby');
     }
 }
 
-Calculator.prototype.exponent = function (num1, num2) {
-    if (!((isNaN(Number(num1))) || isNaN(Number(num2)))) {
-        if (Number(num2) >= 0) {
+Calculator.prototype.exponentiate = function (num1, num2) {
+    if (isCorrectValue(num1, num2)) {
+        if (num2 >= 0) {
             let exponentResult = 1;
-            for (let i = 0; i < Number(num2); i++) {
-                exponentResult *= Number(num1);
+            for (let i = 0; i < num2; i++) {
+                exponentResult *= num1;
             }
-            return this.history.push(`${(Number(num1))} ^ ${(Number(num2))} = ${exponentResult}`);
+            this.history.push(`${num1} ^ ${num2} = ${exponentResult}`);
         } else {
             let exponentResult = 1;
-            for (let i = 0; i > Number(num2); i--) {
-                exponentResult *= 1 / Number(num1);
+            for (let i = 0; i > num2; i--) {
+                exponentResult *= 1 / num1;
             }
-            return this.history.push(`${(Number(num1))} ^ ${(Number(num2))} = ${exponentResult}`);
+            this.history.push(`${num1} ^ ${num2} = ${exponentResult}`);
         }
     } else {
-        return this.history.push('Podano błędne liczby');
+        this.history.push('Podano błędne liczby');
     }
 }
 
@@ -77,8 +81,8 @@ do {
     action = prompt(promptContent);
     isCorrectAction = calc.isCorrectAction(action);
     if (isCorrectAction) {
-        number1 = prompt('Podaj liczbę nr 1');
-        number2 = prompt('Podaj liczbę nr 2');
+        number1 = Number(prompt('Podaj liczbę nr 1'));
+        number2 = Number(prompt('Podaj liczbę nr 2'));
 
         if (action === '+') {
             calc.add(number1, number2);
@@ -89,8 +93,10 @@ do {
         } else if (action === '/') {
             calc.divide(number1, number2);
         } else {
-            calc.exponent(number1, number2)
+            calc.exponentiate(number1, number2)
         }
+
+        addToHistory(result);
     }
 
 } while (calc.isCorrectAction(action));
