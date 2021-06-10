@@ -95,8 +95,6 @@ do {
         } else {
             calc.exponentiate(number1, number2)
         }
-
-        addToHistory(result);
     }
 
 } while (calc.isCorrectAction(action));
