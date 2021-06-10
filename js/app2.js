@@ -45,19 +45,19 @@ Calculator.prototype.multiply = function (num1, num2) {
     if (isCorrectValue(num1, num2)) {
         result = num1 * num2;
     } else {
-        this.history.push('Podano błędne liczby');
+        result = 'Podano błędne liczby';
     }
 }
 
 Calculator.prototype.divide = function (num1, num2) {
     if (isCorrectValue(num1, num2)) {
         if (num2 === 0) {
-            this.history.push(`Próba dzielenia przez 0`)
+            result = "Próba dzielenia przez 0";
         } else {
             result = num1 / num2;
         }
     } else {
-        this.history.push('Podano błędne liczby');
+        result = 'Podano błędne liczby';
     }
 }
 
@@ -68,16 +68,16 @@ Calculator.prototype.exponentiate = function (num1, num2) {
             for (let i = 0; i < num2; i++) {
                 exponentResult *= num1;
             }
-            this.history.push(`${num1} ${action} ${num2} = ${exponentResult}`);
+            result = exponentResult;
         } else {
             let exponentResult = 1;
             for (let i = 0; i > num2; i--) {
                 exponentResult *= 1 / num1;
             }
-            this.history.push(`${num1} ${action} ${num2} = ${exponentResult}`);
+            result = exponentResult;
         }
     } else {
-        this.history.push('Podano błędne liczby');
+        result = 'Podano błędne liczby';
     }
 }
 
@@ -110,4 +110,3 @@ do {
     }
 
 } while (calc.isCorrectAction(action));
-
