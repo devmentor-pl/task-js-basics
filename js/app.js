@@ -13,94 +13,159 @@ Calculator.prototype.getHistoryAsString = function() {
 
 // dodawanie
 Calculator.prototype.add = function(num1, num2) {
-    // 1. zamień wartości przekazane przez parametr na typ number
+    
     let x = parseFloat(num1);
     let y = parseFloat(num2);
     let result = 0;
-    // 2. sprawdź czy są one poprawne
-    // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
-    if(typeof x === 'number' && typeof y === 'number') {
-        result = x + y; 
+    let historyArray = this.history;
+    console.log(x);
+    console.log(y);
+
+    function checkNumber () {
+        if (!Number.isNaN(x) && !Number.isNaN(y)) {
+            result = x + y;
+        } else {
+            result = "is NaN - please check your entry number"
+        }
     }
-    alert(result);
-    this.history.push(`${x} ${action} ${y} = ${result}`)         
+    
+    function showResult (checkNumber) {
+        alert(result);
+    }
+    
+    function pushToHistory (arr, operator) {
+        arr.push(`${x} ${operator} ${y} = ${result}`)  
+    } 
+
+    checkNumber();
+    showResult();
+    pushToHistory(historyArray, action);                      
 }
 
 // Odejmowanie
 Calculator.prototype.substr = function(num1, num2) {
-    // 1. zamień wartości przekazane przez parametr na typ number
+    
     let x = parseFloat(num1);
     let y = parseFloat(num2);
     let result = 0;
+    let historyArray = this.history;
+    console.log(x);
+    console.log(y);
 
-
-    // 2. sprawdź czy są one poprawne
-    // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
-    if(typeof x === 'number' && typeof y === 'number') {
-         result = x - y; 
+    function checkNumber () {
+        if (!Number.isNaN(x) && !Number.isNaN(y)) {
+            result = x - y;
+        } else {
+            result = "is NaN - please check your entry number"
+        }
     }
-    alert(result);
+    
+    function showResult (checkNumber) {
+        alert(result);
+    }
+    
+    function pushToHistory (arr, operator) {
+        arr.push(`${x} ${operator} ${y} = ${result}`)  
+    } 
 
-    // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
-    this.history.push(`${x} ${action} ${y} = ${result}`)         
+    checkNumber();
+    showResult();
+    pushToHistory(historyArray, action);         
 }
 
 // Mnożenie
 Calculator.prototype.multiplication = function(num1, num2) {
-    // 1. zamień wartości przekazane przez parametr na typ number
+    
     let x = parseFloat(num1);
     let y = parseFloat(num2);
     let result = 0;
+    let historyArray = this.history;
+    console.log(x);
+    console.log(y);
 
-    // 2. sprawdź czy są one poprawne
-    // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
-    if(typeof x === 'number' && typeof y === 'number') {
-        result = x * y; 
+    function checkNumber () {
+        if (!Number.isNaN(x) && !Number.isNaN(y)) {
+            result = x * y;
+        } else {
+            result = "is NaN - please check your entry number"
+        }
     }
-    alert(result);
+    
+    function showResult (checkNumber) {
+        alert(result);
+    }
+    
+    function pushToHistory (arr, operator) {
+        arr.push(`${x} ${operator} ${y} = ${result}`)  
+    } 
 
-    // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
-    this.history.push(`${x} ${action} ${y} = ${result}`)        
+    checkNumber();
+    showResult();
+    pushToHistory(historyArray, action);          
 }
 
 // Dzielenie
 Calculator.prototype.division = function(num1, num2) {
-    // 1. zamień wartości przekazane przez parametr na typ number
+    
     let x = parseFloat(num1);
     let y = parseFloat(num2);
     let result = 0;
+    let historyArray = this.history;
+    console.log(x);
+    console.log(y);
 
-    // 2. sprawdź czy są one poprawne
-    // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
-    if(typeof x === 'number' && typeof y === 'number') {
-        result = x / y; 
+    function checkNumber () {
+        if (!Number.isNaN(x) && !Number.isNaN(y)) {
+            result = x / y;
+        } else {
+            result = "is NaN - please check your entry number"
+        }
     }
-    alert(result);
-
-     // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
-    this.history.push(`${x} ${action} ${y} = ${result}`)
     
-          
+    function showResult (checkNumber) {
+        alert(result);
+    }
+    
+    function pushToHistory (arr, operator) {
+        arr.push(`${x} ${operator} ${y} = ${result}`)  
+    } 
+
+    checkNumber();
+    showResult();
+    pushToHistory(historyArray, action);                
 }
 
 // Potęgowanie
 Calculator.prototype.power = function(num1, num2) {
-    // 1. zamień wartości przekazane przez parametr na typ number
+    
     let x = parseFloat(num1);
     let y = parseFloat(num2);
-    
-    // 2. sprawdź czy są one poprawne
-    // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
-    if(typeof x === 'number' && typeof y === 'number') {
-        let result = 1;
-       for(let i = 0; i < y; i++) {
-           result = result * x;
-       }
-       alert(result);
+    let result = 1;
+    let historyArray = this.history;
+    console.log(x);
+    console.log(y);
 
-       // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
-       this.history.push(`${x} ${action} ${y} = ${result}`)
-    }  
+    function checkNumber () {
+        if (!Number.isNaN(x) && !Number.isNaN(y)) {    
+            for(let i = 0; i < y; i++) {
+           result = result * x;
+        }} else {
+            result = "is NaN - please check your entry number"
+        }
+    }
+    
+    function showResult (checkNumber) {
+        alert(result);
+    }
+    
+    function pushToHistory (arr, operator) {
+        arr.push(`${x} ${operator} ${y} = ${result}`)  
+    } 
+
+    checkNumber();
+    showResult();
+    pushToHistory(historyArray, action);  
+
 }
 
 
