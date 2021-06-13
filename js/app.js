@@ -11,163 +11,63 @@ Calculator.prototype.getHistoryAsString = function() {
     return this.history.join('\n');
 }
 
+Calculator.prototype.checkNumber = function(num) {
+    let x = Number(num);
+    if (!Number.isNaN(x)) {
+      return x;
+    }
+}
+
+Calculator.prototype.pushToHistory= function(result, num1, num2, operator) {
+    this.history.push(`${num1} ${operator} ${num2} = ${result}`)
+}
+
 // dodawanie
 Calculator.prototype.add = function(num1, num2) {
-    
-    let x = parseFloat(num1);
-    let y = parseFloat(num2);
     let result = 0;
-    let historyArray = this.history;
-    console.log(x);
-    console.log(y);
-
-    function checkNumber () {
-        if (!Number.isNaN(x) && !Number.isNaN(y)) {
-            result = x + y;
-        } else {
-            result = "is NaN - please check your entry number"
-        }
-    }
-    
-    function showResult (checkNumber) {
-        alert(result);
-    }
-    
-    function pushToHistory (arr, operator) {
-        arr.push(`${x} ${operator} ${y} = ${result}`)  
-    } 
-
-    checkNumber();
-    showResult();
-    pushToHistory(historyArray, action);                      
+    result = this.checkNumber(num1) + this.checkNumber(num2);
+    alert(result)
+    this.pushToHistory(result, num1, num2, action);   
 }
 
 // Odejmowanie
 Calculator.prototype.substr = function(num1, num2) {
-    
-    let x = parseFloat(num1);
-    let y = parseFloat(num2);
     let result = 0;
-    let historyArray = this.history;
-    console.log(x);
-    console.log(y);
-
-    function checkNumber () {
-        if (!Number.isNaN(x) && !Number.isNaN(y)) {
-            result = x - y;
-        } else {
-            result = "is NaN - please check your entry number"
-        }
-    }
-    
-    function showResult (checkNumber) {
-        alert(result);
-    }
-    
-    function pushToHistory (arr, operator) {
-        arr.push(`${x} ${operator} ${y} = ${result}`)  
-    } 
-
-    checkNumber();
-    showResult();
-    pushToHistory(historyArray, action);         
+    result = this.checkNumber(num1) - this.checkNumber(num2);
+    alert(result)
+    this.pushToHistory(result, num1, num2, action);   
 }
 
 // Mnożenie
 Calculator.prototype.multiplication = function(num1, num2) {
-    
-    let x = parseFloat(num1);
-    let y = parseFloat(num2);
     let result = 0;
-    let historyArray = this.history;
-    console.log(x);
-    console.log(y);
-
-    function checkNumber () {
-        if (!Number.isNaN(x) && !Number.isNaN(y)) {
-            result = x * y;
-        } else {
-            result = "is NaN - please check your entry number"
-        }
-    }
-    
-    function showResult (checkNumber) {
-        alert(result);
-    }
-    
-    function pushToHistory (arr, operator) {
-        arr.push(`${x} ${operator} ${y} = ${result}`)  
-    } 
-
-    checkNumber();
-    showResult();
-    pushToHistory(historyArray, action);          
+    result = this.checkNumber(num1) * this.checkNumber(num2);
+    alert(result)
+    this.pushToHistory(result, num1, num2, action);   
 }
 
 // Dzielenie
 Calculator.prototype.division = function(num1, num2) {
-    
-    let x = parseFloat(num1);
-    let y = parseFloat(num2);
     let result = 0;
-    let historyArray = this.history;
-    console.log(x);
-    console.log(y);
-
-    function checkNumber () {
-        if (!Number.isNaN(x) && !Number.isNaN(y)) {
-            result = x / y;
-        } else {
-            result = "is NaN - please check your entry number"
-        }
-    }
-    
-    function showResult (checkNumber) {
-        alert(result);
-    }
-    
-    function pushToHistory (arr, operator) {
-        arr.push(`${x} ${operator} ${y} = ${result}`)  
-    } 
-
-    checkNumber();
-    showResult();
-    pushToHistory(historyArray, action);                
+    result = this.checkNumber(num1) / this.checkNumber(num2);
+    alert(result)
+    this.pushToHistory(result, num1, num2, action);   
 }
 
 // Potęgowanie
 Calculator.prototype.power = function(num1, num2) {
-    
-    let x = parseFloat(num1);
-    let y = parseFloat(num2);
     let result = 1;
-    let historyArray = this.history;
-    console.log(x);
-    console.log(y);
-
-    function checkNumber () {
-        if (!Number.isNaN(x) && !Number.isNaN(y)) {    
-            for(let i = 0; i < y; i++) {
-           result = result * x;
-        }} else {
-            result = "is NaN - please check your entry number"
-        }
-    }
-    
-    function showResult (checkNumber) {
-        alert(result);
-    }
-    
-    function pushToHistory (arr, operator) {
-        arr.push(`${x} ${operator} ${y} = ${result}`)  
-    } 
-
-    checkNumber();
-    showResult();
-    pushToHistory(historyArray, action);  
-
+    let x = this.checkNumber(num2);
+    if (isNaN(x)) {
+        return alert("wykładnik jest NaN")
+    } else {
+        for(let i = 0; i < x; i++) {
+            result = result * this.checkNumber(num1);
+        } 
+    }  
+    alert(result)
+    this.pushToHistory(result, num1, num2, action);   
 }
-
 
 const calc = new Calculator();
 let action, promptContent, isCorrectAction, number1, number2;
