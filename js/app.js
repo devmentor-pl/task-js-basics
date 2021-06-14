@@ -20,58 +20,63 @@ Calculator.prototype.getHistoryAsString = function () {
 }
 
 Calculator.prototype.add = function (num1, num2) {
+    let result;
     if (this.isCorrectValue(num1) && this.isCorrectValue(num2)) {
-        result = num1 + num2;
+        return result = num1 + num2;
     } else {
-        result = 'Podano błędne liczby';
+        return result = 'Podano błędne liczby';
     }
 }
 
 Calculator.prototype.subtract = function (num1, num2) {
+    let result;
     if (this.isCorrectValue(num1) && this.isCorrectValue(num2)) {
-        result = num1 - num2;
+        return result = num1 - num2;
     } else {
-        result = 'Podano błędne liczby';
+        return result = 'Podano błędne liczby';
     }
 }
 
 Calculator.prototype.multiply = function (num1, num2) {
+    let result;
     if (this.isCorrectValue(num1) && this.isCorrectValue(num2)) {
-        result = num1 * num2;
+        return result = num1 * num2;
     } else {
-        result = 'Podano błędne liczby';
+        return result = 'Podano błędne liczby';
     }
 }
 
 Calculator.prototype.divide = function (num1, num2) {
+    let result;
     if (this.isCorrectValue(num1) && this.isCorrectValue(num2)) {
         if (num2 === 0) {
-            result = "Próba dzielenia przez 0";
+            return result = "Próba dzielenia przez 0";
         } else {
-            result = num1 / num2;
+            return result = num1 / num2;
         }
     } else {
-        result = 'Podano błędne liczby';
+        return result = 'Podano błędne liczby';
     }
 }
 
 Calculator.prototype.exponentiate = function (num1, num2) {
+    let result;
     if (this.isCorrectValue(num1) && this.isCorrectValue(num2)) {
         if (num2 >= 0) {
             let exponentResult = 1;
             for (let i = 0; i < num2; i++) {
                 exponentResult *= num1;
             }
-            result = exponentResult;
+            return result = exponentResult;
         } else {
             let exponentResult = 1;
             for (let i = 0; i > num2; i--) {
                 exponentResult *= 1 / num1;
             }
-            result = exponentResult;
+            return result = exponentResult;
         }
     } else {
-        result = 'Podano błędne liczby';
+        return result = 'Podano błędne liczby';
     }
 }
 
@@ -89,15 +94,15 @@ do {
         number2 = Number(prompt('Podaj liczbę nr 2'));
 
         if (action === '+') {
-            calc.add(number1, number2);
+            result = calc.add(number1, number2);
         } else if (action === '-') {
-            calc.subtract(number1, number2);
+            result = calc.subtract(number1, number2);
         } else if (action === '*') {
-            calc.multiply(number1, number2);
+            result = calc.multiply(number1, number2);
         } else if (action === '/') {
-            calc.divide(number1, number2);
+            result = calc.divide(number1, number2);
         } else {
-            calc.exponentiate(number1, number2)
+            result = calc.exponentiate(number1, number2)
         }
         calc.addToHistory(number1, number2, action, result);
     }
