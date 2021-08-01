@@ -22,7 +22,7 @@ Jeśli otworzysz plik `./js/app.js` to zauważysz, że mamy już tam gotowy kons
 
 Powinniśmy się wzorować na metodzie `Calculator.prototype.add`, w której znajdziesz rozpisane kroki do wykonania.
 
-We wspomnianym pliku wykorzystujemy również pętle [do ... while](https://developer.mozilla.org/pl/docs/Web/JavaScript/Referencje/Polecenia/do...while), która w swoim wnętrzu pobiera dane od uzytkwonika. Na ich podstawie są wykonywane odpowiednie czynności. 
+We wspomnianym pliku wykorzystujemy również pętle [do ... while](https://developer.mozilla.org/pl/docs/Web/JavaScript/Referencje/Polecenia/do...while), która w swoim wnętrzu pobiera dane od użytkownika. Na ich podstawie są wykonywane odpowiednie czynności. 
 
 To tam należy dopisać kilka instrukcji `if` oraz wywołać odpowiednie metody.
 
