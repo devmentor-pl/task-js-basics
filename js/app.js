@@ -11,6 +11,14 @@ Calculator.prototype.getHistoryAsString = function() {
     return this.history.join('\n');
 }
 
+Calculator.prototype.parseInput = function (num) {
+    return parseFloat(num);
+}
+
+Calculator.prototype.validateInputs = function (num1, num2) {
+    return (!Number.isNaN(num1) && !Number.isNaN(num2)) ? true : false;
+}
+
 Calculator.prototype.add = function(num1, num2) {
     // 1. zamień wartości przekazane przez parametr na typ number
     // 2. sprawdź czy są one poprawne
