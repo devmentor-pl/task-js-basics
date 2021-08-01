@@ -19,6 +19,10 @@ Calculator.prototype.validateInputs = function (num1, num2) {
     return (!Number.isNaN(num1) && !Number.isNaN(num2)) ? true : false;
 }
 
+Calculator.prototype.addToHistory = function (num1, num2, action, result) {
+    this.history.push(`${num1} ${action} ${num2} = ${result}`);
+}
+
 Calculator.prototype.add = function(num1, num2) {
     // 1. zamień wartości przekazane przez parametr na typ number
     // 2. sprawdź czy są one poprawne
