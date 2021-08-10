@@ -31,9 +31,6 @@ Calculator.prototype.add = function (num1, num2) {
 };
 
 Calculator.prototype.substract = function (num1, num2) {
-  num1 = Number(num1);
-  num2 = Number(num2);
-
   if (isNaN(num1) || isNaN(num2)) {
     this.showError();
   } else {
@@ -43,8 +40,6 @@ Calculator.prototype.substract = function (num1, num2) {
 };
 
 Calculator.prototype.multiply = function (num1, num2) {
-  num1 = Number(num1);
-  num2 = Number(num2);
   if (isNaN(num1) || isNaN(num2)) {
     this.showError();
   } else {
@@ -54,8 +49,6 @@ Calculator.prototype.multiply = function (num1, num2) {
 };
 
 Calculator.prototype.divide = function (num1, num2) {
-  num1 = Number(num1);
-  num2 = Number(num2);
   if (isNaN(num1) || isNaN(num2)) {
     this.showError();
   } else {
@@ -65,9 +58,6 @@ Calculator.prototype.divide = function (num1, num2) {
 };
 
 Calculator.prototype.exponentation = function (num1, num2) {
-  num1 = Number(num1);
-  num2 = Number(num2);
-
   if (isNaN(num1) || isNaN(num2)) {
     this.showError();
   } else {
@@ -99,15 +89,15 @@ do {
     number2 = prompt("Podaj liczbę nr 2");
 
     if (action === "+") {
-      calc.add(number1, number2);
+      calc.add(Number(number1), Number(number2));
     } else if (action === "-") {
-      calc.substract(number1, number2);
+      calc.substract(Number(number1), Number(number2));
     } else if (action === "*") {
-      calc.multiply(number1, number2);
+      calc.multiply(Number(number1), Number(number2));
     } else if (action === "/") {
-      calc.divide(number1, number2);
+      calc.divide(Number(number1), Number(number2));
     } else if (action === "^") {
-      calc.exponentation(number1, number2);
+      calc.exponentation(Number(number1), Number(number2));
     }
   }
 } while (calc.isCorrectAction(action));
