@@ -20,45 +20,45 @@ Calculator.prototype.add = function (num1, num2) {
   num1 = Number(num1);
   num2 = Number(num2);
   // 2. sprawdź czy są one poprawne
-  if (isNaN(num1) || isNaN(num2)) {
+  if (this.areCorrectNumbers(num1, num2)) {
     this.showError();
   } else {
     // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
     result = num1 + num2;
     // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
-    this.history.push(`${num1} + ${num2} = ${result}`);
+    this.addOperationToHistory(num1, num2, "+", result);
   }
 };
 
 Calculator.prototype.substract = function (num1, num2) {
-  if (isNaN(num1) || isNaN(num2)) {
+  if (this.areCorrectNumbers(num1, num2)) {
     this.showError();
   } else {
     result = num1 - num2;
-    this.history.push(`${num1} - ${num2} = ${result}`);
+    this.addOperationToHistory(num1, num2, "-", result);
   }
 };
 
 Calculator.prototype.multiply = function (num1, num2) {
-  if (isNaN(num1) || isNaN(num2)) {
+  if (this.areCorrectNumbers(num1, num2)) {
     this.showError();
   } else {
     result = num1 * num2;
-    this.history.push(`${num1} * ${num2} = ${result}`);
+    this.addOperationToHistory(num1, num2, "*", result);
   }
 };
 
 Calculator.prototype.divide = function (num1, num2) {
-  if (isNaN(num1) || isNaN(num2)) {
+  if (this.areCorrectNumbers(num1, num2)) {
     this.showError();
   } else {
     result = num1 / num2;
-    this.history.push(`${num1} / ${num2} = ${result}`);
+    this.addOperationToHistory(num1, num2, "/", result);
   }
 };
 
 Calculator.prototype.exponentation = function (num1, num2) {
-  if (isNaN(num1) || isNaN(num2)) {
+  if (this.areCorrectNumbers(num1, num2)) {
     this.showError();
   } else {
     let counter = 0;
@@ -70,8 +70,25 @@ Calculator.prototype.exponentation = function (num1, num2) {
       result *= num1;
       counter++;
     }
-    this.history.push(`${num1} ^ ${num2} = ${result}`);
+    this.addOperationToHistory(num1, num2, "^", result);
   }
+};
+
+Calculator.prototype.areCorrectNumbers = function (num1, num2) {
+  if (this.areCorrectNumbers(num1, num2)) {
+    return false;
+  } else {
+    return true;
+  }
+};
+
+Calculator.prototype.addOperationToHistory = function (
+  num1,
+  num2,
+  action,
+  result
+) {
+  this.history.push(`${num1} ${action} ${num2} = ${result}`);
 };
 
 const calc = new Calculator();
