@@ -21,39 +21,39 @@ Calculator.prototype.add = function (num1, num2) {
   num2 = Number(num2);
   // 2. sprawdź czy są one poprawne
   if (this.areCorrectNumbers(num1, num2)) {
-    this.showError();
-  } else {
     // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
     result = num1 + num2;
     // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
     this.addOperationToHistory(num1, num2, "+", result);
+  } else {
+    this.showError();
   }
 };
 
 Calculator.prototype.substract = function (num1, num2) {
   if (this.areCorrectNumbers(num1, num2)) {
-    this.showError();
-  } else {
     result = num1 - num2;
     this.addOperationToHistory(num1, num2, "-", result);
+  } else {
+    this.showError();
   }
 };
 
 Calculator.prototype.multiply = function (num1, num2) {
   if (this.areCorrectNumbers(num1, num2)) {
-    this.showError();
-  } else {
     result = num1 * num2;
     this.addOperationToHistory(num1, num2, "*", result);
+  } else {
+    this.showError();
   }
 };
 
 Calculator.prototype.divide = function (num1, num2) {
   if (this.areCorrectNumbers(num1, num2)) {
-    this.showError();
-  } else {
     result = num1 / num2;
     this.addOperationToHistory(num1, num2, "/", result);
+  } else {
+    this.showError();
   }
 };
 
@@ -76,9 +76,9 @@ Calculator.prototype.exponentation = function (num1, num2) {
 
 Calculator.prototype.areCorrectNumbers = function (num1, num2) {
   if (isNaN(num1) || isNaN(num2)) {
-    return true;
-  } else {
     return false;
+  } else {
+    return true;
   }
 };
 
