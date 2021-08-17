@@ -59,8 +59,6 @@ Calculator.prototype.divide = function (num1, num2) {
 
 Calculator.prototype.exponentation = function (num1, num2) {
   if (this.areCorrectNumbers(num1, num2)) {
-    this.showError();
-  } else {
     let counter = 0;
     let result = 1;
     if (num2 === 0) {
@@ -71,14 +69,16 @@ Calculator.prototype.exponentation = function (num1, num2) {
       counter++;
     }
     this.addOperationToHistory(num1, num2, "^", result);
+  } else {
+    this.showError();
   }
 };
 
 Calculator.prototype.areCorrectNumbers = function (num1, num2) {
-  if (this.areCorrectNumbers(num1, num2)) {
-    return false;
-  } else {
+  if (isNaN(num1) || isNaN(num2)) {
     return true;
+  } else {
+    return false;
   }
 };
 
