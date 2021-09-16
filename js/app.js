@@ -75,16 +75,22 @@ do {
 		number1 = prompt('Podaj liczbę nr 1');
 		number2 = prompt('Podaj liczbę nr 2');
 
-		if (action === '+') {
-			calc.add(number1, number2);
-		} else if (action === '-') {
-			calc.sub(number1, number2);
-		} else if (action === '*') {
-			calc.mult(number1, number2);
-		} else if (action === '/') {
-			calc.div(number1, number2);
-		} else if (action === '^') {
-			calc.toPower(number1, number2);
+		switch (action) {
+			case '+':
+				calc.add(number1, number2);
+				break;
+			case '-':
+				calc.sub(number1, number2);
+				break;
+			case '*':
+				calc.mult(number1, number2);
+				break;
+			case '/':
+				calc.div(number1, number2);
+				break;
+			case '^':
+				calc.toPower(number1, number2);
+				break;
 		}
 	}
 } while (calc.isCorrectAction(action));
