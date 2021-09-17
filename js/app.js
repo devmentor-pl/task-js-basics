@@ -12,50 +12,40 @@ Calculator.prototype.getHistoryAsString = function () {
 };
 
 Calculator.prototype.add = function (num1, num2) {
-	if (validInput(num1, num2)) {
-		const toNumber1 = Number(num1);
-		const toNumber2 = Number(num2);
-		const result = toNumber1 + toNumber2;
+	if (inputValidation(num1, num2)) {
+		const result = Number(num1) + Number(num2);
 		this.history.push(`${num1} + ${num2} = ${result}`);
 		return result;
 	}
 };
 
 Calculator.prototype.sub = function (num1, num2) {
-	if (validInput(num1, num2)) {
-		const toNumber1 = Number(num1);
-		const toNumber2 = Number(num2);
-		const result = toNumber1 - toNumber2;
+	if (inputValidation(num1, num2)) {
+		const result = Number(num1) - Number(num2);
 		this.history.push(`${num1} - ${num2} = ${result}`);
 		return result;
 	}
 };
 
 Calculator.prototype.mult = function (num1, num2) {
-	if (validInput(num1, num2)) {
-		const toNumber1 = Number(num1);
-		const toNumber2 = Number(num2);
-		const result = toNumber1 * toNumber2;
+	if (inputValidation(num1, num2)) {
+		const result = Number(num1) * Number(num2);
 		this.history.push(`${num1} * ${num2} = ${result}`);
 		return result;
 	}
 };
 
 Calculator.prototype.div = function (num1, num2) {
-	if (validInput(num1, num2)) {
-		const toNumber1 = Number(num1);
-		const toNumber2 = Number(num2);
-		const result = toNumber1 / toNumber2;
+	if (inputValidation(num1, num2)) {
+		const result = Number(num1) / Number(num2);
 		this.history.push(`${num1} / ${num2} = ${result}`);
 		return result;
 	}
 };
 
 Calculator.prototype.toPower = function (num1, num2) {
-	if (validInput(num1, num2)) {
-		const toNumber1 = Number(num1);
-		const toNumber2 = Number(num2);
-		const result = toNumber1 ** toNumber2;
+	if (inputValidation(num1, num2)) {
+		const result = Number(num1) ** Number(num2);
 		this.history.push(`${num1}^${num2} = ${result}`);
 		return result;
 	}
@@ -63,6 +53,10 @@ Calculator.prototype.toPower = function (num1, num2) {
 
 function inputValidation(num1, num2) {
 	return num1.match(/[1-9]/g) && num2.match(/[1-9]/g);
+}
+
+function resultType(num1, num2) {
+	return Number(num1)
 }
 
 const calc = new Calculator();
