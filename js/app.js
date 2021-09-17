@@ -12,7 +12,7 @@ Calculator.prototype.getHistoryAsString = function () {
 };
 
 Calculator.prototype.add = function (num1, num2) {
-	if (num1.match(/[1-9]/g) && num2.match(/[1-9]/g)) {
+	if (validInput(num1, num2)) {
 		const toNumber1 = Number(num1);
 		const toNumber2 = Number(num2);
 		const result = toNumber1 + toNumber2;
@@ -22,7 +22,7 @@ Calculator.prototype.add = function (num1, num2) {
 };
 
 Calculator.prototype.sub = function (num1, num2) {
-	if (num1.match(/[1-9]/g) && num2.match(/[1-9]/g)) {
+	if (validInput(num1, num2)) {
 		const toNumber1 = Number(num1);
 		const toNumber2 = Number(num2);
 		const result = toNumber1 - toNumber2;
@@ -32,7 +32,7 @@ Calculator.prototype.sub = function (num1, num2) {
 };
 
 Calculator.prototype.mult = function (num1, num2) {
-	if (num1.match(/[1-9]/g) && num2.match(/[1-9]/g)) {
+	if (validInput(num1, num2)) {
 		const toNumber1 = Number(num1);
 		const toNumber2 = Number(num2);
 		const result = toNumber1 * toNumber2;
@@ -42,7 +42,7 @@ Calculator.prototype.mult = function (num1, num2) {
 };
 
 Calculator.prototype.div = function (num1, num2) {
-	if (num1.match(/[1-9]/g) && num2.match(/[1-9]/g)) {
+	if (validInput(num1, num2)) {
 		const toNumber1 = Number(num1);
 		const toNumber2 = Number(num2);
 		const result = toNumber1 / toNumber2;
@@ -52,7 +52,7 @@ Calculator.prototype.div = function (num1, num2) {
 };
 
 Calculator.prototype.toPower = function (num1, num2) {
-	if (num1.match(/[1-9]/g) && num2.match(/[1-9]/g)) {
+	if (validInput(num1, num2)) {
 		const toNumber1 = Number(num1);
 		const toNumber2 = Number(num2);
 		const result = toNumber1 ** toNumber2;
@@ -60,6 +60,10 @@ Calculator.prototype.toPower = function (num1, num2) {
 		return result;
 	}
 };
+
+function inputValidation(num1, num2) {
+	return num1.match(/[1-9]/g) && num2.match(/[1-9]/g);
+}
 
 const calc = new Calculator();
 let action, promptContent, isCorrectAction, number1, number2;
