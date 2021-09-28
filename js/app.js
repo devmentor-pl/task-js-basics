@@ -11,12 +11,68 @@ Calculator.prototype.getHistoryAsString = function() {
     return this.history.join('\n');
 }
 
-Calculator.prototype.add = function(num1, num2) {
-    // 1. zamień wartości przekazane przez parametr na typ number
-    // 2. sprawdź czy są one poprawne
-    // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
-    // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
+Calculator.prototype.add = function(result) {
+    this.history.push(result);
 }
+
+Calculator.prototype.sub = function(result) {
+    this.history.push(result);
+}
+
+Calculator.prototype.mult = function(result) {
+    this.history.push(result);
+}
+
+Calculator.prototype.div = function(result) {
+    this.history.push(result);
+}
+
+Calculator.prototype.expo = function(result) {
+    this.history.push(result);
+}
+
+function operations(num1, num2) {
+
+    num1 = parseFloat(num1);
+    num2 = parseFloat(num2);
+
+    if(action === '+') {
+        let result = num1+num2;
+        result = num1 + ' + ' + num2 + ' = ' + result;
+
+        return calc.add(result);
+        }
+    else if(action === '-') {
+        let result = num1-num2;
+        result = num1 + ' - ' + num2 + ' = ' + result;
+
+        return calc.sub(result);
+    }
+    else if(action === '*') {
+        let result = num1*num2;
+        result = num1 + ' * ' + num2 + ' = ' + result;
+
+        return calc.mult(result);
+    }
+    else if(action === '/') {
+        let result = num1/num2;
+        result = num1 + ' / ' + num2 + ' = ' + result;
+
+        return calc.div(result);
+    }
+    else if(action === '^') {
+        let result = 1;
+
+        for (let i=1; i<=num2; i++) {
+            result *= num1;
+    }
+        result = num1 + '^' + num2 + '=' + result
+
+        return calc.expo(result);
+    }
+
+}
+
 
 const calc = new Calculator();
 let action, promptContent, isCorrectAction, number1, number2;
@@ -27,13 +83,17 @@ do {
 
     action = prompt(promptContent);
     isCorrectAction = calc.isCorrectAction(action);
+
     if(isCorrectAction) {
         number1 = prompt('Podaj liczbę nr 1');
         number2 = prompt('Podaj liczbę nr 2');
 
-        if(action === '+') {
-            calc.add(number1, number2);
-        }
+        operations(number1,number2);
+    }
+    else {
+        alert('Niepoprawy wybór!');
     }
     
 } while(calc.isCorrectAction(action));
+
+
