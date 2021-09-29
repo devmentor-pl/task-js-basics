@@ -11,24 +11,39 @@ Calculator.prototype.getHistoryAsString = function() {
     return this.history.join('\n');
 }
 
-Calculator.prototype.add = function(result) {
-    this.history.push(result);
+Calculator.prototype.add = function(num1, num2) {
+    let sum = num1 + num2;
+    let result = num1 + ' + ' + num2 + ' = ' + sum;
+    return this.history.push(result);
 }
 
-Calculator.prototype.sub = function(result) {
-    this.history.push(result);
+Calculator.prototype.sub = function(num1, num2) {
+    let sub = num1 - num2;
+    let result = num1 + ' - ' + num2 + ' = ' + sub;
+    return this.history.push(result);
 }
 
-Calculator.prototype.mult = function(result) {
-    this.history.push(result);
+Calculator.prototype.mult = function(num1, num2) {
+    let mult = num1 * num2;
+    let result = num1 + ' * ' + num2 + ' = ' + mult;
+    return this.history.push(result);
 }
 
-Calculator.prototype.div = function(result) {
-    this.history.push(result);
+Calculator.prototype.div = function(num1, num2) {
+    let div = num1 / num2;
+    let result = num1 + ' / ' + num2 + ' = ' + div;
+    return this.history.push(result);
 }
 
-Calculator.prototype.expo = function(result) {
-    this.history.push(result);
+Calculator.prototype.expo = function(num1, num2) {
+    let result = 1;
+
+    for (let i=1; i<=num2; i++) {
+        result *= num1;
+    }
+    result = num1 + '^' + num2 + '=' + result;
+
+    return this.history.push(result); 
 }
 
 function operations(num1, num2) {
@@ -37,38 +52,24 @@ function operations(num1, num2) {
     num2 = parseFloat(num2);
 
     if(action === '+') {
-        let result = num1+num2;
-        result = num1 + ' + ' + num2 + ' = ' + result;
 
-        return calc.add(result);
+        return calc.add(num1, num2);
         }
     else if(action === '-') {
-        let result = num1-num2;
-        result = num1 + ' - ' + num2 + ' = ' + result;
 
-        return calc.sub(result);
+        return calc.sub(num1, num2);
     }
     else if(action === '*') {
-        let result = num1*num2;
-        result = num1 + ' * ' + num2 + ' = ' + result;
 
-        return calc.mult(result);
+        return calc.mult(num1, num2);
     }
     else if(action === '/') {
-        let result = num1/num2;
-        result = num1 + ' / ' + num2 + ' = ' + result;
 
-        return calc.div(result);
+        return calc.div(num1, num2);
     }
     else if(action === '^') {
-        let result = 1;
 
-        for (let i=1; i<=num2; i++) {
-            result *= num1;
-    }
-        result = num1 + '^' + num2 + '=' + result
-
-        return calc.expo(result);
+        return calc.expo(num1, num2);
     }
 
 }
