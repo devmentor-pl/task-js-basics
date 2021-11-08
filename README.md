@@ -1,40 +1,29 @@
-> ⭐ ***README** to coś więcej niż opis. Poprzez nie **pokazujesz swoje mocne strony** – swoją dokładność, sposób myślenia i podejście do rozwiązywania problemów. Niech Twoje README pokaże, że masz **świetne predyspozycje do rozwoju!***
-> 
-> 🎁 *Zacznij od razu. Skorzystaj z **[szablonu README i wskazówek](https://github.com/devmentor-pl/readme-template)**.* 
+![](./assets/applab-banner.png)
 
-&nbsp;
+# JavaScript Calculator
 
+## :technologist: Technologies and metodologies
 
+This project was created to develop and improve my bacis skills in JavaScript.
 
-# JavaScript: Podstawy
+To use this calculator, you have to follow the directions shown in prompt box.
 
-Twoim zadaniem będzie dopisanie do istniejącego kodu niezbędnych elementów, które pozwolą wykonywać obliczenia oraz przechowywać historię wykonanych operacji.
+First of all, you have tu choose which operation you want to perform by selecting appropriate symbol, i.e.:
 
-Nasz kalkulator powinien posiadać następujące opcje:
+- \+ (to add numbers);
+- \- (to subtract numbers);
+- \* (to multiply numbers);
+- \\ (to divide numbers);
+- \^ (to raise to a given power)
 
-* dodawanie (+)
-* odejmowanie (-)
-* mnożenie (*)
-* dzielenie (/)
-* potęgowanie (^) - wykonaj to rozwiązanie przy pomocy pętli, nie korzystaj z *Math.pow()*;
+Secondly, you have to select a first and second number between 0 and 9.
 
-Jeśli otworzysz plik `./js/app.js` to zauważysz, że mamy już tam gotowy konstruktor o nazwie `Calculator`, który musimy uzupełnić odpowiednimi metodami.
+After this, you will see your operations in the prompt box as history of your operations.
 
-Powinniśmy się wzorować na metodzie `Calculator.prototype.add`, w której znajdziesz rozpisane kroki do wykonania.
+## :mailbox: Feel free to contact me
 
-We wspomnianym pliku wykorzystujemy również pętle [do ... while](https://developer.mozilla.org/pl/docs/Web/JavaScript/Referencje/Polecenia/do...while), która w swoim wnętrzu pobiera dane od uzytkwonika. Na ich podstawie są wykonywane odpowiednie czynności. 
+You can find me on **[LINKEDIN](https://www.linkedin.com/in/rafa%C5%82-kazik-924b8710a/)**
 
-To tam należy dopisać kilka instrukcji `if` oraz wywołać odpowiednie metody.
+## Thanks :handshake:
 
-## Refaktoryzacja ([wiki](https://pl.wikipedia.org/wiki/Refaktoryzacja))
-
-Jak już napiszesz program (lub jego część), który będzie wykonywał wyznaczone operacje to powinieneś się zastanowić czy nie da sie go usprawnić np. zwiększyć czytelności kodu lub usunać powielone operacje zastępując je wykorzystaniem funkcji.
-
-Przed wykonaniem *Pull Request* zastanów się nad refaktoryzacją swojego kodu. To jeden z najważniejszych działań podczas procesu wytwarzania oprogramowania, o którym często zapominają począktujący programiści.
-
-
-&nbsp;
-
-> ⭐ ***README** to coś więcej niż opis. Poprzez nie **pokazujesz swoje mocne strony** – swoją dokładność, sposób myślenia i podejście do rozwiązywania problemów. Niech Twoje README pokaże, że masz **świetne predyspozycje do rozwoju!***
-> 
-> 🎁 *Zacznij od razu. Skorzystaj z **[szablonu README i wskazówek](https://github.com/devmentor-pl/readme-template)**.* 
+Thanks to my [Mentor - devmentor.pl](https://www.devmentor.pl) - for providing me with this task and for code review.
