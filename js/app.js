@@ -13,40 +13,35 @@ Calculator.prototype.getHistoryAsString = function () {
 
 // ADDIND
 Calculator.prototype.add = function (num1, num2) {
-  let sum = 0;
-  sum = num1 + num2;
+  let sum = num1 + num2;
   let sumStringResult = `${num1} + ${num2} = ${sum}`;
   this.history.push(sumStringResult);
 };
 
 // SUBTRACTION
 Calculator.prototype.subtract = function (num1, num2) {
-  let subt = 0;
-  subt = num1 - num2;
+  let subt = num1 - num2;
   let subtStringResult = `${num1} - ${num2} = ${subt}`;
   this.history.push(subtStringResult);
 };
 
 // MULTIPLICATION
 Calculator.prototype.multiply = function (num1, num2) {
-  let mult = 0;
-  mult = num1 * num2;
+  let mult = num1 * num2;
   let multStringResult = `${num1} * ${num2} = ${mult}`;
   this.history.push(multStringResult);
 };
 
 // DIVISION
 Calculator.prototype.divide = function (num1, num2) {
-  let div = 0;
-  div = num1 / num2;
+  let div = num1 / num2;
   let divStringResult = `${num1} / ${num2} = ${div}`;
   this.history.push(divStringResult);
 };
 
 // EXPONENTATION
 Calculator.prototype.exponetiate = function (num1, num2) {
-  let exp = 0;
-  exp = num1 ** num2;
+  let exp = num1 ** num2;
   let expStringResult = `${num1} ^ ${num2} = ${exp}`;
   this.history.push(expStringResult);
 };
