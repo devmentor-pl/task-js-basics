@@ -19,19 +19,19 @@ function checkNumber(num){
     if(typeof num === 'number'){
         return num;
     }
-    return false;
+    return null;
 }
+
 
 Calculator.prototype.add = function(num1, num2) {
     let x;
-    if(checkNumber(num1) && checkNumber(num2)){
-        x = num1+num2
-    }
-    console.log(x);
     const op = '+';
     const equal= '=';
-    this.history.push(num1+op+num2+equal+x);
-    
+    if(checkNumber(num1) && checkNumber(num2)){
+        x = num1+num2
+        this.history.push(num1+op+num2+equal+x);
+    }
+    return null;
     // 1. zamień wartości przekazane przez parametr na typ number
     // 2. sprawdź czy są one poprawne
     // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
@@ -40,56 +40,51 @@ Calculator.prototype.add = function(num1, num2) {
 
 Calculator.prototype.subtract = function(num1,num2){
     let x;
-    if(typeof num1 && typeof num2 === 'number'){
-        x = num1-num2;
-    }
-    console.log(x);
     const op = '-';
     const equal= '=';
-    this.history.push(num1+op+num2+equal+x);
+    if(checkNumber(num1) && checkNumber(num2)){
+        x = num1-num2;
+        this.history.push(num1+op+num2+equal+x);
+    }
+    return null;
 }
 
 Calculator.prototype.multi = function(num1,num2){
     let x;
-    if(typeof num1 && typeof num2 === 'number'){
-        x = num1*num2;
-    }
-    console.log(x);
     const op = '*';
     const equal= '=';
-    this.history.push(num1+op+num2+equal+x);
+    if(checkNumber(num1) && checkNumber(num2)){
+        x = num1*num2;
+        this.history.push(num1+op+num2+equal+x);
+    }
 }
 
 Calculator.prototype.divi = function(num1,num2){
     let x;
-
-    if(typeof num1 && typeof num2 === 'number'){
-        x = num1/num2;
-    }
-    console.log(x);
     const op = '/';
     const equal= '=';
-    this.history.push(num1+op+num2+equal+x);
+
+    if(checkNumber(num1) && checkNumber(num2)){
+        x = num1/num2;
+        this.history.push(num1+op+num2+equal+x);
+    }
 }
 
 Calculator.prototype.expo = function(num1,num2){
     let x=1;
+    const op = '^';
+    const equal= '=';
     let i =0;
-    if(typeof num1 && typeof num2 === 'number'){
+    if(checkNumber(num1) && checkNumber(num2)){
         while(i<num2) {
             x *=num1;
             i++;
         }
+        this.history.push(num1+op+num2+equal+x);
     }
-    console.log(x);
-    const op = '^';
-    const equal= '=';
-    this.history.push(num1+op+num2+equal+x);
 }
 
-
 const calc = new Calculator();
-
 
 let action, promptContent, isCorrectAction, number1, number2;
 do {
