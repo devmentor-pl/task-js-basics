@@ -11,25 +11,25 @@ Calculator.prototype.getHistoryAsString = function () {
     return this.history.join('\n');
 }
 
-Calculator.prototype.changeNumber = function (num) {
+Calculator.prototype.parseNumber = function (num) {
     return parseInt(num);
 }
 
 function checkNumber(num){
-    if(typeof num === 'number'){
+    if(typeof num === 'number' && typeof num !=='NaN'){
+        console.log(typeof num);
         return num;
     }
+    console.log(typeof num);
     return null;
 }
 
 
 Calculator.prototype.add = function(num1, num2) {
     let x;
-    const op = '+';
-    const equal= '=';
     if(checkNumber(num1) && checkNumber(num2)){
         x = num1+num2
-        this.history.push(num1+op+num2+equal+x);
+        this.history.push(num1 + ' + ' + num2 + ' = ' + x );
     }
     return null;
     // 1. zamień wartości przekazane przez parametr na typ number
@@ -40,47 +40,38 @@ Calculator.prototype.add = function(num1, num2) {
 
 Calculator.prototype.subtract = function(num1,num2){
     let x;
-    const op = '-';
-    const equal= '=';
     if(checkNumber(num1) && checkNumber(num2)){
         x = num1-num2;
-        this.history.push(num1+op+num2+equal+x);
+        this.history.push(num1 + ' - ' + num2 + ' = ' + x );
     }
     return null;
 }
 
 Calculator.prototype.multi = function(num1,num2){
     let x;
-    const op = '*';
-    const equal= '=';
     if(checkNumber(num1) && checkNumber(num2)){
         x = num1*num2;
-        this.history.push(num1+op+num2+equal+x);
+        this.history.push(num1 + ' * ' + num2 + ' = ' + x );
     }
 }
 
 Calculator.prototype.divi = function(num1,num2){
     let x;
-    const op = '/';
-    const equal= '=';
-
     if(checkNumber(num1) && checkNumber(num2)){
         x = num1/num2;
-        this.history.push(num1+op+num2+equal+x);
+        this.history.push(num1 + ' / ' + num2 + ' = ' + x );
     }
 }
 
 Calculator.prototype.expo = function(num1,num2){
     let x=1;
-    const op = '^';
-    const equal= '=';
-    let i =0;
+    let i=0;
     if(checkNumber(num1) && checkNumber(num2)){
         while(i<num2) {
             x *=num1;
             i++;
         }
-        this.history.push(num1+op+num2+equal+x);
+        this.history.push(num1 + ' ^ ' + num2 + ' = ' + x );
     }
 }
 
@@ -99,23 +90,23 @@ do {
         number2 = prompt('Podaj liczbę nr 2');
 
         if (action === '+') {
-           calc.add(calc.changeNumber(number1), calc.changeNumber(number2));
+           calc.add(calc.parseNumber(number1), calc.parseNumber(number2));
         }
 
         if (action === '-'){
-            calc.subtract(calc.changeNumber(number1), calc.changeNumber(number2));
+            calc.subtract(calc.parseNumber(number1), calc.parseNumber(number2));
         }
 
         if (action === '*'){
-            calc.multi(calc.changeNumber(number1), calc.changeNumber(number2));
+            calc.multi(calc.parseNumber(number1), calc.parseNumber(number2));
         }
 
         if (action === '/'){
-            calc.divi(calc.changeNumber(number1), calc.changeNumber(number2));
+            calc.divi(calc.parseNumber(number1), calc.parseNumber(number2));
         }
 
         if (action === '^'){
-            calc.expo(calc.changeNumber(number1), calc.changeNumber(number2));
+            calc.expo(calc.parseNumber(number1), calc.parseNumber(number2));
         }
     }
 } while (calc.isCorrectAction(action));
