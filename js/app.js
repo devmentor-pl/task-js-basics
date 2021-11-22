@@ -17,18 +17,18 @@ Calculator.prototype.parseNumber = function (num) {
 
 function checkNumber(num){
     if(typeof num === 'number' && typeof num !=='NaN'){
-        console.log(typeof num);
+        console.log(typeof num,num);
         return num;
     }
-    console.log(typeof num);
+    console.log(typeof num,num);
     return null;
 }
 
 
 Calculator.prototype.add = function(num1, num2) {
-    let x;
+    let x = 0;
     if(checkNumber(num1) && checkNumber(num2)){
-        x = num1+num2
+        x = num1+num2;
         this.history.push(num1 + ' + ' + num2 + ' = ' + x );
     }
     return null;
