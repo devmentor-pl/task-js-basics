@@ -16,12 +16,11 @@ Calculator.prototype.parseNumber = function (num) {
 }
 
 function checkNumber(num){
-    if(typeof num === 'number' && typeof num !=='NaN'){
+    if(typeof num === 'number' && !isNaN(num)){
         return num;
     }
     return null;
 }
-
 
 Calculator.prototype.add = function(num1, num2) {
     let x = 0;
