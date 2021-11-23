@@ -60,6 +60,9 @@ Calculator.prototype.divi = function(num1,num2){
         x = num1/num2;
         this.history.push(num1 + ' / ' + num2 + ' = ' + x );
     }
+    else {
+        alert('Nie dzielimy przez 0');
+    }
 }
 
 Calculator.prototype.expo = function(num1,num2){
