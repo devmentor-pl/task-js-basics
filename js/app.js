@@ -19,7 +19,10 @@ function checkNumber(num){
     if(typeof num === 'number' && !isNaN(num)){
         return num;
     }
-    return null;
+    else{
+        alert('Podaj liczbę');
+        return null;
+    }
 }
 
 Calculator.prototype.add = function(num1, num2) {
@@ -28,7 +31,6 @@ Calculator.prototype.add = function(num1, num2) {
         x = num1+num2;
         this.history.push(num1 + ' + ' + num2 + ' = ' + x );
     }
-    return false;
 
     // 1. zamień wartości przekazane przez parametr na typ number
     // 2. sprawdź czy są one poprawne
@@ -42,7 +44,6 @@ Calculator.prototype.subtract = function(num1,num2){
         x = num1-num2;
         this.history.push(num1 + ' - ' + num2 + ' = ' + x );
     }
-    return null;
 }
 
 Calculator.prototype.multi = function(num1,num2){
@@ -55,12 +56,14 @@ Calculator.prototype.multi = function(num1,num2){
 
 Calculator.prototype.divi = function(num1,num2){
     let x;
-    if((checkNumber(num1)!==null) && (checkNumber(num2)!==null && num2 !==0)){
+    if(checkNumber(num1)!==null && checkNumber(num2)!==null){
+        if(num2 !==0){
         x = num1/num2;
         this.history.push(num1 + ' / ' + num2 + ' = ' + x );
-    }
-    else {
-        alert('Nie dzielimy przez 0');
+        }
+        else {
+            alert('Nie dzielimy przez 0');
+        }
     }
 }
 
