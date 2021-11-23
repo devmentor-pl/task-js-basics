@@ -17,21 +17,20 @@ Calculator.prototype.parseNumber = function (num) {
 
 function checkNumber(num){
     if(typeof num === 'number' && typeof num !=='NaN'){
-        console.log(typeof num,num);
         return num;
     }
-    console.log(typeof num,num);
     return null;
 }
 
 
 Calculator.prototype.add = function(num1, num2) {
     let x = 0;
-    if(checkNumber(num1) && checkNumber(num2)){
+    if(checkNumber(num1)!==null && checkNumber(num2)!==null){ //((checkNumber(num1) || num1 ===0) && (checkNumber(num2) || num2 ===0))
         x = num1+num2;
         this.history.push(num1 + ' + ' + num2 + ' = ' + x );
     }
-    return null;
+    return false;
+
     // 1. zamień wartości przekazane przez parametr na typ number
     // 2. sprawdź czy są one poprawne
     // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
@@ -40,7 +39,7 @@ Calculator.prototype.add = function(num1, num2) {
 
 Calculator.prototype.subtract = function(num1,num2){
     let x;
-    if(checkNumber(num1) && checkNumber(num2)){
+    if(checkNumber(num1)!==null && checkNumber(num2)!==null){
         x = num1-num2;
         this.history.push(num1 + ' - ' + num2 + ' = ' + x );
     }
@@ -49,7 +48,7 @@ Calculator.prototype.subtract = function(num1,num2){
 
 Calculator.prototype.multi = function(num1,num2){
     let x;
-    if(checkNumber(num1) && checkNumber(num2)){
+    if(checkNumber(num1)!==null && checkNumber(num2)!==null){
         x = num1*num2;
         this.history.push(num1 + ' * ' + num2 + ' = ' + x );
     }
@@ -57,7 +56,7 @@ Calculator.prototype.multi = function(num1,num2){
 
 Calculator.prototype.divi = function(num1,num2){
     let x;
-    if(checkNumber(num1) && checkNumber(num2)){
+    if((checkNumber(num1)!==null) && (checkNumber(num2)!==null && num2 !==0)){
         x = num1/num2;
         this.history.push(num1 + ' / ' + num2 + ' = ' + x );
     }
@@ -66,7 +65,7 @@ Calculator.prototype.divi = function(num1,num2){
 Calculator.prototype.expo = function(num1,num2){
     let x=1;
     let i=0;
-    if(checkNumber(num1) && checkNumber(num2)){
+    if(checkNumber(num1)!==null && checkNumber(num2)!==null){
         while(i<num2) {
             x *=num1;
             i++;
