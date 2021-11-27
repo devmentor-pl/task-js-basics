@@ -12,7 +12,7 @@ Calculator.prototype.getHistoryAsString = function() {
 }
 
 Calculator.prototype.add = function(num1, num2) {
-    // 1. zamień wartości przekazane przez parametr na typ number
+    const convertednum = parseInt(num1);
     // 2. sprawdź czy są one poprawne
     // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
     // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
