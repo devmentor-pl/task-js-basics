@@ -25,9 +25,9 @@ const checkNumbers = function(num1, num2) {
 
 Calculator.prototype.add = function(num1, num2) {
     convertNumbers(num1, num2);
-    if(checkNumbers(num1, num2) === false) {
-        return alert ("Mozesz podac tylko liczbe. Jedna z wartosci nie jest liczba")
-    }
+    if(checkNumbers(convertednum1, convertednum2) === false) {
+        return alert ("Mozesz podac tylko liczbe. Jedna z wartosci nie jest liczba");}
+
     else {
     let result = convertednum1 + convertednum2;
     const addResult = this.history.push(convertednum1 + '+' + convertednum2 + '=' + result);
