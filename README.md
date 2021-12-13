@@ -3,7 +3,9 @@
 > 🎁 *Zacznij od razu. Skorzystaj z **[szablonu README i wskazówek](https://github.com/devmentor-pl/readme-template)**.* 
 
 &nbsp;
-
+// 2. sprawdź czy są one poprawne
+    // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
+    // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
 
 # JavaScript: Podstawy
 
