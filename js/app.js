@@ -12,78 +12,86 @@ Calculator.prototype.getHistoryAsString = function() {
     return this.history.join('\n');
 }
 
-function convertNumbers(num1, num2) {
-    convertednum1 = parseFloat(num1);
-    convertednum2 = parseFloat(num2);
+Calculator.prototype.convertNumber = function(num) {
+    const convertedNum = parseFloat(num);
+    return convertedNum;
 }
 
-const checkNumbers = function(num1, num2) {
-    if(Number.isNaN(Number(num1)) || (Number.isNaN(Number(num2)))) {
+Calculator.prototype.isCorrectNumber = function(num) {
+    if(Number.isNaN(Number(num))) {
         return false;
-}
+    }
+    return true;
 }
 
 Calculator.prototype.add = function(num1, num2) {
-    convertNumbers(num1, num2);
-    if(checkNumbers(convertednum1, convertednum2) === false) {
-        return alert ("Mozesz podac tylko liczbe. Jedna z wartosci nie jest liczba");}
-
+    const convertednum1 = this.convertNumber(num1);
+    const convertednum2 = this.convertNumber(num2);
+    if(!this.isCorrectNumber(convertednum1) || !this.isCorrectNumber(convertednum2)) {
+        alert ("Mozesz podac tylko liczbe. Jedna z wartosci nie jest liczba");
+    }
     else {
-    let result = convertednum1 + convertednum2;
-    const addResult = this.history.push(convertednum1 + '+' + convertednum2 + '=' + result);
-    return result;
-} 
+        let result = convertednum1 + convertednum2;
+        const addResult = this.history.push(convertednum1 + '+' + convertednum2 + '=' + result);
+        return result;
+    }       
 }
 
 Calculator.prototype.extract = function(num1, num2) {
-    convertNumbers(num1, num2);
-    if(checkNumbers(convertednum1, convertednum2) === false) {
-        return alert ("Mozesz podac tylko liczbe. Jedna z wartosci nie jest liczba")
+    const convertednum1 = this.convertNumber(num1);
+    const convertednum2 = this.convertNumber(num2);
+    if(!this.isCorrectNumber(convertednum1) || !this.isCorrectNumber(convertednum2)) {
+        alert ("Mozesz podac tylko liczbe. Jedna z wartosci nie jest liczba");
     }
     else {
-    let result = convertednum1 - convertednum2;
-    const addResult = this.history.push(convertednum1 + '-' + convertednum2 + '=' + result);
-    return result;
-} 
+        let result = convertednum1 - convertednum2;
+        const addResult = this.history.push(convertednum1 + '-' + convertednum2 + '=' + result);
+        return result;
+    } 
 }
 
 Calculator.prototype.multiply = function(num1, num2) {
-    convertNumbers(num1, num2);
-    if(checkNumbers(convertednum1, convertednum2) === false) {
-        return alert ("Mozesz podac tylko liczbe. Jedna z wartosci nie jest liczba")
+    const convertednum1 = this.convertNumber(num1);
+    const convertednum2 = this.convertNumber(num2);
+    if(!this.isCorrectNumber(convertednum1) || !this.isCorrectNumber(convertednum2)) {
+        alert ("Mozesz podac tylko liczbe. Jedna z wartosci nie jest liczba");
     }
     else {
-    let result = convertednum1 * convertednum2;
-    const addResult = this.history.push(convertednum1 + '*' + convertednum2 + '=' + result);
-    return result;
-} 
+        let result = convertednum1 * convertednum2;
+        const addResult = this.history.push(convertednum1 + '*' + convertednum2 + '=' + result);
+        return result;
+    } 
 }
 
 Calculator.prototype.divide = function(num1, num2) {
-    convertNumbers(num1, num2);
-    if(checkNumbers(convertednum1, convertednum2) === false) {
-        return alert ("Mozesz podac tylko liczbe. Jedna z wartosci nie jest liczba")
+    const convertednum1 = this.convertNumber(num1);
+    const convertednum2 = this.convertNumber(num2);
+    if(!this.isCorrectNumber(convertednum1) || !this.isCorrectNumber(convertednum2)) {
+        alert ("Mozesz podac tylko liczbe. Jedna z wartosci nie jest liczba");
     }
     else {
-    if(convertednum2 === 0) {
-            return alert ("nie mozna dzielic przez zero");
-    } else {
-    let result = convertednum1 / convertednum2;
-    const addResult = this.history.push(convertednum1 + '/' + convertednum2 + '=' + result);
-    return result;}
-} 
+        if(convertednum2 === 0) {
+            alert("Nie mozna dzielic przez zero");
+        }
+        else {
+            let result = convertednum1 / convertednum2;
+            const addResult = this.history.push(convertednum1 + '/' + convertednum2 + '=' + result);
+            return result;
+        }
+    } 
 }
 
 Calculator.prototype.power = function(num1, num2) {
-    convertNumbers(num1, num2);
-    if(checkNumbers(convertednum1, convertednum2) === false) {
-        return alert ("Mozesz podac tylko liczbe. Jedna z wartosci nie jest liczba")
+    const convertednum1 = this.convertNumber(num1);
+    const convertednum2 = this.convertNumber(num2);
+    if(!this.isCorrectNumber(convertednum1) || !this.isCorrectNumber(convertednum2)) {
+        alert ("Mozesz podac tylko liczbe. Jedna z wartosci nie jest liczba");
     }
     else {
-    let result = convertednum1 ** convertednum2;
-    const addResult = this.history.push(convertednum1 + '^' + convertednum2 + '=' + result);
-    return result;
-} 
+        let result = convertednum1 ** convertednum2;
+        const addResult = this.history.push(convertednum1 + '^' + convertednum2 + '=' + result);
+        return result;
+    } 
 }
 
 
@@ -101,21 +109,21 @@ do {
         number2 = prompt('Podaj liczbę nr 2');
 
         if(action === '+') {
-            calc.add(number1, number2)};
+            calc.add(number1, number2)}
 
-        if(action === '-') {
+        else if(action === '-') {
                 calc.extract(number1, number2)
             }
 
-        if(action === '*') {
+        else if(action === '*') {
             calc.multiply(number1, number2)
         }
 
-        if(action === '/') {
+        else if(action === '/') {
             calc.divide(number1, number2)
         }
 
-        if(action === '^') {
+        else {
             calc.power(number1, number2)
         }
     }
