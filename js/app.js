@@ -68,23 +68,23 @@ do {
         number2 = parseInt(prompt('Podaj liczbę nr 2'));
         switch(action) {
             case '+':
-            calc.add(number1, number2);
-            break;
+                calc.add(number1, number2);
+                break;
             case '-':
-            calc.subtract(number1, number2);
-            break;
+                calc.subtract(number1, number2);
+                break;
             case '*':
-            calc.multiply(number1, number2);;
-            break;
+                calc.multiply(number1, number2);;
+                break;
             case '/':
-            calc.divide(number1, number2);;
-            break;
+                calc.divide(number1, number2);;
+                break;
             case '^':
-            calc.power(number1, number2);
-            break;
+                calc.power(number1, number2);
+                break;
             default:
-            alert('Dzialanie nie istnieje!');
-            break;
+                alert('Dzialanie nie istnieje!');
+                break;
         }
     }
 
