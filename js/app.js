@@ -7,44 +7,31 @@ Calculator.prototype.isCorrectAction = function(action) {
     return this.actions.includes(action);
 }
 
-Calculator.prototype.isNumber = function (input1, input2) {
-    return typeof input1 === 'number' && typeof input2 === 'number';
-}
-
 Calculator.prototype.getHistoryAsString = function() {
     return this.history.join('\n');
 }
 
 Calculator.prototype.add = function(num1, num2) {
-    if(this.isNumber(num1, num2)) {
         const result = num1 + num2;
         this.history.push(num1 + '+' + num2 + '=' + result);
-    }
 }
 
 Calculator.prototype.subtract = function(num1, num2) {
-    if(this.isNumber(num1, num2)) {
         const result = num1 - num2;
         this.history.push(num1 + '-' + num2 + '=' + result);
-    }
 }
 
 Calculator.prototype.multiply = function(num1, num2) {
-    if(this.isNumber(num1, num2)) {
         const result = num1 * num2;
         this.history.push(num1 + '*' + num2 + '=' + result);
-    }
 }
 
 Calculator.prototype.divide = function(num1, num2) {
-    if(this.isNumber(num1, num2)) {
         const result = num1 / num2;
         this.history.push(num1 + '/' + num2 + '=' + result);
-    }
 }
 
 Calculator.prototype.power = function(num1, num2) {
-    if(this.isNumber(num1, num2)) {
         let result = num1;
         if(num2 !== 0) {
             for(let i=2; i<=num2; i++) {
@@ -53,7 +40,6 @@ Calculator.prototype.power = function(num1, num2) {
         } else {
             this.history.push(num1 + '^' + num2 + '=' + 1);
         }
-    }
 }
 
 const calc = new Calculator();
@@ -66,25 +52,27 @@ do {
     if(isCorrectAction) {
         number1 = parseInt(prompt('Podaj liczbę nr 1'));
         number2 = parseInt(prompt('Podaj liczbę nr 2'));
-        switch(action) {
-            case '+':
-                calc.add(number1, number2);
-                break;
-            case '-':
-                calc.subtract(number1, number2);
-                break;
-            case '*':
-                calc.multiply(number1, number2);;
-                break;
-            case '/':
-                calc.divide(number1, number2);;
-                break;
-            case '^':
-                calc.power(number1, number2);
-                break;
-            default:
-                alert('Dzialanie nie istnieje!');
-                break;
+        if(!isNaN(number1) && !isNaN(number2)) {
+            switch(action) {
+                case '+':
+                    calc.add(number1, number2);
+                    break;
+                case '-':
+                    calc.subtract(number1, number2);
+                    break;
+                case '*':
+                    calc.multiply(number1, number2);;
+                    break;
+                case '/':
+                    calc.divide(number1, number2);;
+                    break;
+                case '^':
+                    calc.power(number1, number2);
+                    break;
+                default:
+                    alert('Dzialanie nie istnieje!');
+                    break;
+            }
         }
     }
 
