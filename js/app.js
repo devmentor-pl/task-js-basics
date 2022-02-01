@@ -11,11 +11,68 @@ Calculator.prototype.getHistoryAsString = function() {
     return this.history.join('\n');
 }
 
+Calculator.prototype.isCorrectInput = function(number) {
+    return number !== undefined 
+        && number !== null 
+        && number !== true 
+        && number !== false 
+        && +number !== NaN;
+}
+
 Calculator.prototype.add = function(num1, num2) {
-    // 1. zamień wartości przekazane przez parametr na typ number
-    // 2. sprawdź czy są one poprawne
-    // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
-    // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
+    if(this.isCorrectInput(num1) && this.isCorrectInput(num1)) {
+        const a = +num1;
+        const b = +num2;
+        const result = a + b;
+        this.history.push(`${a} + ${b} = ${result}`);
+    }
+}
+
+Calculator.prototype.subtract = function(num1, num2) {
+    if(this.isCorrectInput(num1) && this.isCorrectInput(num2)) {
+        const a = +num1;
+        const b = +num2;
+        const result = a - b;
+        this.history.push(`${a} - ${b} = ${result}`);
+    }
+}
+
+Calculator.prototype.multiply = function(num1, num2) {
+    if(this.isCorrectInput(num1) && this.isCorrectInput(num2)) {
+        const a = +num1;
+        const b = +num2;
+        const result = a * b;
+        this.history.push(`${a} * ${b} = ${result}`);
+    }
+}
+
+Calculator.prototype.divide = function(num1, num2) {
+    if(this.isCorrectInput(num1) && this.isCorrectInput(num2) && num2 !== 0) {
+        const a = +num1;
+        const b = +num2;
+        const result = a / b;
+        this.history.push(`${a} / ${b} = ${result}`);
+    }
+}
+
+//doesn't let floating numbers
+Calculator.prototype.power = function(num1, num2) {
+    if(this.isCorrectInput(num1) && this.isCorrectInput(num2) && Math.round(+num2) === +num2) {
+        let a = +num1;
+        let power = +num2;
+        let result = 1;
+
+        if(power < 0) {
+            a = 1 / a;
+            power = -power;
+        }
+
+        for(let i = power; i > 0; i--) {
+            result *= a;
+        }
+
+        this.history.push(`${a} ^ ${power} = ${result}`);
+    }
 }
 
 const calc = new Calculator();
@@ -30,9 +87,20 @@ do {
     if(isCorrectAction) {
         number1 = prompt('Podaj liczbę nr 1');
         number2 = prompt('Podaj liczbę nr 2');
-
         if(action === '+') {
             calc.add(number1, number2);
+        }
+        else if(action === '-') {
+            calc.subtract(number1, number2);
+        }
+        else if(action === '*') {
+            calc.multiply(number1, number2);
+        }
+        else if(action === '/') {
+            calc.divide(number1, number2);
+        }
+        else if(action === '^') {
+            calc.power(number1, number2);
         }
     }
     
