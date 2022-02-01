@@ -1,19 +1,65 @@
-# JavaScript: Podstawy
+# JavaScript Calculator
 
-Twoim zadaniem będzie dopisanie do istniejącego kodu niezbędnych elementów, które pozwolą wykonywać obliczenia oraz przechowywać hostorię wykonanych operacji.
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [How it's works](#how-it's-works)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I Learned](#what-i-learned)
+  - [Useful resources](#useful-resources)
+- [Author](#author)
+- [Special thanks](#special-thanks)
 
-Nasz kalkulator powinien posiadać następujące opcje:
 
-* dodawanie (+)
-* odejmowanie (-)
-* mnożenie (*)
-* dzielenie (/)
-* potęgowanie (^) - wykonaj to rozwiązanie przy pomocy pętli, nie korzystaj z *Math.pow()*;
+## Overview
 
-Jeśli otworzysz plik `./js/app.js` to zauważysz, że mamy już tam gotowy konstruktor o nazwie `Calculator`, który musimy uzupełnić odpowiednimi metodami.
+### The challenge
 
-Powinniśmy się wzorować na metodzie `Calculator.prototype.add`, w której znajdziesz rozpisane kroki do wykonania.
+The task was to create a basic calculator with the following options : addition(+), subtraction(-), multiplication(*), division(/), power(^).
+The task was to be performed using an if statement and a loop.
+Communication with the user was to take place via prompt box.
 
-We wspomnianym pliku wykorzystujemy również pętle [do ... while](https://developer.mozilla.org/pl/docs/Web/JavaScript/Referencje/Polecenia/do...while), która w swoim wnętrzu pobiera dane od uzytkwonika. Na ich podstawie są wykonywane odpowiednie czynności. 
+### How it's works
 
-To tam należy dopisać kilka instrukcji `if` oraz wywołać odpowiednie metody.
+To use this calculator, you have to follow the directions shown in prompt box.
+In the first step, you need to indicate the operation you want to perform by typing the appropriate symbol(+, -, *, /, ^).
+In the second and third step you need to typing a finite number.
+The application allows you to view the current and previous calculations
+
+### Links:
+
+- Code: [See my code]()
+- Live: [Check it out]()
+
+## My Process
+
+### Built with
+
+- JavaScript
+
+### What I learned
+
+I have built up my knowledge of operators,, also I have practiced working with:
+ - primitive values and objects,
+ - conditional instructions,
+ - loops,
+ - functions,
+ - array methods,
+ - constructors and prototypes
+
+### Useful resources
+
+[Why we should use strict comparisons](https://262.ecma-international.org/5.1/#sec-11.9.3)
+
+
+## Author
+
+- Github - [Kajetan Kisielewski](https://github.com/KajetanKisielewski)
+- LinkedIn - [Kajetan Kisielewski](https://www.linkedin.com/in/kajetan-kisielewski-157b60208/)
+
+## Special thanks
+
+Thanks to my [Mentor - devmentor.pl](https://devmentor.pl/) - for providing me with this task and for code review.
+
+

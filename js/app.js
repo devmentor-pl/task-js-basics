@@ -13,21 +13,14 @@ Calculator.prototype.getHistoryAsString = function() {
 
 
 Calculator.prototype.isNumber = function(x)  {
+    const parsedValue = parseFloat(x)
 
-    if( Number.isNaN( parseFloat(x) ) || !Number.isFinite( parseFloat(x) ) ) {
-       return null;
-    }
-    else {
-        return parseFloat(x);
-    }
+    if( Number.isNaN( parsedValue ) || !Number.isFinite( parsedValue ) ) { return null; }
+    return parsedValue;
 }
 
 
 Calculator.prototype.add = function(num1, num2) {
-    // 1. zamień wartości przekazane przez parametr na typ number
-    // 2. sprawdź czy są one poprawne
-    // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
-    // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
     const a = this.isNumber(num1);
     const b = this.isNumber(num2);
 
@@ -35,7 +28,8 @@ Calculator.prototype.add = function(num1, num2) {
         const result = a + b;
         this.history.push(`${a} + ${b} = ${result}`)
         return result;
-    }
+
+    } return alert('Inncorect data');
 }
 
 
@@ -47,7 +41,8 @@ Calculator.prototype.subtraction = function(num1, num2) {
         const result = a - b;
         this.history.push(`${a} - ${b} = ${result}`)
         return result;
-    }
+
+    } return alert('Inncorect data');
 }
 
 Calculator.prototype.multiply = function(num1, num2) {
@@ -59,7 +54,8 @@ Calculator.prototype.multiply = function(num1, num2) {
         const result = a * b;
         this.history.push(`${a} * ${b} = ${result}`)
         return result;
-    }
+
+    } return alert('Inncorect data');
 }
 
 Calculator.prototype.division = function(num1, num2) {
@@ -77,7 +73,9 @@ Calculator.prototype.division = function(num1, num2) {
         }
     this.history.push(`${a} / ${b} = ${result}`)
     return result;
-}
+
+} return alert('Inncorect data');
+
 }
 
 Calculator.prototype.power = function(num1, num2) {
@@ -101,7 +99,8 @@ Calculator.prototype.power = function(num1, num2) {
         }
         this.history.push(`${a} ^ ${b} = ${result}`);
         return result;
-    }
+
+    } return alert('Inncorect data');
 }
 
 
@@ -109,15 +108,15 @@ Calculator.prototype.power = function(num1, num2) {
 const calc = new Calculator();
 let action, promptContent, isCorrectAction, number1, number2;
 do {
-    promptContent = 'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n'; // \n - znak nowej linii
-    promptContent += 'Jeśli chcesz zrezygnować wciśnij Anuluj. \n';
-    promptContent += 'Lista poprzednich operacji: \n' + calc.getHistoryAsString();
+    promptContent = 'Enter the operation you want to perform (+, -, *, /, ^) and confirm. \n';
+    promptContent += 'If you want to quit, click Cancel. \n';
+    promptContent += 'List of previous operations: \n' + calc.getHistoryAsString();
 
     action = prompt(promptContent);
     isCorrectAction = calc.isCorrectAction(action);
     if(isCorrectAction) {
-        number1 = prompt('Podaj liczbę nr 1');
-        number2 = prompt('Podaj liczbę nr 2');
+        number1 = prompt('Enter the first number');
+        number2 = prompt('Enter the second number');
 
         if(action === '+') {
             calc.add(number1, number2);
