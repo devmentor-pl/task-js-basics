@@ -16,11 +16,36 @@ Calculator.prototype.add = function(num1, num2) {
     // 2. sprawdź czy są one poprawne
     // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
     // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
-    this.history.push(num1 + ' ' + action + ' ' + num2 + ' = ' + result);
+    let result;
+    result = num1 + num2;
+    this.history.push(num1 + ' + ' + num2 + ' = ' + result);
+}
+
+Calculator.prototype.sub = function(num1, num2) {
+    let result;
+    result = num1 - num2;
+    this.history.push(num1 + ' - ' + num2 + ' = ' + result);
+}
+Calculator.prototype.multiplication = function(num1, num2) {
+    let result;
+    result = num1 * num2;
+    this.history.push(num1 + ' * ' + num2 + ' = ' + result);
+}
+Calculator.prototype.division = function(num1, num2) {
+    let result;
+    result = num1 / num2;
+    this.history.push(num1 + ' / ' + num2 + ' = ' + result);
+}
+Calculator.prototype.exponentation = function(num1, num2) {
+    let result = 1;
+    for(let i=1; i<=number2; i++){
+        result = result * number1;
+    }
+    this.history.push(num1 + ' ^ ' + num2 + ' = ' + result);
 }
 
 const calc = new Calculator();
-let action, promptContent, isCorrectAction, number1, number2, result;
+let action, promptContent, isCorrectAction, number1, number2;
 do { 
     promptContent = 'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n'; // \n - znak nowej linii
     promptContent += 'Jeśli chcesz zrezygnować wciśnij Anuluj. \n';
@@ -31,30 +56,24 @@ do {
     if(isCorrectAction) {
         number1 = parseInt(prompt('Podaj liczbę nr 1'));
         number2 = parseInt(prompt('Podaj liczbę nr 2'));
-        if(typeof number1 === 'number' && typeof number2 === 'number') {
+        if(!Number.isNaN(number1) && !Number.isNaN(number2)) {
             if(action === '+') {
-                result = number1 + number2;
                 calc.add(number1, number2);
             }
             if(action === '-') {
-                result = number1 - number2;
-                calc.add(number1, number2);
+                calc.sub(number1, number2);
             }
             if(action === '*') {
-                result = number1 * number2;
-                calc.add(number1, number2);
+                calc.multiplication(number1, number2);
             }
             if(action === '/') {
-                result = number1 / number2;
-                calc.add(number1, number2);
+                calc.division(number1, number2);
             }
             if(action === '^') {
-                result = 1;
-                for(let i=1; i<=number2; i++){
-                    result = result * number1;
-                }
-                calc.add(number1, number2);
+                calc.exponentation(number1, number2);
             }
+        } else {
+            alert('Błędne dane!');
         }
     }
     
