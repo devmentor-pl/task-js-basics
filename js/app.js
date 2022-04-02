@@ -37,10 +37,6 @@ Calculator.prototype.showAlert = function () {
 };
 
 Calculator.prototype.add = function (num1, num2) {
-    // 1. zamień wartości przekazane przez parametr na typ number
-    // 2. sprawdź czy są one poprawne
-    // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
-    // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
     const userValueArr = this.convertToNumber(num1, num2);
     const result = userValueArr.reduce(function (a, b) { return a + b });
     this.isNumber(userValueArr) ? this.pushHistory(userValueArr,'+',result) : this.showAlert();
@@ -72,7 +68,7 @@ Calculator.prototype.exponentiation = function (num1, num2) {
 const calc = new Calculator();
 let action, promptContent, isCorrectAction, number1, number2;
 do {
-    promptContent = 'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n'; // \n - znak nowej linii
+    promptContent = 'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n';
     promptContent += 'Jeśli chcesz zrezygnować wciśnij Anuluj. \n';
     promptContent += 'Lista poprzednich operacji: \n' + calc.getHistoryAsString();
 
@@ -84,26 +80,19 @@ do {
 
         if(action === '+') {
             calc.add(number1, number2);
-        }
+        };
         if(action === '-') {
             calc.subtraction(number1, number2);
-        }
+        };
         if(action === '*') {
             calc.multiplication(number1, number2);
-        }
+        };
         if(action === '/') {
             calc.division(number1, number2);
-        }
+        };
         if(action === '^') {
             calc.exponentiation(number1, number2);
-        }
-    }
+        };
+    };
 
 } while (calc.isCorrectAction(action));
-
-calc.add('1','4')
-calc.add('1', '6')
-calc.division(4,'2')
-calc.subtraction(4,'2')
-calc.multiplication(4,'2')
-calc.exponentiation(3,5)
