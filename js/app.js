@@ -37,38 +37,28 @@ Calculator.prototype.operation = function (num1, num2, action) {
         switch(action) {
             case '+':
                 result = number1 + number2
-                // operation = number1 + '+' + number2 + '=' + result
-                // console.log(operation)
-                // this.addHistory(operation)  
                 this.infoOparation(number1, number2, action, result)
                 break
             case '-':
                 result = number1 - number2
-                // operation = number1 + '-' + number2 + '=' + result
-                // console.log(operation)
-                // this.addHistory(operation) 
                 this.infoOparation(number1, number2, action, result) 
                 break
             case '*':
                 result = number1 * number2
-                // operation = number1 + 'x' + number2 + '=' + result
-                // console.log(operation)
-                // this.addHistory(operation) 
                 this.infoOparation(number1, number2, action, result) 
                 break
             case '/':
+                // specific conditions for this operation
                 if(number2 === 0) {
                     console.log('You can not divide by 0')
                     this.addHistory('You can not divide by 0') 
                     break
                 }
                 result = number1 / number2
-                // operation = number1 + '/' + number2 + '=' + result
-                // console.log(operation)
-                // this.addHistory(operation)  
                 this.infoOparation(number1, number2, action, result) 
                 break
             case '^':
+                // specific conditions for this operation
                 if(number2 < 0) {
                     const info = 'You can not exponentiation for minus exponent'
                     console.log(info)
@@ -79,9 +69,6 @@ Calculator.prototype.operation = function (num1, num2, action) {
                 for(let i=1; i<=number2; i++) {
                     result *= number1
                 } 
-                // const exponentiation = number1 + '^' + number2 + '=' + result
-                // console.log(exponentiation)
-                // this.addHistory(exponentiation) 
                 this.infoOparation(number1, number2, action, result)  
                 break
             default:
@@ -104,9 +91,7 @@ do {
     if (isCorrectAction) {
         number1 = prompt('Podaj liczbę nr 1');
         number2 = prompt('Podaj liczbę nr 2');
-
         calc.operation(number1, number2, action);
-
     }
 
 } while (calc.isCorrectAction(action));
