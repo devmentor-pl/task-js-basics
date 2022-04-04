@@ -17,10 +17,6 @@ Calculator.prototype.addToHistory = function (result) {
 
 
 Calculator.prototype.add = function (num1, num2) {
-    // 1. zamień wartości przekazane przez parametr na typ number
-    // 2. sprawdź czy są one poprawne
-    // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
-    // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
 
     let resultToString = `${num1} + ${num2} = ${num1 + num2}`;
     calc.addToHistory(resultToString);
@@ -56,6 +52,7 @@ Calculator.prototype.power = function (num1, num2) {
     console.log(`Druga: ${typeof num2}`)
     if (num2 === 0) {
         result = 1
+
     } else if (num2 > 0) {
         result = num1;
         for (let i = 1; i < num2; i++) {
@@ -63,27 +60,24 @@ Calculator.prototype.power = function (num1, num2) {
         }
 
     } else if (num2 < 0) {
-        num1b = (1 / num1);
-        num2b = num2 * -1;
-        result = num1b;
-        for (let i = 1; i < num2b; i++) {
-            result *= num1b;
+        num1New = (1 / num1);
+        num2New = num2 * -1;
+        result = num1New;
+        for (let i = 1; i < num2New; i++) {
+            result *= num1New;
         }
     }
 
-    console.log(`wynik potęgowania to ${result}`)
     let resultToString = `${num1} ^ ${num2} = ${result}`;
     calc.addToHistory(resultToString);
-
     return result;
 }
-
 
 
 const calc = new Calculator();
 let action, promptContent, isCorrectAction, number1, number2;
 do {
-    promptContent = 'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n'; // \n - znak nowej linii
+    promptContent = 'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n';
     promptContent += 'Jeśli chcesz zrezygnować wciśnij Anuluj. \n';
     promptContent += 'Lista poprzednich operacji: \n' + calc.getHistoryAsString();
 
@@ -93,17 +87,25 @@ do {
         number1 = Number(prompt('Podaj liczbę nr 1'));
         number2 = Number(prompt('Podaj liczbę nr 2'));
 
-        if (action === '+') {
-            calc.add(number1, number2)
-        } else if (action === '-') {
-            calc.deduct(number1, number2)
-        } else if (action === '*') {
-            calc.multiply(number1, number2)
-        } else if (action === '/') {
-            calc.divide(number1, number2)
-        } else if (action === '^') {
-            calc.power(number1, number2)
+        if (isNaN(number1) || isNaN(number2)) {
+
+            alert(`Podaj prawidłowe dane!`)
+
+        }
+        else {
+            if (action === '+') {
+                calc.add(number1, number2)
+            } else if (action === '-') {
+                calc.deduct(number1, number2)
+            } else if (action === '*') {
+                calc.multiply(number1, number2)
+            } else if (action === '/') {
+                calc.divide(number1, number2)
+            } else if (action === '^') {
+                calc.power(number1, number2)
+            }
         }
     }
+
 
 } while (calc.isCorrectAction(action));
