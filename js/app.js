@@ -1,17 +1,24 @@
 function Calculator() {
-    this.actions = ['+', '-', '*', '/', '^'];
+    this.action = {
+        '+': this.add.bind(this),
+        '-': this.subtraction.bind(this),
+        '*': this.multiplication.bind(this),
+        '/': this.division.bind(this),
+        '^': this.exponentiation.bind(this)
+    }
     this.history = [];
 };
 
-Calculator.prototype.isCorrectAction = function(action) {
-    return this.actions.includes(action);
+Calculator.prototype.isCorrectAction = function (action) {
+    const actionArr = Object.keys(this.action);
+    return actionArr.includes(action);
 };
 
 Calculator.prototype.getHistoryAsString = function() {
     return this.history.join('\n');
 };
 
-Calculator.prototype.convertToNumber = function (num1,num2) {
+Calculator.prototype.convertToNumber = function (num1, num2) {
     return [num1, num2].map((Number));
 };
 
@@ -77,22 +84,7 @@ do {
     if(isCorrectAction) {
         number1 = prompt('Podaj liczbę nr 1');
         number2 = prompt('Podaj liczbę nr 2');
-
-        if(action === '+') {
-            calc.add(number1, number2);
-        };
-        if(action === '-') {
-            calc.subtraction(number1, number2);
-        };
-        if(action === '*') {
-            calc.multiplication(number1, number2);
-        };
-        if(action === '/') {
-            calc.division(number1, number2);
-        };
-        if(action === '^') {
-            calc.exponentiation(number1, number2);
-        };
+        calc.action[action](number1,number2)
     };
 
 } while (calc.isCorrectAction(action));
