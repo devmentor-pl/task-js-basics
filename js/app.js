@@ -25,6 +25,7 @@ Calculator.prototype.add = function (num1, num2, action) {
 
 Calculator.prototype.deduct = function (num1, num2, action) {
 
+
     let result = num1 - num2;
     calc.addToHistory(`${num1} ${action} ${num2} = ${result}`);
 
@@ -41,10 +42,17 @@ Calculator.prototype.multiply = function (num1, num2, action) {
 
 Calculator.prototype.divide = function (num1, num2, action) {
 
-    let result = num1 / num2;
-    calc.addToHistory(`${num1} ${action} ${num2} = ${result}`);
+    if (num2) {
 
-    return result;
+        let result = num1 / num2;
+        calc.addToHistory(`${num1} ${action} ${num2} = ${result}`);
+
+        return result;
+    }
+    else {
+        alert("Nie można dzielić przez zero")
+        calc.addToHistory(`${num1} ${action} ${num2} = błąd`);
+    }
 }
 
 Calculator.prototype.power = function (num1, num2, action) {
