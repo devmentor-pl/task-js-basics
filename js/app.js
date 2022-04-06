@@ -91,7 +91,7 @@ Calculator.prototype.exp = function(num1, num2) {
         console.log('Podstawa potęgi musi być różna od zera!')
     }
 }
-
+/*
 Calculator.prototype.ifNegNumb = function(number1) {
     // funkcja sprawdzająca, które liczby są ujemne. Gdy są podaje je w nawiasach
     // nie zdąrzyłem naprawić :(
@@ -102,7 +102,7 @@ Calculator.prototype.ifNegNumb = function(number1) {
         num1 = (`(${num1})`)
     }
 }
-
+*/
 const calc = new Calculator();
 let action, promptContent, isCorrectAction, number1, number2;
 let result = 0 // wynik kalkulacji
