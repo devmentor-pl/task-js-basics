@@ -15,40 +15,40 @@ Calculator.prototype.addToHistory = function (result) {
     return this.history.push(result);
 }
 
-Calculator.prototype.add = function (num1, num2) {
+Calculator.prototype.add = function (num1, num2, action) {
 
-    let resultToString = `${num1} + ${num2} = ${num1 + num2}`;
-    calc.addToHistory(resultToString);
+    let result = num1 + num2;
+    calc.addToHistory(`${num1} ${action} ${num2} = ${result}`);
 
-    return num1 + num2;
+    return result;
 }
 
+Calculator.prototype.deduct = function (num1, num2, action) {
 
-Calculator.prototype.deduct = function (num1, num2) {
-    let resultToString = `${num1} - ${num2} = ${num1 - num2}`;
-    calc.addToHistory(resultToString);
+    let result = num1 - num2;
+    calc.addToHistory(`${num1} ${action} ${num2} = ${result}`);
 
-    return num1 - num2;
+    return result;
 }
 
-Calculator.prototype.multiply = function (num1, num2) {
-    let resultToString = `${num1} * ${num2} = ${num1 * num2}`;
-    calc.addToHistory(resultToString);
+Calculator.prototype.multiply = function (num1, num2, action) {
 
-    return num1 * num2;
+    let result = num1 * num2;
+    calc.addToHistory(`${num1} ${action} ${num2} = ${result}`);
+
+    return result;
 }
 
-Calculator.prototype.divide = function (num1, num2) {
-    let resultToString = `${num1} / ${num2} = ${num1 / num2}`;
-    calc.addToHistory(resultToString);
+Calculator.prototype.divide = function (num1, num2, action) {
 
-    return num1 / num2;
+    let result = num1 / num2;
+    calc.addToHistory(`${num1} ${action} ${num2} = ${result}`);
+
+    return result;
 }
 
-Calculator.prototype.power = function (num1, num2) {
+Calculator.prototype.power = function (num1, num2, action) {
     let result;
-    console.log(`Pierwsza:${typeof num1}`)
-    console.log(`Druga: ${typeof num2}`)
 
     if (num2 === 0) {
         result = 1
@@ -70,8 +70,7 @@ Calculator.prototype.power = function (num1, num2) {
         return alert("Na litość boską, po co Ci to?!")
     }
 
-    let resultToString = `${num1} ^ ${num2} = ${result}`;
-    calc.addToHistory(resultToString);
+    calc.addToHistory(`${num1} ${action} ${num2} = ${result.toFixed(4)}`);
     return result;
 }
 
@@ -96,15 +95,15 @@ do {
         }
         else {
             if (action === '+') {
-                calc.add(number1, number2)
+                calc.add(number1, number2, action)
             } else if (action === '-') {
-                calc.deduct(number1, number2)
+                calc.deduct(number1, number2, action)
             } else if (action === '*') {
-                calc.multiply(number1, number2)
+                calc.multiply(number1, number2, action)
             } else if (action === '/') {
-                calc.divide(number1, number2)
+                calc.divide(number1, number2, action)
             } else if (action === '^') {
-                calc.power(number1, number2)
+                calc.power(number1, number2, action)
             }
         }
     }
