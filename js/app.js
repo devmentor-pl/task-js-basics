@@ -115,6 +115,9 @@ do {
             }
         }
     }
+    else {
+        alert(`Nieprawidłowy operator!`);
+    }
 
 
 } while (calc.isCorrectAction(action));
