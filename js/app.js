@@ -30,7 +30,7 @@ Calculator.prototype.addToHistory = function (result) {
 Calculator.prototype.add = function (num1, num2, action) {
 
     let result = num1 + num2;
-    calc.addToHistory(`${num1} ${action} ${num2} = ${result}`);
+    this.addToHistory(`${num1} ${action} ${num2} = ${result}`);
 
     return result;
 }
@@ -39,7 +39,7 @@ Calculator.prototype.deduct = function (num1, num2, action) {
 
 
     let result = num1 - num2;
-    calc.addToHistory(`${num1} ${action} ${num2} = ${result}`);
+    this.addToHistory(`${num1} ${action} ${num2} = ${result}`);
 
     return result;
 }
@@ -47,7 +47,7 @@ Calculator.prototype.deduct = function (num1, num2, action) {
 Calculator.prototype.multiply = function (num1, num2, action) {
 
     let result = num1 * num2;
-    calc.addToHistory(`${num1} ${action} ${num2} = ${result}`);
+    this.addToHistory(`${num1} ${action} ${num2} = ${result}`);
 
     return result;
 }
@@ -57,13 +57,13 @@ Calculator.prototype.divide = function (num1, num2, action) {
     if (num2) {
 
         let result = num1 / num2;
-        calc.addToHistory(`${num1} ${action} ${num2} = ${result}`);
+        this.addToHistory(`${num1} ${action} ${num2} = ${result}`);
 
         return result;
     }
     else {
         alert("Nie można dzielić przez zero")
-        calc.addToHistory(`${num1} ${action} ${num2} = błąd`);
+        this.addToHistory(`${num1} ${action} ${num2} = błąd`);
     }
 }
 
@@ -91,7 +91,7 @@ Calculator.prototype.power = function (num1, num2, action) {
     }
 
 
-    calc.addToHistory(`${num1} ${action} ${num2} = ${result.toFixed(4)}`);
+    this.addToHistory(`${num1} ${action} ${num2} = ${result.toFixed(4)}`);
     return result;
 }
 
