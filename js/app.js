@@ -1,10 +1,22 @@
 function Calculator() {
-    this.actions = ['+', '-', '*', '/', '^'];
     this.history = [];
+    this.operations = {
+        '+': this.add,
+        '-': this.deduct,
+        '*': this.multiply,
+        '/': this.divide,
+        '^': this.power,
+    }
 }
 
 Calculator.prototype.isCorrectAction = function (action) {
-    return this.actions.includes(action);
+    // return this.actions.includes(action);
+    let allOperators = [];
+    for (const key in this.operations) {
+        allOperators.push(key);
+    }
+
+    return allOperators.includes(action);
 }
 
 Calculator.prototype.getHistoryAsString = function () {
@@ -78,6 +90,7 @@ Calculator.prototype.power = function (num1, num2, action) {
         return alert("Na litość boską, po co Ci to?!")
     }
 
+
     calc.addToHistory(`${num1} ${action} ${num2} = ${result.toFixed(4)}`);
     return result;
 }
@@ -102,21 +115,15 @@ do {
 
         }
         else {
-            if (action === '+') {
-                calc.add(number1, number2, action)
-            } else if (action === '-') {
-                calc.deduct(number1, number2, action)
-            } else if (action === '*') {
-                calc.multiply(number1, number2, action)
-            } else if (action === '/') {
-                calc.divide(number1, number2, action)
-            } else if (action === '^') {
-                calc.power(number1, number2, action)
-            }
+
+            calc.operations[action](number1, number2, action);
+
         }
     }
     else {
+
         alert(`Nieprawidłowy operator!`);
+
     }
 
 
