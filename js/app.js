@@ -116,7 +116,7 @@ do {
         }
         else {
 
-            calc.operations[action](number1, number2, action);
+            calc.operations[action].apply(calc, [number1, number2, action]);
 
         }
     }
