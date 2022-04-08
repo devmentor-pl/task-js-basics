@@ -10,7 +10,7 @@ function Calculator() {
 }
 
 Calculator.prototype.isCorrectAction = function (action) {
-    // return this.actions.includes(action);
+
     let allOperators = [];
     for (const key in this.operations) {
         allOperators.push(key);
