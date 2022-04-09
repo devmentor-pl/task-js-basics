@@ -120,6 +120,9 @@ do {
 
         }
     }
+    else if (action === null) {
+        console.log("Canceled");
+    }
     else {
 
         alert(`Nieprawidłowy operator!`);
