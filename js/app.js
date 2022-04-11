@@ -14,9 +14,33 @@ Calculator.prototype.getHistoryAsString = function () {
     return this.history.join('\n');
 }
 Calculator.prototype.infoOparation = function (number1, number2, operator, result) {
+    
     operation = number1 + operator + number2 + '=' + result
     console.log(operation)
     this.addHistory(operation)  
+}
+Calculator.prototype.getResult = function(number1, number2, action) {
+    if(action === '/') {
+        if(number2 === 0) {
+            console.log('You can not divide by 0')
+            // this.addHistory('You can not divide by 0') 
+            return 'You can not divide by 0'
+        }
+        return number1 / number2        
+    }
+    if(action === '^') {
+        if(number2 < 0) {
+            const info = 'You can not exponentiation for minus exponent'
+            console.log(info)
+            // this.addHistory(info) 
+            return info
+        }
+        let result = 1     
+        for(let i=1; i<=number2; i++) {
+            result *= number1
+        }
+        return result 
+    }
 }
 Calculator.prototype.operation = function (num1, num2, action) {
     console.log('operation')
@@ -48,27 +72,11 @@ Calculator.prototype.operation = function (num1, num2, action) {
                 this.infoOparation(number1, number2, action, result) 
                 break
             case '/':
-                // specific conditions for this operation
-                if(number2 === 0) {
-                    console.log('You can not divide by 0')
-                    this.addHistory('You can not divide by 0') 
-                    break
-                }
-                result = number1 / number2
+                result = this.getResult(number1, number2, action)
                 this.infoOparation(number1, number2, action, result) 
                 break
             case '^':
-                // specific conditions for this operation
-                if(number2 < 0) {
-                    const info = 'You can not exponentiation for minus exponent'
-                    console.log(info)
-                    this.addHistory(info) 
-                    break
-                }
-                result = 1     
-                for(let i=1; i<=number2; i++) {
-                    result *= number1
-                } 
+                result = this.getResult(number1, number2, action)
                 this.infoOparation(number1, number2, action, result)  
                 break
             default:
@@ -77,6 +85,7 @@ Calculator.prototype.operation = function (num1, num2, action) {
         }     
     } else {
         console.log('Operation not correct')
+        this.addHistory('Operation not correct - please repeat') 
     }
 }
 const calc = new Calculator();
