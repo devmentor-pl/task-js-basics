@@ -16,24 +16,25 @@ Calculator.prototype.add = function (num1, num2) {
     const number1 = Number(num1);
     const number2 = Number(num2);
 
-    if (isNaN(number1)) {
-        alert('Wpisano złe dane!');
-    }
+    errorAlert(number1, number2);
 
-    else if (isNaN(number2)) {
-        alert('Wpisano złe dane!');
-    }
 
+    let result = number1 + number2;
+
+    let info = '';
+
+    if (isNaN(result)) {
+        info = 'Złe dane!';
+    }
     else {
 
-
-        let result = number1 + number2;
-        let info = number1 + ' + ' + number2 + ' = ' + result;
-
-        this.history.push(info);
-
-        return result;
+        info = number1 + ' + ' + number2 + ' = ' + result;
     }
+
+    this.history.push(info);
+
+    return result;
+
 
     // 1. zamień wartości przekazane przez parametr na typ number
     // 2. sprawdź czy są one poprawne
@@ -47,25 +48,24 @@ Calculator.prototype.subtraction = function (num1, num2) {
     const number1 = Number(num1);
     const number2 = Number(num2);
 
-    if (isNaN(number1)) {
-        alert('Wpisano złe dane!');
-    }
+    errorAlert(number1, number2);
 
-    else if (isNaN(number2)) {
-        alert('Wpisano złe dane!');
-    }
+    let result = number1 - number2;
 
+    let info = '';
+
+    if (isNaN(result)) {
+        info = 'Złe dane!';
+    }
     else {
 
+        info = number1 + ' - ' + number2 + ' = ' + result;
 
-        let result = number1 - number2;
-        let info = number1 + ' - ' + number2 + ' = ' + result;
-
-        this.history.push(info);
-
-        return result;
     }
 
+    this.history.push(info);
+
+    return result;
 }
 
 
@@ -74,23 +74,22 @@ Calculator.prototype.multiplication = function (num1, num2) {
     const number1 = Number(num1);
     const number2 = Number(num2);
 
-    if (isNaN(number1)) {
-        alert('Wpisano złe dane!');
-    }
+    errorAlert(number1, number2);
 
-    else if (isNaN(number2)) {
-        alert('Wpisano złe dane!');
-    }
+    let result = number1 * number2;
 
+    let info = '';
+
+    if (isNaN(result)) {
+        info = 'Złe dane!';
+    }
     else {
-        let result = number1 * number2;
-        let info = number1 + ' * ' + number2 + ' = ' + result;
 
-        this.history.push(info);
-        return result;
-
+        info = number1 + ' * ' + number2 + ' = ' + result;
     }
 
+    this.history.push(info);
+    return result;
 
 }
 
@@ -100,24 +99,22 @@ Calculator.prototype.division = function (num1, num2) {
     const number1 = Number(num1);
     const number2 = Number(num2);
 
-    if (isNaN(number1)) {
-        alert('Wpisano złe dane!');
-    }
+    errorAlert(number1, number2);
 
-    else if (isNaN(number2)) {
-        alert('Wpisano złe dane!');
-    }
+    let result = number1 / number2;
 
+    let info = '';
+
+    if (isNaN(result)) {
+        info = 'Złe dane!';
+    }
     else {
-        let result = number1 / number2;
-        let info = number1 + ' / ' + number2 + ' = ' + result;
 
-        this.history.push(info);
-        return result;
-
+        info = number1 + ' / ' + number2 + ' = ' + result;
     }
 
-
+    this.history.push(info);
+    return result;
 }
 
 Calculator.prototype.exponentiation = function (num1, num2) {
@@ -125,36 +122,64 @@ Calculator.prototype.exponentiation = function (num1, num2) {
     const number1 = Number(num1);
     const number2 = Number(num2);
 
-    if (isNaN(number1)) {
-        alert('Wpisano złe dane!');
-    }
+    errorAlert(number1, number2);
 
-    else if (isNaN(number2)) {
-        alert('Wpisano złe dane!');
-    }
+    let result = number1;
 
+    let info = '';
+
+    if (isNaN(result)) {
+        info = 'Złe dane!';
+    }
     else {
-
-        let result = number1;
 
         for (let i = 1; i < number2; i++) {
             result = result * number1;
         }
 
-
-
-        let info = number1 + ' ^ ' + number2 + ' = ' + result;
-
-        this.history.push(info);
-        return result;
+        info = number1 + ' ^ ' + number2 + ' = ' + result;
 
     }
 
+    this.history.push(info);
+    return result;
 
 }
 
 
 
+function errorAlert(number1, number2) {
+    if (isNaN(number1)) {
+        alert('Wpisano złe dane!')
+
+    }
+    else if (isNaN(number2)) {
+        alert('Wpisano złe dane!')
+    }
+
+}
+
+
+function calcSwitch(action) {
+    switch (action) {
+        case '+':
+            calc.add(number1, number2);
+            break;
+        case '-':
+            calc.subtraction(number1, number2);
+            break;
+        case '*':
+            calc.multiplication(number1, number2);
+            break;
+        case '/':
+            calc.division(number1, number2);
+            break;
+        case '^':
+            calc.exponentiation(number1, number2);
+            break;
+
+    }
+}
 
 
 
@@ -173,21 +198,8 @@ do {
         number1 = prompt('Podaj liczbę nr 1');
         number2 = prompt('Podaj liczbę nr 2');
 
-        if (action === '+') {
-            calc.add(number1, number2);
-        }
-        else if (action === '-') {
-            calc.subtraction(number1, number2);
-        }
-        else if (action === '*') {
-            calc.multiplication(number1, number2);
-        }
-        else if (action === '/') {
-            calc.division(number1, number2);
-        }
-        else if (action === '^') {
-            calc.exponentiation(number1, number2);
-        }
+
+        calcSwitch(action);
 
 
     }
