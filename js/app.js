@@ -7,7 +7,7 @@ Calculator.prototype.alert = function(){
     return alert('Wprowadzono niewłaściwą wartość \n Spróbuj jeszcze raz')
 }
 Calculator.prototype.alertAction = function(){
-    return console.log('Wprowadzono niewłaściwy symbol operacji \n Spróbuj jeszcze raz')
+    return alert('Wprowadzono niewłaściwy symbol operacji \n Spróbuj jeszcze raz')
 }
 
 
@@ -117,6 +117,8 @@ do {
         }else if(action === '^') {
             calc.exponentiation(number1, number2)
         } 
+    } else {
+        calc.alertAction()
     }
     
 } while(calc.isCorrectAction(action));
