@@ -22,14 +22,15 @@ Calculator.prototype.add = function(num1, num2) {
     // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
     // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
 
-    const result = parseFloat(num1) + parseFloat(num2)
+    const result = parseFloat(num1) + parseFloat(num2) 
+    result = parseFloat(num1) + ' + ' +  parseFloat(num2) + ' = ' + result
     return console.log(result)
 }
 
 Calculator.prototype.substract = function(num1, num2) {
     
-
     const result = parseFloat(num1) - parseFloat(num2)
+    result = parseFloat(num1) + ' - ' +  parseFloat(num2) + ' = ' + result
     return console.log(result)
 }
 
@@ -37,6 +38,7 @@ Calculator.prototype.multiply = function(num1, num2) {
     
 
     const result = parseFloat(num1) * parseFloat(num2)
+    result = parseFloat(num1) + ' * ' +  parseFloat(num2) + ' = ' + result
     return console.log(result)
 }
 
@@ -44,6 +46,7 @@ Calculator.prototype.divide = function(num1, num2) {
     
 
     const result = parseFloat(num1) / parseFloat(num2)
+    result = parseFloat(num1) + ' / ' +  parseFloat(num2) + ' = ' + result
     return console.log(result)
 }
 
@@ -57,7 +60,8 @@ Calculator.prototype.power = function(number, power) {
         for (i = 0; i < power - 1; i++){
             result = result * temp;
         }
-        return console.log(result)
+        result = parseFloat(number) + ' ** ' +  parseFloat(power) + ' = ' + result
+        return console.log(result) 
 }
 
 
@@ -77,8 +81,6 @@ do {
     isCorrectAction = calc.isCorrectAction(action);
     if(isCorrectAction) {
         
-       
-       
        if(action === '+') {
             
             number1 = prompt('Podaj liczbę nr 1');
@@ -178,7 +180,7 @@ do {
 
             number = prompt('Podaj liczbę')
             if(Number.isNaN(number)) {
-                prompt('Podaj liczbę nr 1')
+                prompt('Podaj liczbę')
             } else {
                 let number1;
                 number1 = Number(number)
@@ -186,7 +188,7 @@ do {
             }
             power = prompt('Podaj potęgę')
             if(Number.isNaN(power)) {
-                prompt('Podaj liczbę nr 1')
+                prompt('Podaj potęgę')
             } else {
                 let power1;
                 power1 = Number(power)
