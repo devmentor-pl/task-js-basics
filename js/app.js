@@ -8,7 +8,7 @@ Calculator.prototype.isCorrectAction = function(action) {
 }
 
 const action1 = new Calculator()
-console.log(action1.isCorrectAction('+'))
+//console.log(action1.isCorrectAction('+'))
 
 
 Calculator.prototype.getHistoryAsString = function() {
@@ -22,10 +22,14 @@ Calculator.prototype.add = function(num1, num2) {
     // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
     // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
 
-// 
+    const result = parseFloat(num1) + parseFloat(num2)
+    return console.log(result)
+
 
 }
 const calc = new Calculator();
+const action2 = calc.add()
+console.log(action2)
 
 let action, promptContent, isCorrectAction, number1, number2;
 do { 
@@ -40,25 +44,27 @@ do {
         number1 = prompt('Podaj liczbę nr 1');
         
         if(Number.isNaN(number1)) {
-            num1 = Number(number1)
-        } else {
             prompt('Podaj liczbę nr 1')
+        } else {
+            let num1;
+            num1 = Number(number1)
+            
         }
 
         number2 = prompt('Podaj liczbę nr 2') 
 
         if(Number.isNaN(number2)) {
-            num2 = Number(number2)
-        } else {
             prompt('Podaj liczbę nr 2')
+        } else {
+            let num2;
+            num2 = Number(number2)
         }
        
        
-        
-
         if(action === '+') {
             calc.add(number1, number2);
         }
+
     }
     
 } while(calc.isCorrectAction(action))
