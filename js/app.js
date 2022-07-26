@@ -17,26 +17,20 @@ Calculator.prototype.getHistoryAsString = function () {
 //   if (typeof a === "number" && typeof b === "number") {
 //     let sum = a + b;
 //     console.log(sum);
+// this.history.push(a + " + " + b + " = " + sum);
 //     return sum;
 //   } else console.log("To nie są liczby");
-//   this.history.push(a + " + " + b + " = " + sum);
 // };
 
-Calculator.prototype.isNumber = function (a, b) {
-  // a = parseInt(num1);
-  // b = parseInt(num2);
-  if (
-    typeof a === "number" &&
-    typeof b === "number" &&
-    !Number.isNaN(a) &&
-    !Number.isNaN(b)
-  ) {
-    return true;
-  } else {
-    alert(
-      "Przynajmniej jedna z podanych wartości nie jest liczbą, działanie nie zostanie wykonane!"
-    );
+Calculator.prototype.isNumber = function (num1, num2) {
+  if (Number.isNaN(num1)) {
+    alert("Pierwsza wartość nie jest liczbą");
+    return false;
   }
+  if (Number.isNaN(num2)) {
+    alert("Druga wartość nie jest liczbą");
+    return false;
+  } else return true;
 };
 
 Calculator.prototype.addToHistory = function (mathOperation) {
@@ -44,28 +38,27 @@ Calculator.prototype.addToHistory = function (mathOperation) {
 };
 
 Calculator.prototype.add = function (num1, num2) {
-  let result = num1 + num2;
-  calc.addToHistory(num1 + " + " + num2 + " = " + result);
+  return num1 + num2;
 };
 Calculator.prototype.sub = function (num1, num2) {
-  let result = num1 - num2;
-  calc.addToHistory(num1 + " - " + num2 + " = " + result);
+  return num1 - num2;
 };
 Calculator.prototype.multi = function (num1, num2) {
-  let result = num1 * num2;
-  calc.addToHistory(num1 + " * " + num2 + " = " + result);
+  return num1 * num2;
 };
 Calculator.prototype.divi = function (num1, num2) {
   if (num2 === 0) {
     alert("Nie można dzielić przez zero!");
   } else {
-    let result = num1 / num2;
-    calc.addToHistory(num1 + " : " + num2 + " = " + result);
+    return num1 / num2;
   }
 };
 Calculator.prototype.pow = function (num1, num2) {
-  result = Math.pow(num1, num2);
-  calc.addToHistory(num1 + " ^ " + num2 + " = " + result);
+  return Math.pow(num1, num2);
+};
+
+Calculator.prototype.addMathOperation = function (num1, num2, action, result) {
+  this.addToHistory(`${num1} ${action} ${num2} = ${result}`);
 };
 
 const calc = new Calculator();
@@ -82,21 +75,24 @@ do {
     number1 = parseInt(prompt("Podaj liczbę nr 1"));
     number2 = parseInt(prompt("Podaj liczbę nr 2"));
     if (calc.isNumber(number1, number2)) {
+      let res;
+
       if (action === "+") {
-        calc.add(number1, number2);
+        res = calc.add(number1, number2);
       }
       if (action === "-") {
-        calc.sub(number1, number2);
+        res = calc.sub(number1, number2);
       }
       if (action === "*") {
-        calc.multi(number1, number2);
+        res = calc.multi(number1, number2);
       }
       if (action === "/") {
-        calc.divi(number1, number2);
+        res = calc.divi(number1, number2);
       }
       if (action === "^") {
-        calc.pow(number1, number2);
+        res = calc.pow(number1, number2);
       }
+      calc.addMathOperation(number1, number2, action, res);
     }
   }
 } while (calc.isCorrectAction(action));
