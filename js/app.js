@@ -42,12 +42,22 @@ Calculator.prototype.add = function (num1, num2) {
    
 }
 
-// Calculator.prototype.substract = function(num1, num2) {
+Calculator.prototype.substract = function(num1, num2) {
 
-//     const result = parseFloat(num1) - parseFloat(num2)
-//     result = parseFloat(num1) + ' - ' +  parseFloat(num2) + ' = ' + result
-//     return console.log(result)
-// }
+    num1 = number1
+    num2 = number2
+
+    this.num1 = num1
+    this.num2 = num2
+
+    let substract
+    substract = this.num1 - this.num2
+
+    this.history.push(substract)
+    
+    return substract
+  
+}
 
 // Calculator.prototype.multiply = function(num1, num2) {
 
@@ -111,6 +121,10 @@ do {
 
         if (action === '+') {
             calc.add(number1, number2);
+        }
+
+        if (action === '-') {
+            calc.substract(number1, number2);
         }
 
        
