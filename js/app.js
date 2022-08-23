@@ -1,6 +1,7 @@
 function Calculator() {
     this.actions = ['+', '-', '*', '/', '**'];
     this.history = [];
+    
 }
 
 Calculator.prototype.isCorrectAction = function (action) {
@@ -25,6 +26,25 @@ Calculator.prototype.add = function (num1, num2) {
 
     // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
     // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
+
+    num1 = number1
+    num2 = number2
+
+    this.num1 = num1
+    this.num2 = num2
+
+    let sum;
+    sum = this.num1 + this.num2
+    
+    return sum
+   
+
+
+
+
+
+
+
 
 }
 
@@ -88,11 +108,11 @@ do {
         
 
         if (Number.isNaN(number1)) {
-            number1 = Number(prompt('Podaj liczbę nr 1'));
+            number1 = Number(prompt('Podaj liczbę nr 1'))
         } 
 
         if (Number.isNaN(number2)) {
-            number2 = Number(prompt('Podaj liczbę nr 2'));
+            number2 = Number(prompt('Podaj liczbę nr 2'))
         } 
 
         if (action === '+') {
