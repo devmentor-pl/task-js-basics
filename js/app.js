@@ -59,21 +59,38 @@ Calculator.prototype.substract = function(num1, num2) {
   
 }
 
-// Calculator.prototype.multiply = function(num1, num2) {
+Calculator.prototype.multiply = function(num1, num2) {
 
+    num1 = number1
+    num2 = number2
 
-//     const result = parseFloat(num1) * parseFloat(num2)
-//     result = parseFloat(num1) + ' * ' +  parseFloat(num2) + ' = ' + result
-//     return console.log(result)
-// }
+    this.num1 = num1
+    this.num2 = num2
 
-// Calculator.prototype.divide = function(num1, num2) {
+    let multiply
+    multiply = (this.num1 * this.num2)
+    
+    this.history.push(multiply)
+    
+    return multiply
+}
 
+Calculator.prototype.divide = function(num1, num2) {
 
-//     const result = parseFloat(num1) / parseFloat(num2)
-//     result = parseFloat(num1) + ' / ' +  parseFloat(num2) + ' = ' + result
-//     return console.log(result)
-// }
+    num1 = number1
+    num2 = number2
+
+    this.num1 = num1
+    this.num2 = num2
+
+    let divide
+    divide = (this.num1 / this.num2)
+    
+    this.history.push(divide)
+    
+    return divide
+
+}
 
 // Calculator.prototype.power = function(number, power) {
 
@@ -99,7 +116,7 @@ const calc = new Calculator();
 
 let action, promptContent, isCorrectAction, number1, number2;
 do {
-    promptContent = 'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n'; // \n - znak nowej linii
+    promptContent = 'Podaj jaką operację chcesz wykonać (+,-,*, /, ^) i potwierdź. \n'; // \n - znak nowej linii
     promptContent += 'Jeśli chcesz zrezygnować wciśnij Anuluj. \n';
     promptContent += 'Lista poprzednich operacji: \n' + calc.getHistoryAsString();
 
@@ -125,6 +142,14 @@ do {
 
         if (action === '-') {
             calc.substract(number1, number2);
+        }
+
+        if (action === '*') {
+            calc.multiply(number1, number2);
+        }
+
+        if (action === '/') {
+            calc.divide(number1, number2);
         }
 
        
