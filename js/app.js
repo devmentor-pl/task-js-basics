@@ -35,17 +35,11 @@ Calculator.prototype.add = function (num1, num2) {
 
     let sum;
     sum = this.num1 + this.num2
+
+    this.history.push(sum)
     
     return sum
    
-
-
-
-
-
-
-
-
 }
 
 // Calculator.prototype.substract = function(num1, num2) {
