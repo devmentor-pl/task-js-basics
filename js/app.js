@@ -12,7 +12,7 @@ Calculator.prototype.getHistoryAsString = function() {
 }
 Calculator.prototype.isCorrectNumber = function(n1, n2){
     if(typeof n1 === 'number' && typeof n2 === 'number' 
-    && typeof n1 !== Number.isNaN(n1) && typeof n2 !== Number.isNaN(n2)){
+    && Number.isNaN(n1) && Number.isNaN(n2)){
         return true;
     }
 }
