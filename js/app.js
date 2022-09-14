@@ -12,14 +12,22 @@ Calculator.prototype.getHistoryAsString = function() {
 }
 
 Calculator.prototype.add = function(num1, num2) {
+    let result = 0;
     // 1. zamień wartości przekazane przez parametr na typ number
     const intNum1 = parseInt (num1);
     const intNum2 = parseInt (num2);
+    
     // 2. sprawdź czy są one poprawne
-    console.log(num1,num2);
+    if (typeof intNum1 ==='number' && typeof intNum2 ==='number') {}
+
     // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
+    result = intNum1 + intNum2;
+    alert(result);
+    
+    
     // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
-}
+    this.history.push (intNum1 + ' + ' + intNum2 + " = " + result);
+};
 
 const calc = new Calculator();
 let action, promptContent, isCorrectAction, number1, number2;
