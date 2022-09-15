@@ -1,11 +1,16 @@
 function Calculator() {
-    this.actions = ['+', '-', '*', '/', '^'];
+    this.actions = ['+', '-', '*', '/'];
+    this.powerAction = ['^']
     this.history = [];
     
 }
 
 Calculator.prototype.isCorrectAction = function (action) {
     return this.actions.includes(action);
+}
+
+Calculator.prototype.isCorrectPoweraction = function(action) {
+    return this.powerAction.includes(action)
 }
 
 Calculator.prototype.getHistoryAsString = function () {
@@ -126,7 +131,7 @@ Calculator.prototype.power = function(num1, powerNumber) {
 
 const calc = new Calculator();
 
-let action, promptContent, isCorrectAction, number1, number2;
+let action, promptContent, isCorrectAction,isCorrectPoweraction, number1, number2;
 do {
     promptContent = 'Podaj jaką operację chcesz wykonać (+,-,*, /,^) i potwierdź. \n'; // \n - znak nowej linii
     promptContent += 'Jeśli chcesz zrezygnować wciśnij Anuluj. \n';
@@ -134,15 +139,13 @@ do {
 
     action = prompt(promptContent);
     isCorrectAction = calc.isCorrectAction(action);
+    isCorrectPoweraction = calc.isCorrectPoweraction(action);
     if (isCorrectAction) {
 
         number1 = Number(prompt('Podaj liczbę nr 1'));
         
         number2 = Number(prompt('Podaj liczbę nr 2'));
 
-        powerNumber = Number(prompt('Podaj potęgę'))
-
-       
         if (Number.isNaN(number1)) {
             number1 = Number(prompt('Podaj liczbę nr 1'))
         } 
@@ -176,6 +179,23 @@ do {
             calc.power(number1, powerNumber);
         }
         
+    } else if (isCorrectPoweraction) {
+        number1 = Number(prompt('Podaj liczbę nr 1'));
+        
+        powerNumber = Number(prompt('Podaj potęgę'));
+
+        if (Number.isNaN(number1)) {
+            number1 = Number(prompt('Podaj liczbę nr 1'))
+        } 
+
+        if (Number.isNaN(powerNumber)) {
+            powerNumber = Number(prompt('Podaj potęgę'))
+        } 
+
+        if (action === '^') {
+            
+            calc.power(number1, powerNumber);
+        }
     }
 
-} while (calc.isCorrectAction(action));
+} while (calc.isCorrectAction(action) || calc.isCorrectPoweraction(action));
