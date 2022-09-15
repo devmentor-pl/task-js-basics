@@ -8,14 +8,6 @@ Calculator.prototype.isCorrectAction = function (action) {
     return this.actions.includes(action);
 }
 
-// Calculator.prototype.isInHistory = function(result) {
-//     return this.history.push(result)
-// }
-
-// const action1 = new Calculator()
-// //console.log(action1.isCorrectAction('+'))
-
-
 Calculator.prototype.getHistoryAsString = function () {
     return this.history.join('\n');
 }
@@ -36,9 +28,13 @@ Calculator.prototype.add = function (num1, num2) {
     let sum;
     sum = this.num1 + this.num2
 
-    this.history.push(sum)
+    let sumResult 
+
+    sumResult = parseFloat(num1) + ' + ' +  parseFloat(num2) + ' = ' + sum
+
+    this.history.push(sumResult)
     
-    return sum
+    return sumResult
    
 }
 
@@ -53,9 +49,13 @@ Calculator.prototype.substract = function(num1, num2) {
     let substract
     substract = this.num1 - this.num2
 
-    this.history.push(substract)
+    let substractResult 
+
+    substractResult = parseFloat(num1) + ' - ' +  parseFloat(num2) + ' = ' + substract
+
+    this.history.push(substractResult)
     
-    return substract
+    return substractResult
   
 }
 
@@ -69,10 +69,14 @@ Calculator.prototype.multiply = function(num1, num2) {
 
     let multiply
     multiply = (this.num1 * this.num2)
+
+    let multiplyResult
+
+    multiplyResult = parseFloat(num1) + ' * ' +  parseFloat(num2) + ' = ' + multiply
     
-    this.history.push(multiply)
+    this.history.push(multiplyResult)
     
-    return multiply
+    return multiplyResult
 }
 
 Calculator.prototype.divide = function(num1, num2) {
@@ -86,9 +90,12 @@ Calculator.prototype.divide = function(num1, num2) {
     let divide
     divide = (this.num1 / this.num2)
     
-    this.history.push(divide)
-    
-    return divide
+    let divideResult
+
+    divideResult = parseFloat(num1) + ' / ' +  parseFloat(num2) + ' = ' + divide
+    this.history.push(divideResult)
+
+    return divideResult
 
 }
 
@@ -106,18 +113,15 @@ Calculator.prototype.power = function(num1, powerNumber) {
             }
 
             let temp = num1;
-            
+           
             for (i = 0; i < powerNumber - 1; i++){
                 num1 = num1 * temp;
-            
-            powerResult = parseFloat(num1) + ' ** ' +  parseFloat(powerNumber) + ' = ' + num1
-           
             }
-
-    this.history.push(powerResult)     
-
-    return powerResult
-
+            powerResult = parseFloat(this.num1) + ' ** ' +  parseFloat(powerNumber) + ' = ' + num1
+    
+        this.history.push(powerResult)     
+        
+        return powerResult
 }
 
 const calc = new Calculator();
