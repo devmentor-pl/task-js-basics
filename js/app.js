@@ -13,6 +13,8 @@ Calculator.prototype.getHistoryAsString = function () {
 
 
 
+
+
 Calculator.prototype.add = function (num1, num2) {
     this.result1 = parseInt(num1);
     this.result2 = parseInt(num2);
@@ -78,6 +80,7 @@ Calculator.prototype.exponentation = function (num1, num2) {
 const calc = new Calculator();
 
 
+
 let action, promptContent, isCorrectAction, number1, number2;
 do {
     promptContent = 'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n'; // \n - znak nowej linii
@@ -104,25 +107,3 @@ do {
     }
 
 } while (calc.isCorrectAction(action));
-
-
-
-
-
-
-
-
-// Calculator.prototype.changeToInt = function (number) {
-//     return parseInt(number)
-// }
-// Calculator.prototype.final = function (num1, num2, action) {
-//     this.result1 = parseInt(num1);
-//     this.result2 = parseInt(num2);
-//     this.b = isCorrectAction;
-//     const a = 2;
-//     if (typeof this.result1 === typeof a && typeof this.result2 === typeof a) {
-//         this.result = this.result1 + this.b + this.result2;
-//         const resultFinal = `${this.result1} + ${this.result2} = ${this.result}`;
-//         this.history.push(resultFinal);
-//     }
-// }
