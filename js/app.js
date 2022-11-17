@@ -16,7 +16,34 @@ Calculator.prototype.add = function(num1, num2) {
     // 2. sprawdź czy są one poprawne
     // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
     // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
-}
+    let result = 0; 
+    result = num1 + num2;
+    this.history.push (Number(num1) + Number(num2));
+};
+
+Calculator.prototype.sub = function(num1, num2) {
+    let result = 0; 
+    result = num1 - num2;
+    this.history.push (Number(num1) - Number(num2))
+};
+
+Calculator.prototype.multiple = function(num1, num2) {
+    let result = 0; 
+    result = num1 * num2;
+    this.history.push (Number(num1) * Number(num2));
+};
+
+Calculator.prototype.division = function(num1, num2) {
+    let result = 0; 
+    result = num1 / num2;
+    this.history.push (Number(num1) / Number(num2))
+};
+
+Calculator.prototype.avg = function(num1, num2) {
+    let result = 0; 
+    result = num1 ** num2;
+    this.history.push (Number(num1) ** Number(num2))
+};
 
 const calc = new Calculator();
 let action, promptContent, isCorrectAction, number1, number2;
@@ -33,6 +60,18 @@ do {
 
         if(action === '+') {
             calc.add(number1, number2);
+        }
+        if(action === '-') {
+            calc.sub(number1, number2);
+        }
+        if(action === '*') {
+            calc.multiple(number1, number2);
+        }
+        if(action === '/') {
+            calc.division(number1, number2);
+        }
+        if(action === '^') {
+            calc.avg(number1, number2);
         }
     }
     
