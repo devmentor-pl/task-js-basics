@@ -1,10 +1,19 @@
 function Calculator() {
-    this.actions = ['+', '-', '*', '/', '^'];
+    this.actions = {
+        '+': this.add,
+        '-': this.subtract,
+        '*': this.multiply,
+        '/': this.divide,
+        '^': this.exponentiate
+    },
     this.history = [];
 }
 
+const num1 = Number(number1);
+const num2 = Number(number2);
+
 Calculator.prototype.isCorrectAction = function(action) {
-    return this.actions.includes(action);
+    return typeof this.actions[action] !== 'undefined';
 }
 
 Calculator.prototype.getHistoryAsString = function() {
@@ -68,6 +77,12 @@ Calculator.prototype.exponentiate = function(num1, num2) {
     this.history.push(powerStr);
 }
 
+Calculator.prototype.operation = function(action, num1, num2) {
+
+        this.fn = this.actions[action];
+        this.fn(num1, num2);
+}
+
 //CHECKER
 
 const calc = new Calculator();
@@ -81,21 +96,26 @@ do {
     isCorrectAction = calc.isCorrectAction(action);
 
     if(isCorrectAction) {
-        number1 = prompt('Podaj liczbę nr 1');
-        number2 = prompt('Podaj liczbę nr 2');
+        number1 = Number(prompt('Podaj liczbę nr 1'));
+        number2 = Number(prompt('Podaj liczbę nr 2'));
 
-        if(typeof num1 !== 'number' && typeof num2 !== 'number') {
+
+        if(Number.isNaN(number1) || Number.isNaN(number2)) {
             alert('To nie jest liczba!');
-        } else if(action === '+') {
-            calc.add(number1, number2);
-        } else if(action === '-') {
-            calc.subtract(number1, number2);
-        } else if(action === '*') {
-            calc.multiply(number1, number2);
-        } else if(action === '/') {
-            calc.divide(number1, number2);
-        } else if(action === '^') {
-            calc.exponentiate(number1, number2);
+        // } else if(action === '+') {
+        //     calc.add(number1, number2);
+        // } else if(action === '-') {
+        //     calc.subtract(number1, number2);
+        // } else if(action === '*') {
+        //     calc.multiply(number1, number2);
+        // } else if(action === '/') {
+        //     calc.divide(number1, number2);
+        // } else if(action === '^') {
+        //     calc.exponentiate(number1, number2);
+        // }
+        } else {
+            // dane prawidłowe
+            calc.operation(action, number1, number2)
         }
     }
     
