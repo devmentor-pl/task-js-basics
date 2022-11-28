@@ -3,6 +3,7 @@ function Calculator() {
     this.history = [];
 }
 
+
 Calculator.prototype.isCorrectAction = function(action) {
     return this.actions.includes(action);
 }
@@ -35,27 +36,30 @@ Calculator.prototype.exponentiation = function(num1, num2) {
     return result;
 }
 
-Calculator.prototype.getResult = function(num1, num2) {
-    let result = 0;
+function add(num1, num2) {
+    return num1 + num2;
+}
+
+function subtract(num1, num2) {
+    return num1 - num2;
+}
+
+function multiply(num1, num2) {
+    return num1 * num2;
+}
+
+function divide(num1, num2) {
+    return num1 / num2;
+}
+
+function modulo(num1, num2) {
+    return num1 % num2;
+}
+
+Calculator.prototype.getResult = function(num1, num2, action) {
     let number1 = parseFloat(num1);
     let number2 = parseFloat(num2)
-    switch (action) {
-        case "+":
-            result = number1 + number2;
-            break;
-        case "-":
-            result = number1 - number2;
-            break;
-        case "*":
-            result = number1 * number2;
-            break;
-        case "/":
-            result = number1 /  number2;
-            break;
-        case "^":
-            result = this.exponentiation(num1,num2);
-            break;
-    }
+    const result = operations[action](number1, number2);
     return result;
 }
 
@@ -65,14 +69,12 @@ Calculator.prototype.calculate = function(num1, num2, action) {
     // 2. sprawdź czy są one poprawne
     const isCorrect = this.isCorrect(arr);
     // 3. jeśli tak to wykonaj działanie i zapisz jego rezultat+
-    const notCorrect = this.notCorrect(arr);
 
     if(isCorrect) {
         const result = this.getResult(num1, num2);
         this.history.push(num1 + action + num2 +'='+ result);
     }
-    
-    if(notCorrect) {
+    else {
         console.error('Błędne dane: ' + num1 + ' lub ' + num2 + ' nie jest liczbą')
         this.history.push('Błędne dane');
     }
