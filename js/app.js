@@ -1,89 +1,69 @@
 function Calculator() {
-	this.actions = ['+', '-', '*', '/', '^'];
+	this.actions = {
+		'+': add,
+		'-': sub,
+		'*': mply,
+		'/': divide,
+		'^': pow,
+	};
 	this.history = [];
 }
 
 Calculator.prototype.isCorrectAction = function (action) {
-	return this.actions.includes(action);
+	if (action in this.actions) {
+		return action;
+	}
 };
 
 Calculator.prototype.getHistoryAsString = function () {
 	return this.history.join('\n');
 };
 
-Calculator.prototype.add = function (num1, num2) {
-	// 1. zamień wartości przekazane przez parametr na typ number
-	const number1 = Number(num1);
-	const number2 = Number(num2);
-	// 2. sprawdź czy są one poprawne
-	if (!Number.isNaN(number1) && !Number.isNaN(number2)) {
-		// 3. jeśli tak to wykonaj działanie i zapisz jego rezultat
-		const result = number1 + number2;
-		// 4. dodaj do historii operacji to działanie w formie: 1 + 1 = 2
-		this.history.push(`${number1} + ${number2} = ${result}`);
-	} else {
-		// 5. jeżeli liczby są NaN wyświetl komunikat o niepoprawnych danych
-		alert('Podałeś błędne dane!');
-	}
+Calculator.prototype.changeType = function (num1, num2) {
+	return [Number(num1), Number(num2)];
 };
 
-Calculator.prototype.sub = function (num1, num2) {
-	const number1 = Number(num1);
-	const number2 = Number(num2);
-
-	if (!Number.isNaN(number1) && !Number.isNaN(number2)) {
-		const result = number1 - number2;
-		this.history.push(`${number1} - ${number2} = ${result}`);
-	} else {
-		alert('Podałeś błędne dane!');
-	}
+Calculator.prototype.isCorrectValues = function (arr) {
+	return arr.every((item) => {
+		return !Number.isNaN(item);
+	});
 };
 
-Calculator.prototype.mply = function (num1, num2) {
-	const number1 = Number(num1);
-	const number2 = Number(num2);
-
-	if (!Number.isNaN(number1) && !Number.isNaN(number2)) {
-		const result = number1 * number2;
-		this.history.push(`${number1} * ${number2} = ${result}`);
-	} else {
-		alert('Podałeś błędne dane!');
-	}
+Calculator.prototype.addToHistory = function (num1, num2, action, result) {
+	this.history.push(`${num1} ${action} ${num2} = ${result}`);
 };
 
-Calculator.prototype.divide = function (num1, num2) {
-	const number1 = Number(num1);
-	const number2 = Number(num2);
+function add(num1, num2) {
+	return num1 + num2;
+}
 
-	if (!Number.isNaN(number1) && !Number.isNaN(number2)) {
-		if (number2 !== 0) {
-			const result = number1 / number2;
-			this.history.push(`${number1} / ${number2} = ${result}`);
-		} else {
-			alert('Nie dzielimy przez 0!');
-		}
+function sub(num1, num2) {
+	return num1 - num2;
+}
+
+function mply(num1, num2) {
+	return num1 * num2;
+}
+
+function divide(num1, num2) {
+	if (num2 !== 0) {
+		return num1 / num2;
 	} else {
-		alert('Podałeś błędne dane!');
+		alert('Nie dzielimy przez 0!');
+		return null;
 	}
-};
+}
 
-Calculator.prototype.pow = function (num1, num2) {
-	const number1 = Number(num1);
-	const number2 = Number(num2);
-
-	if (!Number.isNaN(number1) && !Number.isNaN(number2)) {
-		let result = 1;
-		for (i = 1; i <= number2; i++) {
-			result = result * number1;
-		}
-		this.history.push(`${number1} ^ ${number2} = ${result}`);
-	} else {
-		alert('Podałeś błędne dane!');
+function pow(num1, num2) {
+	let result = 1;
+	for (let i = 1; i <= num2; i++) {
+		result *= num1;
 	}
-};
+	return result;
+}
 
 const calc = new Calculator();
-let action, promptContent, isCorrectAction, number1, number2;
+let action, promptContent, isCorrectAction, number1, number2, result;
 do {
 	promptContent =
 		'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n'; // \n - znak nowej linii
@@ -92,28 +72,20 @@ do {
 
 	action = prompt(promptContent);
 	isCorrectAction = calc.isCorrectAction(action);
-	if (isCorrectAction) {
+	const operationFunc = calc.actions[action];
+
+	if (isCorrectAction && typeof operationFunc === 'function') {
 		number1 = prompt('Podaj liczbę nr 1');
 		number2 = prompt('Podaj liczbę nr 2');
+		const arr = calc.changeType(number1, number2);
 
-		if (action === '+') {
-			calc.add(number1, number2);
-		}
-
-		if (action === '-') {
-			calc.sub(number1, number2);
-		}
-
-		if (action === '*') {
-			calc.mply(number1, number2);
-		}
-
-		if (action === '/') {
-			calc.divide(number1, number2);
-		}
-
-		if (action === '^') {
-			calc.pow(number1, number2);
+		if (calc.isCorrectValues(arr)) {
+			result = operationFunc(arr[0], arr[1]);
+			if (result !== null) {
+				calc.addToHistory(arr[0], arr[1], action, result);
+			}
+		} else {
+			alert('Niepoprawne dane!');
 		}
 	}
 } while (calc.isCorrectAction(action));
