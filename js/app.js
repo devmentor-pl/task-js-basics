@@ -19,14 +19,15 @@ Calculator.prototype.getHistoryAsString = function () {
 	return this.history.join('\n');
 };
 
-Calculator.prototype.changeType = function (num1, num2) {
-	return [Number(num1), Number(num2)];
+Calculator.prototype.parseToNumber = function (num) {
+	const numNumber = Number(num);
+	return numNumber;
 };
 
-Calculator.prototype.isCorrectValues = function (arr) {
-	return arr.every((item) => {
-		return !Number.isNaN(item);
-	});
+Calculator.prototype.isCorrectValues = function (num1, num2) {
+	if (!Number.isNaN(num1) && !Number.isNaN(num2)) {
+		return true;
+	}
 };
 
 Calculator.prototype.addToHistory = function (num1, num2, action, result) {
@@ -49,7 +50,6 @@ function divide(num1, num2) {
 	if (num2 !== 0) {
 		return num1 / num2;
 	} else {
-		alert('Nie dzielimy przez 0!');
 		return null;
 	}
 }
@@ -77,12 +77,15 @@ do {
 	if (isCorrectAction && typeof operationFunc === 'function') {
 		number1 = prompt('Podaj liczbę nr 1');
 		number2 = prompt('Podaj liczbę nr 2');
-		const arr = calc.changeType(number1, number2);
+		const num1Number = calc.parseToNumber(number1);
+		const num2Number = calc.parseToNumber(number2);
 
-		if (calc.isCorrectValues(arr)) {
-			result = operationFunc(arr[0], arr[1]);
+		if (calc.isCorrectValues(num1Number, num2Number)) {
+			result = operationFunc(num1Number, num2Number);
 			if (result !== null) {
-				calc.addToHistory(arr[0], arr[1], action, result);
+				calc.addToHistory(num1Number, num2Number, action, result);
+			} else {
+				alert('Nie dzielimy przez 0!');
 			}
 		} else {
 			alert('Niepoprawne dane!');
