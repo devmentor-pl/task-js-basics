@@ -20,12 +20,11 @@ Calculator.prototype.getHistoryAsString = function () {
 };
 
 Calculator.prototype.parseToNumber = function (num) {
-	const numNumber = Number(num);
-	return numNumber;
+	return Number(num);
 };
 
-Calculator.prototype.isCorrectValues = function (num1, num2) {
-	if (!Number.isNaN(num1) && !Number.isNaN(num2)) {
+Calculator.prototype.isCorrectValues = function (num) {
+	if (!Number.isNaN(num)) {
 		return true;
 	}
 };
@@ -80,7 +79,7 @@ do {
 		const num1Number = calc.parseToNumber(number1);
 		const num2Number = calc.parseToNumber(number2);
 
-		if (calc.isCorrectValues(num1Number, num2Number)) {
+		if (calc.isCorrectValues(num1Number) && calc.isCorrectValues(num2Number)) {
 			result = operationFunc(num1Number, num2Number);
 			if (result !== null) {
 				calc.addToHistory(num1Number, num2Number, action, result);
