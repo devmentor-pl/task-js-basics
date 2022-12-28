@@ -11,8 +11,8 @@ Calculator.prototype.getHistoryAsString = function () {
     return this.history.join('\n');
 }
 
-// Push result to history array and return
-const addHistory = function (result) {
+// Push result to history array and return to prompt history list
+Calculator.prototype.addHistory = function (result) {
     calc.history.push(result);
     return result;
 }
@@ -22,16 +22,15 @@ Calculator.prototype.add = function (num1, num2) {
     let result = (num1 + num2);
     result = `${num1} + ${num2} = ${result} `;
 
-    return addHistory(result);
+    return result;
 }
 
-Calculator.prototype.substract = function (num1, num2) {
+Calculator.prototype.subtract = function (num1, num2) {
 
     let result = (num1 - num2);
     result = `${num1} - ${num2} = ${result} `;
 
-
-    return addHistory(result);
+    return result;
 }
 
 Calculator.prototype.multiply = function (num1, num2) {
@@ -39,7 +38,7 @@ Calculator.prototype.multiply = function (num1, num2) {
     let result = (num1 * num2);
     result = `${num1} * ${num2} = ${result} `;
 
-    return addHistory(result);
+    return result;
 }
 
 Calculator.prototype.divide = function (num1, num2) {
@@ -47,7 +46,7 @@ Calculator.prototype.divide = function (num1, num2) {
     let result = (num1 / num2);
     result = `${num1} / ${num2} = ${result}`;
 
-    return addHistory(result);
+    return result;
 }
 
 Calculator.prototype.power = function (a, n) {
@@ -83,7 +82,7 @@ Calculator.prototype.power = function (a, n) {
         result += ' = ' + res;
     }
 
-    return addHistory(result);
+    return result;
 }
 
 const calc = new Calculator();
@@ -103,15 +102,15 @@ do {
             alert('To nie wygląda jak liczba...');
         } else {
             if (action === '+') {
-                calc.add(number1, number2);
+                calc.addHistory(calc.add(number1, number2));
             } else if (action === '-') {
-                calc.substract(number1, number2);
+                calc.addHistory(calc.subtract(number1, number2));
             } else if (action === '*') {
-                calc.multiply(number1, number2);
+                calc.addHistory(calc.multiply(number1, number2));
             } else if (action === '/') {
-                calc.divide(number1, number2);
+                calc.addHistory(calc.divide(number1, number2));
             } else if (action === '^') {
-                calc.power(number1, number2);
+                calc.addHistory(calc.power(number1, number2));
             }
         };
     } else {
