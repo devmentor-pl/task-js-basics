@@ -11,87 +11,85 @@ Calculator.prototype.getHistoryAsString = function () {
     return this.history.join('\n');
 }
 
+// Push result to history array and return
+const addHistory = function (result) {
+    calc.history.push(result);
+    return result;
+}
+
 Calculator.prototype.add = function (num1, num2) {
-    // 1. zamień wartości przekazane przez parametr na typ number
-    // 2. sprawdź czy są one poprawne
-    // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
-    // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
 
     let result = (num1 + num2);
-    result = `${num1} + ${num2} = ${result}`;
-    this.history.push(result);
+    result = `${num1} + ${num2} = ${result} `;
 
-    return result;
+    return addHistory(result);
 }
 
 Calculator.prototype.substract = function (num1, num2) {
 
     let result = (num1 - num2);
-    result = `${num1} - ${num2} = ${result}`;
-    this.history.push(result);
+    result = `${num1} - ${num2} = ${result} `;
 
-    return result;
+
+    return addHistory(result);
 }
 
 Calculator.prototype.multiply = function (num1, num2) {
 
     let result = (num1 * num2);
-    result = `${num1} * ${num2} = ${result}`;
-    this.history.push(result);
+    result = `${num1} * ${num2} = ${result} `;
 
-    return result;
+    return addHistory(result);
 }
 
 Calculator.prototype.divide = function (num1, num2) {
 
     let result = (num1 / num2);
     result = `${num1} / ${num2} = ${result}`;
-    this.history.push(result);
 
-    return result;
+    return addHistory(result);
 }
 
 Calculator.prototype.power = function (a, n) {
-    let result = 1;
-    let output = '';
+    let res = 1;
+    let result = '';
 
     if (a === 0 || a === 1) {
-        output = `${a} podniesione do każdej potęgi daje ${a}`;
+        result = `${a} podniesione do każdej potęgi daje ${a}`;
     } else if (n === 0) {
-        output = 'Każda liczba podniesiona do potęgi 0 daje 1';
+        result = 'Każda liczba podniesiona do potęgi 0 daje 1';
     } else if (n < 0) {
         n = Math.abs(n);
         let j = 0;
+
         while (j < n) {
-            result = result / a;
+            res = res / a;
             j++;
         }
-        output = `${a} podniesione do -${n} daje odwrotność tej liczby, czyli ${result}`;
 
+        result = `${a} podniesione do -${n} daje odwrotność tej liczby, czyli ${res}`;
     } else {
         let i = 0;
         while (i < n) {
-            result = result * a;
+            res = res * a;
 
             if (i > 0) {
-                output += ' * ';
+                result += ' * ';
             }
 
-            output += a;
+            result += a;
             i++;
         }
-        output += ' = ' + result;
+        result += ' = ' + res;
     }
 
-    this.history.push(output);
-
-    return output;
+    return addHistory(result);
 }
 
 const calc = new Calculator();
 let action, promptContent, isCorrectAction, number1, number2;
 do {
-    promptContent = 'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n'; // \n - znak nowej linii
+    promptContent = 'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n';
     promptContent += 'Jeśli chcesz zrezygnować wciśnij Anuluj. \n';
     promptContent += 'Lista poprzednich operacji: \n' + calc.getHistoryAsString();
 
@@ -100,8 +98,6 @@ do {
     if (isCorrectAction) {
         number1 = Number(prompt('Podaj liczbę nr 1'));
         number2 = Number(prompt('Podaj liczbę nr 2'));
-        // number1 = Number(2);
-        // number2 = Number(3);
 
         if (isNaN(number1) || isNaN(number2)) {
             alert('To nie wygląda jak liczba...');
@@ -118,5 +114,7 @@ do {
                 calc.power(number1, number2);
             }
         };
+    } else {
+        alert('Podałeś błędną operację!');
     }
 } while (calc.isCorrectAction(action));
