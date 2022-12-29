@@ -1,10 +1,25 @@
 function Calculator() {
-    this.actions = ['+', '-', '*', '/', '^'];
-    this.history = [];
+    this.actions = {
+        '+': this.add,
+        '-': this.subtract,
+        '*': this.multiply,
+        '/': this.divide,
+        '^': this.power,
+    },
+
+        this.history = [];
 }
 
 Calculator.prototype.isCorrectAction = function (action) {
-    return this.actions.includes(action);
+    return Object.keys(this.actions).includes(action);
+}
+
+Calculator.prototype.isCorrectNumber = function (num1, num2) {
+    if (isNaN(num1) || isNaN(num2)) {
+        return alert('To nie wygląda jak liczba...');
+    } else {
+        return true;
+    }
 }
 
 Calculator.prototype.getHistoryAsString = function () {
@@ -93,7 +108,7 @@ Calculator.prototype.power = function (a, n) {
 }
 
 const calc = new Calculator();
-let action, promptContent, isCorrectAction, number1, number2;
+let action, promptContent, isCorrectAction, number1, number2, isCorrectNumber;
 do {
     promptContent = 'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n';
     promptContent += 'Jeśli chcesz zrezygnować wciśnij Anuluj. \n';
@@ -101,25 +116,17 @@ do {
 
     action = prompt(promptContent);
     isCorrectAction = calc.isCorrectAction(action);
+    const actionFunc = calc.actions[action]
     if (isCorrectAction) {
         number1 = Number(prompt('Podaj liczbę nr 1'));
         number2 = Number(prompt('Podaj liczbę nr 2'));
 
-        if (isNaN(number1) || isNaN(number2)) {
-            alert('To nie wygląda jak liczba...');
-        } else {
-            if (action === '+') {
-                calc.addHistory(calc.add(number1, number2));
-            } else if (action === '-') {
-                calc.addHistory(calc.subtract(number1, number2));
-            } else if (action === '*') {
-                calc.addHistory(calc.multiply(number1, number2));
-            } else if (action === '/') {
-                calc.addHistory(calc.divide(number1, number2));
-            } else if (action === '^') {
-                calc.addHistory(calc.power(number1, number2));
-            }
-        };
+        isCorrectNumber = calc.isCorrectNumber(number1, number2)
+        if (isCorrectNumber) {
+            if (typeof actionFunc === 'function') {
+                calc.addHistory(actionFunc(number1, number2));
+            };
+        }
     } else {
         alert('Podałeś błędną operację!');
     }
