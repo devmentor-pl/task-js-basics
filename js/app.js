@@ -53,20 +53,27 @@ Calculator.prototype.power = function (a, n) {
     let res = 1;
     let result = '';
 
-    if (a === 0 || a === 1) {
-        result = `${a} podniesione do każdej potęgi daje ${a}`;
+    if (a === 0 && n === 0) {
+        result = 0;
     } else if (n === 0) {
-        result = 'Każda liczba podniesiona do potęgi 0 daje 1';
+        result = 1;
     } else if (n < 0) {
         n = Math.abs(n);
         let j = 0;
 
         while (j < n) {
+            let x = 1;
             res = res / a;
+            if (j > 0) {
+                result += ' * ';
+            }
+
+            result += x / a;
+
             j++;
         }
 
-        result = `${a} podniesione do -${n} daje odwrotność tej liczby, czyli ${res}`;
+        result += ' = ' + res;
     } else {
         let i = 0;
         while (i < n) {
