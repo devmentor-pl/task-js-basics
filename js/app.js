@@ -131,7 +131,7 @@ Calculator.prototype.power = function(num1, powerNumber) {
 
 const calc = new Calculator();
 
-let action, promptContent, isCorrectAction,isCorrectPoweraction, number1, number2;
+let action, promptContent, isCorrectAction,isCorrectPoweraction, number1, number2, powerNumber;
 do {
     promptContent = 'Podaj jaką operację chcesz wykonać (+,-,*, /,^) i potwierdź. \n'; // \n - znak nowej linii
     promptContent += 'Jeśli chcesz zrezygnować wciśnij Anuluj. \n';
