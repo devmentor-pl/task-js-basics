@@ -11,19 +11,6 @@ Calculator.prototype.getHistoryAsString = function () {
 	return this.history.join("\n");
 };
 
-const calc = new Calculator();
-console.log(calc);
-
-let action, promptContent, isCorrectAction, number1, number2;
-
-const operations = {
-	"+": add,
-	"-": subtract,
-	"*": multiply,
-	"/": divide,
-	"^": power,
-};
-
 Calculator.prototype.add = function (num1, num2) {
 	const num1Parsed = parseInt(num1);
 	const num2Parsed = parseInt(num2);
@@ -100,6 +87,10 @@ Calculator.prototype.power = function (num1, num2) {
 	return result;
 };
 
+const calc = new Calculator();
+
+let action, promptContent, isCorrectAction, number1, number2;
+
 do {
 	promptContent =
 		"Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n"; // \n - znak nowej linii
@@ -112,14 +103,19 @@ do {
 		number1 = prompt("Podaj liczbę nr 1");
 		number2 = prompt("Podaj liczbę nr 2");
 
-		const operationType = action;
-		const operationFunc = operations[operationType];
-
-		if (isNaN(number1) || isNaN(number2)) {
+		if (Number.isNaN(number1) || Number.isNaN(number2)) {
 			alert("To nie jest liczba.");
 		} else {
-			if (operationFunc === "function") {
-				const result = operationFunc(number1, number2);
+			if (action === "+") {
+				calc.add(number1, number2);
+			} else if (action === "-") {
+				calc.subtract(number1, number2);
+			} else if (action === "*") {
+				calc.multiply(number1, number2);
+			} else if (action === "/") {
+				calc.divide(number1, number2);
+			} else if (action === "^") {
+				calc.power(number1, number2);
 			}
 		}
 	}
