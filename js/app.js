@@ -21,9 +21,6 @@ Calculator.prototype.add = function (num1, num2) {
 	result = num1Parsed + num2Parsed;
 	this.history.push(num1Parsed + " + " + num2Parsed + " = " + result);
 	return result;
-	// } else {
-	alert("Podałeś błędne dane!");
-	// }
 };
 
 Calculator.prototype.subtract = function (num1, num2) {
@@ -36,9 +33,6 @@ Calculator.prototype.subtract = function (num1, num2) {
 	result = num1 - num2;
 	this.history.push(num1 + " - " + num2 + " = " + result);
 	return result;
-	// } else {
-	// alert("Podałeś błędne dane!");
-	// }
 };
 
 Calculator.prototype.multiply = function (num1, num2) {
@@ -52,9 +46,6 @@ Calculator.prototype.multiply = function (num1, num2) {
 	result = num1 * num2;
 	this.history.push(num1 + " * " + num2 + " = " + result);
 	return result;
-	// } else {
-	alert("Podałeś błędne dane!");
-	// }
 };
 
 Calculator.prototype.divide = function (num1, num2) {
@@ -68,9 +59,6 @@ Calculator.prototype.divide = function (num1, num2) {
 	this.history.push(num1Parsed + " / " + num2Parsed + " = " + result);
 	console.log(this.history);
 	return result;
-	// } else {
-	alert("Podałeś błędne dane!");
-	// }
 };
 
 Calculator.prototype.power = function (num1, num2) {
