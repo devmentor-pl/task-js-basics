@@ -12,29 +12,29 @@ Calculator.prototype.getHistoryAsString = function () {
 }
 
 Calculator.prototype.add = function (num1, num2) {
-	const result = (number1 + number2).toFixed(2)
+	const result = number1 + number2
 	this.history.push(`${number1} + ${number2} = ${result}`)
 }
 
 Calculator.prototype.odd = function (num1, num2) {
-	const result = (number1 - number2).toFixed(2)
+	const result = number1 - number2
 	this.history.push(`${number1} - ${number2} = ${result}`)
 }
 
 Calculator.prototype.multiply = function (num1, num2) {
-	const result = (number1 * number2).toFixed(2)
+	const result = number1 * number2
 	this.history.push(`${number1} * ${number2} = ${result}`)
 }
 
 Calculator.prototype.divide = function (num1, num2) {
-	const result = (number1 / number2).toFixed(2)
+	const result = number1 / number2
 	this.history.push(`${number1} / ${number2} = ${result}`)
 }
 
 Calculator.prototype.pow = function (num1, num2) {
 	let result = 1
 	for (let i = 0; i < number2; i++) {
-		result = (result * number1).toFixed(2)
+		result = result * number1
 	}
 	this.history.push(`${number1} ^ ${number2} = ${result}`)
 }
@@ -51,9 +51,7 @@ do {
 	isCorrectAction = calc.isCorrectAction(action)
 	if (isCorrectAction) {
 		number1 = parseFloat(prompt('Podaj liczbę nr 1'))
-		console.log(number1)
 		number2 = parseFloat(prompt('Podaj liczbę nr 2'))
-		console.log(number2)
 
 		if (isNaN(number1) || isNaN(number2)) {
 			alert('Podaj poprawne liczby!')
