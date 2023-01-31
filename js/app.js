@@ -16,6 +16,56 @@ Calculator.prototype.add = function (num1, num2) {
 	// 2. sprawdź czy są one poprawne
 	// 3. jeśli tak to wykonaj działanie i zapisz jego resultat
 	// 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
+	const number2 = parseFloat(num2)
+	const number1 = parseFloat(num1)
+
+	if (typeof number1 === 'number' && typeof number2 === 'number') {
+		const result = number1 + number2
+		this.history.push(`${number1} + ${number2} = ${result}`)
+	}
+}
+
+Calculator.prototype.odd = function (num1, num2) {
+	const number1 = parseInt(num1)
+	const number2 = parseInt(num2)
+
+	if (typeof number1 === 'number' && typeof number2 === 'number') {
+		const result = number1 - number2
+		this.history.push(`${number1} - ${number2} = ${result}`)
+	}
+}
+
+Calculator.prototype.multiply = function (num1, num2) {
+	const number1 = parseInt(num1)
+	const number2 = parseInt(num2)
+
+	if (typeof number1 === 'number' && typeof number2 === 'number') {
+		const result = number1 * number2
+		this.history.push(`${number1} * ${number2} = ${result}`)
+	}
+}
+
+Calculator.prototype.divide = function (num1, num2) {
+	const number1 = parseInt(num1)
+	const number2 = parseInt(num2)
+
+	if (typeof number1 === 'number' && typeof number2 === 'number') {
+		const result = number1 / number2
+		this.history.push(`${number1} / ${number2} = ${result}`)
+	}
+}
+
+Calculator.prototype.pow = function (num1, num2) {
+	const number1 = parseInt(num1)
+	const number2 = parseInt(num2)
+
+	if (typeof number1 === 'number' && typeof number2 === 'number') {
+		let result = 1
+		for (let i = 0; i < number2; i++) {
+			result = result * number1
+		}
+		this.history.push(`${number1} ^ ${number2} = ${result}`)
+	}
 }
 
 const calc = new Calculator()
@@ -34,6 +84,14 @@ do {
 
 		if (action === '+') {
 			calc.add(number1, number2)
+		} else if (action === '-') {
+			calc.odd(number1, number2)
+		} else if (action === '*') {
+			calc.multiply(number1, number2)
+		} else if (action === '/') {
+			calc.divide(number1, number2)
+		} else if (action === '^') {
+			calc.pow(number1, number2)
 		}
 	}
 } while (calc.isCorrectAction(action))
