@@ -56,16 +56,26 @@ do {
 		if (isNaN(number1) || isNaN(number2)) {
 			alert('Podaj poprawne liczby!')
 		} else {
-			if (action === '+') {
-				calc.add(number1, number2)
-			} else if (action === '-') {
-				calc.odd(number1, number2)
-			} else if (action === '*') {
-				calc.multiply(number1, number2)
-			} else if (action === '/') {
-				calc.divide(number1, number2)
-			} else if (action === '^') {
-				calc.pow(number1, number2)
+			switch (action) {
+				case '+':
+					calc.add(number1, number2)
+					break
+
+				case '-':
+					calc.odd(number1, number2)
+					break
+
+				case '*':
+					calc.multiply(number1, number2)
+					break
+
+				case '/':
+					calc.divide(number1, number2)
+					break
+
+				case '^':
+					calc.pow(number1, number2)
+					break
 			}
 		}
 	}
