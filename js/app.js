@@ -1,10 +1,18 @@
 function Calculator() {
-	this.actions = ['+', '-', '*', '/', '^']
+	this.actions = {
+		'+': this.add,
+		'-': this.odd,
+		'*': this.multiply,
+		'/': this.divide,
+		'^': this.pow,
+	}
 	this.history = []
 }
 
 Calculator.prototype.isCorrectAction = function (action) {
-	return this.actions.includes(action)
+	if (Object.keys(this.actions).includes(action)) {
+		return true
+	}
 }
 
 Calculator.prototype.getHistoryAsString = function () {
@@ -12,31 +20,27 @@ Calculator.prototype.getHistoryAsString = function () {
 }
 
 Calculator.prototype.add = function (num1, num2) {
-	const result = number1 + number2
-	this.history.push(`${number1} + ${number2} = ${result}`)
+	return number1 + number2
 }
 
 Calculator.prototype.odd = function (num1, num2) {
-	const result = number1 - number2
-	this.history.push(`${number1} - ${number2} = ${result}`)
+	return number1 - number2
 }
 
 Calculator.prototype.multiply = function (num1, num2) {
-	const result = number1 * number2
-	this.history.push(`${number1} * ${number2} = ${result}`)
+	return number1 * number2
 }
 
 Calculator.prototype.divide = function (num1, num2) {
-	const result = number1 / number2
-	this.history.push(`${number1} / ${number2} = ${result}`)
+	return number1 / number2
 }
 
 Calculator.prototype.pow = function (num1, num2) {
-	let result = 1
+	let res = 1
 	for (let i = 0; i < number2; i++) {
-		result = result * number1
+		res = res * number1
 	}
-	this.history.push(`${number1} ^ ${number2} = ${result}`)
+	return res
 }
 
 const calc = new Calculator()
@@ -49,6 +53,8 @@ do {
 
 	action = prompt(promptContent)
 	isCorrectAction = calc.isCorrectAction(action)
+	const operationFunc = calc.actions[action]
+
 	if (isCorrectAction) {
 		number1 = parseFloat(prompt('Podaj liczbę nr 1'))
 		number2 = parseFloat(prompt('Podaj liczbę nr 2'))
@@ -56,26 +62,9 @@ do {
 		if (isNaN(number1) || isNaN(number2)) {
 			alert('Podaj poprawne liczby!')
 		} else {
-			switch (action) {
-				case '+':
-					calc.add(number1, number2)
-					break
-
-				case '-':
-					calc.odd(number1, number2)
-					break
-
-				case '*':
-					calc.multiply(number1, number2)
-					break
-
-				case '/':
-					calc.divide(number1, number2)
-					break
-
-				case '^':
-					calc.pow(number1, number2)
-					break
+			if (typeof operationFunc === 'function') {
+				const result = operationFunc(number1, number2)
+				calc.history.push(`${number1} ${action} ${number2} = ${result}`)
 			}
 		}
 	}
