@@ -20,27 +20,31 @@ Calculator.prototype.getHistoryAsString = function () {
 }
 
 Calculator.prototype.add = function (num1, num2) {
-	return number1 + number2
+	const result = number1 + number2
+	this.history.push(`${number1} + ${number2} = ${result}`)
 }
 
 Calculator.prototype.odd = function (num1, num2) {
-	return number1 - number2
+	const result = number1 - number2
+	this.history.push(`${number1} - ${number2} = ${result}`)
 }
 
 Calculator.prototype.multiply = function (num1, num2) {
-	return number1 * number2
+	const result = number1 * number2
+	this.history.push(`${number1} * ${number2} = ${result}`)
 }
 
 Calculator.prototype.divide = function (num1, num2) {
-	return number1 / number2
+	const result = number1 / number2
+	this.history.push(`${number1} / ${number2} = ${result}`)
 }
 
 Calculator.prototype.pow = function (num1, num2) {
-	let res = 1
+	let result = 1
 	for (let i = 0; i < number2; i++) {
-		res = res * number1
+		result = result * number1
 	}
-	return res
+	this.history.push(`${number1} ^ ${number2} = ${result}`)
 }
 
 const calc = new Calculator()
@@ -53,7 +57,7 @@ do {
 
 	action = prompt(promptContent)
 	isCorrectAction = calc.isCorrectAction(action)
-	const operationFunc = calc.actions[action]
+	const operationFunc = calc.actions[action].bind(calc)
 
 	if (isCorrectAction) {
 		number1 = parseFloat(prompt('Podaj liczbę nr 1'))
@@ -63,8 +67,7 @@ do {
 			alert('Podaj poprawne liczby!')
 		} else {
 			if (typeof operationFunc === 'function') {
-				const result = operationFunc(number1, number2)
-				calc.history.push(`${number1} ${action} ${number2} = ${result}`)
+				operationFunc(number1, number2)
 			}
 		}
 	}
