@@ -13,9 +13,57 @@ Calculator.prototype.getHistoryAsString = function() {
 
 Calculator.prototype.add = function(num1, num2) {
     // 1. zamień wartości przekazane przez parametr na typ number
+    num1 = Number(number1);
+    num2 = Number(number2);
     // 2. sprawdź czy są one poprawne
+    if(typeof num1 === 'number' && typeof num2 === 'number') {
     // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
-    // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
+        let result = num1 + num2;
+        // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
+        this.history.push(`${num1} + ${num2} = ${result}`);
+    }
+}
+
+Calculator.prototype.subtract = function(num1, num2) {
+    num1 = Number(number1);
+    num2 = Number(number2);
+    if(typeof num1 === 'number' && typeof num2 === 'number') {
+        let result = num1 - num2;
+        this.history.push(`${num1} - ${num2} = ${result}`);
+    }
+}
+
+Calculator.prototype.multiply = function(num1, num2) {
+    num1 = Number(number1);
+    num2 = Number(number2);
+    if(typeof num1 === 'number' && typeof num2 === 'number') {
+        let result = num1 * num2;
+        this.history.push(`${num1} * ${num2} = ${result}`);
+    }
+}
+
+Calculator.prototype.divide = function(num1, num2) {
+    num1 = Number(number1);
+    num2 = Number(number2);
+    if(num2 === 0) {
+        alert('Nie dzielimy przez 0.');
+    }
+    if(typeof num1 === 'number' && typeof num2 === 'number') {
+        let result = num1 / num2;
+        this.history.push(`${num1} / ${num2} = ${result}`);
+    }
+}
+
+Calculator.prototype.power = function(num1, num2) {
+    num1 = Number(number1);
+    num2 = Number(number2);
+    if(typeof num1 === 'number' && typeof num2 === 'number') {
+        let result = 1;
+        for (let i = 0; i < num2; i++) {
+            result *= num1;            
+        }
+        this.history.push(`${num1} ** ${num2} = ${result}`);
+    }
 }
 
 const calc = new Calculator();
@@ -33,6 +81,22 @@ do {
 
         if(action === '+') {
             calc.add(number1, number2);
+        }
+
+        if(action === '-') {
+            calc.subtract(number1, number2);
+        }
+
+        if(action === '*') {
+            calc.multiply(number1, number2);
+        }
+
+        if(action === '/') {
+            calc.divide(number1, number2);
+        }
+
+        if(action === '^') {
+            calc.power(number1, number2);
         }
     }
     
