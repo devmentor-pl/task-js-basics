@@ -25,7 +25,7 @@ Calculator.prototype.add = function (num1, num2) {
   //console.log(result);
   alert("wynik: " + result);
 
-  calc.history.push(num1 + " + " + num2 + " = " + result);
+  this.history.push(num1 + " + " + num2 + " = " + result);
 };
 
 Calculator.prototype.substract = function (num1, num2) {
@@ -33,7 +33,7 @@ Calculator.prototype.substract = function (num1, num2) {
 
   alert("wynik: " + result);
 
-  calc.history.push(num1 + " - " + num2 + " = " + result);
+  this.history.push(num1 + " - " + num2 + " = " + result);
 };
 
 Calculator.prototype.multiply = function (num1, num2) {
@@ -41,14 +41,33 @@ Calculator.prototype.multiply = function (num1, num2) {
 
   alert("wynik: " + result);
 
-  calc.history.push(num1 + " * " + num2 + " = " + result);
+  this.history.push(num1 + " * " + num2 + " = " + result);
 };
 
 Calculator.prototype.divide = function (num1, num2) {
   const result = num1 / num2;
   alert("wynik: " + result);
 
-  calc.history.push(num1 + " / " + num2 + " = " + result);
+  this.history.push(num1 + " / " + num2 + " = " + result);
+};
+
+Calculator.prototype.pow = function (num1, num2) {
+  
+  const result = num1 ** num2;
+  alert("wynik: " + result);
+
+  let number = 0;
+  let str = "";
+  while (number < num2) {
+    number++;
+    if (str === "") {
+      str = num1;
+    } else {
+      str = str + " * " + num1;
+    }
+  }
+  str = str + " = " + result;
+  this.history.push(str);
 };
 
 const calc = new Calculator();
