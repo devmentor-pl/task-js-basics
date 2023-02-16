@@ -1,69 +1,60 @@
 function Calculator() {
-    this.actions = ['+', '-', '*', '/', '^'];
+    this.actions = {
+        '+': this.add,
+        '-': this.subtract,
+        '*': this.multiply,
+        '/': this.divide,
+        '^': this.power,
+    };
     this.history = [];
 }
 
 Calculator.prototype.isCorrectAction = function(action) {
-    return this.actions.includes(action);
+    return Object.keys(this.actions).includes(action);
 }
 
 Calculator.prototype.getHistoryAsString = function() {
     return this.history.join('\n');
 }
 
+Calculator.prototype.addToHistory = function (result) {
+    calc.history.push(result);
+    return result;
+}
+
 Calculator.prototype.add = function(num1, num2) {
-    // 1. zamień wartości przekazane przez parametr na typ number
-    num1 = Number(number1);
-    num2 = Number(number2);
-    // 2. sprawdź czy są one poprawne
-    if(typeof num1 === 'number' && typeof num2 === 'number') {
-    // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
-        let result = num1 + num2;
-        // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
-        this.history.push(`${num1} + ${num2} = ${result}`);
-    }
+    return `${num1} + ${num2} = ${num1 + num2}`;
 }
 
 Calculator.prototype.subtract = function(num1, num2) {
-    num1 = Number(number1);
-    num2 = Number(number2);
-    if(typeof num1 === 'number' && typeof num2 === 'number') {
-        let result = num1 - num2;
-        this.history.push(`${num1} - ${num2} = ${result}`);
-    }
+    return `${num1} - ${num2} = ${num1 - num2}`;
 }
 
 Calculator.prototype.multiply = function(num1, num2) {
-    num1 = Number(number1);
-    num2 = Number(number2);
-    if(typeof num1 === 'number' && typeof num2 === 'number') {
-        let result = num1 * num2;
-        this.history.push(`${num1} * ${num2} = ${result}`);
-    }
+    return `${num1} * ${num2} = ${num1 * num2}`;
 }
 
 Calculator.prototype.divide = function(num1, num2) {
-    num1 = Number(number1);
-    num2 = Number(number2);
     if(num2 === 0) {
-        alert('Nie dzielimy przez 0.');
-    }
-    if(typeof num1 === 'number' && typeof num2 === 'number') {
-        let result = num1 / num2;
-        this.history.push(`${num1} / ${num2} = ${result}`);
+        alert("Nie da sie podzielic przez 0.");
+        return `${num1} - ${num2} = nie dzielimy przez 0`;
+    } else {
+        return `${num1} / ${num2} = ${num1 / num2}`;
     }
 }
 
 Calculator.prototype.power = function(num1, num2) {
-    num1 = Number(number1);
-    num2 = Number(number2);
-    if(typeof num1 === 'number' && typeof num2 === 'number') {
         let result = 1;
+        if(num1 === 0 && num2 == 0) {
+            return `${num1} ** ${num2} = 0`;
+        }
+        if(num2 == 0) {
+            return `${num1} ** ${num2} = 1`;
+        }
         for (let i = 0; i < num2; i++) {
             result *= num1;            
         }
-        this.history.push(`${num1} ** ${num2} = ${result}`);
-    }
+        return `${num1} ** ${num2} = ${num1 ** num2}`;
 }
 
 const calc = new Calculator();
@@ -75,29 +66,16 @@ do {
 
     action = prompt(promptContent);
     isCorrectAction = calc.isCorrectAction(action);
+    const actionFunc = calc.actions[action];
     if(isCorrectAction) {
-        number1 = prompt('Podaj liczbę nr 1');
-        number2 = prompt('Podaj liczbę nr 2');
+        number1 = Number(prompt('Podaj liczbę nr 1'));
+        number2 = Number(prompt('Podaj liczbę nr 2'));
 
-        if(action === '+') {
-            calc.add(number1, number2);
+        if(isNaN(number1) || isNaN(number2)) {
+            alert('Podana wartosc nie jest liczba.')
         }
-
-        if(action === '-') {
-            calc.subtract(number1, number2);
-        }
-
-        if(action === '*') {
-            calc.multiply(number1, number2);
-        }
-
-        if(action === '/') {
-            calc.divide(number1, number2);
-        }
-
-        if(action === '^') {
-            calc.power(number1, number2);
-        }
+        if (typeof actionFunc === 'function') {
+            calc.addToHistory(actionFunc(number1, number2));
+        };
     }
-    
 } while(calc.isCorrectAction(action));
