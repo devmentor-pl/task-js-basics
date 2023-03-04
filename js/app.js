@@ -13,7 +13,14 @@ Calculator.prototype.getHistoryAsString = function() {
 
 Calculator.prototype.add = function(num1, num2) {
     // 1. zamień wartości przekazane przez parametr na typ number
+    number1 = Number(num1)
+    number2 = Number(num2)
     // 2. sprawdź czy są one poprawne
+    if(typeof number1 === 'number' && typeof number2 === 'number'){
+        let sum = number1 + number2
+        this.history.push(number1 + ' + ' + number2 + ' = ' + sum)
+    }
+    return sum
     // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
     // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
 }
@@ -37,3 +44,4 @@ do {
     }
     
 } while(calc.isCorrectAction(action));
+
