@@ -1,66 +1,45 @@
 function Calculator() {
-    this.actions = ['+', '-', '*', '/', '^'];
+    this.actions = {
+        '+': this.add,
+        '-': this.subtract,
+        '*': this.multiply,
+        '/': this.divide,
+        '^': this.power,
+    };
     this.history = [];
 }
 
 Calculator.prototype.isCorrectAction = function(action) {
-    return this.actions.includes(action);
+    return Object.keys(this.actions).includes(action);
 }
 
 Calculator.prototype.getHistoryAsString = function() {
     return this.history.join('\n');
 }
 
-Calculator.prototype.add = function(num1, num2) {
-    // 1. zamień wartości przekazane przez parametr na typ number
-    number1 = Number(num1)
-    number2 = Number(num2)
-    // 2. sprawdź czy są one poprawne
-    if(typeof number1 === 'number' && typeof number2 === 'number'){
-        let result = number1 + number2
-        this.history.push(number1 + ' + ' + number2 + ' = ' + result)
+Calculator.prototype.add = function() {
+        this.history.push(number1 + ' + ' + number2 + ' = ' + (number1 + number2))
     }
-    // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
-    // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
-}
 
-Calculator.prototype.substract = function(num1, num2) {
-    number1 = Number(num1)
-    number2 = Number(num2)
-    if(typeof number1 === 'number' && typeof number2 === 'number'){
-        let result = number1 - number2
-        this.history.push(number1 + ' - ' + number2 + ' = ' + result)
+Calculator.prototype.substract = function() {
+        this.history.push(number1 + ' - ' + number2 + ' = ' + (number1 - number2))
     }
-}
 
-Calculator.prototype.multiply = function(num1, num2) {
-    number1 = Number(num1)
-    number2 = Number(num2)
-    if(typeof number1 === 'number' && typeof number2 === 'number'){
-        let result = number1 * number2
-        this.history.push(number1 + ' x ' + number2 + ' = ' + result)
+Calculator.prototype.multiply = function() {
+        this.history.push(number1 + ' x ' + number2 + ' = ' + (number1 * number2))
     }
-}
 
-Calculator.prototype.divide = function(num1, num2) {
-    number1 = Number(num1)
-    number2 = Number(num2)
-    if(typeof number1 === 'number' && typeof number2 === 'number'){
-        let result = number1 / number2
-        this.history.push(number1 + ' / ' + number2 + ' = ' + result)
+Calculator.prototype.divide = function() {
+        this.history.push(number1 + ' / ' + number2 + ' = ' + (number1 / number2))
     }
-}
 
-Calculator.prototype.power = function(num1, num2) {
-    number1 = Number(num1)
-    number2 = Number(num2)
-    if(typeof number1 === 'number' && typeof number2 === 'number'){
+Calculator.prototype.power = function() {
         let result = 1;
-        for (let i = 0; i < num2; i++) {
-            result *= num1;            
+        for (let i = 0; i < number2; i++) {
+            result *= number1;            
         }
         this.history.push(number1 + ' ^ ' + number2 + ' = ' + result)
-    }}
+    }
 
 const calc = new Calculator();
 let action, promptContent, isCorrectAction, number1, number2;
@@ -72,10 +51,14 @@ do {
     action = prompt(promptContent);
     isCorrectAction = calc.isCorrectAction(action);
     if(isCorrectAction) {
-        number1 = prompt('Podaj liczbę nr 1');
-        number2 = prompt('Podaj liczbę nr 2');
+        number1 = Number(prompt('Podaj liczbę nr 1'));
+        number2 = Number(prompt('Podaj liczbę nr 2'));
 
-        if(action === '+') {
+        if (isNaN(number1)) {
+            alert('Liczba 1 niepoprawna.');}
+        if (isNaN(number2)){
+            alert('Liczba 2 niepoprawna.');}
+        else if(action === '+') {
             calc.add(number1, number2);
         }else if(action === '-'){
             calc.substract(number1, number2);
