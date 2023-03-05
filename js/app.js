@@ -35,12 +35,14 @@ Calculator.prototype.power = function() {
         for (let i = 0; i < number2; i++) {
             result *= number1;            
         }
-    this.history.push(number1 + ' ^ ' + number2 + ' = ' + result)};
+    this.history.push(number1 + ' ^ ' + number2 + ' = ' + result)
+};
 
 const calc = new Calculator();
 let action, promptContent, isCorrectAction, number1, number2;
 
-function mainLoop() { do { 
+function mainLoop() { 
+    do { 
     promptContent = 'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n'; // \n - znak nowej linii
     promptContent += 'Jeśli chcesz zrezygnować wciśnij Anuluj. \n';
     promptContent += 'Lista poprzednich operacji: \n' + calc.getHistoryAsString();
@@ -59,6 +61,7 @@ function mainLoop() { do {
         alert('Wprowadź poprawny operator: +, -, *, / lub ^.');
         mainLoop(calc);
     }
- } while(calc.isCorrectAction(action));}
+ } while(calc.isCorrectAction(action));
+};
 
-mainLoop(calc)
+mainLoop(calc);
