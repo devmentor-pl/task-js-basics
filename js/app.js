@@ -66,11 +66,11 @@ do {
 	action = prompt(promptContent);
 	isCorrectAction = calc.isCorrectAction(action);
 	if (isCorrectAction) {
-		const regExp = new RegExp(/([0-9])\w*/);
+		const regExp = new RegExp(/[^0-9]/);
 		number1 = prompt('Podaj liczbę nr 1');
 		number2 = prompt('Podaj liczbę nr 2');
 
-		if (regExp.test(number1) && regExp.test(number2)) {
+		if (!regExp.test(number1) && !regExp.test(number2)) {
 			if (action === '+') {
 				calc.add(number1, number2, action);
 			} else if (action === '-') {
