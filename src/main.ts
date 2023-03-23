@@ -33,7 +33,6 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 					<li class="buttons-list__item item item--sign-enter"><button class="item__button item__button--sign" data-action="calculate">=</button></li>
 					<li class="buttons-list__item item item--number-zero"><button class="item__button item__button--number">0</button></li>
 					<li class="buttons-list__item item"><button class="item__button item__button--sign" data-action="comma">,</button></li>
-					
 				</ul>
 			</section>
 		</main>
