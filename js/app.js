@@ -1,10 +1,16 @@
 function Calculator() {
-    this.actions = ['+', '-', '*', '/', '^'];
+    this.actions = {
+        '+': add,
+        '-': subtraction,
+        '*': multiply,
+        '/': divide,
+        '^': exponentiation
+    }
     this.history = [];
 }
 
 Calculator.prototype.isCorrectAction = function (action) {
-    return this.actions.includes(action);
+    return this.actions.hasOwnProperty(action);
 }
 
 Calculator.prototype.getHistoryAsString = function () {
@@ -13,52 +19,36 @@ Calculator.prototype.getHistoryAsString = function () {
 Calculator.prototype.isCorrectType = function (num1, num2) {
     number1 = parseFloat(num1)
     number2 = parseFloat(num2)
-
     if (isNaN(number1) || isNaN(number2)) {
         alert(`Przekazana wartość nie jest liczbą`)
     }
     return true
 }
-Calculator.prototype.calculate = function (num1, num2, action) {
-    if (this.isCorrectType(num1, num2)) {
-        switch (action) {
-            case '+': return this.add(num1, num2)
-            case '-': return this.subtraction(num1, num2)
-            case '*': return this.multiply(num1, num2)
-            case '/': return this.divide(num1, num2)
-            case '^': return this.exponentiation(num1, num2)
-        }
-    }
-
-}
-Calculator.prototype.addResultToHistory = function (result) {
+Calculator.prototype.getResult = function (num1, num2, action) {
+    const result = `${num1} ${action} ${num2} = ${this.actions[action](num1, num2)}`
     this.history.push(result)
 }
 
-Calculator.prototype.add = function (num1, num2) {
-    const result = num1 + num2
-    this.addResultToHistory(`${num1}+${num2}=${result}`)
+function add(num1, num2) {
+    return num1 + num2
 }
 
-Calculator.prototype.subtraction = function (num1, num2) {
-    const result = num1 - num2
-    this.addResultToHistory(`${num1}-${num2}=${result}`)
+function subtraction(num1, num2) {
+    return num1 - num2
+
 }
-Calculator.prototype.multiply = function (num1, num2) {
-    const result = num1 * num2
-    this.addResultToHistory(`${num1}*${num2}=${result}`)
+function multiply(num1, num2) {
+    return num1 * num2
 }
-Calculator.prototype.divide = function (num1, num2) {
-    const result = num1 / num2
-    this.addResultToHistory(`${num1}/${num2}=${result}`)
+function divide(num1, num2) {
+    return num1 / num2
 }
-Calculator.prototype.exponentiation = function (num1, num2) {
+function exponentiation(num1, num2) {
     let pow = 1;
     for (let i = 0; i < num2; i++) {
         pow = pow * num1
     }
-    const result = pow
-    this.addResultToHistory(`${num1}^${num2}=${result}`)
+    return pow
 }
 
 const calc = new Calculator();
@@ -73,9 +63,8 @@ do {
     if (isCorrectAction) {
         number1 = prompt('Podaj liczbę nr 1');
         number2 = prompt('Podaj liczbę nr 2');
-        calc.isCorrectType(number1, number2)
-        calc.calculate(number1, number2, action)
-        promptContent += `${this.history}`
+        
+        calc.isCorrectType(number1, number2) ? calc.getResult(number1, number2, action) : alert('false')
     }
 
 } while (calc.isCorrectAction(action));
