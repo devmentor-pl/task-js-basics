@@ -11,7 +11,7 @@ Calculator.prototype.getHistoryAsString = function() {
     return this.history.join('\n');
 }
 
-Calculator.prototype.add = function(num1, num2) {
+Calculator.prototype.sum = function(num1, num2) {
 
     const result = Number(num1) + Number(num2)
         if(isNaN(result) === true){
@@ -21,7 +21,7 @@ Calculator.prototype.add = function(num1, num2) {
         return result
         }
 }
-Calculator.prototype.substract = function(num1, num2) {
+Calculator.prototype.subtract = function(num1, num2) {
 
     const result = Number(num1) - Number(num2)
         if(isNaN(result) === true){
@@ -56,6 +56,22 @@ Calculator.prototype.divide = function(num1, num2) {
         }
     }
 }
+Calculator.prototype.power = function(num1, num2) {
+
+        if ((num2) === 0) {
+            this.history.push('1')
+          return 1;
+          
+        }
+        let result = 1;
+        for (let i = 0; i < num2; i++) {
+          result = result * num1;
+        }
+        this.history.push ( (num1) + " ^ " + (num2) + ' = ' + (result))
+        return result;
+}
+      
+
 
 const calc = new Calculator();
 let action, promptContent, isCorrectAction, number1, number2;
@@ -71,9 +87,9 @@ do {
         number2 = prompt('Podaj liczbę nr 2');
  
         if(action === '+') {
-            calc.add(number1, number2);
+            calc.sum(number1, number2);
         }else if(action === '-') {
-            calc.substract(number1, number2); 
+            calc.subtract(number1, number2); 
         }else if(action === '*') {
             calc.multiply(number1, number2); 
         }else if(action === '/') {
@@ -81,7 +97,6 @@ do {
         }else if(action === '^') {
             calc.power(number1, number2);
         }
-
     }
     
 } while(calc.isCorrectAction(action));
