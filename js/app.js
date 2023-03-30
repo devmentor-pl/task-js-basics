@@ -12,10 +12,49 @@ Calculator.prototype.getHistoryAsString = function() {
 }
 
 Calculator.prototype.add = function(num1, num2) {
-    // 1. zamień wartości przekazane przez parametr na typ number
-    // 2. sprawdź czy są one poprawne
-    // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
-    // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
+
+    const result = Number(num1) + Number(num2)
+        if(isNaN(result) === true){
+            this.history.push ('Wprowadzono błędnie dane')
+        }else{
+            this.history.push ( (num1) + " + " + (num2) + ' = ' + (result))
+        return result
+        }
+}
+Calculator.prototype.substract = function(num1, num2) {
+
+    const result = Number(num1) - Number(num2)
+        if(isNaN(result) === true){
+            this.history.push ('Wprowadzono błędnie dane')
+        }else{
+            this.history.push ( (num1) + " - " + (num2) + ' = ' + (result))
+        return result
+        }
+}
+Calculator.prototype.multiply = function(num1, num2) {
+
+    const result = Number(num1) * Number(num2)
+        if(isNaN(result) === true){
+            this.history.push ('Wprowadzono błędnie dane')
+        }else{
+            this.history.push ( (num1) + " * " + (num2) + ' = ' + (result))
+        return result
+        }
+}
+Calculator.prototype.divide = function(num1, num2) {
+    if(num2 === 0){
+        console.log("you can't divide by 0")
+    }else{
+    const result = Number(num1) / Number(num2)
+        if(isNaN(result) === true){
+            this.history.push ('Wprowadzono błędnie dane')
+        }else if(isFinite(result) === false){
+            this.history.push ('Nie dzielimy przez zero!')
+        }else{
+            this.history.push ( (num1) + " / " + (num2) + ' = ' + (result))
+        return result
+        }
+    }
 }
 
 const calc = new Calculator();
@@ -30,10 +69,19 @@ do {
     if(isCorrectAction) {
         number1 = prompt('Podaj liczbę nr 1');
         number2 = prompt('Podaj liczbę nr 2');
-
+ 
         if(action === '+') {
             calc.add(number1, number2);
+        }else if(action === '-') {
+            calc.substract(number1, number2); 
+        }else if(action === '*') {
+            calc.multiply(number1, number2); 
+        }else if(action === '/') {
+            calc.divide(number1, number2); 
+        }else if(action === '^') {
+            calc.power(number1, number2);
         }
+
     }
     
 } while(calc.isCorrectAction(action));
