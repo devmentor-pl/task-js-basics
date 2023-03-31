@@ -23,13 +23,11 @@ Calculator.prototype.getHistoryAsString = function () {
 };
 
 Calculator.prototype.add = function (num1, num2) {
-  if (isInputANumber(num1) && isInputANumber(num2)) {
     num1 = Number(num1);
     num2 = Number(num2);
     const equationString = `${num1} + ${num2} = ${num1 + num2}`;
     this.history.push(equationString);
     return num1 + num2;
-  }
   // 1. zamień wartości przekazane przez parametr na typ number
   // 2. sprawdź czy są one poprawne
   // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
@@ -37,37 +35,30 @@ Calculator.prototype.add = function (num1, num2) {
 };
 
 Calculator.prototype.subtract = function (num1, num2) {
-  if (isInputANumber(num1) && isInputANumber(num2)) {
     num1 = Number(num1);
     num2 = Number(num2);
     const equationString = `${num1} - ${num2} = ${num1 - num2}`;
     this.history.push(equationString);
     return num1 - num2;
-  }
 };
 
 Calculator.prototype.multiply = function (num1, num2) {
-  if (isInputANumber(num1) && isInputANumber(num2)) {
     num1 = Number(num1);
     num2 = Number(num2);
     const equationString = `${num1} * ${num2} = ${num1 * num2}`;
     this.history.push(equationString);
     return num1 * num2;
-  }
 };
 
 Calculator.prototype.divide = function (num1, num2) {
-  if (isInputANumber(num1) && isInputANumber(num2)) {
     num1 = Number(num1);
     num2 = Number(num2);
     const equationString = `${num1} / ${num2} = ${num1 / num2}`;
     this.history.push(equationString);
     return num1 / num2;
-  }
 };
 
 Calculator.prototype.power = function (num1, num2) {
-  if (isInputANumber(num1) && isInputANumber(num2)) {
     num1 = Number(num1);
     num2 = Number(num2);
     let exponentiationResult = 1;
@@ -78,7 +69,6 @@ Calculator.prototype.power = function (num1, num2) {
     const equationString = `${num1} ^ ${num2} = ${exponentiationResult}`;
     this.history.push(equationString);
     return exponentiationResult;
-  }
 };
 
 const calc = new Calculator();
@@ -92,27 +82,17 @@ do {
   action = prompt(promptContent);
   isCorrectAction = calc.isCorrectAction(action);
   if (isCorrectAction && action === "^") {
+    do{
     number1 = prompt("Podaj podstawę");
     number2 = prompt("Podaj potęgę");
+    }while(!isInputANumber(number1) || !isInputANumber(number2))
     calc.power(number1, number2);
   } else if (isCorrectAction) {
+    do{
     number1 = prompt("Podaj liczbę nr 1");
     number2 = prompt("Podaj liczbę nr 2");
-
+    }while(!isInputANumber(number1) || !isInputANumber(number2))
     const calcFunction = calc.functions[action].bind(calc);
     calcFunction(number1,number2);
-
-    // if (action === "+") {
-    //   calc.add(number1, number2);
-    // }
-    // if (action === "-") {
-    //   calc.subtract(number1, number2);
-    // }
-    // if (action === "*") {
-    //   calc.multiply(number1, number2);
-    // }
-    // if (action === "/") {
-    //   calc.divide(number1, number2);
-    // }
   }
 } while (calc.isCorrectAction(action));
