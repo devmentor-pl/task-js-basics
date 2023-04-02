@@ -1,5 +1,3 @@
-let action, promptContent, isCorrectAction, number1, number2;
-
 function Calculator() {
     this.actions = ['+', '-', '*', '/', '^'];
     this.history = [];
@@ -29,17 +27,18 @@ Calculator.prototype.setResultHistory = function () {
     this.resultHistory.push(this.result)
 }
 
-Calculator.prototype.transformToNumbers = function (num1, num2) {
-    this.number1 = Number(num1);
-    this.number2 = Number(num2);
+Calculator.prototype.transformToNumber = function (num) {
+    return Number(num);
 }
 
-Calculator.prototype.checkIsNumber = function (num1, num2) {
-    if (isNaN(num1)) {
-        alert('Number One Is Not a Number')
-        return 0;
-    } else if (isNaN(num2)) {
-        alert('Number Two Is Not a Number')
+Calculator.prototype.createNumbersInCalculator = function (num1, num2) {
+    this.number1 = num1;
+    this.number2 = num2;
+}
+
+Calculator.prototype.checkIsNumber = function (num) {
+    if (isNaN(num)) {
+        alert('This Is NOT a Number');
         return 0;
     }
 }
@@ -80,7 +79,7 @@ Calculator.prototype.exponentiate = function () {
     if (this.number2 !== 0) {
         this.result = this.countExponentiation();
         this.setResultHistory();
-    } else if(this.number1 !== 0) {
+    } else if (this.number1 !== 0) {
         this.result = 1;
         this.setResultHistory();
     }
@@ -100,44 +99,61 @@ Calculator.prototype.makeOperation = function (operator) {
     }
 }
 
+Calculator.prototype.setPromptContent = function () {
+    let setPromptContent;
+    setPromptContent = 'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n'; // \n - znak nowej linii
+    setPromptContent += 'Jeśli chcesz zrezygnować wciśnij Anuluj. \n';
+    setPromptContent += 'Lista poprzednich operacji: \n' + this.getHistoryAsString();
+    return setPromptContent;
+}
+
 Calculator.prototype.startLoop = function () {
-    promptContent = this.setPromptContent();
+    let promptContent = this.setPromptContent();
     action = prompt(promptContent);
-    isCorrectAction = this.isCorrectAction(action);
+    let isCorrectAction = this.isCorrectAction(action);
 
     if (isCorrectAction) {
-        number1 = prompt('Podaj liczbę nr 1', this.resultHistory[this.resultHistory.length - 1]);
-        number2 = prompt('Podaj liczbę nr 2');
+        let number1 = prompt('Podaj liczbę nr 1', this.resultHistory[this.resultHistory.length - 1]);
+        number1 = this.transformToNumber(number1)
 
-        this.transformToNumbers(number1, number2)
+        if (this.checkIsNumber(number1) !== 0) {
+            let number2 = prompt('Podaj liczbę nr 2');
+            number2 = this.transformToNumber(number2)
 
-        if (this.checkIsNumber(this.number1, this.number2) !== 0) {
-            this.makeOperation(action);
-            this.setHistoryAsString(action);
+            if (this.checkIsNumber(number2) !== 0) {
+                this.createNumbersInCalculator(number1, number2);
+                this.makeOperation(action);
+                this.setHistoryAsString(action);
+            }
         }
-
     } else {
-        this.startAgain();
+        this.clearHistoryInCalculator();
+    }
+}
+
+Calculator.prototype.clearHistoryInCalculator = function () {
+    const clear = confirm('Do You Want to Clear History?')
+    if (clear === true) {
+        this.history = [];
+        this.resultHistory = [0];
+        this.number1 = 0;
+        this.number2 = 0;
+        this.result = 0;
+        return this.startLoop();
+    } else {
+        return this.startAgain();
     }
 }
 
 Calculator.prototype.startAgain = function () {
-    alert('Wrong action!');
-    const confirmation = confirm('Continue???');
+    const confirmation = confirm('Continue work?');
     if (confirmation === true) {
         return this.startLoop();
     }
 }
 
-Calculator.prototype.setPromptContent = function () {
-    let promptContent;
-    promptContent = 'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n'; // \n - znak nowej linii
-    promptContent += 'Jeśli chcesz zrezygnować wciśnij Anuluj. \n';
-    promptContent += 'Lista poprzednich operacji: \n' + this.getHistoryAsString();
-    return promptContent;
-}
-
 const calc = new Calculator();
+let action;
 do {
     calc.startLoop();
 } while (calc.isCorrectAction(action));
