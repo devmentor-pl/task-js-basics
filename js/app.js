@@ -12,6 +12,7 @@ Calculator.prototype.getHistoryAsString = function() {
     return this.history.join('\n');
 }
 
+
 // Calculator.prototype.sum = function(num1, num2) {
 
 //     const result = Number(num1) + Number(num2)
@@ -136,6 +137,9 @@ do {
 
     action = prompt(promptContent);
   
+    if (action === null){
+        alert("Dziękujemy za skorzystanie z kalkulatora")
+    }else{
 
     isCorrectAction = calc.isCorrectAction(action);
     if(isCorrectAction) {
@@ -145,8 +149,8 @@ do {
     calc.calculate(number1, number2)
 
     }
-    else{alert("Wprowadzono błędy operator lub brak operatora")}
+    else{alert("Brak operatora lub błędy operator")}
 
-
+}
 
 } while(calc.isCorrectAction(action))
