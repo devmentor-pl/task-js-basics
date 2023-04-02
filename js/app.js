@@ -11,96 +11,51 @@ Calculator.prototype.getHistoryAsString = function () {
 	return this.history.join('\n');
 };
 
-Calculator.prototype.add = function (num1, num2) {
-	number1 = parseInt(num1);
-	number2 = parseInt(num2);
-	if (isNaN(number1) && isNaN(number2)) {
-		this.history.push(
-			`obie z podanych danych nie są liczbami, spróbuj ponownie 😎`
-		);
-	} else if (isNaN(number1) || isNaN(number2)) {
-		this.history.push(
-			`jedna z podanych danych nie jest liczbą, spróbuj ponownie 😎`
-		);
-	} else {
-		const result = `${number1} + ${number2} = ${number1 + number2}`;
-		return this.history.push(result);
-	}
-};
+Calculator.prototype.calculate = function (action, num1, num2) {
+	const number1 = parseInt(num1);
+	const number2 = parseInt(num2);
 
-Calculator.prototype.subtract = function (num1, num2) {
-	number1 = parseInt(num1);
-	number2 = parseInt(num2);
 	if (isNaN(number1) && isNaN(number2)) {
 		this.history.push(
-			`obie z podanych danych nie są liczbami, spróbuj ponownie 😎`
+			`Obie z podanych danych nie są liczbami, spróbuj ponownie 😎`
 		);
+		return;
 	} else if (isNaN(number1) || isNaN(number2)) {
 		this.history.push(
-			`jedna z podanych danych nie jest liczbą, spróbuj ponownie 😎`
+			`Jedna z podanych danych nie jest liczbą, spróbuj ponownie 😎`
 		);
-	} else {
-		const result = `${number1} - ${number2} = ${number1 - number2}`;
-		return this.history.push(result);
+		return;
 	}
-};
-Calculator.prototype.multiply = function (num1, num2) {
-	number1 = parseInt(num1);
-	number2 = parseInt(num2);
-	if (isNaN(number1) && isNaN(number2)) {
-		this.history.push(
-			`obie z podanych danych nie są liczbami, spróbuj ponownie 😎`
-		);
-	} else if (isNaN(number1) || isNaN(number2)) {
-		this.history.push(
-			`jedna z podanych danych nie jest liczbą, spróbuj ponownie 😎`
-		);
-	} else {
-		const result = `${number1} * ${number2} = ${number1 * number2}`;
-		return this.history.push(result);
+	let result;
+	switch (action) {
+		case '+':
+			result = number1 + number2;
+			break;
+		case '-':
+			result = number1 - number2;
+			break;
+		case '*':
+			result = number1 * number2;
+			break;
+		case '/':
+			if (number2 === 0) {
+				this.history.push(`Nigdy 🤬 nie dziel przez zero!!!`);
+				return result;
+			} else {
+				result = number1 / number2;
+				break;
+			}
+		case '^':
+			result = 1;
+			for (i = 0; i < number2; i++) {
+				result *= number1;
+			}
+			break;
+		default:
 	}
-};
-Calculator.prototype.divide = function (num1, num2) {
-	number1 = parseInt(num1);
-	number2 = parseInt(num2);
-	if (isNaN(number1) && isNaN(number2)) {
-		this.history.push(
-			`obie z podanych danych nie są liczbami, spróbuj ponownie 😎`
-		);
-	} else if (isNaN(number1) || isNaN(number2)) {
-		this.history.push(
-			`jedna z podanych danych nie jest liczbą, spróbuj ponownie 😎`
-		);
-	} else {
-		if (number2 === 0) {
-			this.history.push(`nigdy 🤬 nie dziel przez zero!!!`);
-		} else {
-			const result = `${number1} / ${number2} = ${number1 / number2}`;
-			return this.history.push(result);
-		}
-	}
-};
-
-Calculator.prototype.power = function (num1, num2) {
-	number1 = parseInt(num1);
-	number2 = parseInt(num2);
-	let powerResult = 1;
-	if (isNaN(number1) && isNaN(number2)) {
-		this.history.push(
-			`obie z podanych danych nie są liczbami, spróbuj ponownie 😎`
-		);
-	} else if (isNaN(number1) || isNaN(number2)) {
-		this.history.push(
-			`jedna z podanych danych nie jest liczbą, spróbuj ponownie 😎`
-		);
-	} else {
-		for (i = 0; i < number2; i++) {
-			powerResult *= number1;
-		}
-		return this.history.push(
-			`${number1} do potęgi ${number2} = ${powerResult}`
-		);
-	}
+	const calculation = `${number1} ${action} ${number2} = ${result}`;
+	this.history.push(calculation);
+	return result;
 };
 
 const calc = new Calculator();
@@ -110,27 +65,15 @@ do {
 		'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n'; // \n - znak nowej linii
 	promptContent += 'Jeśli chcesz zrezygnować wciśnij Anuluj. \n';
 	promptContent += 'Lista poprzednich operacji: \n' + calc.getHistoryAsString();
-
 	action = prompt(promptContent);
 	isCorrectAction = calc.isCorrectAction(action);
-	if (isCorrectAction) {
+	if (action === null) {
+		break;
+	} else if (isCorrectAction) {
 		number1 = prompt('Podaj liczbę nr 1');
 		number2 = prompt('Podaj liczbę nr 2');
-
-		if (action === '+') {
-			calc.add(number1, number2);
-		}
-		if (action === '-') {
-			calc.subtract(number1, number2);
-		}
-		if (action === '*') {
-			calc.multiply(number1, number2);
-		}
-		if (action === '/') {
-			calc.divide(number1, number2);
-		}
-		if (action === '^') {
-			calc.power(number1, number2);
-		}
+		calc.calculate(action, number1, number2);
+	} else {
+		alert(`Błędny operator działania - spróbuj ponownie`);
 	}
-} while (calc.isCorrectAction(action));
+} while (action !== null || calc.isCorrectAction(action));
