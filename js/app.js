@@ -135,6 +135,8 @@ do {
     promptContent += 'Lista poprzednich operacji: \n' + calc.getHistoryAsString();
 
     action = prompt(promptContent);
+  
+
     isCorrectAction = calc.isCorrectAction(action);
     if(isCorrectAction) {
         number1 = prompt('Podaj liczbę nr 1');
@@ -142,27 +144,9 @@ do {
 
     calc.calculate(number1, number2)
 
-}
+    }
+    else{alert("Wprowadzono błędy operator lub brak operatora")}
+
 
 
 } while(calc.isCorrectAction(action))
-
-//     return  console.log(Calculator.prototype.getOperatorFromUser(action))
-    
-// }
-// else if (action === false)
-// {
-//     if(action === true){
-//     alert("Wprowadzono błędy operator")}
-//     else if(result ==! true){
-//     console.log("hay")    
-//     }
-// }
-//     if(calc.isCorrectAction(action) === false){
-//         alert("Wprowadzono błędy operator")
-
-//         // return start()
-//     // } else if(calc.isCorrectAction(action) === null){
-    
-//     // }
-//  }
