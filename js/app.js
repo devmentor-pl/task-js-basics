@@ -1,5 +1,5 @@
 function Calculator() {
-  this.actions = ["+", "-", "*", "/", "^", "1"];
+  this.actions = ["+", "-", "*", "/", "^"];
   this.history = [];
 }
 
