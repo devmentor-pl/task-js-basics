@@ -59,6 +59,21 @@ Calculator.prototype.div = function (num1, num2) {
     }
 }
 
+Calculator.prototype.pow = function (num1, num2) {
+    const x = parseFloat(num1);
+    const y = parseFloat(num2);
+
+    if (typeof (x) === "number" && typeof (y) === "number") {
+        let result = 1;
+        for (let i = 1; i <= y; i++) {
+            result = result * x;
+        }
+        console.log(x + ' ^ ' + y + ' = ' + result);
+        this.history.push(x + ' ^ ' + y + ' = ' + result);
+
+    }
+}
+
 const calc = new Calculator();
 let action, promptContent, isCorrectAction, number1, number2;
 do {
@@ -83,7 +98,10 @@ do {
                 } else
                     if (action === '/') {
                         calc.div(number1, number2);
-                    }
+                    } else
+                        if (action === '^') {
+                            calc.pow(number1, number2);
+                        }
     }
 
 } while (calc.isCorrectAction(action));
