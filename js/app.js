@@ -3,37 +3,87 @@ function Calculator() {
     this.history = [];
 }
 
-Calculator.prototype.isCorrectAction = function(action) {
+Calculator.prototype.isCorrectAction = function (action) {
     return this.actions.includes(action);
 }
 
-Calculator.prototype.getHistoryAsString = function() {
+Calculator.prototype.getHistoryAsString = function () {
     return this.history.join('\n');
 }
 
-Calculator.prototype.add = function(num1, num2) {
-    // 1. zamień wartości przekazane przez parametr na typ number
-    // 2. sprawdź czy są one poprawne
-    // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
-    // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
+Calculator.prototype.add = function (num1, num2) {
+    const x = parseFloat(num1);
+    const y = parseFloat(num2);
+
+    if (typeof (x) === "number" && typeof (y) === "number") {
+        const result = x + y;
+        console.log(x + ' + ' + y + ' = ' + result);
+        this.history.push(x + ' + ' + y + ' = ' + result);
+    }
+    // 1. zamień wartości przekazane przez parametr na typ number   GOTOWE
+    // 2. sprawdź czy są one poprawne   GOTOWE
+    // 3. jeśli tak to wykonaj działanie i zapisz jego rezultat GOTOWE
+    // 4. dodaj do historii operacji to działanie w formie: 1 + 1 = 2   GOTOWE
+}
+
+Calculator.prototype.sub = function (num1, num2) {
+    const x = parseFloat(num1);
+    const y = parseFloat(num2);
+
+    if (typeof (x) === "number" && typeof (y) === "number") {
+        const result = x - y;
+        console.log(x + ' - ' + y + ' = ' + result);
+        this.history.push(x + ' - ' + y + ' = ' + result);
+    }
+}
+
+Calculator.prototype.mul = function (num1, num2) {
+    const x = parseFloat(num1);
+    const y = parseFloat(num2);
+
+    if (typeof (x) === "number" && typeof (y) === "number") {
+        const result = x * y;
+        console.log(x + ' * ' + y + ' = ' + result);
+        this.history.push(x + ' * ' + y + ' = ' + result);
+    }
+}
+
+Calculator.prototype.div = function (num1, num2) {
+    const x = parseFloat(num1);
+    const y = parseFloat(num2);
+
+    if (typeof (x) === "number" && typeof (y) === "number") {
+        const result = x / y;
+        console.log(x + ' / ' + y + ' = ' + result);
+        this.history.push(x + ' / ' + y + ' = ' + result);
+    }
 }
 
 const calc = new Calculator();
 let action, promptContent, isCorrectAction, number1, number2;
-do { 
+do {
     promptContent = 'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n'; // \n - znak nowej linii
     promptContent += 'Jeśli chcesz zrezygnować wciśnij Anuluj. \n';
     promptContent += 'Lista poprzednich operacji: \n' + calc.getHistoryAsString();
 
     action = prompt(promptContent);
     isCorrectAction = calc.isCorrectAction(action);
-    if(isCorrectAction) {
+    if (isCorrectAction) {
         number1 = prompt('Podaj liczbę nr 1');
         number2 = prompt('Podaj liczbę nr 2');
 
-        if(action === '+') {
+        if (action === '+') {
             calc.add(number1, number2);
-        }
+        } else
+            if (action === '-') {
+                calc.sub(number1, number2);
+            } else
+                if (action === '*') {
+                    calc.mul(number1, number2);
+                } else
+                    if (action === '/') {
+                        calc.div(number1, number2);
+                    }
     }
-    
-} while(calc.isCorrectAction(action));
+
+} while (calc.isCorrectAction(action));
