@@ -2,7 +2,24 @@ function Calculator() {
     this.actions = ['+', '-', '*', '/', '^'];
     this.history = [];
     this.calculationResult = 0;
+    
 }
+
+Calculator.prototype.getResult = function(action, num1, num2) {
+    const operations = {
+        "+": this.add,
+        "-": this.subtraction,
+        "*": this.multiplication,
+        "/": this.division,
+        "^": this.exponentiation
+    };
+    return operations[action](num1, num2);
+}
+
+Calculator.prototype.setCalculationResult = function(result) {
+    this.calculationResult = result;
+}
+
 
 Calculator.prototype.isCorrectAction = function(action) {
     return this.actions.includes(action);
@@ -17,8 +34,7 @@ Calculator.prototype.getCalculationResult = function() {
 }
 
 Calculator.prototype.add = function(num1, num2) {
-    this.calculationResult = num1 + num2;
-    return `${num1} + ${num2} = ${this.calculationResult}`;
+    return num1 + num2;
     // 1. zamień wartości przekazane przez parametr na typ number
     // 2. sprawdź czy są one poprawne
     // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
@@ -26,30 +42,27 @@ Calculator.prototype.add = function(num1, num2) {
 };
 
 Calculator.prototype.subtraction = function(number1, number2) {
-    this.calculationResult = number1 - number2;
-    return `${number1} - ${number2} = ${this.calculationResult}`;
+    return number1 - number2;
 };
 
 Calculator.prototype.multiplication = function(number1, number2) {
-    this.calculationResult = number1 * number2;
-    return `${number1} * ${number2} = ${this.calculationResult}`;
+    return number1 * number2;
 };
 
 Calculator.prototype.division = function(number1, number2) {
-    this.calculationResult = number1 / number2;
-    return `${number1} / ${number2} = ${this.calculationResult}`;
+    return number1 / number2;
 };
 
 Calculator.prototype.exponentiation = function(number1, power) {
-    this.calculationResult = number1;
+    let result = number1;
     for(let i = 1; i <= power; i++) {
-        this.calculationResult *= number1;
+        result *= number1;
     }
-    return `${number1} ^ ${power} = ${this.calculationResult}`;
+    return result;
 };
 
-Calculator.prototype.addToHistory = function(calc) {
-    this.history.push(calc);
+Calculator.prototype.addToHistory = function(num1, action, num2, res) {
+    this.history.push(`${num1} ${action} ${num2} = ${res}`);
 }
 
 function checkingVariableType(num) {
@@ -79,24 +92,9 @@ do {
         number2 = parsingToInt(prompt('Podaj liczbę nr 2'), checkingVariableType);
         let calcResult = 0;
         if(number1 && number2) {
-            switch(action) {
-                case "+":
-                    calcResult = calc.add(number1, number2);
-                    break;
-                case "-":
-                    calcResult = calc.subtraction(number1, number2);
-                    break;
-                case "*":
-                    calcResult = calc.multiplication(number1, number2);
-                    break;
-                case "/":
-                    calcResult = calc.division(number1, number2);
-                    break;
-                case "^":
-                    calcResult = calc.exponentiation(number1, number2);
-                    break;
-            };
-            calc.addToHistory(calcResult);
+            calcResult = calc.getResult(action, number1, number2);
+            savedResult = calc.setCalculationResult(calcResult);
+            calc.addToHistory(number1, action, number2, calcResult);
             console.log(calc.getCalculationResult());
         }
         
