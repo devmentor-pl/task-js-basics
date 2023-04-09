@@ -18,7 +18,6 @@ Calculator.prototype.getCalculationResult = function() {
 
 Calculator.prototype.add = function(num1, num2) {
     this.calculationResult = num1 + num2;
-    // this.addToHistory(`${parsedNumbers[0]} + ${parsedNumbers[1]} = ${result}`);
     return `${num1} + ${num2} = ${this.calculationResult}`;
     // 1. zamień wartości przekazane przez parametr na typ number
     // 2. sprawdź czy są one poprawne
@@ -53,21 +52,15 @@ Calculator.prototype.addToHistory = function(calc) {
     this.history.push(calc);
 }
 
-function checkingVariableType(arr) {
-    arr.forEach(function(num) {
-        if(typeof num !== "number") {
-            return 0;
-        } else {
-            return 1;
-        }
-    });
+function checkingVariableType(num) {
+    if(isNaN(num)) {
+        return 0;
+    }
     
 };
 
-function parsingToInt(number) {
-    if(isNaN(number)) {
-        return 0;
-    }
+function parsingToInt(number, check) {
+    check(number);
     return parseInt(number);
 }
 
@@ -82,35 +75,30 @@ do {
     action = prompt(promptContent);
     isCorrectAction = calc.isCorrectAction(action);
     if(isCorrectAction) {
-        number1 = parsingToInt(prompt('Podaj liczbę nr 1'));
-        number2 = parsingToInt(prompt('Podaj liczbę nr 2'));
-        console.log(typeof number1, typeof number2); 
+        number1 = parsingToInt(prompt('Podaj liczbę nr 1'), checkingVariableType);
+        number2 = parsingToInt(prompt('Podaj liczbę nr 2'), checkingVariableType);
         let calcResult = 0;
-        console.log(checkingVariableType([number1, number2]));
         if(number1 && number2) {
             switch(action) {
                 case "+":
                     calcResult = calc.add(number1, number2);
-                    // console.log(calc.getHistoryAsString());
                     break;
                 case "-":
                     calcResult = calc.subtraction(number1, number2);
                     break;
-            }
+                case "*":
+                    calcResult = calc.multiplication(number1, number2);
+                    break;
+                case "/":
+                    calcResult = calc.division(number1, number2);
+                    break;
+                case "^":
+                    calcResult = calc.exponentiation(number1, number2);
+                    break;
+            };
             calc.addToHistory(calcResult);
             console.log(calc.getCalculationResult());
         }
-
-        // if(action === '+') {
-            // calc.add(number1, number2);
-            // console.log(calc.getHistoryAsString());
-        // } else if(action === "-") {
-
-        // } else if(action === "*") {
-
-        // } else if(action === "/") {
-
-        // }
         
     }
     
