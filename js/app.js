@@ -13,10 +13,10 @@ Calculator.prototype.getHistoryAsString = function() {
 
 Calculator.prototype.add = function(num1, num2) {
 
-    const num1Int = parseInt(num1)
-    const num2Int = parseInt(num2)
+    const num1Int = Number(num1)
+    const num2Int = Number(num2)
 
-    const sum = num1 + num2
+    const sum = num1Int + num2Int
     return sum
 
     // 1. zamień wartości przekazane przez parametr na typ number
@@ -25,11 +25,72 @@ Calculator.prototype.add = function(num1, num2) {
     // 4. dodaj do historii operacji to działanie w formie: 1 + 1 = 2
 }
 
-console.log(Calculator.prototype.add(5,2))
+Calculator.prototype.sub = function(num1, num2) {
+
+    const num1Int = Number(num1)
+    const num2Int = Number(num2)
+
+    const sum = num1Int - num2Int
+    return sum
+
+}
+
+Calculator.prototype.multip = function(num1, num2) {
+
+    const num1Int = Number(num1)
+    const num2Int = Number(num2)
+
+    const sum = num1Int * num2Int
+    return sum
+    
+}
+
+Calculator.prototype.div = function(num1, num2) {
+
+    const num1Int = Number(num1)
+    const num2Int = Number(num2)
+
+    const sum = num1Int / num2Int
+
+    if(num2Int === 0) {
+        alert('Nie dziel przez 0!')
+    }
+
+    return sum
+
+}
+
+Calculator.prototype.exp = function(num1, num2) {
+
+
+    const num1Int = Number(num1)
+    const num2Int = Number(num2)
+
+    var sum = 1
+
+    for(let i=0; i<num2Int; i++) {
+
+        sum = sum * num1Int
+        
+    }
+    
+    console.log(sum)
+    return sum
+    
+}
+
+const x = '5'
+const y = 0
+
+console.log(Calculator.prototype.add(x,y))
+console.log(Calculator.prototype.sub(x,y))
+console.log(Calculator.prototype.multip(x,y))
+console.log(Calculator.prototype.div(x,y))
+console.log(Calculator.prototype.exp(x,y))
 
 const calc = new Calculator();
 
-let action, promptContent, isCorrectAction, inputNumber1, inputNumber2;
+let action, promptContent, isCorrectAction, number1, number2;
 
 do { 
     console.log("start pętli")
@@ -43,15 +104,8 @@ do {
 
     if(isCorrectAction) {
         
-        
-        inputNumber1 = prompt('Podaj liczbę nr 1');
-
-        inputNumber2 = prompt('Podaj liczbę nr 2');
-
-        let number1 = Number(inputNumber1)
-
-
-        let number2 = Number(inputNumber2)
+        number1 = prompt('Podaj liczbę nr 1');
+        number2 = prompt('Podaj liczbę nr 2');
 
         console.log(number1)
         console.log(number2)
@@ -79,8 +133,14 @@ do {
             calc.div(number1, number2);
         }
 
+        else if (action === '^') {
+            calc.exp(number1, number2);
+        }
+
+        console.log(calc.add(number1, number2))
+
     } else {
-        alert('end')
+        alert('Podałeś błędny operator! Spróbuj ponownie.')
     }
     
-} while(true);
+} while(calc.isCorrectAction(action));
