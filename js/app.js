@@ -80,7 +80,7 @@ Calculator.prototype.exp = function(num1, num2) {
 }
 
 const x = '5'
-const y = 0
+const y = 2
 
 console.log(Calculator.prototype.add(x,y))
 console.log(Calculator.prototype.sub(x,y))
@@ -116,25 +116,55 @@ do {
             if(addSummary) {
 
                 alert('Twój wynik to: ' + addSummary)
+                console.log(number1 + '+' + number2 + '=' + addSummary)
 
             } else alert('Podałeś błędną liczbę!')
 
         }
 
         else if(action === '-') {
-            calc.sub(number1, number2);
+            const addSummary = calc.sub(number1, number2);
+
+            if(addSummary) {
+
+                alert('Twój wynik to: ' + addSummary)
+
+
+            } else if(addSummary === 0) {
+
+                alert('Twój wynik to: ' + addSummary)
+
+            } else alert('Podałeś błędną liczbę!')
         }
 
         else if(action === '*') {
-            calc.multip(number1, number2);
+            const addSummary = calc.multip(number1, number2);
+
+            if(addSummary) {
+
+                alert('Twój wynik to: ' + addSummary)
+
+            } else alert('Podałeś błędną liczbę!')
         }
 
         else if (action === '/') {
-            calc.div(number1, number2);
+            const addSummary = calc.div(number1, number2);
+
+            if(addSummary) {
+
+                alert('Twój wynik to: ' + addSummary)
+
+            } else alert('Podałeś błędną liczbę!')
         }
 
         else if (action === '^') {
-            calc.exp(number1, number2);
+            const addSummary = calc.exp(number1, number2);
+
+            if(addSummary) {
+
+                alert('Twój wynik to: ' + addSummary)
+
+            } else alert('Podałeś błędną liczbę!')
         }
 
         console.log(calc.add(number1, number2))
