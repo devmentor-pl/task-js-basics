@@ -119,46 +119,63 @@ Calculator.prototype.exp = function(num1, num2) {
     } 
 }
 
-const calc = new Calculator();
+const calc = new Calculator()
 
-let action, promptContent, isCorrectAction, number1, number2;
+let action, promptContent, isCorrectAction, number1, number2
 
-do {
-    promptContent = 'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n';
-    promptContent += 'Jeśli chcesz zrezygnować wciśnij Anuluj. \n';
-    promptContent += 'Lista poprzednich operacji: \n' + calc.getHistoryAsString();
+do { 
+    promptContent = 'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n'
+    promptContent += 'Jeśli chcesz zrezygnować wciśnij Anuluj. \n'
+    promptContent += 'Lista poprzednich operacji: \n' + calc.getHistoryAsString()
 
     action = prompt(promptContent);
-    isCorrectAction = calc.isCorrectAction(action);
+    isCorrectAction = calc.isCorrectAction(action)
 
     if(isCorrectAction) {
         
-        number1 = prompt('Podaj liczbę nr 1');
-        number2 = prompt('Podaj liczbę nr 2');
+        number1 = prompt('Podaj liczbę nr 1')
+        number2 = prompt('Podaj liczbę nr 2')
 
         if(action === '+') {
             const addSummary = calc.add(number1, number2)
-            alert('Twój wynik to: ' + addSummary)
+            
+            if(addSummary) {
+                alert('Twój wynik to: ' + addSummary)
+            }
         }
 
         else if(action === '-') {
-            const addSummary = calc.sub(number1, number2);
-            alert('Twój wynik to: ' + addSummary)
+            const addSummary = calc.sub(number1, number2)
+
+            if(addSummary) {
+                alert('Twój wynik to: ' + addSummary)
+            } else if(addSummary === 0) {
+                alert('Twój wynik to: ' + addSummary)
+            }
         }
 
         else if(action === '*') {
-            const addSummary = calc.multip(number1, number2);
-            alert('Twój wynik to: ' + addSummary)
+            const addSummary = calc.multip(number1, number2)
+
+            if(addSummary) {
+                alert('Twój wynik to: ' + addSummary)
+            }
         }
 
         else if (action === '/') {
-            const addSummary = calc.div(number1, number2);
-            alert('Twój wynik to: ' + addSummary)
+            const addSummary = calc.div(number1, number2)
+
+            if(addSummary) {
+                alert('Twój wynik to: ' + addSummary)
+            }
         }
 
         else if (action === '^') {
-            const addSummary = calc.exp(number1, number2);
-            alert('Twój wynik to: ' + addSummary)
+            const addSummary = calc.exp(number1, number2)
+
+            if(addSummary) {
+                alert('Twój wynik to: ' + addSummary)
+            }
         }
 
     } else {
