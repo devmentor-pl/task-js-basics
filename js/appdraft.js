@@ -37,3 +37,5 @@ do {
     }
     
 } while(calc.isCorrectAction(action));
+
+console.log(calc)
