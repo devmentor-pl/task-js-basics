@@ -123,9 +123,7 @@ const calc = new Calculator();
 
 let action, promptContent, isCorrectAction, number1, number2;
 
-do { 
-    console.log("start pętli")
-
+do {
     promptContent = 'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n';
     promptContent += 'Jeśli chcesz zrezygnować wciśnij Anuluj. \n';
     promptContent += 'Lista poprzednich operacji: \n' + calc.getHistoryAsString();
