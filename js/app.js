@@ -12,54 +12,63 @@ Calculator.prototype.getHistoryAsString = function() {
 }
 
 Calculator.prototype.add = function(num1, num2) {
-
     const num1Int = Number(num1)
     const num2Int = Number(num2)
 
-    const sum = num1Int + num2Int
+    if(!isNaN(num1Int) && !isNaN(num2Int)) {
 
-    if(typeof this.history === 'undefined') {
-        this.history = []
+        const sum = num1Int + num2Int
+    
+        if(typeof this.history === 'undefined') {
+            this.history = []
+        }
+    
+        this.history.push(`${num1} + ${num2} = ${sum}`)
+        return sum
+
+    } else {
+        alert('Podałeś błędne dane!')
     }
-
-    this.history.push(`${num1} + ${num2} = ${sum}`)
-
-    return sum
-
 }
 
 Calculator.prototype.sub = function(num1, num2) {
-
     const num1Int = Number(num1)
     const num2Int = Number(num2)
 
-    const sum = num1Int - num2Int
+    if(!isNaN(num1Int) && !isNaN(num2Int)) {
 
-    if(typeof this.history === 'undefined') {
-        this.history = []
-    }
-
-    this.history.push(`${num1} - ${num2} = ${sum}`)
+        const sum = num1Int - num2Int
     
-    return sum
+        if(typeof this.history === 'undefined') {
+            this.history = []
+        }
+    
+        this.history.push(`${num1} - ${num2} = ${sum}`)
+        return sum
 
+    } else {
+        alert('Podałeś błędne dane!')
+    }
 }
 
 Calculator.prototype.multip = function(num1, num2) {
-
     const num1Int = Number(num1)
     const num2Int = Number(num2)
 
-    const sum = num1Int * num2Int
+    if(!isNaN(num1Int) && !isNaN(num2Int)) {
 
-    if(typeof this.history === 'undefined') {
-        this.history = []
-    }
-
-    this.history.push(`${num1} * ${num2} = ${sum}`)
-
-    return sum
+        const sum = num1Int * num2Int
     
+        if(typeof this.history === 'undefined') {
+            this.history = []
+        }
+    
+        this.history.push(`${num1} * ${num2} = ${sum}`)
+        return sum
+
+    } else {
+        alert('Podałeś błędne dane!')
+    }  
 }
 
 Calculator.prototype.div = function(num1, num2) {
@@ -67,34 +76,35 @@ Calculator.prototype.div = function(num1, num2) {
     const num1Int = Number(num1)
     const num2Int = Number(num2)
 
-    const sum = num1Int / num2Int
-
     if(num2Int === 0) {
         alert('Nie dziel przez 0!')
-    }
 
-    if(typeof this.history === 'undefined') {
-        this.history = []
-    }
+    } else if (!isNaN(num1Int) && !isNaN(num2Int)) {
 
-    this.history.push(`${num1} / ${num2} = ${sum}`)
-
-    return sum
-
+            const sum = num1Int / num2Int
+        
+            if(typeof this.history === 'undefined') {
+                this.history = []
+            }
+        
+            this.history.push(`${num1} / ${num2} = ${sum}`)
+            return sum
+    
+        } else {
+            alert('Podałeś błędne dane!')
+        }
 }
 
 Calculator.prototype.exp = function(num1, num2) {
-
-
     const num1Int = Number(num1)
     const num2Int = Number(num2)
 
-    var sum = 1
+    if(!isNaN(num1Int) && !isNaN(num2Int)) {
+
+        var sum = 1
 
     for(let i=0; i<num2Int; i++) {
-
         sum = sum * num1Int
-        
     }
     
     if(typeof this.history === 'undefined') {
@@ -102,19 +112,12 @@ Calculator.prototype.exp = function(num1, num2) {
     }
 
     this.history.push(`${num1} ^ ${num2} = ${sum}`)
-
     return sum
-    
+
+    } else {
+        alert('Podałeś błędne dane!')
+    } 
 }
-
-// const x = '5'
-// const y = 2
-
-// console.log(Calculator.prototype.add(x,y))
-// console.log(Calculator.prototype.sub(x,y))
-// console.log(Calculator.prototype.multip(x,y))
-// console.log(Calculator.prototype.div(x,y))
-// console.log(Calculator.prototype.exp(x,y))
 
 const calc = new Calculator();
 
@@ -135,70 +138,33 @@ do {
         number1 = prompt('Podaj liczbę nr 1');
         number2 = prompt('Podaj liczbę nr 2');
 
-        // console.log(number1)
-        // console.log(number2)
-
         if(action === '+') {
             const addSummary = calc.add(number1, number2)
-
-            if(addSummary) {
-
-                alert('Twój wynik to: ' + addSummary)
-                // console.log(number1 + '+' + number2 + '=' + addSummary)
-
-            } else alert('Podałeś błędną liczbę!')
-
+            alert('Twój wynik to: ' + addSummary)
         }
 
         else if(action === '-') {
             const addSummary = calc.sub(number1, number2);
-
-            if(addSummary) {
-
-                alert('Twój wynik to: ' + addSummary)
-
-
-            } else if(addSummary === 0) {
-
-                alert('Twój wynik to: ' + addSummary)
-
-            } else alert('Podałeś błędną liczbę!')
+            alert('Twój wynik to: ' + addSummary)
         }
 
         else if(action === '*') {
             const addSummary = calc.multip(number1, number2);
-
-            if(addSummary) {
-
-                alert('Twój wynik to: ' + addSummary)
-
-            } else alert('Podałeś błędną liczbę!')
+            alert('Twój wynik to: ' + addSummary)
         }
 
         else if (action === '/') {
             const addSummary = calc.div(number1, number2);
-
-            if(addSummary) {
-
-                alert('Twój wynik to: ' + addSummary)
-
-            } else alert('Podałeś błędną liczbę!')
+            alert('Twój wynik to: ' + addSummary)
         }
 
         else if (action === '^') {
             const addSummary = calc.exp(number1, number2);
-
-            if(addSummary) {
-
-                alert('Twój wynik to: ' + addSummary)
-
-            } else alert('Podałeś błędną liczbę!')
+            alert('Twój wynik to: ' + addSummary)
         }
-
-        // console.log(calc.add(number1, number2))
 
     } else {
         alert('Podałeś błędny operator! Spróbuj ponownie.')
     }
     
-} while(calc.isCorrectAction(action));
+} while(calc.isCorrectAction(action))
