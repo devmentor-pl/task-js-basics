@@ -1,3 +1,7 @@
+// MY NOTES:
+// I know I can refactor my code changing Calculator.prototype.action functions:
+// In future I want to remove if(!isNaN(num1).... to loop do...while to cut the code ---- I think it is not nesesery to write this 5 times in action functions)
+
 function Calculator() {
     this.actions = ['+', '-', '*', '/', '^'];
     this.history = [];
@@ -12,28 +16,176 @@ Calculator.prototype.getHistoryAsString = function() {
 }
 
 Calculator.prototype.add = function(num1, num2) {
-    // 1. zamień wartości przekazane przez parametr na typ number
-    // 2. sprawdź czy są one poprawne
-    // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
-    // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
+    const num1Int = Number(num1)
+    const num2Int = Number(num2)
+
+    if(!isNaN(num1Int) && !isNaN(num2Int)) {
+
+        const sum = num1Int + num2Int
+    
+        if(typeof this.history === 'undefined') {
+            this.history = []
+        }
+    
+        this.history.push(`${num1} + ${num2} = ${sum}`)
+        return sum
+
+    } else {
+        alert('Podałeś błędne dane!')
+    }
 }
 
-const calc = new Calculator();
-let action, promptContent, isCorrectAction, number1, number2;
-do { 
-    promptContent = 'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n'; // \n - znak nowej linii
-    promptContent += 'Jeśli chcesz zrezygnować wciśnij Anuluj. \n';
-    promptContent += 'Lista poprzednich operacji: \n' + calc.getHistoryAsString();
+Calculator.prototype.sub = function(num1, num2) {
+    const num1Int = Number(num1)
+    const num2Int = Number(num2)
 
-    action = prompt(promptContent);
-    isCorrectAction = calc.isCorrectAction(action);
-    if(isCorrectAction) {
-        number1 = prompt('Podaj liczbę nr 1');
-        number2 = prompt('Podaj liczbę nr 2');
+    if(!isNaN(num1Int) && !isNaN(num2Int)) {
 
-        if(action === '+') {
-            calc.add(number1, number2);
+        const sum = num1Int - num2Int
+    
+        if(typeof this.history === 'undefined') {
+            this.history = []
         }
+    
+        this.history.push(`${num1} - ${num2} = ${sum}`)
+        return sum
+
+    } else {
+        alert('Podałeś błędne dane!')
+    }
+}
+
+Calculator.prototype.multip = function(num1, num2) {
+    const num1Int = Number(num1)
+    const num2Int = Number(num2)
+
+    if(!isNaN(num1Int) && !isNaN(num2Int)) {
+
+        const sum = num1Int * num2Int
+    
+        if(typeof this.history === 'undefined') {
+            this.history = []
+        }
+    
+        this.history.push(`${num1} * ${num2} = ${sum}`)
+        return sum
+
+    } else {
+        alert('Podałeś błędne dane!')
+    }  
+}
+
+Calculator.prototype.div = function(num1, num2) {
+
+    const num1Int = Number(num1)
+    const num2Int = Number(num2)
+
+    if(num2Int === 0) {
+        alert('Nie dziel przez 0!')
+
+    } else if (!isNaN(num1Int) && !isNaN(num2Int)) {
+
+            const sum = num1Int / num2Int
+        
+            if(typeof this.history === 'undefined') {
+                this.history = []
+            }
+        
+            this.history.push(`${num1} / ${num2} = ${sum}`)
+            return sum
+    
+        } else {
+            alert('Podałeś błędne dane!')
+        }
+}
+
+Calculator.prototype.exp = function(num1, num2) {
+    const num1Int = Number(num1)
+    const num2Int = Number(num2)
+
+    if(!isNaN(num1Int) && !isNaN(num2Int)) {
+
+        var sum = 1
+
+    for(let i=0; i<num2Int; i++) {
+        sum = sum * num1Int
     }
     
-} while(calc.isCorrectAction(action));
+    if(typeof this.history === 'undefined') {
+        this.history = []
+    }
+
+    this.history.push(`${num1} ^ ${num2} = ${sum}`)
+    return sum
+
+    } else {
+        alert('Podałeś błędne dane!')
+    } 
+}
+
+const calc = new Calculator()
+
+let action, promptContent, isCorrectAction, number1, number2
+
+do { 
+    promptContent = 'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n'
+    promptContent += 'Jeśli chcesz zrezygnować wciśnij Anuluj. \n'
+    promptContent += 'Lista poprzednich operacji: \n' + calc.getHistoryAsString()
+
+    action = prompt(promptContent);
+    isCorrectAction = calc.isCorrectAction(action)
+
+    if(isCorrectAction) {
+        
+        number1 = prompt('Podaj liczbę nr 1')
+        number2 = prompt('Podaj liczbę nr 2')
+
+        if(action === '+') {
+            const addSummary = calc.add(number1, number2)
+            
+            if(addSummary) {
+                alert('Twój wynik to: ' + addSummary)
+            }
+        }
+
+        else if(action === '-') {
+            const addSummary = calc.sub(number1, number2)
+
+            if(addSummary) {
+                alert('Twój wynik to: ' + addSummary)
+            } else if(addSummary === 0) {
+                alert('Twój wynik to: ' + addSummary)
+            }
+        }
+
+        else if(action === '*') {
+            const addSummary = calc.multip(number1, number2)
+
+            if(addSummary) {
+                alert('Twój wynik to: ' + addSummary)
+            }
+        }
+
+        else if (action === '/') {
+            const addSummary = calc.div(number1, number2)
+
+            if(addSummary) {
+                alert('Twój wynik to: ' + addSummary)
+            }
+        }
+
+        else if (action === '^') {
+            const addSummary = calc.exp(number1, number2)
+
+            if(addSummary) {
+                alert('Twój wynik to: ' + addSummary)
+            }
+        }
+
+    } else {
+        alert('Podałeś błędny operator! Spróbuj ponownie.')
+    }
+    
+} while(calc.isCorrectAction(action))
+
+// FINISHED AFTER CHECKING PROGRAM 
