@@ -1,3 +1,7 @@
+// MY NOTES:
+// I know I can refactor my code changing Calculator.prototype.action functions:
+// In future I want to remove if(!isNaN(num1).... to loop do...while to cut the code ---- I think it is not nesesery to write this 5 times in action functions)
+
 function Calculator() {
     this.actions = ['+', '-', '*', '/', '^'];
     this.history = [];
@@ -183,3 +187,5 @@ do {
     }
     
 } while(calc.isCorrectAction(action))
+
+// FINISHED AFTER CHECKING PROGRAM 
