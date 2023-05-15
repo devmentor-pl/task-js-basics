@@ -26,6 +26,9 @@ Calculator.prototype.multiply = function (num1, num2) {
 	this.history.push(multiplyResult)
 }
 Calculator.prototype.divide = function (num1, num2) {
+	if(num1 === 0 || num2===0){
+		alert('Pamiętaj że nie dzielimy przez 0, i Twój wynik będzie nie poprawny.')
+	}
 	let divide = num1 / num2
 	let divStringResult = `${num1} / ${num2} = ${divide}`
 	this.history.push(divStringResult)
