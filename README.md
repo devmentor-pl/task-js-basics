@@ -5,7 +5,8 @@
 This project was created to develop and improve my basics skills in JavaScript.
 
 To use this calculator, you have to follow the directions shown in prompt box.
-(./calculator.png)
+
+[screen](./calculator.png)
 First of all, you have tu choose which operation you want to perform by selecting appropriate symbol, i.e.:
 
 &nbsp;
