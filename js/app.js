@@ -86,17 +86,8 @@ Calculator.prototype.init = function () {
             number1 = prompt('Podaj liczbę nr 1');
             number2 = prompt('Podaj liczbę nr 2');
 
-            if (action === '+') {
-                this.count(number1, number2, "+");
-            } else if (action === "-") {
-                this.count(number1, number2, "-")
-            } else if (action === "*") {
-                this.count(number1, number2, "*")
-            } else if (action === "/") {
-                this.count(number1, number2, "/")
-            } else if (action === "^") {
-                this.count(number1, number2, "^")
-            }
+            this.count(number1, number2, action)
+
         }
 
     } while (this.isCorrectAction(action));
