@@ -56,6 +56,9 @@ Calculator.prototype.count = function (num1, num2, sign) {
             result = number1 * number2
             break
         case '/':
+            if (number2 === 0) {
+                return alert("'Pamiętaj cholero, nie dziel przez 0!' :)")
+            }
             result = number1 / number2
             break
         case '^':
