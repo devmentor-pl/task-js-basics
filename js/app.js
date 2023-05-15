@@ -24,17 +24,17 @@ Calculator.prototype.countPower = function (num1, num2) {
 }
 
 Calculator.prototype.addToHistory = function (num1, num2, sign, result) {
+    if (result === false) {
+        alert("'Pamiętaj cholero, nigdy nie dziel przez 0!' :)")
+        return
+    }
+
     this.history.push(`${num1} ${sign} ${num2} = ${result}`)
 
     alert('Wynik działania to: ' + result)
 }
 
 Calculator.prototype.count = function (num1, num2, sign) {
-    // 1. zamień wartości przekazane przez parametr na typ number
-    // 2. sprawdź czy są one poprawne
-    // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
-    // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
-
     const number1 = Number(num1)
     const number2 = Number(num2)
 
@@ -45,26 +45,15 @@ Calculator.prototype.count = function (num1, num2, sign) {
 
     let result
 
-    switch (sign) {
-        case '+':
-            result = number1 + number2
-            break
-        case '-':
-            result = number1 - number2
-            break
-        case '*':
-            result = number1 * number2
-            break
-        case '/':
-            if (number2 === 0) {
-                return alert("'Pamiętaj cholero, nie dziel przez 0!' :)")
-            }
-            result = number1 / number2
-            break
-        case '^':
-            result = this.countPower(number1, number2)
-            break
+    const actions = {
+        '+': number1 + number2,
+        '-': number1 - number2,
+        '*': number1 * number2,
+        '/': number2 !== 0 ? number1 / number2 : false,
+        '^': this.countPower(number1, number2),
     }
+
+    result = actions[sign]
 
     this.addToHistory(number1, number2, sign, result)
 
