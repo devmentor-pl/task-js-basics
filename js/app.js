@@ -51,16 +51,19 @@ Calculator.prototype.div = function(num1, num2) {
 }
 
 Calculator.prototype.pow = function(num1, num2) {
-  let hist = num1;
-  let n = `${num1}`;
-  let result = num1;
-  for (let i = 1; i < num2; i++) {
-    hist = hist + ` * ${n}`;
-    result = result * n
-  } return calc.history.push(`${hist} = ${result}`);
+  let result = 1;
+  if (isNumber(num1, num2)) {
+    if (num2 === 0) {
+      return calc.history.push(`${num1} ^ ${num2} = ${result}`);
+    }
+
+    for (let i = 1; i < num2; i++) {
+      result *= num1;
+      } return calc.history.push(`${num1} ^ ${num2} = ${result}`);
+  } else return calc.history.push(`Podałeś wartości nie będące cyframi`);   
 }
 
-function isNumber (num1, num2) { 
+function isNumber(num1, num2) { 
   if ( isNaN(num1) || isNaN(num2)) {
     return false;
   } else return true;
