@@ -51,16 +51,16 @@ Calculator.prototype.divide = function(num1, num2) {
 }
 
 Calculator.prototype.power = function(num1, num2) {
-    if(num2 !== 0 && num2 !== 1) {
+    if (num2 === 0) {
+        this.history.push(`${num1} ^ ${num2} = 1`)
+    } else if (num2 === 1) {
+        this.history.push(`${num1} ^ ${num2} = ${num1}`)
+    } else {
         let result = 1;
         for (let i = 0; i < num2; i++) {
             result *= num1;
         }
         this.history.push(`${num1} ^ ${num2} = ${result}`);
-    } else if (num2 === 0) {
-        this.history.push(`${num1} ^ ${num2} = 1`)
-    } else if (num2 === 1) {
-        this.history.push(`${num1} ^ ${num2} = ${num1}`)
     }
 }
 
