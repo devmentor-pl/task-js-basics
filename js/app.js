@@ -13,7 +13,6 @@ function Calculator() {
 }
 
 Calculator.prototype.isCorrectAction = function (action) {
-  console.log(Object.keys(this.actions));
   return Object.keys(this.actions).includes(action);
 };
 
