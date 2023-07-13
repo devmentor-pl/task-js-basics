@@ -2,12 +2,19 @@ import Validation from "./Validation/Validation.js";
 import { parseParams } from "./utils.js";
 
 function Calculator() {
-  this.actions = ["+", "-", "*", "/", "^"];
+  this.actions = {
+    "+": this.add,
+    "-": this.subtract,
+    "*": this.multiply,
+    "/": this.divide,
+    "^": this.pow,
+  };
   this.history = [];
 }
 
 Calculator.prototype.isCorrectAction = function (action) {
-  return this.actions.includes(action);
+  console.log(Object.keys(this.actions));
+  return Object.keys(this.actions).includes(action);
 };
 
 Calculator.prototype.getHistoryAsString = function () {
@@ -75,31 +82,6 @@ do {
     number1 = prompt("Podaj liczbę nr 1");
     number2 = prompt("Podaj liczbę nr 2");
 
-    const operations = {
-      "+": calc.add,
-      "-": calc.subtract,
-      "*": calc.multiply,
-      "/": calc.divide,
-      "^": calc.pow,
-    };
-
-    operations[action].call(calc, number1, number2);
-
-    // switch (action) {
-    //   case "+":
-    //     calc.add(number1, number2);
-    //     break;
-    //   case "-":
-    //     calc.subtract(number1, number2);
-    //     break;
-    //   case "*":
-    //     calc.multiply(number1, number2);
-    //     break;
-    //   case "/":
-    //     calc.divide(number1, number2);
-    //     break;
-    //   case "^":
-    //     calc.pow(number1, number2);
-    // }
+    calc.actions[action].call(calc, number1, number2);
   }
 } while (calc.isCorrectAction(action));
