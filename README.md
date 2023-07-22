@@ -1,39 +1,40 @@
-> ⭐ ***README** to coś więcej niż opis. Poprzez nie **pokazujesz swoje mocne strony** – swoją dokładność, sposób myślenia i podejście do rozwiązywania problemów. Niech Twoje README pokaże, że masz **świetne predyspozycje do rozwoju!***
-> 
-> 🎁 *Zacznij od razu. Skorzystaj z **[szablonu README i wskazówek](https://github.com/devmentor-pl/readme-template)**.* 
+➕➖✖➗
+# JavaScript Calculator
+&nbsp;
+🧑‍💻 
+This project was created to develop and improve my basics skills in JavaScript.
+
+To use this calculator, you have to follow the directions shown in prompt box.
+
+![screen](./calculator.png)
+First of all, you have tu choose which operation you want to perform by selecting appropriate symbol, i.e.:
 
 &nbsp;
-
-
-# JavaScript: Podstawy
-
-Twoim zadaniem będzie dopisanie do istniejącego kodu niezbędnych elementów, które pozwolą wykonywać obliczenia oraz przechowywać historię wykonanych operacji.
-
-Nasz **kalkulator** powinien posiadać następujące opcje:
-
-* dodawanie (+)
-* odejmowanie (-)
-* mnożenie (*)
-* dzielenie (/)
-* potęgowanie (^) – wykonaj to przy pomocy pętli, nie korzystaj z `Math.pow()`.
-
-Gdy otworzysz plik `./js/app.js`, to zauważysz, że mamy tam już gotowy konstruktor o nazwie `Calculator`, który musimy uzupełnić odpowiednimi metodami.
-
-Wzoruj się na metodzie `Calculator.prototype.add`, w której znajdziesz rozpiskę kolejnych kroków do wykonania.
-
-We naszym pliku `app.js` wykorzystujemy również pętlę [do...while](https://developer.mozilla.org/pl/docs/Web/JavaScript/Referencje/Polecenia/do...while), która w swoim wnętrzu pobiera dane od użytkownika. Na ich podstawie wykonywane są dalsze czynności. 
-
-To tam należy dopisać kilka instrukcji `if` oraz wywołać odpowiednie metody.
-
-## Refaktoryzacja ([definicja](https://pl.wikipedia.org/wiki/Refaktoryzacja))
-
-Po napisaniu programu (lub jego części) zastanów się, czy możesz go usprawnić, np. zwiększyć czytelności kodu lub usunąć powielone operacje i zastąpić je funkcją. Zrób to przed wykonaniem *Pull Requesta*.
-
-Refaktoryzacja to jedno z najważniejszych działań podczas procesu wytwarzania oprogramowania. Początkujący programiści często o niej zapominają.
-
-
++ (to add numbers);
+- (to subtract numbers);
+* (to multiply numbers);
+\ (to divide numbers);
+^ (to raise to a given power)
 &nbsp;
 
-> ⭐ ***README** to coś więcej niż opis. Poprzez nie **pokazujesz swoje mocne strony** – swoją dokładność, sposób myślenia i podejście do rozwiązywania problemów. Niech Twoje README pokaże, że masz **świetne predyspozycje do rozwoju!***
-> 
-> 🎁 *Zacznij od razu. Skorzystaj z **[szablonu README i wskazówek](https://github.com/devmentor-pl/readme-template)**.* 
+Secondly, you have to select a first and second number between 0 and 9.
+
+
+
+After this, you will see your operations in the prompt box as history of your operations.
+&nbsp;
+
+🙊
+## Difficulties
+The hardest part was to come up with safeguards for the user in the event of attempts to enter incorrect data
+&nbsp;
+
+🙋‍♂️
+## Feel free to contact me
+
+Github - Mike161pl (https://github.com/Mike161pl)
+LinkedIn - [@Michał Plaszczak](https://www.linkedin.com/in/michal-plaszczak/)
+&nbsp;
+
+🤝**Thanks** 🤝
+Thanks to my Mentor - devmentor.pl - for providing me with this task and for code review.
