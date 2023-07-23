@@ -32,15 +32,21 @@ Calculator.prototype.calculate = function (num1, num2) {
       return resultMultiplication;
     }
     case "/": {
-      const result = num1 / num2;
-      const resultDivision = `${num1} / ${num2} = ${result}`;
-      this.history.push(resultDivision);
-      return resultDivision;
+      if (num2 === 0) {
+        alert("NIE DZIELIMY PRZEZ 0!!!");
+      } else {
+        const result = num1 / num2;
+        const resultDivision = `${num1} / ${num2} = ${result}`;
+        this.history.push(resultDivision);
+        return resultDivision;
+      }
     }
     case "^": {
-      const result = num1 ** num2;
+      let result = num1 ** num2;
       let string = "";
-      if (num1 > 0 && num2 > 0 && num1 < 10 && num2 < 10) {
+      if (num2 === 0) {
+        result = 1;
+      } else {
         for (let i = 0; i < num2; i++) {
           if (i === 0) {
             string += `${num1}`;
@@ -51,8 +57,6 @@ Calculator.prototype.calculate = function (num1, num2) {
         const resultExponent = `${string} = ${result}`;
         this.history.push(resultExponent);
         return resultExponent;
-      } else {
-        console.log("Wybierz liczby z przedziału od 1 - 9");
       }
     }
   }
