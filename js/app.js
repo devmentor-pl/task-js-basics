@@ -1,5 +1,4 @@
 function Calculator() {
-  // this.actions = ["+", "-", "*", "/", "^"];
   this.actions = {
     '+': this.add,
     '-': this.subtract,
@@ -10,9 +9,12 @@ function Calculator() {
   this.history = [];
 }
 
-Calculator.prototype.isCorrectAction = function (action) {
-    // return this.actions.includes(action)
-    return this.actions[action]
+Calculator.prototype.getActionMethod = function (action) {
+  if(typeof this.actions[action] === 'undefined') {
+    return null;
+  }
+
+  return this.actions[action];
 };
 
 Calculator.prototype.getHistoryAsString = function () {
@@ -68,7 +70,7 @@ Calculator.prototype.exponentiation = function (num1, num2) {
 
 const calc = new Calculator();
 
-let action, promptContent, isCorrectAction, number1, number2;
+let action, promptContent, actionMethod, number1, number2;
 do {
   promptContent =
     "Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n"; // \n - znak nowej linii
@@ -78,30 +80,19 @@ do {
   action = prompt(promptContent);
 
 
-  isCorrectAction = calc.isCorrectAction(action);
+  actionMethod = calc.getActionMethod(action);
 
-  if (isCorrectAction) {
+ 
+  if ( actionMethod) {
     number1 = parseInt(prompt("Podaj liczbę nr 1"));
     number2 = parseInt(prompt("Podaj liczbę nr 2"));
     if (!isNaN(number1) && !isNaN(number2)) {
 
-      if (action === '+') {
-         calc.add(number1, number2);
-      }
-      if (action === '-') {
-        calc.subtract(number1, number2);
-      }
-      if (action === '*') {
-        calc.multiply(number1, number2);
-      }
-      if (action === '/') {
-        calc.divide(number1, number2)
-      }
-      if (action === '^') {
-        calc.exponentiation(number1, number2)
-      }
+
+      const fn = actionMethod.bind(calc);
+      fn(number1, number2);
     } else {
       console.log("Nie podałeś liczby, Spróbuj jeszcze raz!");
     }
   }
-} while (calc.isCorrectAction(action));
+} while (calc.getActionMethod(action));
