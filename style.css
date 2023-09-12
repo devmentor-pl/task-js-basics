@@ -1,0 +1,24 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main {
+    display: grid;
+    grid-template-columns: repeat(5, 100px);
+    grid-template-rows: repeat(5, 100px);
+}
+
+.main > div {
+    width: 10px;
+    height: 10px;
+    background-color: #FFA500;
+}
+
+.prompt  {
+    width: 300px;
+    height: 500px;
+    background: black;
+    color: #FFA500;
+}
