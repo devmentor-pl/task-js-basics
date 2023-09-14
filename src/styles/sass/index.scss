@@ -1,5 +1,6 @@
 @import 'base';
 
+
 body {
     box-sizing: border-box;
     padding: 3rem;
@@ -8,19 +9,22 @@ body {
 header {
     height: 95vh;
     position: relative;
-    background-color: rgb(154, 243, 243);
+    background-color:$color-turcoise-light;
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 64%, 0% 100%);
     clip-path: polygon(0 0, 100% 0, 100% 64%, 0% 100%);
+
     .header__text-box {
         position: absolute;
         top: 40%;
         left: 50%;
         transform: translate(-50%, -50%);
         text-align: center;
+
         .heading {
             color: #fff;
             text-transform: uppercase;
             margin-bottom: 6rem;
+
             &--main {
                 display: block;
                 font-size: 3rem;
@@ -31,6 +35,7 @@ header {
                 animation-timing-function: ease-out;
                 margin-bottom: 3rem;
             }
+
             &--sub {
                 display: block;
                 font-size: 1rem;
@@ -38,45 +43,121 @@ header {
                 letter-spacing: 1rem;
             }
         }
+
         button {
             border: none;
-           text-align: center;
-           text-transform: uppercase;
-           width: 200px;
-           height: 60px;
+            text-align: center;
+            text-transform: uppercase;
+            width: 200px;
+            height: 60px;
             font-size: 1.2rem;
             font-weight: 600;
-           letter-spacing: 1rem;
-           border-radius: 10px;
-           color: white;
-            background-color: bisque;
-        }
+            letter-spacing: 1rem;
+            border-radius: 10px;
+            color: white;
+            background-color: $color-bisque;
         }
     }
+}
 
 
 .main {
-   display: flex;
+    display: flex;
     justify-content: center;
-    align-items: center; 
-   
+    align-items: center;
+
 }
 
-.container {
+.results {
     display: grid;
     grid-template-columns: 300px;
-    grid-template-rows: repeat(5, 100px);
+    grid-template-rows: repeat(5, 1fr);
+
+    &__list {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 40px);
+        grid-gap: 20px;
+        margin-bottom: 2rem;
+      
+    }
+
+    &__element {
+        background-color: $color-bisque;
+        border: 3px solid $color-orange;
+        list-style: none;
+        
+        grid-row: 1/2;
+    }
+
+    &__element--last {
+      grid-row: 2/3;
+      grid-column: 1/4;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &__text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        grid-column: 1/5;
+    }
+
 }
 
-.outer-div {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    grid-gap: 20px;
-    margin-bottom: 2rem;
+.results__element--last {
+ align-self: center;
 }
 
-.inner-div {
-    background-color: bisque;
-    border: 3px solid orange;
+
+
+
+
+$hrs: pony horse mini-horse maxi-pony;
+
+[class^="horses"] {
+  padding: 30px;
+  float: left;
+  margin-right: 20px;
+  background: Cyan;
 }
+
+.horses-first {
+  &:after {
+    content: "first($hrs) = #{first($hrs)}";
+  }
+}
+
+.horses-nth-1 {
+    &:after {
+      content: "nth($hrs, 1) = #{nth($hrs, 1)}";
+    }
+  }
+  
+  .horses-nth-2 {
+    &:after {
+      content: "nth($hrs, -1) = #{nth($hrs, -1)}";
+    }
+  }
+
+  @for $i from 1 through length($hrs) {
+    .horses-#{$i} {
+        border:3px solid pink;
+      &:after {
+        content: "#{$i}. #{nth($hrs, $i)}";
+      }
+    }
+  }
+
+  code {
+    display: block;
+  }
+  
+  .clear {
+    clear: both;
+    margin: 0;
+  }

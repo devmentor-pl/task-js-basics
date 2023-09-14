@@ -71,23 +71,98 @@ header .header__text-box button {
   align-items: center;
 }
 
-.container {
+.results {
   display: grid;
   grid-template-columns: 300px;
-  grid-template-rows: repeat(5, 100px);
+  grid-template-rows: repeat(5, 1fr);
 }
-
-.outer-div {
+.results__list {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 40px);
   grid-gap: 20px;
   margin-bottom: 2rem;
 }
-
-.inner-div {
+.results__element {
   background-color: bisque;
   border: 3px solid orange;
+  list-style: none;
+  grid-row: 1/2;
+}
+.results__element--last {
+  grid-row: 2/3;
+  grid-column: 1/4;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.results__text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-column: 1/5;
+}
+
+.results__element--last {
+  align-self: center;
+}
+
+[class^=horses] {
+  padding: 30px;
+  float: left;
+  margin-right: 20px;
+  background: Cyan;
+}
+
+.horses-first:after {
+  content: "first($hrs) = first(pony horse mini-horse maxi-pony)";
+}
+
+.horses-nth-1:after {
+  content: "nth($hrs, 1) = pony";
+}
+
+.horses-nth-2:after {
+  content: "nth($hrs, -1) = maxi-pony";
+}
+
+.horses-1 {
+  border: 3px solid pink;
+}
+.horses-1:after {
+  content: "1. pony";
+}
+
+.horses-2 {
+  border: 3px solid pink;
+}
+.horses-2:after {
+  content: "2. horse";
+}
+
+.horses-3 {
+  border: 3px solid pink;
+}
+.horses-3:after {
+  content: "3. mini-horse";
+}
+
+.horses-4 {
+  border: 3px solid pink;
+}
+.horses-4:after {
+  content: "4. maxi-pony";
+}
+
+code {
+  display: block;
+}
+
+.clear {
+  clear: both;
+  margin: 0;
 }
 
 /*# sourceMappingURL=index.css.map */

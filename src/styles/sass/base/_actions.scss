@@ -1,0 +1,10 @@
+$hrs: add3, minus, multiply5, divide, power;
+
+@for $i from 1 through length($hrs) {
+    .horses-#{$i} {
+      &:after {
+        content: "#{$i}. #{nth($hrs, $i)}";
+      }
+    }
+  }
+

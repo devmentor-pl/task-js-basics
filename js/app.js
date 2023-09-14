@@ -1,13 +1,13 @@
 
 import { Calculator } from "./Calculator.js";
-import { createDivs } from "./Container.js";
-import { createText } from "./Container.js";
+import { createContainer } from "./Container.js";
 import { putText } from "./Container.js";
-const text = ['add', 'minus', 'multiply', 'divide', 'power']
 
-createDivs()
-createText()
-putText(text)
+const calculateActions = ['add', 'minus', 'multiply', 'divide', 'power']
+
+createContainer()
+putText(calculateActions)
+
 
 let action, promptContent, isCorrectAction, number1, number2;
 
