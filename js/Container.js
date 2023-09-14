@@ -29,7 +29,8 @@ export function putText(array) {
             if (index < array.length) {
                 el.textContent = array[index]
                 el.classList.add('results__element--last')
-                // .appendChild(el)
+                el.classList.add('results__element')
+                el.setAttribute('id', array[index])
             }
         })
    

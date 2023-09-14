@@ -1,0 +1,48 @@
+export class Timer {
+    constructor() {
+        this.seconds = 0;
+        this.interval = null;
+
+        this.timerElement = document.getElementById("timer");
+        document.getElementById("start").addEventListener("click", () => this.start());
+        document.getElementById("stop").addEventListener("click", () => this.stop());
+        document.getElementById("reset").addEventListener("click", () => this.reset());
+    }
+    start() {
+        if (!this.interval) {
+            this.interval = setInterval(() => this.updateTimer(), 1000);
+        }
+    }
+
+    stop() {
+        clearInterval(this.interval);
+        this.interval = null;
+    }
+
+    reset() {
+        this.stop();
+        this.seconds = 0;
+        this.updateTimer();
+    }
+
+ 
+    updateTimer() {
+        const minutes = Math.floor(this.seconds / 60);
+        const seconds = this.seconds % 60;
+        this.timerElement.textContent =
+            this.pad(minutes, 2) + ":" +
+            this.pad(seconds, 2);
+        this.seconds++;
+    }
+
+    pad(num, size) {
+        let s = num.toString();
+        while (s.length < size) {
+            s = "0" + s;
+        }
+        return s;
+    }
+}
+
+
+
