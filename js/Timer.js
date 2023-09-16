@@ -4,14 +4,20 @@ export class Timer {
         this.interval = null;
 
         this.timerElement = document.getElementById("timer");
+        this.startElement = document.querySelector(".buttonStart");
         document.getElementById("start").addEventListener("click", () => this.start());
         document.getElementById("stop").addEventListener("click", () => this.stop());
         document.getElementById("reset").addEventListener("click", () => this.reset());
     }
+
+    run() {
+        this.startElement.addEventListener("click", () => this.start());
+    }
     start() {
-        if (!this.interval) {
-            this.interval = setInterval(() => this.updateTimer(), 1000);
-        }
+        // if (!this.interval) {
+        //     this.interval = setInterval(() => this.updateTimer(),1000);
+        // }
+        this.updateTimer()
     }
 
     stop() {
