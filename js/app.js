@@ -13,13 +13,14 @@ let action, promptContent, isCorrectAction, number1, number2;
 
 
 const buttonStart = document.querySelector('.buttonStart')
-   
+    const calc = new Calculator();
+ calc.run(calc)
+
 
 buttonStart.addEventListener('click', function(el) {
     const timer = new Timer();
     timer.start()
- const calc = new Calculator();
- calc.start(calc)
+
   
     // do { 
     //     promptContent = 'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n'; // \n - znak nowej linii

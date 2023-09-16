@@ -7,10 +7,13 @@ export class Calculator {
         this.interval = null;
 
         this.startElement = document.querySelector(".buttonStart");
-        document.getElementById("start").addEventListener("click", () => this.start());
-        document.getElementById("stop").addEventListener("click", () => this.stop());
-        document.getElementById("reset").addEventListener("click", () => this.reset());
+    
+
     }
+run(calc) {
+    this.startElement.addEventListener("click", () => this.start(calc));
+}
+   
     isCorrectAction(action) {
         return this.actions.includes(action);
     }
@@ -124,6 +127,7 @@ result =  num1 * num2
     power() {
         alert('power')
     }
+
 
   
  
