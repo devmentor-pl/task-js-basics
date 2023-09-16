@@ -6,7 +6,7 @@ export function createContainer() {
         const outerDiv = document.createElement("ul");
         outerDiv.classList.add("results__list");
 
-        for (let j = 0; j < 3; j++) {
+        for (let j = 0; j < 2; j++) {
             const innerDiv = document.createElement("li");
             innerDiv.classList.add("results__element");
             outerDiv.appendChild(innerDiv);

@@ -11,11 +11,24 @@ putText(calculateActions)
 
 
 
+ const calc = new Calculator();
+calc.run(calc)
 
-    const calc = new Calculator();
- calc.run(calc)
+const timer = new Timer()
+timer.run(timer)
 
-    const timer = new Timer();
-    timer.run(timer)
+
+ 
+
+      
+     
+      
+
+      
+      
+      
+      
+      
+      
 
 

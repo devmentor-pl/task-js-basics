@@ -51,6 +51,13 @@ header .header__text-box .heading--sub {
   font-weight: 700;
   letter-spacing: 1rem;
 }
+header .header__text-box .heading--name {
+  display: block;
+  height: 30px;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 1rem;
+}
 header .header__text-box button {
   border: none;
   text-align: center;

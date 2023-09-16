@@ -13,11 +13,12 @@ export class Timer {
     run() {
         this.startElement.addEventListener("click", () => this.start());
     }
+
     start() {
-        // if (!this.interval) {
-        //     this.interval = setInterval(() => this.updateTimer(),1000);
-        // }
-        this.updateTimer()
+        if (!this.interval) {
+            this.interval = setInterval(() => this.updateTimer(),1000);
+        }
+   
     }
 
     stop() {
@@ -33,6 +34,7 @@ export class Timer {
 
  
     updateTimer() {
+     
         const minutes = Math.floor(this.seconds / 60);
         const seconds = this.seconds % 60;
         this.timerElement.textContent =

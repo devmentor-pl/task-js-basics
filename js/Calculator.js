@@ -10,9 +10,16 @@ export class Calculator {
     
 
     }
-run(calc) {
-    this.startElement.addEventListener("click", () => this.start(calc));
-}
+    run(calc) {
+        this.startElement.addEventListener("click", () => this.start(calc));
+    }
+
+    isCorrectName(greeting) {
+        console.log('correct')
+        const name = document.querySelector('.heading--name');
+name.textContent = greeting
+return name
+    }
    
     isCorrectAction(action) {
         return this.actions.includes(action);
@@ -65,18 +72,27 @@ run(calc) {
      this.addHistory.push(result)
 
      const pairedArray = [];
+     console.log(pairedArray)
 
 
        for (let i = 0; i < this.addHistory.length; i++) {
         pairedArray.push({ item: this.addHistory[i], value: arrayli[i]})
         pairedArray.forEach(function(el){
-            el.value.innerText = el.item
+            console.log(el)
+            if(el && el.value !== undefined) {
+               el.value.innerText = el.item 
+            } else {
+                alert('choose another ')
+            }
+            
          
         })
-      
-       
       } 
    
+    //   const elementsWithNullInnerText = arrayli.filter(element => element.innerText === '');
+    //   if(!elementsWithNullInnerText) {
+    //     arrayli.setAttribute('style', 'display:none')
+    //   }
       
      
 
@@ -128,15 +144,20 @@ result =  num1 * num2
         alert('power')
     }
 
-
-  
- 
     start(calc) {
-        let action, promptContent, isCorrectAction, number1, number2, isNumber, val1, val2, result;
+        let action, promptContent, isCorrectAction, number1, number2, isNumber, val1, val2, result, greeting,greetingContent
+  greetingContent = 'Please write your name'
+   greeting = prompt(greetingContent)
+    if(greeting) {
+calc.isCorrectName(greeting)
+    }
+      
   do { 
     promptContent = 'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n'; // \n - znak nowej linii
     promptContent += 'Jeśli chcesz zrezygnować wciśnij Anuluj. \n';
     promptContent += 'Lista poprzednich operacji: \n' + calc.getHistoryAsString();
+
+   
 
     action = prompt(promptContent);
     isCorrectAction = calc.isCorrectAction(action);
@@ -148,11 +169,7 @@ result =  num1 * num2
         isNumber = calc.checkValue(val1, val2)
             switch (action) {
                 case '+': if(isNumber){
-                 
-                         result = calc.add(val1, val2, '+')
-                      
-                   
-                   
+                    result = calc.add(val1, val2, '+')
                 };
                     break;
                 case '-': if(isNumber){
@@ -160,8 +177,7 @@ result =  num1 * num2
                 };
                     break;
                 case '*': if(isNumber){ 
-           
-                    result = calc.multiply(val1, val2, '*')};
+                result = calc.multiply(val1, val2, '*')};
                     break;
                 case '/': if(isNumber){
                     result = calc.divide(val1, val2, '/')
