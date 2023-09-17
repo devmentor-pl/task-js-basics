@@ -121,7 +121,18 @@ header {
  align-self: center;
 }
 
-
+a:hover, a:focus {
+  text-underline-offset: 0.25em;
+}
+[aria-label="close"] {
+  appearance: none;
+  float: right;
+  border: 1px solid;
+  border-radius: 50%;
+}
+dialog :focus {
+  outline: 2px solid #226DAA;
+}
 
 
 
