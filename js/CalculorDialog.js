@@ -6,11 +6,12 @@ export class CalculatorDialog {
         this.addLi = []
         this.interval = null;
 
-        this.startElement = document.querySelector("#modal");
+        this.startElement = document.querySelector(".buttonStart");
 
 
     }
     run(calc) {
+   
         this.startElement.addEventListener("click", () => this.start(calc));
     }
 
@@ -37,8 +38,6 @@ export class CalculatorDialog {
     }
 
     addToHistory(num1, num2, action, result) {
-
-
         return this.history.push(num1 + ' ' + action + ' ' + num2 + ' ' + '=' + ' ' + result);
     }
 
@@ -56,14 +55,14 @@ export class CalculatorDialog {
     }
 
     add(num1, num2, action) {
-
+alert('add')
         // 1. zamień wartości przekazane przez parametr na typ number
         // 2. sprawdź czy są one poprawne
         // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
         // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
         let result;
         result = num1 + num2
-
+console.log(result)
         const addParent = document.querySelector(`#add`).parentElement
         const li = addParent.querySelectorAll('li')
         const arrayli = [...li]
@@ -88,15 +87,6 @@ export class CalculatorDialog {
 
             })
         }
-
-        //   const elementsWithNullInnerText = arrayli.filter(element => element.innerText === '');
-        //   if(!elementsWithNullInnerText) {
-        //     arrayli.setAttribute('style', 'display:none')
-        //   }
-
-
-
-
 
         console.log(pairedArray)
         console.log(this.addHistory)
@@ -145,6 +135,7 @@ export class CalculatorDialog {
     }
 
     start(calc) {
+        alert('start')
         let action, promptContent, isCorrectAction, number1, number2, isNumber, val1, val2, result, greeting, greetingContent
         //   greetingContent = 'Please write your name'
         //    greeting = prompt(greetingContent)
@@ -160,6 +151,8 @@ export class CalculatorDialog {
 
             const buttonSubmit = document.querySelector('.buttonSubmit')
             buttonSubmit.addEventListener('click', (event) => {
+
+event.preventDefault()
                 const action = document.querySelector('.operations').value
                 const val1 = document.querySelector('.number1').value
                 const val2 = document.querySelector('.number2').value

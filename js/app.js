@@ -22,12 +22,12 @@ timer.run(timer)
 const dialog = document.getElementById('dialog');
 const text = document.getElementById('text');
 const jsbutton = document.getElementById('jsbutton');
-const modal = document.getElementById('modal');
+const modal = document.querySelector('.buttonStart');
 const reset = document.getElementById('reset');
 
 modal.addEventListener('click', (event) => {
   dialog.showModal();
-  text.textContent = '';
+//   text.textContent = '';
   
 });
 
