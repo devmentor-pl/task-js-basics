@@ -12,10 +12,77 @@ Calculator.prototype.getHistoryAsString = function() {
 }
 
 Calculator.prototype.add = function(num1, num2) {
-    // 1. zamień wartości przekazane przez parametr na typ number
-    // 2. sprawdź czy są one poprawne
-    // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
-    // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
+    num1 = Number(num1);
+    num2 = Number(num2);
+    if (!isNaN(num1) && !isNaN(num2)){
+        let result = num1 + num2;
+        return this.history.push(num1 + ' + ' + num2 + ' = ' + result);
+    } else {
+        return alert('Podany parametr nie jest liczbą!');
+    }
+}
+
+Calculator.prototype.sub = function(num1, num2) {
+    num1 = Number(num1);
+    num2 = Number(num2);
+    if (!isNaN(num1) && !isNaN(num2)){
+        let result = num1 - num2;
+        return this.history.push(num1 + ' - ' + num2 + ' = ' + result);
+    } else {
+        return alert('Podany parametr nie jest liczbą!');
+    }
+}
+
+Calculator.prototype.mul = function(num1, num2) {
+    num1 = Number(num1);
+    num2 = Number(num2);
+    if (!isNaN(num1) && !isNaN(num2)){
+        let result = num1 * num2;
+        return this.history.push(num1 + ' * ' + num2 + ' = ' + result);
+    } else {
+        return alert('Podany parametr nie jest liczbą!');
+    }
+}
+
+Calculator.prototype.div = function(num1, num2) {
+    num1 = Number(num1);
+    num2 = Number(num2);
+    if (!isNaN(num1) && !isNaN(num2)){
+        if (num1 !== 0 && num2 !== 0){
+            let result = num1 / num2;
+            return this.history.push(num1 + ' / ' + num2 + ' = ' + result);
+        } else {
+            return alert('Podaj liczbę różną od 0!');
+        }
+    } else {
+        return alert('Podany parametr nie jest liczbą!');
+    }
+}
+
+Calculator.prototype.pow = function(num1, num2) {
+    num1 = Number(num1);
+    num2 = Number(num2);
+    if (!isNaN(num1) && !isNaN(num2)){
+        if (num1 === 0 && num2 === 0) {
+            return alert('Podaj jedną z liczb różną od 0!');
+        } else if (num1 === 0) {
+            let result = 0;
+            return this.history.push(num1 + ' ^ ' + num2 + ' = ' + result);
+        } else if (num2 === 0) {
+            let result = 1;
+            return this.history.push(num1 + ' ^ ' + num2 + ' = ' + result);
+        } else {
+            let i = 0;
+            let result = 1;
+            while (i < num2){
+                result *= num1;
+                i++;
+            }
+            return this.history.push(num1 + ' ^ ' + num2 + ' = ' + result);
+        }
+    } else {
+        return alert('Podany parametr nie jest liczbą!');
+    }
 }
 
 const calc = new Calculator();
@@ -33,6 +100,14 @@ do {
 
         if(action === '+') {
             calc.add(number1, number2);
+        } else if (action === '-'){
+            calc.sub(number1, number2);
+        } else if (action === '*'){
+            calc.mul(number1, number2);
+        } else if (action === '/'){
+            calc.div(number1, number2);
+        } else if (action === '^'){
+            calc.pow(number1, number2);
         }
     }
     
