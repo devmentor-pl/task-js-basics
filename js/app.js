@@ -5,7 +5,7 @@ import { createContainer } from "./Container.js";
 import { putText } from "./Container.js";
 import { Timer } from "./timer.js";
 
-const calculateActions = ['add', 'minus', 'multiply', 'divide', 'power']
+const calculateActions = ['add', 'subtract', 'multiply', 'divide', 'power']
 
 createContainer(calculateActions)
 putText(calculateActions)
@@ -25,11 +25,11 @@ const jsbutton = document.getElementById('jsbutton');
 const modal = document.querySelector('.buttonStart');
 const reset = document.getElementById('reset');
 
-modal.addEventListener('click', (event) => {
-  dialog.showModal();
-//   text.textContent = '';
+// modal.addEventListener('click', (event) => {
+//   dialog.showModal();
+// //   text.textContent = '';
   
-});
+// });
 
 // jsbutton.addEventListener('click', (event) => {
 //   dialog.close();

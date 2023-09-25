@@ -2,7 +2,7 @@ export class CalculatorDialog {
     constructor() {
         this.actions = ['+', '-', '*', '/', '^'];
         this.history = [];
-        this.addHistory = []
+        this.operationHistory = []
         this.addLi = []
         this.interval = null;
 
@@ -25,7 +25,7 @@ export class CalculatorDialog {
         return this.actions.includes(action);
     }
     getHistoryAsString() {
-        return this.addHistory.join('\n');
+        return this.history.join('\n');
     }
 
     checkValue(val1, val2) {
@@ -40,120 +40,195 @@ export class CalculatorDialog {
         return this.history.push(num1 + ' ' + action + ' ' + num2 + ' ' + '=' + ' ' + result);
     }
 
-    putAdd(array) {
-        const addParent = document.querySelector(`#add`).parentElement
-        const li = addParent.querySelectorAll('li')
-        li.forEach(function (el, index) {
-            console.log(el, index)
-            if (index < array.length) {
-                // el.textContent = array[index]
-                el.innerText = array[index]
+    add(num1, num2, action, type) {
 
-            }
-        })
-    }
+   
 
-    add(num1, num2, action) {
-alert('add')
-        // 1. zamień wartości przekazane przez parametr na typ number
-        // 2. sprawdź czy są one poprawne
-        // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
-        // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
         let result;
-        result = num1 + num2
-console.log(result)
-        const addParent = document.querySelector(`#add`).parentElement
+        result = parseInt(num1) + parseInt(num2)
+      
+        const addParent = document.querySelector(`#${type}`).parentElement
         const li = addParent.querySelectorAll('li')
         const arrayli = [...li]
-        console.log(arrayli)
-
-        this.addHistory.push(result)
+        this.operationHistory.push(result)
 
         const pairedArray = [];
-        console.log(pairedArray)
-
-
-        for (let i = 0; i < this.addHistory.length; i++) {
-            pairedArray.push({ item: this.addHistory[i], value: arrayli[i] })
+     
+        for (let i = 0; i < this.operationHistory.length; i++) {
+            pairedArray.push({ item: this.operationHistory[i], value: arrayli[i] })
             pairedArray.forEach(function (el) {
           
                 if(el && el.value !== undefined) {
                     el.value.innerText = el.item 
-                         
-                       
-                     console.log(add)
-                 } else {
-                     alert(`choose another operation without `)
-               
-                     if(add) { 
-                        const add = document.querySelector('.add')
-                         add.remove() 
-                     }
-                    
-                 }
-
-
+                } else {
+                     alert(`choose another operation without ${action}`)
+                        const showResult = document.querySelector(`.${type}`)
+                         showResult.remove() 
+                    }
             })
         }
 
-      
+        let operationResult 
+        operationResult = parseFloat(num1) + action +  parseFloat(num2) + ' = ' + result
 
-        // Display the paired elements
-        pairedArray.forEach((pair, index) => {
-            console.log(`Pair ${index + 1}: Item: ${pair.item}, Value: ${pair.value}`);
-        });
-
-        //      this.addHistory.forEach(function (el, index,result) {
-        //         console.log(el, index)
-        //         const li = addParent.querySelectorAll(`li`)
-        // const getIndex = index
-        //         li.forEach(function(el2, index){
-        //           if(el.index === el2.index){
-        //             el2.innerText = result
-        //           }
-        //         })
-
-        //             // el.textContent = array[index]
-
-
-
-        //     })
-
-        return this.addToHistory(num1, num2, action, result);
-
+        this.history.push(operationResult)
+        
+        num1=''
+        num2=''
+    
+        return operationResult
 
     }
-    subtract() {
-        alert('subtract')
-        return num1 - num2;
-    }
-    multiply(num1, num2, action) {
-        alert('multi')
+
+    subtract(num1, num2, action, type) {
+
         let result;
+        result = parseInt(num1) - parseInt(num2)
+   
+       
+        const addParent = document.querySelector(`#${type}`).parentElement
+        const li = addParent.querySelectorAll('li')
+        const arrayli = [...li]
+        this.operationHistory.push(result)
 
-        result = num1 * num2
-        return this.history.push(num1 + ' ' + action + ' ' + num2 + ' ' + '=' + ' ' + result);
+        const pairedArray = [];
+     
+        for (let i = 0; i < this.operationHistory.length-1; i++) {
+            pairedArray.push({ item: this.operationHistory[i], value: arrayli[i] })
+            pairedArray.forEach(function (el) {
+          
+                if(el && el.value !== undefined) {
+                    el.value.innerText = el.item 
+                } else {
+                     alert(`choose another operation without ${action}`)
+                        const showResult = document.querySelector(`.${type}`)
+                         showResult.remove() 
+                    }
+            })
+        }
+
+        let operationResult 
+        operationResult = parseFloat(num1) + action +  parseFloat(num2) + ' = ' + result
+
+        this.history.push(operationResult)
+    
+        return operationResult
+
     }
-    divide() {
-        alert('divide')
+
+    multiply(num1, num2, action, type) {
+
+        let result;
+         result = parseInt(num1) + parseInt(num2)
+       
+       
+        const addParent = document.querySelector(`#${type}`).parentElement
+        const li = addParent.querySelectorAll('li')
+        const arrayli = [...li]
+        this.operationHistory.push(result)
+
+        const pairedArray = [];
+     
+        for (let i = 0; i < this.operationHistory.length; i++) {
+            pairedArray.push({ item: this.operationHistory[i], value: arrayli[i] })
+            pairedArray.forEach(function (el) {
+          
+                if(el && el.value !== undefined) {
+                    el.value.innerText = el.item 
+                } else {
+                     alert(`choose another operation without ${action}`)
+                        const showResult = document.querySelector(`.${type}`)
+                         showResult.remove() 
+                    }
+            })
+        }
+
+        let operationResult 
+        operationResult = parseFloat(num1) + action +  parseFloat(num2) + ' = ' + operationResult
+
+        this.history.push(operationResult)
+    
+        return operationResult
+
     }
-    power() {
-        alert('power')
+
+    divide(num1, num2, action, type) {
+
+        let result;
+         result = parseInt(num1) / parseInt(num2)
+        
+       
+        const addParent = document.querySelector(`#${type}`).parentElement
+        const li = addParent.querySelectorAll('li')
+        const arrayli = [...li]
+        this.operationHistory.push(result)
+
+        const pairedArray = [];
+     
+        for (let i = 0; i < this.operationHistory.length; i++) {
+            pairedArray.push({ item: this.operationHistory[i], value: arrayli[i] })
+            pairedArray.forEach(function (el) {
+          
+                if(el && el.value !== undefined) {
+                    el.value.innerText = el.item 
+                } else {
+                     alert(`choose another operation without ${action}`)
+                        const showResult = document.querySelector(`.${type}`)
+                         showResult.remove() 
+                    }
+            })
+        }
+
+        let operationResult 
+        operationResult = parseFloat(num1) + action +  parseFloat(num2) + ' = ' + operationResult
+
+        this.history.push(operationResult)
+    
+        return operationResult
+
     }
+
+    power(num1, powerNumber, ) {
+
+        num1 = number1
+       
+        this.num1 = num1
+        this.powerNumber = powerNumber
+    
+        let powerResult
+    
+        if (powerNumber == 0){
+                    return 1;
+                }
+                let temp = num1;
+               
+                for (i = 0; i < powerNumber - 1; i++){
+                    num1 = num1 * temp;
+                }
+                powerResult = parseFloat(this.num1) + ' ** ' +  parseFloat(powerNumber) + ' = ' + num1
+        
+            this.history.push(powerResult)     
+            
+            return powerResult
+    }
+    
+
+  
 
     start(calc) {
-        alert('start')
-        let action, promptContent, isCorrectAction, number1, number2, isNumber, val1, val2, result, greeting, greetingContent
-          greetingContent = 'Please write your name'
-           greeting = prompt(greetingContent)
-            if(greeting) {
-            calc.isCorrectName(greeting)
-            }
+  
+        let action,isCorrectAction, number1, number2, isNumber, val1, val2, result, greeting, greetingContent
+        //   greetingContent = 'Please write your name'
+        //    greeting = prompt(greetingContent)
+        //     if(greeting) {
+        //     calc.isCorrectName(greeting)}
+      
+
 
         do {
-            // promptContent = 'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n'; // \n - znak nowej linii
-            // promptContent += 'Jeśli chcesz zrezygnować wciśnij Anuluj. \n';
-            // promptContent += 'Lista poprzednich operacji: \n' + calc.getHistoryAsString();
+             const history = document.querySelector(".results__history")
+                history.innerText = `Lista poprzednich operacji: \n'` + calc.getHistoryAsString()
+                console.log(this.history)
             const operations = ['+', '-', '*', '/', '^']
 
             const buttonSubmit = document.querySelector('.buttonSubmit')
@@ -162,31 +237,38 @@ console.log(result)
 
             event.preventDefault()
                 const action = document.querySelector('.operations--type').value
-                console.log(action)
-                const val1 = document.querySelector('.number1').value
-                const val2 = document.querySelector('.number2').value
+            
+                let val1 = document.querySelector('.number1').value
+            
+                let val2 = document.querySelector('.number2').value
+            
+                let powerNumber = document.querySelector('.powerNumber').value
+                let type,operator
                 isNumber = calc.checkValue(val1, val2)
-
+              
                 if (operations.includes((action))) {
                     console.log(`${action} is in the array.`);
                     switch (action) {
                         case '+': if (isNumber) {
-                            result = calc.add(val1, val2, '+')
+                             result = calc.add(val1, val2,operator='+', type='add')
                         };
                             break;
                         case '-': if (isNumber) {
-                            result = calc.subtract(val1, val2, '-')
+                            result = calc.subtract(val1, val2, operator='-', type='subtract')
                         };
                             break;
                         case '*': if (isNumber) {
-                            result = calc.multiply(val1, val2, '*')
+                            result = calc.multiply(val1, val2, operator='*', type='multiply')
                         };
                             break;
                         case '/': if (isNumber) {
-                            result = calc.divide(val1, val2, '/')
+                            result = calc.divide(val1, val2, operator='/', type='divide')
                         };
                             break
-                        case '^': if (isNumber) { result = calc.power() };
+                        case '^': if (isNumber) { 
+
+                            result = calc.power(val1, powerNumber, operator='^', type='power' ) 
+                        };
     
                     }
                 } else {
@@ -194,53 +276,14 @@ console.log(result)
                 }
 
             })
-            // action = prompt(promptContent);
-            isCorrectAction = calc.isCorrectAction(action);
-            if (isCorrectAction) {
-                number1 = prompt('Podaj liczbę nr 1');
-                number2 = prompt('Podaj liczbę nr 2');
-                val1 = parseInt(number1)
-                val2 = parseInt(number2)
-                isNumber = calc.checkValue(val1, val2)
-                switch (action) {
-                    case '+': if (isNumber) {
-                        result = calc.add(val1, val2, '+')
-                    };
-                        break;
-                    case '-': if (isNumber) {
-                        result = calc.subtract(val1, val2, '-')
-                    };
-                        break;
-                    case '*': if (isNumber) {
-                        result = calc.multiply(val1, val2, '*')
-                    };
-                        break;
-                    case '/': if (isNumber) {
-                        result = calc.divide(val1, val2, '/')
-                    };
-                        break
-                    case '^': if (isNumber) { result = calc.power() };
-
-                }
-                // const result = operations[action](n1, n2);
-
-            }
-
+           
+           
         } while (calc.isCorrectAction(action));
-
-
     }
-
 }
 
 
 
 
 
-// const calc = new Calculator();
-// console.dir(calc)
-let action, promptContent, isCorrectAction, number1, number2;
-function rusha() {
 
-
-}
