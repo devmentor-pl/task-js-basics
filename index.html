@@ -13,7 +13,7 @@
   <header class="header">
     <div class="header__text-box">
       <h1 class="heading">
-        <span class="heading--main">Calculator Game</span>
+        <span class="heading--main">Calculator Task</span>
         <span class="heading--sub">Introduction</span>
       </h1>
       <button class="buttonStart">Start</button>
@@ -22,9 +22,7 @@
   <main class="main">
     <h2 class="main__heading"></h2>
     <div class="main__container">
-      <section class="operations">
-
-      </section>
+      <section class="operations"></section>
       <section class="results">
         <div id="timer">00:00:00
           <button id="start">Start</button>
@@ -32,7 +30,6 @@
           <button id="reset">Reset</button>
         </div>
         <form id="dialog" class="results__dialog">
-        
             <button id="close" aria-label="close" class="results__button-close">X</button>
             <label>'Podaj jaką operację chcesz wykonać (+, -, *, /, **) i potwierdź.
               <input type="text" name="name" required class="operations--type" />
@@ -48,12 +45,17 @@
             </label>
             <div class="results__history"></div>
             <button class="buttonSubmit">Submit</button>
-
-            </p>
-        
-
         </form>
       </section>
+      <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p>Some text in the Modal..</p>
+        </div>
+      
+      </div>
     </div>
 
 

@@ -43,9 +43,22 @@ export class Timer {
             this.pad(seconds, 2);
         this.seconds++;  
         const stop = document.querySelector(".operations ul") 
+        const calculatorForm = document.querySelector('.results__dialog')
+        const timer = document.querySelector('#timer')
+        const greeting = document.querySelector('.main-heading')
+   
+        var span = document.getElementsByClassName("close")[0];
+      
    
     if(stop===null){
         this.stop()
+        calculatorForm.remove()
+        timer.setAttribute('style', 'position:absolute; top:50%; left:50%')
+             const modal = document.getElementById("myModal");
+        modal.style.display = "block";
+        span.onclick = function() {
+            modal.style.display = "none";
+          }
     }
     }
 
@@ -57,6 +70,12 @@ export class Timer {
         return s;
     }
 }
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
 
 
 
