@@ -3,6 +3,7 @@ export class CalculatorDialog {
         this.actions = ['+', '-', '*', '/', '^'];
         this.history = [];
         this.operationAddHistory = []
+        this.operationSubtractHistory = []
         this.addLi = []
         this.interval = null;
 
@@ -90,40 +91,41 @@ export class CalculatorDialog {
     }
 
     subtract(num1, num2, action, type) {
-
-        let result;
-        result = parseInt(num1) - parseInt(num2)
-   
-       
-        const addParent = document.querySelector(`#${type}`).parentElement
-        const li = addParent.querySelectorAll('li')
-        const arrayli = [...li]
-        this.operationHistory.push(result)
-
-        const pairedArray = [];
-     
-        for (let i = 0; i < this.operationHistory.length-1; i++) {
-            pairedArray.push({ item: this.operationHistory[i], value: arrayli[i] })
-            pairedArray.forEach(function (el) {
-          
-                if(el && el.value !== undefined) {
-                    el.value.innerText = el.item 
-                } else {
-                     alert(`choose another operation without ${action}`)
-                        const showResult = document.querySelector(`.${type}`)
-                         showResult.remove() 
-                    }
-            })
-        }
-
-        let operationResult 
-        operationResult = parseFloat(num1) + action +  parseFloat(num2) + ' = ' + result
-
-        this.history.push(operationResult)
-    
-        return operationResult
-
-    }
+        alert('subtract')
+                let result;
+                result = parseInt(num1) - parseInt(num2)
+           
+               
+                const addParent = document.querySelector(`#${type}`).parentElement
+                const li = addParent.querySelectorAll('li')
+                const arrayli = [...li]
+                this.operationSubtractHistory.push(result)
+        
+                const pairedArray = [];
+             
+                for (let i = 0; i < this.operationSubtractHistory.length; i++) {
+                    pairedArray.push({ item: this.operationSubtractHistory[i], value: arrayli[i] })
+                    pairedArray.forEach(function (el) {
+                  
+                        if(el && el.value !== undefined) {
+                            el.value.innerText = el.item 
+                        } else {
+                             alert(`choose another operation without ${action}`)
+                                const showResult = document.querySelector(`.${type}`)
+                                 showResult.remove() 
+                            }
+                    })
+                }
+        
+                let operationResult 
+                operationResult = parseFloat(num1) + action +  parseFloat(num2) + ' = ' + result
+        
+                this.history.push(operationResult)
+                const history = document.querySelector(".results__history")
+                history.innerText = `Lista poprzednich operacji: \n'` + this.getHistoryAsString()
+                return operationResult
+        
+            }
 
     multiply(num1, num2, action, type) {
 
