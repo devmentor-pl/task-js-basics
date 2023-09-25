@@ -1,4 +1,6 @@
 @import 'base';
+@import 'abstracts';
+@import 'main';
 
 
 body {
@@ -69,14 +71,10 @@ header {
 }
 
 
-.main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
-}
 
-.results {
+
+.main__operations {
     display: grid;
     grid-template-columns: 300px;
     grid-template-rows: repeat(5, 1fr);
@@ -124,12 +122,7 @@ header {
 a:hover, a:focus {
   text-underline-offset: 0.25em;
 }
-[aria-label="close"] {
-  appearance: none;
-  float: right;
-  border: 1px solid;
-  border-radius: 50%;
-}
+
 dialog :focus {
   outline: 2px solid #226DAA;
 }
@@ -180,3 +173,14 @@ $hrs: pony horse mini-horse maxi-pony;
     clear: both;
     margin: 0;
   }
+
+  dialog:-internal-dialog-in-top-layer {
+    position: none;
+    inset-block-start: 0px;
+    inset-block-end: 0px;
+    max-width: calc((50% - 6px) - 2em);
+    max-height: calc((50% - 6px) - 2em);
+    user-select: text;
+    visibility: visible;
+    overflow: auto;
+}

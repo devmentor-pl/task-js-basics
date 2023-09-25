@@ -11,6 +11,99 @@
     transform: translate(0);
   }
 }
+@keyframes moveFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem);
+  }
+  80% {
+    transform: translateX(1rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+.main__heading {
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 0.8rem;
+  text-align: center;
+  color: rgb(154, 243, 243);
+}
+
+.main__container {
+  display: flex;
+}
+
+.main .operations {
+  width: 50%;
+  display: grid;
+  grid-template-columns: 300px;
+  grid-template-rows: repeat(5, 1fr);
+}
+
+.main .operations__list {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 40px);
+  grid-gap: 20px;
+  margin-bottom: 2rem;
+}
+
+.main .operations__element {
+  background-color: bisque;
+  border: 3px solid orange;
+  list-style: none;
+  grid-row: 1/2;
+}
+
+.main .operations__element--last {
+  grid-row: 2/3;
+  grid-column: 1/4;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main .operations__text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-column: 1/5;
+}
+
+.main .results {
+  width: 50%;
+}
+
+.main .results__dialog label {
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+  height: 50px;
+}
+
+.main .results__dialog label input {
+  width: 30%;
+  margin-top: 10px;
+}
+
+.main .results__button-close {
+  float: right;
+  font-size: 1.2rem;
+  font-weight: 800;
+  width: 40px;
+  height: 40px;
+  background-color: bisque;
+  color: white;
+  border-radius: 50%;
+  border: none;
+}
+
 body {
   box-sizing: border-box;
   padding: 3rem;
@@ -72,18 +165,12 @@ header .header__text-box button {
   background-color: bisque;
 }
 
-.main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.results {
+.main__operations {
   display: grid;
   grid-template-columns: 300px;
   grid-template-rows: repeat(5, 1fr);
 }
-.results__list {
+.main__operations__list {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -91,13 +178,13 @@ header .header__text-box button {
   grid-gap: 20px;
   margin-bottom: 2rem;
 }
-.results__element {
+.main__operations__element {
   background-color: bisque;
   border: 3px solid orange;
   list-style: none;
   grid-row: 1/2;
 }
-.results__element--last {
+.main__operations__element--last {
   grid-row: 2/3;
   grid-column: 1/4;
   height: 40px;
@@ -105,7 +192,7 @@ header .header__text-box button {
   justify-content: center;
   align-items: center;
 }
-.results__text {
+.main__operations__text {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -114,6 +201,14 @@ header .header__text-box button {
 
 .results__element--last {
   align-self: center;
+}
+
+a:hover, a:focus {
+  text-underline-offset: 0.25em;
+}
+
+dialog :focus {
+  outline: 2px solid #226DAA;
 }
 
 [class^=horses] {
@@ -170,6 +265,17 @@ code {
 .clear {
   clear: both;
   margin: 0;
+}
+
+dialog:-internal-dialog-in-top-layer {
+  position: none;
+  inset-block-start: 0px;
+  inset-block-end: 0px;
+  max-width: calc(50% - 6px - 2em);
+  max-height: calc(50% - 6px - 2em);
+  user-select: text;
+  visibility: visible;
+  overflow: auto;
 }
 
 /*# sourceMappingURL=index.css.map */

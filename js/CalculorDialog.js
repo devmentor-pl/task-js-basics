@@ -16,9 +16,8 @@ export class CalculatorDialog {
     }
 
     isCorrectName(greeting) {
-        console.log('correct')
-        const name = document.querySelector('.heading--name');
-        name.textContent = greeting
+        const name = document.querySelector('.main__heading');
+        name.innerText = `Hello ${greeting}!`
         return name
     }
 
@@ -77,19 +76,27 @@ console.log(result)
         for (let i = 0; i < this.addHistory.length; i++) {
             pairedArray.push({ item: this.addHistory[i], value: arrayli[i] })
             pairedArray.forEach(function (el) {
-                console.log(el)
-                if (el && el.value !== undefined) {
-                    el.value.innerText = el.item
-                } else {
-                    alert('choose another ')
-                }
+          
+                if(el && el.value !== undefined) {
+                    el.value.innerText = el.item 
+                         
+                       
+                     console.log(add)
+                 } else {
+                     alert(`choose another operation without `)
+               
+                     if(add) { 
+                        const add = document.querySelector('.add')
+                         add.remove() 
+                     }
+                    
+                 }
 
 
             })
         }
 
-        console.log(pairedArray)
-        console.log(this.addHistory)
+      
 
         // Display the paired elements
         pairedArray.forEach((pair, index) => {
@@ -137,11 +144,11 @@ console.log(result)
     start(calc) {
         alert('start')
         let action, promptContent, isCorrectAction, number1, number2, isNumber, val1, val2, result, greeting, greetingContent
-        //   greetingContent = 'Please write your name'
-        //    greeting = prompt(greetingContent)
-        //     if(greeting) {
-        // calc.isCorrectName(greeting)
-        //     }
+          greetingContent = 'Please write your name'
+           greeting = prompt(greetingContent)
+            if(greeting) {
+            calc.isCorrectName(greeting)
+            }
 
         do {
             // promptContent = 'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n'; // \n - znak nowej linii
@@ -151,9 +158,11 @@ console.log(result)
 
             const buttonSubmit = document.querySelector('.buttonSubmit')
             buttonSubmit.addEventListener('click', (event) => {
+            
 
-event.preventDefault()
-                const action = document.querySelector('.operations').value
+            event.preventDefault()
+                const action = document.querySelector('.operations--type').value
+                console.log(action)
                 const val1 = document.querySelector('.number1').value
                 const val2 = document.querySelector('.number2').value
                 isNumber = calc.checkValue(val1, val2)

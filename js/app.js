@@ -7,7 +7,7 @@ import { Timer } from "./timer.js";
 
 const calculateActions = ['add', 'minus', 'multiply', 'divide', 'power']
 
-createContainer()
+createContainer(calculateActions)
 putText(calculateActions)
 
 
@@ -31,19 +31,19 @@ modal.addEventListener('click', (event) => {
   
 });
 
-jsbutton.addEventListener('click', (event) => {
-  dialog.close();
-  text.innerHTML += '"JS close" closed the dialog.<br/>';
-});
+// jsbutton.addEventListener('click', (event) => {
+//   dialog.close();
+//   text.innerHTML += '"JS close" closed the dialog.<br/>';
+// });
 
 
-dialog.addEventListener('cancel', (event) => {
-  text.innerHTML += 'cance event happened<br/>';
-});
+// dialog.addEventListener('cancel', (event) => {
+//   text.innerHTML += 'cance event happened<br/>';
+// });
 
-dialog.addEventListener('close', (event) => {
-  text.innerHTML += 'close event happened<br/>';
-});
+// dialog.addEventListener('close', (event) => {
+//   text.innerHTML += 'close event happened<br/>';
+// });
 
 
  

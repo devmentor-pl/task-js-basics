@@ -16,8 +16,8 @@ export class Calculator {
 
     isCorrectName(greeting) {
         console.log('correct')
-        const name = document.querySelector('.heading--name');
-name.textContent = greeting
+        const name = document.querySelector('.main__heading');
+name.textContent = `Hello ${greeting}!`
 return name
     }
    
@@ -78,11 +78,19 @@ return name
        for (let i = 0; i < this.addHistory.length; i++) {
         pairedArray.push({ item: this.addHistory[i], value: arrayli[i]})
         pairedArray.forEach(function(el){
-            console.log(el)
-            if(el && el.value !== undefined) {
+        
+            if(el.value !== undefined) {
                el.value.innerText = el.item 
+                     const add = document.querySelector('.add').parentElement
+                  
+                console.log(add)
             } else {
                 alert('choose another ')
+          
+                if(add) {
+                    add.remove() 
+                }
+               
             }
             
          

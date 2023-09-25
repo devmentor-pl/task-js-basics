@@ -2,99 +2,65 @@
 <html lang="pl">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Mateusz Bogolubow">
-    <title>JavaScript: Podstawy - devmentor.pl</title>
-    <link rel="stylesheet" href="./src/styles/sass/index.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Mateusz Bogolubow">
+  <title>JavaScript: Podstawy - devmentor.pl</title>
+  <link rel="stylesheet" href="./src/styles/sass/index.css">
 </head>
 
 <body>
-    <header class="header">
-        <div class="header__text-box">
-          <h1 class="heading">
-            <span class="heading--main">Calculator Game</span>
-            <span class="heading--sub">Introduction</span>
-            <span class="heading--name"></span>
-          </h1>
-          <button class="buttonStart">Start</button>
-        </div>
-      </header>
-      <div id="timer">00:00:00</div>
-    <button id="start">Start</button>
-    <button id="stop">Stop</button>
-    <button id="reset">Reset</button>
-        <main class="main">
-            <div class="results"></div>
-        </main>
+  <header class="header">
+    <div class="header__text-box">
+      <h1 class="heading">
+        <span class="heading--main">Calculator Game</span>
+        <span class="heading--sub">Introduction</span>
+      </h1>
+      <button class="buttonStart">Start</button>
+    </div>
+  </header>
+  <main class="main">
+    <h2 class="main__heading"></h2>
+    <div class="main__container">
+      <section class="operations">
 
-        <dialog id="dialog">
-          <form>
-          
-        <label>Type which the operiations 'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź.
-          <input type="text" name="name" required class="operations"/>
-      </label>
-      <label>podaj number 1
-        <input type="text" name="name" required class="number1"/>
-    </label>
-    <label>podaj number 2
-      <input type="text" name="name" required class="number2"/>
-  </label>
- 
-  <button  class="buttonSubmit">Submit</button>
-    </form>
-    <form>
-          <button type="submit" aria-label="close" formmethod="dialog" formnovalidate>X</button>
-          <h2 id="dialogid">MLW Registration</h2>
-          <p>All fields are required</p>
-          <p>
-              <label>Name:
-                 <input type="text" name="name" required />
-             </label>
-          </p>
-          <p>
-             <label>Warranty:
-                <input type="number" min="0" max="10" step=”1” name="warranty" required />
-              </label>
-          </p>
-          <p>
-             <label>Power source:
-                 <select name="powersoure">
-                <option>AC/DC</option>
-                <option>Battery</option>
-                <option>Solar</option>
-                 </select>
-             </label>
-          </p>
-          <p>
-             <button type="submit" formmethod="post">Submit</button>
-          </p>
-       <hr/>
-          <p>Additional buttons</p>
-            <button id="jsbutton">JS close</button>
-            <button id="reset" type="reset">Reset</button>
-          </p>
-    </form>
-</dialog>
-      
-      <button id="modal">Open Modal dialog</button>
-      <p id="text"></p>
-      <hr/>
-      <h2>Random interactive elements</h2>
-      <p>Before opening the dialog, tab thru these interactive elements. Then try again when the dialog is open.</p>
-      <p>When the dialog is open, are any of these normally interactive elements interactive?</p>
-      <p><a href="https://machinelearningworkshop.com">Machine Learning Workshop</a></p>
-        <p><label>Here is a useless input: <input></label></p>
-            <p>
-             <label>Here is a useless select:
-                 <select name="yummy">
-                <option>Maple Syrup</option>
-                <option>Ice Cream</option>
-                <option>Bacon</option>
-                 </select>
-             </label>
-          </p>
-  
+      </section>
+      <section class="results">
+        <div id="timer">00:00:00
+          <button id="start">Start</button>
+          <button id="stop">Stop</button>
+          <button id="reset">Reset</button>
+        </div>
+        <form id="dialog" class="results__dialog">
+        
+            <button id="close" aria-label="close" class="results__button-close">X</button>
+            <label>'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź.
+              <input type="text" name="name" required class="operations--type" />
+            </label>
+            <label>podaj number 1
+              <input type="text" name="name" required class="number1" />
+            </label>
+            <label>podaj number 2
+              <input type="text" name="name" required class="number2" />
+            </label>
+            <button class="buttonSubmit">Submit</button>
+
+            </p>
+        
+
+        </form>
+      </section>
+    </div>
+
+
+  </main>
+
+
+
+
+
+
+
   <script type="module" src="./js/app.js"></script>
 </body>
 
