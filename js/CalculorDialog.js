@@ -164,41 +164,41 @@ export class CalculatorDialog {
             }
         
 
-    divide(num1, num2, action, type) {
+            divide(num1, num2, action, type) {
 
-        let result;
-         result = parseInt(num1) / parseInt(num2)
+                let result;
+                 result = parseInt(num1) / parseInt(num2)
+                
+               
+                const addParent = document.querySelector(`#${type}`).parentElement
+                const li = addParent.querySelectorAll('li')
+                const arrayli = [...li]
+                this.operationDivideHistory.push(result)
         
-       
-        const addParent = document.querySelector(`#${type}`).parentElement
-        const li = addParent.querySelectorAll('li')
-        const arrayli = [...li]
-        this.operationHistory.push(result)
-
-        const pairedArray = [];
-     
-        for (let i = 0; i < this.operationHistory.length; i++) {
-            pairedArray.push({ item: this.operationHistory[i], value: arrayli[i] })
-            pairedArray.forEach(function (el) {
-          
-                if(el && el.value !== undefined) {
-                    el.value.innerText = el.item 
-                } else {
-                     alert(`choose another operation without ${action}`)
-                        const showResult = document.querySelector(`.${type}`)
-                         showResult.remove() 
-                    }
-            })
-        }
-
-        let operationResult 
-        operationResult = parseFloat(num1) + action +  parseFloat(num2) + ' = ' + operationResult
-
-        this.history.push(operationResult)
-    
-        return operationResult
-
-    }
+                const pairedArray = [];
+             
+                for (let i = 0; i < this.operationDivideHistory.length; i++) {
+                    pairedArray.push({ item: this.operationDivideHistory[i], value: arrayli[i] })
+                    pairedArray.forEach(function (el) {
+                  
+                        if(el && el.value !== undefined) {
+                            el.value.innerText = el.item 
+                        } else {
+                             alert(`choose another operation without ${action}`)
+                                const showResult = document.querySelector(`.${type}`)
+                                 showResult.remove() 
+                            }
+                    })
+                }
+        
+                let operationResult 
+                operationResult = parseFloat(num1) + action +  parseFloat(num2) + ' = ' + operationResult
+        
+                this.history.push(operationResult)
+            
+                return operationResult
+        
+            }
 
     power(num1, powerNumber, ) {
 
