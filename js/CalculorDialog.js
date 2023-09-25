@@ -4,6 +4,9 @@ export class CalculatorDialog {
         this.history = [];
         this.operationAddHistory = []
         this.operationSubtractHistory = []
+        this.operationMultiplyHistory = []
+        this.operationDivideHistory = []
+        this.operationPowerHistory = []
         this.addLi = []
         this.interval = null;
 
@@ -200,29 +203,66 @@ export class CalculatorDialog {
         
             }
 
-    power(num1, powerNumber, ) {
+            power(num1, num2, powerNumber, action, type ) {
+                alert('power')
 
-        num1 = number1
-       
-        this.num1 = num1
-        this.powerNumber = powerNumber
-    
-        let powerResult
-    
-        if (powerNumber == 0){
-                    return 1;
-                }
-                let temp = num1;
+                let result2;
                
-                for (i = 0; i < powerNumber - 1; i++){
-                    num1 = num1 * temp;
-                }
-                powerResult = parseFloat(this.num1) + ' ** ' +  parseFloat(powerNumber) + ' = ' + num1
-        
-            this.history.push(powerResult)     
+                this.num1 = num1
+                this.powerNumber = powerNumber
+     
+               
+                let result
+                let i;
+
+                if (powerNumber == 0){
+                            return 1;
+                        }else {
+                            let temp = num1;
+                            for (i = 0; i < powerNumber - 1; i++){
+                            num1 = num1 * temp;
+                              
+                        result=num1
+                     
+                        }
+                        }
             
-            return powerResult
-    }
+            console.log(result)            
+                       
+                        
+                      
+                
+                     
+                    const addParent = document.querySelector(`#${type}`).parentElement
+                const li = addParent.querySelectorAll('li')
+                const arrayli = [...li]
+                this.operationPowerHistory.push(result)
+        
+                const pairedArray = [];
+             
+                for (let i = 0; i < this.operationPowerHistory.length; i++) {
+                    pairedArray.push({ item: this.operationPowerHistory[i], value: arrayli[i] })
+                    pairedArray.forEach(function (el) {
+                  
+                        if(el && el.value !== undefined) {
+                            el.value.innerText = el.item 
+                        } else {
+                             alert(`choose another operation without ${action}`)
+                                const showResult = document.querySelector(`.${type}`)
+                                 showResult.remove() 
+                            }
+                    })
+                }
+        
+                let operationResult 
+                operationResult = parseFloat(num1) + action +  parseFloat(num2) + ' = ' + result2
+        
+                this.history.push(operationResult)
+            
+                return operationResult
+        
+            
+            }    
     
 
   
@@ -241,7 +281,7 @@ export class CalculatorDialog {
              const history = document.querySelector(".results__history")
                 history.innerText = `Lista poprzednich operacji: \n'` + calc.getHistoryAsString()
                 console.log(this.history)
-            const operations = ['+', '-', '*', '/', '^']
+            const operations = ['+', '-', '*', '/', '**']
 
             const buttonSubmit = document.querySelector('.buttonSubmit')
             buttonSubmit.addEventListener('click', (event) => {
@@ -277,9 +317,9 @@ export class CalculatorDialog {
                             result = calc.divide(val1, val2, operator='/', type='divide')
                         };
                             break
-                        case '^': if (isNumber) { 
+                        case '**': if (isNumber) { 
 
-                            result = calc.power(val1, powerNumber, operator='^', type='power' ) 
+                            result = calc.power(val1, val2, powerNumber, operator='**', type='power' ) 
                         };
     
                     }

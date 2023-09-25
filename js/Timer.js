@@ -6,7 +6,7 @@ export class Timer {
         this.timerElement = document.getElementById("timer");
         this.startElement = document.querySelector(".buttonStart");
         document.getElementById("start").addEventListener("click", () => this.start());
-        document.getElementById("stop").addEventListener("click", () => this.stop());
+ 
         document.getElementById("reset").addEventListener("click", () => this.reset());
     }
 
@@ -18,6 +18,7 @@ export class Timer {
         if (!this.interval) {
             this.interval = setInterval(() => this.updateTimer(),1000);
         }
+  
    
     }
 
@@ -40,7 +41,12 @@ export class Timer {
         this.timerElement.textContent =
             this.pad(minutes, 2) + ":" +
             this.pad(seconds, 2);
-        this.seconds++;
+        this.seconds++;  
+        const stop = document.querySelector(".operations ul") 
+   
+    if(stop===null){
+        this.stop()
+    }
     }
 
     pad(num, size) {
