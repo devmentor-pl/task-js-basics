@@ -2,7 +2,7 @@ export class CalculatorDialog {
     constructor() {
         this.actions = ['+', '-', '*', '/', '^'];
         this.history = [];
-        this.operationHistory = []
+        this.operationAddHistory = []
         this.addLi = []
         this.interval = null;
 
@@ -42,20 +42,23 @@ export class CalculatorDialog {
 
     add(num1, num2, action, type) {
 
-   
-
         let result;
         result = parseInt(num1) + parseInt(num2)
       
         const addParent = document.querySelector(`#${type}`).parentElement
         const li = addParent.querySelectorAll('li')
         const arrayli = [...li]
-        this.operationHistory.push(result)
+        this.operationAddHistory.push(result)
+       
 
         const pairedArray = [];
      
-        for (let i = 0; i < this.operationHistory.length; i++) {
-            pairedArray.push({ item: this.operationHistory[i], value: arrayli[i] })
+        for (let i = 0; i < this.operationAddHistory.length; i++) {
+                   
+                     
+    
+   
+        pairedArray.push({ item: this.operationAddHistory[i], value: arrayli[i] })
             pairedArray.forEach(function (el) {
           
                 if(el && el.value !== undefined) {
@@ -65,8 +68,12 @@ export class CalculatorDialog {
                         const showResult = document.querySelector(`.${type}`)
                          showResult.remove() 
                     }
+
+                 
             })
-        }
+       }
+            
+        
 
         let operationResult 
         operationResult = parseFloat(num1) + action +  parseFloat(num2) + ' = ' + result
@@ -75,7 +82,9 @@ export class CalculatorDialog {
         
         num1=''
         num2=''
-    
+        const history = document.querySelector(".results__history")
+        history.innerText = `Lista poprzednich operacji: \n'` + this.getHistoryAsString()
+       
         return operationResult
 
     }
