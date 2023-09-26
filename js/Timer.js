@@ -56,10 +56,10 @@ export class Timer {
         calculatorForm.remove()
         timer.setAttribute('style', 'position:absolute; top:50%; left:50%')
              const modal = document.getElementById("myModal");
-        modal.style.display = "block";
-        span.onclick = function() {
-            modal.style.display = "none";
-          }
+        // modal.style.display = "block";
+        // span.onclick = function() {
+        //     modal.style.display = "none";
+        //   }
     }
     }
 

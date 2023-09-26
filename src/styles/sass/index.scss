@@ -1,5 +1,6 @@
 @import 'base';
 @import 'abstracts';
+@import 'header';
 @import 'main';
 
 
@@ -8,98 +9,98 @@ body {
   padding: 3rem;
 }
 
-.header {
-  height: 95vh;
-  position: relative;
-  background-color: $color-turcoise-light;
-  @include flexAbsoluteCenter();
-  flex-direction: column;
+// .header {
+//   height: 95vh;
+//   position: relative;
+//   background-color: $color-turcoise-light;
+//   @include flexAbsoluteCenter();
+//   flex-direction: column;
 
-  &__heading {
-    color: #fff;
-    text-transform: uppercase;
-    margin-bottom: 10rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
+//   &__heading {
+//     color: #fff;
+//     text-transform: uppercase;
+//     margin-bottom: 10rem;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: space-between;
+//     position: relative;
 
-    &--main {
-      display: block;
-      font-size: 3rem;
-      font-weight: 400;
-      letter-spacing: 1.75rem;
-      animation-name: moveFromLeft;
-      animation-duration: 1s;
-      animation-timing-function: ease-out;
-      margin-bottom: 3rem;
-    }
+//     &--main {
+//       display: block;
+//       font-size: 3rem;
+//       font-weight: 400;
+//       letter-spacing: 1.75rem;
+//       animation-name: moveFromLeft;
+//       animation-duration: 1s;
+//       animation-timing-function: ease-out;
+//       margin-bottom: 3rem;
+//     }
 
-    &--sub {
-      display: block;
-      text-align: center;
-      font-size: 1rem;
-      font-weight: 700;
-      letter-spacing: 1rem;
-    }
+//     &--sub {
+//       display: block;
+//       text-align: center;
+//       font-size: 1rem;
+//       font-weight: 700;
+//       letter-spacing: 1rem;
+//     }
 
-    &--sub.tooltip {
-      position: relative;
+//     &--sub.tooltip {
+//       position: relative;
 
-      .tooltip--content {
-        display: none;
-      }
+//       .tooltip--content {
+//         display: none;
+//       }
 
-      &:hover {
-        .tooltip--content {
-          display: block;
-          font-size: 1rem;
-          background: #fff;
-          color: grey;
-          font-weight: 500;
-          text-transform: lowercase;
-          letter-spacing: normal;
-          border: 1px solid rgba(0, 0, 0, 0.1);
-          box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
-          display: block;
-          max-height: 130px;
-          overflow: auto;
-          padding: 10px;
-          position: absolute;
-          top: 100%;
-          left: 50%;
-          width: 400px;
+//       &:hover {
+//         .tooltip--content {
+//           display: block;
+//           font-size: 1rem;
+//           background: #fff;
+//           color: grey;
+//           font-weight: 500;
+//           text-transform: lowercase;
+//           letter-spacing: normal;
+//           border: 1px solid rgba(0, 0, 0, 0.1);
+//           box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+//           display: block;
+//           max-height: 130px;
+//           overflow: auto;
+//           padding: 10px;
+//           position: absolute;
+//           top: 100%;
+//           left: 50%;
+//           width: 400px;
 
-          ul {
-            list-style: none;
+//           ul {
+//             list-style: none;
 
-            li {
-              text-align: start;
-              margin-bottom: 5px;
-            }
-          }
-        }
-      }
-    }
-  }
+//             li {
+//               text-align: start;
+//               margin-bottom: 5px;
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
 
-  &__buttonStart {
-    border: none;
-    text-align: center;
-    text-transform: uppercase;
-    width: 200px;
-    height: 60px;
-    font-size: 1.2rem;
-    font-weight: 600;
-    letter-spacing: 1rem;
-    border-radius: 10px;
-    background-color: $color-bisque;
-    border: 2px solid rgb(237, 202, 158);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    color: white;
-    background-color: $color-bisque;
-  }
-}
+//   &__buttonStart {
+//     border: none;
+//     text-align: center;
+//     text-transform: uppercase;
+//     width: 200px;
+//     height: 60px;
+//     font-size: 1.2rem;
+//     font-weight: 600;
+//     letter-spacing: 1rem;
+//     border-radius: 10px;
+//     background-color: $color-bisque;
+//     border: 2px solid rgb(237, 202, 158);
+//     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+//     color: white;
+//     background-color: $color-bisque;
+//   }
+// }
 
 
 

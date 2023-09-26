@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pl">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +7,6 @@
   <title>JavaScript: Podstawy - devmentor.pl</title>
   <link rel="stylesheet" href="./src/styles/sass/index.css">
 </head>
-
 <body>
   <header class="header">
     <h1 class="header__heading heading">
@@ -32,15 +30,11 @@
   <main class="main">
     <h2 class="main__heading"></h2>
     <div class="main__container">
-      <section class="operations"></section>
-      <section class="results">
-        <div id="timer" class="results__timer">00:00:00
-          <!-- <button id="start">Start</button> -->
-          <!-- <button id="stop">Stop</button>
-          <button id="reset">Reset</button> -->
+      <section class="main__operations operations"></section>
+      <section class="main__results">
+        <div id="timer" class="main__timer">00:00:00
         </div>
-        <form id="dialog" class="results__dialog">
-       
+        <form id="form" class="main__form">
           <label>'Podaj jaką operację chcesz wykonać (+, -, *, /, **) i potwierdź.
             <input type="text" name="name" required class="operations--type" autocomplete="off"/>
           </label>
@@ -53,31 +47,17 @@
           <label>podaj potęgę
             <input type="text" name="name" class="powerNumber" autocomplete="off"/>
           </label>
-          <div class="results__history"></div>
-          <button class="results__buttonSubmit">Submit</button>
+          <div class="main__history"></div>
+          <button class="main__buttonSubmit">Submit</button>
         </form>
       </section>
       <!-- <div id="myModal" class="modal">
-
-   
         <div class="modal-content">
-          <span class="close">&times;</span>
-          <p>Some text in the Modal..</p>
+          
         </div>
-
       </div> -->
     </div>
-
-
   </main>
-
-
-
-
-
-
-
   <script type="module" src="./js/app.js"></script>
 </body>
-
 </html>

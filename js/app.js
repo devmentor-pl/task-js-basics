@@ -1,34 +1,13 @@
 
 import { Calculator } from "./Calculator.js";
-import { CalculatorDialog } from "./CalculorDialog.js";
-import { createContainer } from "./Container.js";
-import { putText } from "./Container.js";
 import { Timer } from "./timer.js";
 
-
-
-// createContainer(calculateActions)
-// putText(calculateActions)
-
-
-
-
-
-
-const dialog = document.getElementById('dialog');
-const text = document.getElementById('text');
-const jsbutton = document.getElementById('jsbutton');
-const modal = document.querySelector('.buttonStart');
-const reset = document.getElementById('reset');
-
-const calculateActions = ['add', 'subtract', 'multiply', 'divide', 'power']
-
 const init = () => {
-     const calc = new CalculatorDialog();
-calc.run(calc)
+    const calc = new Calculator();
+    calc.run(calc)
 
-const timer = new Timer()
-timer.run(timer)
+    const timer = new Timer()
+    timer.run(timer)
 }
 
 document.addEventListener('DOMContentLoaded', init);
