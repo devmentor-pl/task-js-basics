@@ -11,11 +11,23 @@
 
 <body>
   <header class="header">
-      <h1 class="header__heading heading">
-        <span class="heading--main">Calculator Task</span>
-        <span class="heading--sub">Introduction</span>
-      </h1>
-      <button class="header__buttonStart">Start</button>
+    <h1 class="header__heading heading">
+      <span class="header__heading--main">Calculator Task</span>
+      <span class="header__heading--sub tooltip">
+        <h3>Introduction</h3>
+        <span class="tooltip--content">
+          Try to do this task as soon as possible following the instruction below.
+          <ul>
+            <li>1. Press the button Start and write your name.
+              The task will run and the aplication will start.
+            </li>
+            <li>2.In the section on the right reply the questions and send the result.</li>
+            <li>3.The task will end...</li>
+          </ul>
+        </span>
+      </span>
+    </h1>
+    <button class="header__buttonStart">Start</button>
   </header>
   <main class="main">
     <h2 class="main__heading"></h2>
@@ -28,21 +40,21 @@
           <button id="reset">Reset</button>
         </div>
         <form id="dialog" class="results__dialog">
-            <button id="close" aria-label="close" class="results__button-close">X</button>
-            <label>'Podaj jaką operację chcesz wykonać (+, -, *, /, **) i potwierdź.
-              <input type="text" name="name" required class="operations--type" />
-            </label>
-            <label>podaj number 1
-              <input type="text" name="name" required class="number1" />
-            </label>
-            <label>podaj number 2
-              <input type="text" name="name"  class="number2" />
-            </label>
-            <label>podaj potęgę
-              <input type="text" name="name"  class="powerNumber" />
-            </label>
-            <div class="results__history"></div>
-            <button class="buttonSubmit">Submit</button>
+          <button id="close" aria-label="close" class="results__button-close">X</button>
+          <label>'Podaj jaką operację chcesz wykonać (+, -, *, /, **) i potwierdź.
+            <input type="text" name="name" required class="operations--type" />
+          </label>
+          <label>podaj number 1
+            <input type="text" name="name" required class="number1" />
+          </label>
+          <label>podaj number 2
+            <input type="text" name="name" class="number2" />
+          </label>
+          <label>podaj potęgę
+            <input type="text" name="name" class="powerNumber" />
+          </label>
+          <div class="results__history"></div>
+          <button class="buttonSubmit">Submit</button>
         </form>
       </section>
       <div id="myModal" class="modal">
@@ -52,7 +64,7 @@
           <span class="close">&times;</span>
           <p>Some text in the Modal..</p>
         </div>
-      
+
       </div>
     </div>
 

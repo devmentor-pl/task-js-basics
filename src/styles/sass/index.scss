@@ -4,72 +4,106 @@
 
 
 body {
-    box-sizing: border-box;
-    padding: 3rem;
+  box-sizing: border-box;
+  padding: 3rem;
 }
 
 .header {
-    height: 95vh;
-    position: relative;
-    background-color:$color-turcoise-light;
-    @include flexAbsoluteCenter();
+  height: 95vh;
+  position: relative;
+  background-color: $color-turcoise-light;
+  @include flexAbsoluteCenter();
+  flex-direction: column;
+
+  &__heading {
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 10rem;
+    display: flex;
     flex-direction: column;
-   
+    justify-content: space-between;
+    position: relative;
 
-    // .header__text-box {
-    //     position: absolute;
-    //     top: 40%;
-    //     left: 50%;
-    //     transform: translate(-50%, -50%);
-    //     text-align: center;
-
-    &__heading {
-            color: #fff;
-            text-transform: uppercase;
-            margin-bottom: 6rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-    .heading {
- &--main {
-                display: block;
-                font-size: 3rem;
-                font-weight: 400;
-                letter-spacing: 1.75rem;
-                animation-name: moveFromLeft;
-                animation-duration: 1s;
-                animation-timing-function: ease-out;
-                margin-bottom: 3rem;
-            }
-
-            &--sub {
-                display: block;
-                text-align: center;
-                font-size: 1rem;
-                font-weight: 700;
-                letter-spacing: 1rem;
-            }
+    &--main {
+      display: block;
+      font-size: 3rem;
+      font-weight: 400;
+      letter-spacing: 1.75rem;
+      animation-name: moveFromLeft;
+      animation-duration: 1s;
+      animation-timing-function: ease-out;
+      margin-bottom: 3rem;
     }
 
-           
-
-           
-        }
-
-    &__buttonStart {
-            border: none;
-            text-align: center;
-            text-transform: uppercase;
-            width: 200px;
-            height: 60px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            letter-spacing: 1rem;
-            border-radius: 10px;
-            color: white;
-            background-color: $color-bisque;
-        }
+    &--sub {
+      display: block;
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 1rem;
     }
+
+    &--sub.tooltip {
+      position: relative;
+      .tooltip--content {
+        display: none;
+      }
+
+      &:hover {
+        .tooltip--content {
+          display: block;
+          font-size: 1rem;
+          background: #fff;
+          color: grey;
+          font-weight: 500;
+          text-transform: lowercase;
+          letter-spacing: normal;
+          border: 1px solid rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+          display: block;
+          max-height: 130px;
+          overflow: auto;
+          padding: 10px;
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          width: 400px;
+          ul {
+            list-style: none;
+            li {
+              text-align: start;
+              margin-bottom: 5px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__buttonStart {
+    border: none;
+    text-align: center;
+    text-transform: uppercase;
+    width: 200px;
+    height: 60px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 1rem;
+    border-radius: 10px;
+    color: white;
+    background-color: $color-bisque;
+  }
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -77,112 +111,48 @@ body {
 
 
 .main__operations {
+  display: grid;
+  grid-template-columns: 300px;
+  grid-template-rows: repeat(5, 1fr);
+
+  &__list {
+    width: 100%;
     display: grid;
-    grid-template-columns: 300px;
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 40px);
+    grid-gap: 20px;
+    margin-bottom: 2rem;
 
-    &__list {
-        width: 100%;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(2, 40px);
-        grid-gap: 20px;
-        margin-bottom: 2rem;
-      
-    }
+  }
 
-    &__element {
-        background-color: $color-bisque;
-        border: 3px solid $color-orange;
-        list-style: none;
-        
-        grid-row: 1/2;
-    }
+  &__element {
+    background-color: $color-bisque;
+    border: 3px solid $color-orange;
+    list-style: none;
 
-    &__element--last {
-      grid-row: 2/3;
-      grid-column: 1/4;
-      height: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+    grid-row: 1/2;
+  }
 
-    &__text {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        grid-column: 1/5;
-    }
+  &__element--last {
+    grid-row: 2/3;
+    grid-column: 1/4;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-column: 1/5;
+  }
 
 }
 
-.results__element--last {
- align-self: center;
-}
 
-a:hover, a:focus {
+a:hover,
+a:focus {
   text-underline-offset: 0.25em;
-}
-
-dialog :focus {
-  outline: 2px solid #226DAA;
-}
-
-
-
-$hrs: pony horse mini-horse maxi-pony;
-
-[class^="horses"] {
-  padding: 30px;
-  float: left;
-  margin-right: 20px;
-  background: Cyan;
-}
-
-.horses-first {
-  &:after {
-    content: "first($hrs) = #{first($hrs)}";
-  }
-}
-
-.horses-nth-1 {
-    &:after {
-      content: "nth($hrs, 1) = #{nth($hrs, 1)}";
-    }
-  }
-  
-  .horses-nth-2 {
-    &:after {
-      content: "nth($hrs, -1) = #{nth($hrs, -1)}";
-    }
-  }
-
-  @for $i from 1 through length($hrs) {
-    .horses-#{$i} {
-        border:3px solid pink;
-      &:after {
-        content: "#{$i}. #{nth($hrs, $i)}";
-      }
-    }
-  }
-
-  code {
-    display: block;
-  }
-  
-  .clear {
-    clear: both;
-    margin: 0;
-  }
-
-  dialog:-internal-dialog-in-top-layer {
-    position: none;
-    inset-block-start: 0px;
-    inset-block-end: 0px;
-    max-width: calc((50% - 6px) - 2em);
-    max-height: calc((50% - 6px) - 2em);
-    user-select: text;
-    visibility: visible;
-    overflow: auto;
 }

@@ -159,12 +159,13 @@ body {
 .header__heading {
   color: #fff;
   text-transform: uppercase;
-  margin-bottom: 6rem;
+  margin-bottom: 10rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
 }
-.header__heading .heading--main {
+.header__heading--main {
   display: block;
   font-size: 3rem;
   font-weight: 400;
@@ -174,12 +175,44 @@ body {
   animation-timing-function: ease-out;
   margin-bottom: 3rem;
 }
-.header__heading .heading--sub {
+.header__heading--sub {
   display: block;
   text-align: center;
   font-size: 1rem;
   font-weight: 700;
   letter-spacing: 1rem;
+}
+.header__heading--sub.tooltip {
+  position: relative;
+}
+.header__heading--sub.tooltip .tooltip--content {
+  display: none;
+}
+.header__heading--sub.tooltip:hover .tooltip--content {
+  display: block;
+  font-size: 1rem;
+  background: #fff;
+  color: grey;
+  font-weight: 500;
+  text-transform: lowercase;
+  letter-spacing: normal;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+  display: block;
+  max-height: 130px;
+  overflow: auto;
+  padding: 10px;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 400px;
+}
+.header__heading--sub.tooltip:hover .tooltip--content ul {
+  list-style: none;
+}
+.header__heading--sub.tooltip:hover .tooltip--content ul li {
+  text-align: start;
+  margin-bottom: 5px;
 }
 .header__buttonStart {
   border: none;
@@ -229,83 +262,9 @@ body {
   grid-column: 1/5;
 }
 
-.results__element--last {
-  align-self: center;
-}
-
-a:hover, a:focus {
+a:hover,
+a:focus {
   text-underline-offset: 0.25em;
-}
-
-dialog :focus {
-  outline: 2px solid #226DAA;
-}
-
-[class^=horses] {
-  padding: 30px;
-  float: left;
-  margin-right: 20px;
-  background: Cyan;
-}
-
-.horses-first:after {
-  content: "first($hrs) = first(pony horse mini-horse maxi-pony)";
-}
-
-.horses-nth-1:after {
-  content: "nth($hrs, 1) = pony";
-}
-
-.horses-nth-2:after {
-  content: "nth($hrs, -1) = maxi-pony";
-}
-
-.horses-1 {
-  border: 3px solid pink;
-}
-.horses-1:after {
-  content: "1. pony";
-}
-
-.horses-2 {
-  border: 3px solid pink;
-}
-.horses-2:after {
-  content: "2. horse";
-}
-
-.horses-3 {
-  border: 3px solid pink;
-}
-.horses-3:after {
-  content: "3. mini-horse";
-}
-
-.horses-4 {
-  border: 3px solid pink;
-}
-.horses-4:after {
-  content: "4. maxi-pony";
-}
-
-code {
-  display: block;
-}
-
-.clear {
-  clear: both;
-  margin: 0;
-}
-
-dialog:-internal-dialog-in-top-layer {
-  position: none;
-  inset-block-start: 0px;
-  inset-block-end: 0px;
-  max-width: calc(50% - 6px - 2em);
-  max-height: calc(50% - 6px - 2em);
-  user-select: text;
-  visibility: visible;
-  overflow: auto;
 }
 
 /*# sourceMappingURL=index.css.map */
