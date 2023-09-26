@@ -45,6 +45,7 @@ body {
 
     &--sub.tooltip {
       position: relative;
+
       .tooltip--content {
         display: none;
       }
@@ -68,8 +69,10 @@ body {
           top: 100%;
           left: 50%;
           width: 400px;
+
           ul {
             list-style: none;
+
             li {
               text-align: start;
               margin-bottom: 5px;
@@ -90,6 +93,9 @@ body {
     font-weight: 600;
     letter-spacing: 1rem;
     border-radius: 10px;
+    background-color: $color-bisque;
+    border: 2px solid rgb(237, 202, 158);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     color: white;
     background-color: $color-bisque;
   }

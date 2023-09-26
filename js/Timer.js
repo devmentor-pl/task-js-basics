@@ -4,7 +4,7 @@ export class Timer {
         this.interval = null;
 
         this.timerElement = document.getElementById("timer");
-        this.startElement = document.querySelector(".heading__buttonStart");
+        this.startElement = document.querySelector(".header__buttonStart");
         document.getElementById("start").addEventListener("click", () => this.start());
  
         document.getElementById("reset").addEventListener("click", () => this.reset());
@@ -71,11 +71,11 @@ export class Timer {
     }
 }
 
-window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  }
+// window.onclick = function(event) {
+//     if (event.target == modal) {
+//       modal.style.display = "none";
+//     }
+//   }
 
 
 

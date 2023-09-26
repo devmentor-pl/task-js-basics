@@ -5,18 +5,14 @@ import { createContainer } from "./Container.js";
 import { putText } from "./Container.js";
 import { Timer } from "./timer.js";
 
-const calculateActions = ['add', 'subtract', 'multiply', 'divide', 'power']
-
-createContainer(calculateActions)
-putText(calculateActions)
 
 
+// createContainer(calculateActions)
+// putText(calculateActions)
 
- const calc = new CalculatorDialog();
-calc.run(calc)
 
-const timer = new Timer()
-timer.run(timer)
+
+
 
 
 const dialog = document.getElementById('dialog');
@@ -25,16 +21,14 @@ const jsbutton = document.getElementById('jsbutton');
 const modal = document.querySelector('.buttonStart');
 const reset = document.getElementById('reset');
 
-import JSSlider from './JSSlider.js';
+const calculateActions = ['add', 'subtract', 'multiply', 'divide', 'power']
 
 const init = () => {
-    const imagesList = document.querySelectorAll('.gallery__item');
-    imagesList.forEach( img => {
-        img.dataset.sliderGroupName = Math.random() > 0.5 ? 'nice' : 'good';
-    });
+     const calc = new CalculatorDialog();
+calc.run(calc)
 
-    const jsSlider = new JSSlider('.gallery__item');
-    jsSlider.run();
+const timer = new Timer()
+timer.run(timer)
 }
 
 document.addEventListener('DOMContentLoaded', init);
