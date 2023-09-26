@@ -5,6 +5,8 @@ export class CalculatorDialog {
     constructor() {
 
         this.startElement = document.querySelector(".header__buttonStart");
+        this.operationsSection = document.querySelector(".operations");
+        this.resultsSection = document.querySelector(".results");
         this.actions = ['+', '-', '*', '/', '**'];
         this.calculateActions = ['add', 'subtract', 'multiply', 'divide', 'power']
         this.history = [];
@@ -19,6 +21,7 @@ export class CalculatorDialog {
 
     run(calc) {
         this.startElement.addEventListener("click", () => this.start(calc));
+        this.createContentOfOperations(this.calculateActions)
     }
 
     createContentOfOperations(array) {
@@ -45,50 +48,20 @@ export class CalculatorDialog {
             div.classList.add('operations__button')
             el.appendChild(div)
 
-        const buttons = document.querySelectorAll('.operations__button')
-     
-        buttons.forEach(function (el, index) {
-     
-            if (index < array.length) {
-             
-                el.innerText = array[index]
-                el.classList.add('operations__element--last')
-                el.classList.add('operations__element')
-                el.setAttribute('id', array[index])
-            }
-        })
-        })
+            const buttons = document.querySelectorAll('.operations__button')
 
+            buttons.forEach(function (el, index) {
 
+                if (index < array.length) {
+
+                    el.innerText = array[index]
+                    el.classList.add('operations__element--last')
+                    el.classList.add('operations__element')
+                    el.setAttribute('id', array[index])
+                }
+            })
+        })
     }
-
-    
-    putText(array) {
-
-    const list = document.querySelectorAll('.operations__list')
-    list.forEach(function (el) {
-    
-            const div = document.createElement('button')
-            div.classList.add('buttonList')
-            el.appendChild(div)
-
-        const texts = document.querySelectorAll('.buttonList')
-        console.log(texts)
-        texts.forEach(function (el, index) {
-            console.log(el, index)
-            if (index < array.length) {
-             
-                el.innerText = array[index]
-                el.classList.add('operations__element--last')
-                el.classList.add('operations__element')
-                el.setAttribute('id', array[index])
-            }
-        })
-   
-}
-    )
-
-}
 
     isCorrectName(greeting) {
         const name = document.querySelector('.main__heading');
@@ -116,7 +89,6 @@ export class CalculatorDialog {
     }
 
     add(num1, num2, action, type) {
-
         let result;
         result = parseInt(num1) + parseInt(num2)
 
@@ -125,14 +97,9 @@ export class CalculatorDialog {
         const arrayli = [...li]
         this.operationAddHistory.push(result)
 
-
         const pairedArray = [];
 
         for (let i = 0; i < this.operationAddHistory.length; i++) {
-
-
-
-
             pairedArray.push({ item: this.operationAddHistory[i], value: arrayli[i] })
             pairedArray.forEach(function (el) {
 
@@ -143,16 +110,11 @@ export class CalculatorDialog {
                     const showResult = document.querySelector(`.${type}`)
                     showResult.remove()
                 }
-
-
             })
         }
 
-
-
         let operationResult
         operationResult = parseFloat(num1) + action + parseFloat(num2) + ' = ' + result
-
         this.history.push(operationResult)
 
         num1 = ''
@@ -165,7 +127,7 @@ export class CalculatorDialog {
     }
 
     subtract(num1, num2, action, type) {
-        alert('subtract')
+      
         let result;
         result = parseInt(num1) - parseInt(num2)
 
@@ -275,7 +237,7 @@ export class CalculatorDialog {
     }
 
     power(num1, num2, powerNumber, action, type) {
-        alert('power')
+
 
         let result2;
 
@@ -338,13 +300,16 @@ export class CalculatorDialog {
     start(calc) {
 
         let action, isCorrectAction, number1, number2, isNumber, val1, val2, result, greeting, greetingContent
-        //   greetingContent = 'Please write your name'
-        //    greeting = prompt(greetingContent)
-        //     if(greeting) {
-        //     calc.isCorrectName(greeting)}
+        greetingContent = 'Please write your name'
+        greeting = prompt(greetingContent)
+        if (greeting) {
+            calc.isCorrectName(greeting)
+        }
 
-        this.createContentOfOperations(this.calculateActions)
-        // this.putText(this.calculateActions)
+
+        this.resultsSection.setAttribute('style', 'display:block')
+        this.operationsSection.setAttribute('style', 'display:block')
+    
 
 
 
@@ -354,7 +319,7 @@ export class CalculatorDialog {
             console.log(this.history)
             const operations = ['+', '-', '*', '/', '**']
 
-            const buttonSubmit = document.querySelector('.buttonSubmit')
+            const buttonSubmit = document.querySelector('.results__buttonSubmit')
             buttonSubmit.addEventListener('click', (event) => {
 
 

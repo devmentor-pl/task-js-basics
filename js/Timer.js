@@ -5,12 +5,13 @@ export class Timer {
 
         this.timerElement = document.getElementById("timer");
         this.startElement = document.querySelector(".header__buttonStart");
-        document.getElementById("start").addEventListener("click", () => this.start());
+        // document.getElementById("start").addEventListener("click", () => this.start());
  
-        document.getElementById("reset").addEventListener("click", () => this.reset());
+        // document.getElementById("reset").addEventListener("click", () => this.reset());
     }
 
     run() {
+        console.log('timer')
         this.startElement.addEventListener("click", () => this.start());
     }
 

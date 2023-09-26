@@ -34,27 +34,27 @@
     <div class="main__container">
       <section class="operations"></section>
       <section class="results">
-        <div id="timer">00:00:00
-          <button id="start">Start</button>
-          <button id="stop">Stop</button>
-          <button id="reset">Reset</button>
+        <div id="timer" class="results__timer">00:00:00
+          <!-- <button id="start">Start</button> -->
+          <!-- <button id="stop">Stop</button>
+          <button id="reset">Reset</button> -->
         </div>
         <form id="dialog" class="results__dialog">
-          <button id="close" aria-label="close" class="results__button-close">X</button>
+       
           <label>'Podaj jaką operację chcesz wykonać (+, -, *, /, **) i potwierdź.
-            <input type="text" name="name" required class="operations--type" />
+            <input type="text" name="name" required class="operations--type" autocomplete="off"/>
           </label>
           <label>podaj number 1
-            <input type="text" name="name" required class="number1" />
+            <input type="text" name="name" required class="number1" autocomplete="off"/>
           </label>
           <label>podaj number 2
-            <input type="text" name="name" class="number2" />
+            <input type="text" name="name" class="number2" autocomplete="off"/>
           </label>
           <label>podaj potęgę
-            <input type="text" name="name" class="powerNumber" />
+            <input type="text" name="name" class="powerNumber" autocomplete="off"/>
           </label>
           <div class="results__history"></div>
-          <button class="buttonSubmit">Submit</button>
+          <button class="results__buttonSubmit">Submit</button>
         </form>
       </section>
       <!-- <div id="myModal" class="modal">
