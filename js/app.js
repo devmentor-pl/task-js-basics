@@ -25,6 +25,20 @@ const jsbutton = document.getElementById('jsbutton');
 const modal = document.querySelector('.buttonStart');
 const reset = document.getElementById('reset');
 
+import JSSlider from './JSSlider.js';
+
+const init = () => {
+    const imagesList = document.querySelectorAll('.gallery__item');
+    imagesList.forEach( img => {
+        img.dataset.sliderGroupName = Math.random() > 0.5 ? 'nice' : 'good';
+    });
+
+    const jsSlider = new JSSlider('.gallery__item');
+    jsSlider.run();
+}
+
+document.addEventListener('DOMContentLoaded', init);
+
 // modal.addEventListener('click', (event) => {
 //   dialog.showModal();
 // //   text.textContent = '';

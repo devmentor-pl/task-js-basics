@@ -1,6 +1,6 @@
 export class CalculatorDialog {
     constructor() {
-        this.actions = ['+', '-', '*', '/', '^'];
+        this.actions = ['+', '-', '*', '/', '**'];
         this.history = [];
         this.operationAddHistory = []
         this.operationSubtractHistory = []
@@ -10,7 +10,7 @@ export class CalculatorDialog {
         this.addLi = []
         this.interval = null;
 
-        this.startElement = document.querySelector(".buttonStart");
+        this.startElement = document.querySelector(".heading__buttonStart");
 
 
     }

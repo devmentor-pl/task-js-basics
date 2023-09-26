@@ -4,7 +4,7 @@ export class Timer {
         this.interval = null;
 
         this.timerElement = document.getElementById("timer");
-        this.startElement = document.querySelector(".buttonStart");
+        this.startElement = document.querySelector(".heading__buttonStart");
         document.getElementById("start").addEventListener("click", () => this.start());
  
         document.getElementById("reset").addEventListener("click", () => this.reset());

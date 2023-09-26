@@ -147,26 +147,24 @@ body {
   padding: 3rem;
 }
 
-header {
+.header {
   height: 95vh;
   position: relative;
   background-color: rgb(154, 243, 243);
-  -webkit-clip-path: polygon(0 0, 100% 0, 100% 64%, 0% 100%);
-  clip-path: polygon(0 0, 100% 0, 100% 64%, 0% 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
-header .header__text-box {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
-header .header__text-box .heading {
+.header__heading {
   color: #fff;
   text-transform: uppercase;
   margin-bottom: 6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-header .header__text-box .heading--main {
+.header__heading .heading--main {
   display: block;
   font-size: 3rem;
   font-weight: 400;
@@ -176,20 +174,14 @@ header .header__text-box .heading--main {
   animation-timing-function: ease-out;
   margin-bottom: 3rem;
 }
-header .header__text-box .heading--sub {
+.header__heading .heading--sub {
   display: block;
+  text-align: center;
   font-size: 1rem;
   font-weight: 700;
   letter-spacing: 1rem;
 }
-header .header__text-box .heading--name {
-  display: block;
-  height: 30px;
-  font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: 1rem;
-}
-header .header__text-box button {
+.header__buttonStart {
   border: none;
   text-align: center;
   text-transform: uppercase;
