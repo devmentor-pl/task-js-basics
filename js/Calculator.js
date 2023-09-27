@@ -95,13 +95,40 @@ export class Calculator {
         return this.history.push(num1 + ' ' + action + ' ' + num2 + ' ' + '=' + ' ' + result);
     }
 
-    result(calculation) {
-
-        let result = calculation
-        return result
+    result(num1, num2, operator) {
+num1 = parseInt(num1)
+num2 = parseInt(num2)
+        let result 
+        switch (operator) {
+            case '+':
+              return num1 + num2;
+            case '-':
+              return num1 - num2;
+            case '*':
+              return num1 * num2;
+            case '/':
+              if (num2 !== 0) {
+                return num1 / num2;
+              } else {
+                return "Division by zero is not allowed.";
+              }
+            default:
+              return "Invalid operator";
+          }
     
-    }
+}
 
+    historyResult(num1, num2, action) {
+        let historyResult;
+        historyResult = parseFloat(num1) + action + parseFloat(num2) + ' = ' + this.result(num1,num2,'+')
+           this.history.push(historyResult)
+        const history = document.querySelector(".main__history")
+        history.innerText = `Lista poprzednich operacji: \n` + this.getHistoryAsString()
+        return historyResult
+    }
+        
+        
+     
     add(num1, num2, action, type) {
 
 
@@ -109,7 +136,7 @@ export class Calculator {
        const addParent = document.querySelector(`#${type}`).parentElement
         const li = addParent.querySelectorAll('li')
         const arrayli = [...li]
-        this.operationAddHistory.push(this.result(parseInt(num1) + parseInt(num2)))
+        this.operationAddHistory.push(this.result(num1,num2, '+'))
         const pairedArray = [];
 
         for (let i = 0; i < this.operationAddHistory.length; i++) {
@@ -125,12 +152,7 @@ export class Calculator {
             })
         }
 
-        let operationResult
-        operationResult = parseFloat(num1) + action + parseFloat(num2) + ' = ' + this.result(parseInt(num1) + parseInt(num2))
-        this.history.push(operationResult)
-        const history = document.querySelector(".main__history")
-        history.innerText = `Lista poprzednich operacji: \n` + this.getHistoryAsString()
-        return operationResult
+     this.historyResult(num1, num2, '+')
 
     }
 
@@ -142,7 +164,7 @@ export class Calculator {
         const addParent = document.querySelector(`#${type}`).parentElement
         const li = addParent.querySelectorAll('li')
         const arrayli = [...li]
-        this.operationSubtractHistory.push(this.result(parseInt(num1) - parseInt(num2)))
+        this.operationSubtractHistory.push(this.result(num1, num2, '-'))
 
         const pairedArray = [];
 
@@ -160,13 +182,7 @@ export class Calculator {
             })
         }
 
-        let operationResult
-        operationResult = parseFloat(num1) + action + parseFloat(num2) + ' = ' + this.result(parseInt(num1) - parseInt(num2))
-
-        this.history.push(operationResult)
-        const history = document.querySelector(".main__history")
-        history.innerText = `Lista poprzednich operacji: \n'` + this.getHistoryAsString()
-        return operationResult
+        this.historyResult(num1, num2, '-')
 
     }
 
@@ -178,7 +194,7 @@ export class Calculator {
         const addParent = document.querySelector(`#${type}`).parentElement
         const li = addParent.querySelectorAll('li')
         const arrayli = [...li]
-        this.operationMultiplyHistory.push(this.result(num1,num2))
+        this.operationMultiplyHistory.push(num1, num2, '*')
 
         const pairedArray = [];
 
@@ -196,13 +212,7 @@ export class Calculator {
             })
         }
 
-        let operationResult
-        operationResult = parseFloat(num1) + action + parseFloat(num2) + ' = ' + this.result(num1,num2)
-
-        this.history.push(operationResult)
-        const history = document.querySelector(".main__history")
-        history.innerText = `Lista poprzednich operacji: \n` + this.getHistoryAsString()
-        return operationResult
+        this.historyResult(num1, num2, '*')
 
     }
 
@@ -215,7 +225,7 @@ export class Calculator {
         const addParent = document.querySelector(`#${type}`).parentElement
         const li = addParent.querySelectorAll('li')
         const arrayli = [...li]
-        this.operationDivideHistory.push(this.result(parseInt(num1) / parseInt(num2)))
+        this.operationDivideHistory.push(this.result(num1, num2, '/'))
 
         const pairedArray = [];
 
@@ -233,13 +243,7 @@ export class Calculator {
             })
         }
 
-        let operationResult
-        operationResult = parseFloat(num1) + action + parseFloat(num2) + ' = ' + this.result(parseInt(num1) / parseInt(num2))
-
-        this.history.push(operationResult)
-        const history = document.querySelector(".main__history")
-        history.innerText = `Lista poprzednich operacji: \n` + this.getHistoryAsString()
-        return operationResult
+      this.historyResult(num1, num2, '/')
 
     }
 
