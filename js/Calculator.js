@@ -40,30 +40,34 @@ export class Calculator {
         }
     }
 
+    putTextToButton(arrayContainer, arrayText) {
+        const containerButtons = document.querySelectorAll(`${arrayContainer}`)
+        containerButtons.forEach(function (el, index) {
+            if (index < arrayText.length) {
+                el.innerText = arrayText[index]
+                el.classList.add('operations__element--last')
+                el.classList.add('operations__element')
+                el.setAttribute('id', arrayText[index])
+            }
+        })
+    }
+
+    createButton(arrayContainer, array) {
+        const containerElements = document.querySelectorAll(`${arrayContainer}`)
+        containerElements.forEach(function (el, index) {
+            if (index < array.length) {
+                el.classList.add(`${array[index]}`)
+            }
+            const button = document.createElement('button')
+            button.classList.add('operations__button')
+            el.appendChild(button)
+        })
+        this.putTextToButton('.operations__button', array)
+    }
 
 createContentOfOperations(array) {
     this.createUl(this.calculateActions.length)
-   
-
-    const resultsList = document.querySelectorAll('.operations__list')
-    resultsList.forEach(function (el, index) {
-        if (index < array.length) {
-            el.classList.add(`${array[index]}`)
-        }
-        const div = document.createElement('button')
-        div.classList.add('operations__button')
-        el.appendChild(div)
-
-        const buttons = document.querySelectorAll('.operations__button')
-        buttons.forEach(function (el, index) {
-            if (index < array.length) {
-                el.innerText = array[index]
-                el.classList.add('operations__element--last')
-                el.classList.add('operations__element')
-                el.setAttribute('id', array[index])
-            }
-        })
-    })
+    this.createButton('.operations__list',array)
 }
 
 isCorrectName(greeting) {
