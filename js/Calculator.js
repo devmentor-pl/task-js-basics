@@ -2,7 +2,6 @@
 
 export class Calculator {
     constructor() {
-
         this.startElement = document.querySelector(".header__buttonStart");
         this.operationsSection = document.querySelector(".main__operations");
         this.resultsSection = document.querySelector(".main__results");
@@ -23,20 +22,20 @@ export class Calculator {
         this.createContentOfOperations(this.calculateActions)
     }
 
-    createLi(amount, ulElem) {
-        for (let j = 0; j < amount; j++) {
-            const liElem = document.createElement("li");
-            liElem.classList.add("operations__element");
-            ulElem.appendChild(liElem);
-        }
-    }
-
-    createUl(amount) {
+      createUl(amount) {
         for (let i = 0; i < amount; i++) {
             const ulElem = document.createElement("ul");
             ulElem.classList.add("operations__list");
             this.operationsSection.appendChild(ulElem);
             this.createLi(2, ulElem)
+        }
+    }
+
+    createLi(amount, ulElem) {
+        for (let j = 0; j < amount; j++) {
+            const liElem = document.createElement("li");
+            liElem.classList.add("operations__element");
+            ulElem.appendChild(liElem);
         }
     }
 
@@ -85,8 +84,6 @@ export class Calculator {
     }
 
     isCorrectNumber(val1, val2) {
-
-
         if (!(isNaN(val1)) && !(isNaN(val2))) {
             return true
         } else {
@@ -98,15 +95,21 @@ export class Calculator {
         return this.history.push(num1 + ' ' + action + ' ' + num2 + ' ' + '=' + ' ' + result);
     }
 
+    result(calculation) {
+
+        let result = calculation
+        return result
+    
+    }
+
     add(num1, num2, action, type) {
 
-        let result;
-        result = parseInt(num1) + parseInt(num2)
 
-        const addParent = document.querySelector(`#${type}`).parentElement
+
+       const addParent = document.querySelector(`#${type}`).parentElement
         const li = addParent.querySelectorAll('li')
         const arrayli = [...li]
-        this.operationAddHistory.push(result)
+        this.operationAddHistory.push(this.result(parseInt(num1) + parseInt(num2)))
         const pairedArray = [];
 
         for (let i = 0; i < this.operationAddHistory.length; i++) {
@@ -123,7 +126,7 @@ export class Calculator {
         }
 
         let operationResult
-        operationResult = parseFloat(num1) + action + parseFloat(num2) + ' = ' + result
+        operationResult = parseFloat(num1) + action + parseFloat(num2) + ' = ' + this.result(parseInt(num1) + parseInt(num2))
         this.history.push(operationResult)
         const history = document.querySelector(".main__history")
         history.innerText = `Lista poprzednich operacji: \n` + this.getHistoryAsString()
@@ -133,14 +136,13 @@ export class Calculator {
 
     subtract(num1, num2, action, type) {
 
-        let result;
-        result = parseInt(num1) - parseInt(num2)
+       
 
 
         const addParent = document.querySelector(`#${type}`).parentElement
         const li = addParent.querySelectorAll('li')
         const arrayli = [...li]
-        this.operationSubtractHistory.push(result)
+        this.operationSubtractHistory.push(this.result(parseInt(num1) - parseInt(num2)))
 
         const pairedArray = [];
 
@@ -159,7 +161,7 @@ export class Calculator {
         }
 
         let operationResult
-        operationResult = parseFloat(num1) + action + parseFloat(num2) + ' = ' + result
+        operationResult = parseFloat(num1) + action + parseFloat(num2) + ' = ' + this.result(parseInt(num1) - parseInt(num2))
 
         this.history.push(operationResult)
         const history = document.querySelector(".main__history")
@@ -171,13 +173,12 @@ export class Calculator {
 
     multiply(num1, num2, action, type) {
 
-        let result;
-        result = parseInt(num1) + parseInt(num2)
+       
 
         const addParent = document.querySelector(`#${type}`).parentElement
         const li = addParent.querySelectorAll('li')
         const arrayli = [...li]
-        this.operationMultiplyHistory.push(result)
+        this.operationMultiplyHistory.push(this.result(num1,num2))
 
         const pairedArray = [];
 
@@ -196,7 +197,7 @@ export class Calculator {
         }
 
         let operationResult
-        operationResult = parseFloat(num1) + action + parseFloat(num2) + ' = ' + result
+        operationResult = parseFloat(num1) + action + parseFloat(num2) + ' = ' + this.result(num1,num2)
 
         this.history.push(operationResult)
         const history = document.querySelector(".main__history")
@@ -208,14 +209,13 @@ export class Calculator {
 
     divide(num1, num2, action, type) {
 
-        let result;
-        result = parseInt(num1) / parseInt(num2)
+      
 
 
         const addParent = document.querySelector(`#${type}`).parentElement
         const li = addParent.querySelectorAll('li')
         const arrayli = [...li]
-        this.operationDivideHistory.push(result)
+        this.operationDivideHistory.push(this.result(parseInt(num1) / parseInt(num2)))
 
         const pairedArray = [];
 
@@ -234,7 +234,7 @@ export class Calculator {
         }
 
         let operationResult
-        operationResult = parseFloat(num1) + action + parseFloat(num2) + ' = ' + result
+        operationResult = parseFloat(num1) + action + parseFloat(num2) + ' = ' + this.result(parseInt(num1) / parseInt(num2))
 
         this.history.push(operationResult)
         const history = document.querySelector(".main__history")
@@ -244,7 +244,6 @@ export class Calculator {
     }
 
     power(num1, num2, powerNumber, action, type) {
-
 
         let result2;
 
@@ -287,7 +286,7 @@ export class Calculator {
         }
 
         let operationResult
-        operationResult = parseFloat(num1) + action + parseFloat(num2) + ' = ' + result2
+        operationResult = parseFloat(num1) + action + parseFloat(powerNumber) + ' = ' + result
 
         this.history.push(operationResult)
         const history = document.querySelector(".main__history")
