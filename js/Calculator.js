@@ -98,19 +98,21 @@ export class Calculator {
     result(num1, num2, operator) {
 num1 = parseInt(num1)
 num2 = parseInt(num2)
-        let result 
+        let result; 
+
         switch (operator) {
             case '+':
-              return num1 + num2;
+               
+              return result = num1 + num2;
             case '-':
-              return num1 - num2;
+              return result = num1 - num2;
             case '*':
-              return num1 * num2;
+              return result = num1 * num2;
             case '/':
               if (num2 !== 0) {
-                return num1 / num2;
+                return result = num1 / num2;
               } else {
-                return "Division by zero is not allowed.";
+                return result = "Division by zero is not allowed.";
               }
             default:
               return "Invalid operator";
@@ -120,7 +122,7 @@ num2 = parseInt(num2)
 
     historyResult(num1, num2, action) {
         let historyResult;
-        historyResult = parseFloat(num1) + action + parseFloat(num2) + ' = ' + this.result(num1,num2,'+')
+        historyResult = parseFloat(num1) + action + parseFloat(num2) + ' = ' + this.result(num1,num2,action)
            this.history.push(historyResult)
         const history = document.querySelector(".main__history")
         history.innerText = `Lista poprzednich operacji: \n` + this.getHistoryAsString()
