@@ -203,6 +203,11 @@
   border-radius: 10px;
   list-style: none;
   grid-row: 1/2;
+  font-size: 1.5rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .main__operations .operations__element--last {
@@ -244,6 +249,12 @@
   margin-top: 20px;
 }
 
+.main__history {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
 .main__buttonSubmit {
   width: 200px;
   height: 60px;
@@ -255,6 +266,32 @@
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   color: white;
   background-color: bisque;
+}
+
+dialog[open] {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#modal {
+  display: none;
+}
+
+dialog[open]#modal {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.modal__headline {
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
 body {

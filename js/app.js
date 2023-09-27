@@ -1,6 +1,6 @@
 
 import { Calculator } from "./Calculator.js";
-import { Timer } from "./timer.js";
+import { Timer } from "./Timer.js";
 
 const init = () => {
     const calc = new Calculator();
@@ -12,25 +12,20 @@ const init = () => {
 
 document.addEventListener('DOMContentLoaded', init);
 
-// modal.addEventListener('click', (event) => {
-//   dialog.showModal();
-// //   text.textContent = '';
-  
-// });
 
-// jsbutton.addEventListener('click', (event) => {
-//   dialog.close();
-//   text.innerHTML += '"JS close" closed the dialog.<br/>';
-// });
+const dialog = document.getElementById("modal");
 
 
-// dialog.addEventListener('cancel', (event) => {
-//   text.innerHTML += 'cance event happened<br/>';
-// });
+function openCheck(dialog) {
+  if (dialog.open) {
+    console.log("Dialog open");
+  } else {
+    console.log("Dialog closed");
+  }
+}
 
-// dialog.addEventListener('close', (event) => {
-//   text.innerHTML += 'close event happened<br/>';
-// });
+
+
 
 
  

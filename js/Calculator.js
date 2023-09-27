@@ -115,7 +115,7 @@ export class Calculator {
         operationResult = parseFloat(num1) + action + parseFloat(num2) + ' = ' + result
         this.history.push(operationResult)
         const history = document.querySelector(".main__history")
-        history.innerText = `Lista poprzednich operacji: \n'` + this.getHistoryAsString()
+        history.innerText = `Lista poprzednich operacji: \n` + this.getHistoryAsString()
         return operationResult
 
     }
@@ -189,7 +189,7 @@ export class Calculator {
 
         this.history.push(operationResult)
         const history = document.querySelector(".main__history")
-        history.innerText = `Lista poprzednich operacji: \n'` + calc.getHistoryAsString()
+        history.innerText = `Lista poprzednich operacji: \n` + this.getHistoryAsString()
         return operationResult
 
     }
@@ -223,11 +223,11 @@ export class Calculator {
         }
 
         let operationResult
-        operationResult = parseFloat(num1) + action + parseFloat(num2) + ' = ' + operationResult
+        operationResult = parseFloat(num1) + action + parseFloat(num2) + ' = ' + result
 
         this.history.push(operationResult)
         const history = document.querySelector(".main__history")
-        history.innerText = `Lista poprzednich operacji: \n'` + calc.getHistoryAsString()
+        history.innerText = `Lista poprzednich operacji: \n` + this.getHistoryAsString()
         return operationResult
 
     }
@@ -280,7 +280,7 @@ export class Calculator {
 
         this.history.push(operationResult)
         const history = document.querySelector(".main__history")
-        history.innerText = `Lista poprzednich operacji: \n'` + calc.getHistoryAsString()
+        history.innerText = `Lista poprzednich operacji: \n` + this.getHistoryAsString()
         return operationResult
 
 
