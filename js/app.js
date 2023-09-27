@@ -13,16 +13,7 @@ const init = () => {
 document.addEventListener('DOMContentLoaded', init);
 
 
-const dialog = document.getElementById("modal");
 
-
-function openCheck(dialog) {
-  if (dialog.open) {
-    console.log("Dialog open");
-  } else {
-    console.log("Dialog closed");
-  }
-}
 
 
 
