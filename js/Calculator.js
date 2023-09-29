@@ -8,6 +8,7 @@ export class Calculator {
         this.actions = ['+', '-', '*', '/', '**'];
         this.calculateActions = ['add', 'subtract', 'multiply', 'divide', 'power']
         this.history = [];
+        this.operationHistory = []
         this.operationAddHistory = []
         this.operationSubtractHistory = []
         this.operationMultiplyHistory = []
@@ -96,14 +97,13 @@ export class Calculator {
     }
 
     result(num1, num2, operator) {
-num1 = parseInt(num1)
-num2 = parseInt(num2)
+        num1 = parseInt(num1)
+        num2 = parseInt(num2)
         let result; 
 
         switch (operator) {
             case '+':
-               
-              return result = num1 + num2;
+               return result = num1 + num2;
             case '-':
               return result = num1 - num2;
             case '*':
@@ -112,7 +112,7 @@ num2 = parseInt(num2)
               if (num2 !== 0) {
                 return result = num1 / num2;
               } else {
-                return result = "Division by zero is not allowed.";
+                return alert("Division by zero is not allowed.") 
               }
             default:
               return "Invalid operator";
@@ -129,13 +129,11 @@ num2 = parseInt(num2)
         return historyResult
     }
         
-        
+     
      
     add(num1, num2, action, type) {
 
-
-
-       const addParent = document.querySelector(`#${type}`).parentElement
+        const addParent = document.querySelector(`#${type}`).parentElement
         const li = addParent.querySelectorAll('li')
         const arrayli = [...li]
         this.operationAddHistory.push(this.result(num1,num2, '+'))
@@ -158,10 +156,8 @@ num2 = parseInt(num2)
 
     }
 
+    
     subtract(num1, num2, action, type) {
-
-       
-
 
         const addParent = document.querySelector(`#${type}`).parentElement
         const li = addParent.querySelectorAll('li')
@@ -191,13 +187,10 @@ num2 = parseInt(num2)
 
     multiply(num1, num2, action, type) {
 
-       
-
         const addParent = document.querySelector(`#${type}`).parentElement
         const li = addParent.querySelectorAll('li')
         const arrayli = [...li]
-        this.operationMultiplyHistory.push(num1, num2, '*')
-
+        this.operationMultiplyHistory.push(this.result(num1, num2, '*'))
         const pairedArray = [];
 
         for (let i = 0; i < this.operationMultiplyHistory.length; i++) {
@@ -221,14 +214,10 @@ num2 = parseInt(num2)
 
     divide(num1, num2, action, type) {
 
-      
-
-
         const addParent = document.querySelector(`#${type}`).parentElement
         const li = addParent.querySelectorAll('li')
         const arrayli = [...li]
         this.operationDivideHistory.push(this.result(num1, num2, '/'))
-
         const pairedArray = [];
 
         for (let i = 0; i < this.operationDivideHistory.length; i++) {
@@ -251,8 +240,6 @@ num2 = parseInt(num2)
 
     power(num1, num2, powerNumber, action, type) {
 
-        let result2;
-
         this.num1 = num1
         this.powerNumber = powerNumber
         let result
@@ -274,7 +261,6 @@ num2 = parseInt(num2)
         const li = addParent.querySelectorAll('li')
         const arrayli = [...li]
         this.operationPowerHistory.push(result)
-
         const pairedArray = [];
 
         for (let i = 0; i < this.operationPowerHistory.length; i++) {
@@ -293,12 +279,10 @@ num2 = parseInt(num2)
 
         let operationResult
         operationResult = parseFloat(num1) + action + parseFloat(powerNumber) + ' = ' + result
-
         this.history.push(operationResult)
         const history = document.querySelector(".main__history")
         history.innerText = `Lista poprzednich operacji: \n` + this.getHistoryAsString()
         return operationResult
-
 
     }
 
@@ -316,7 +300,6 @@ num2 = parseInt(num2)
         this.operationsSection.setAttribute('style', 'display:block')
 
         do {
-
 
             const operations = ['+', '-', '*', '/', '**']
             const buttonSubmit = document.querySelector('.main__buttonSubmit')
