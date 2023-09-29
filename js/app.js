@@ -10,7 +10,7 @@ function Calculator() {
 }
 
 Calculator.prototype.isCorrectAction = function (action) {
-  return this.actions.includes(action);
+  return this.actions.hasOwnProperty(action);
 };
 
 Calculator.prototype.getHistoryAsString = function () {
@@ -58,7 +58,7 @@ do {
   promptContent += 'Lista poprzednich operacji: \n' + calc.getHistoryAsString();
 
   action = prompt(promptContent);
-  isCorrectAction = Object.hasOwnProperty.call(calc.actions, action);
+  isCorrectAction = isCorrectAction = calc.isCorrectAction(action);
   if (isCorrectAction) {
     number1 = Number(prompt('Podaj liczbę nr 1'));
     number2 = Number(prompt('Podaj liczbę nr 2'));
