@@ -58,7 +58,7 @@ do {
   promptContent += 'Lista poprzednich operacji: \n' + calc.getHistoryAsString();
 
   action = prompt(promptContent);
-  isCorrectAction = isCorrectAction = calc.isCorrectAction(action);
+  isCorrectAction = calc.isCorrectAction(action);
   if (isCorrectAction) {
     number1 = Number(prompt('Podaj liczbę nr 1'));
     number2 = Number(prompt('Podaj liczbę nr 2'));
