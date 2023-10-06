@@ -12,11 +12,19 @@ Calculator.prototype.getHistoryAsString = function() {
 }
 
 Calculator.prototype.add = function(num1, num2) {
-    // 1. zamień wartości przekazane przez parametr na typ number
-    // 2. sprawdź czy są one poprawne
-    // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
-    // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
-}
+    num1 = parseFloat(num1);
+    num2 = parseFloat(num2);
+    if (!isNaN(num1) && !isNaN(num2)) {
+        const additionResult = num1 + num2;
+        this.history.push(`${num1} + ${num2} = ${additionResult}`)
+        const message = `${additionResult}`;
+        prompt("Wynik dodawania:", message);
+        return additionResult;
+    } else {
+        prompt("Błąd: Podane wartości nie są liczbami.");
+        return null;
+    }
+};
 
 const calc = new Calculator();
 let action, promptContent, isCorrectAction, number1, number2;
@@ -34,6 +42,11 @@ do {
         if(action === '+') {
             calc.add(number1, number2);
         }
+
+
+
+
+
     }
     
 } while(calc.isCorrectAction(action));
