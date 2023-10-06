@@ -72,7 +72,20 @@ Calculator.prototype.div = function(num1, num2) {
     }
 };
 
-
+Calculator.prototype.exp = function(num1, num2) {
+    num1 = parseFloat(num1);
+    num2 = parseFloat(num2);
+    if (!isNaN(num1) && !isNaN(num2)) {
+        const exponationResult = num1 ** num2;
+        this.history.push(`${num1} ** ${num2} = ${exponationResult}`)
+        const message = `${exponationResult}`;
+        prompt("Wynik potęgowania:", message);
+        return exponationResult;
+    } else {
+        prompt("Błąd: Podane wartości nie są liczbami.");
+        return null;
+    }
+};
 
 const calc = new Calculator();
 let action, promptContent, isCorrectAction, number1, number2;
@@ -95,6 +108,8 @@ do {
             calc.mul(number1, number2);
         } else if (action === '/') {
             calc.div(number1, number2);
+        } else if (action === '^') {
+            calc.exp(number1, number2);
         }
 
 
