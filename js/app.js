@@ -12,11 +12,125 @@ Calculator.prototype.getHistoryAsString = function() {
 }
 
 Calculator.prototype.add = function(num1, num2) {
-    // 1. zamień wartości przekazane przez parametr na typ number
-    // 2. sprawdź czy są one poprawne
-    // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
-    // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
-}
+
+    num1 = parseFloat(num1);
+    num2 = parseFloat(num2);
+
+    if (!isNaN(num1) && !isNaN(num2)) {
+
+        const additionResult = num1 + num2;
+        this.history.push(`${num1} + ${num2} = ${additionResult}`);
+
+        const message = `${additionResult}`;
+        prompt("Wynik dodawania:", message);
+
+        return additionResult;
+
+    } else {
+
+        prompt("Błąd: Podane wartości nie są liczbami.");
+        return null;
+    
+    }
+};
+
+Calculator.prototype.sub = function(num1, num2) {
+
+    num1 = parseFloat(num1);
+    num2 = parseFloat(num2);
+
+    if (!isNaN(num1) && !isNaN(num2)) {
+
+        const subtractionResult = num1 - num2;
+        this.history.push(`${num1} - ${num2} = ${subtractionResult}`);
+
+        const message = `${subtractionResult}`;
+        prompt("Wynik odejmowania:", message);
+
+        return subtractionResult;
+
+    } else {
+
+        prompt("Błąd: Podane wartości nie są liczbami.");
+        return null;
+    }
+};
+
+
+Calculator.prototype.mul = function(num1, num2) {
+
+    num1 = parseFloat(num1);
+    num2 = parseFloat(num2);
+
+    if (!isNaN(num1) && !isNaN(num2)) {
+
+        const multiplicationResult = num1 * num2;
+        this.history.push(`${num1} * ${num2} = ${multiplicationResult}`);
+
+        const message = `${multiplicationResult}`;
+        prompt("Wynik mnożenia:", message);
+
+        return multiplicationResult;
+
+    } else {
+
+        prompt("Błąd: Podane wartości nie są liczbami.");
+        return null;
+    }
+};
+
+Calculator.prototype.div = function(num1, num2) {
+
+    num1 = parseFloat(num1);
+    num2 = parseFloat(num2);
+
+    if (!isNaN(num1) && !isNaN(num2)) {
+        
+        if (num2 === 0) {
+            prompt("Błąd: Nie można dzielić przez zero.");
+            return null;
+        }
+        
+        const divisionResult = num1 / num2;
+        this.history.push(`${num1} / ${num2} = ${divisionResult}`);
+
+        const message = `${divisionResult}`;
+        prompt("Wynik dzielenia:", message);
+
+        return divisionResult;
+
+    } else {
+
+        prompt("Błąd: Podane wartości nie są liczbami.");
+        return null;
+    }
+};
+
+Calculator.prototype.exp = function(num1, num2) {
+
+    num1 = parseFloat(num1);
+    num2 = parseFloat(num2);
+
+    if (!isNaN(num1) && !isNaN(num2)) {
+
+        let result = 1;
+        for (let i = 1; i <= num2; i++) {
+            result *= num1;
+        }
+        const exponationResult = result;
+        this.history.push(`${num1} ** ${num2} = ${exponationResult}`);
+
+        const message = `${exponationResult}`;
+        prompt("Wynik potęgowania:", message);
+
+        return exponationResult;
+
+    } else {
+
+        prompt("Błąd: Podane wartości nie są liczbami.");
+        return null;
+    }
+};
 
 const calc = new Calculator();
 let action, promptContent, isCorrectAction, number1, number2;
@@ -31,8 +145,25 @@ do {
         number1 = prompt('Podaj liczbę nr 1');
         number2 = prompt('Podaj liczbę nr 2');
 
-        if(action === '+') {
+        switch (action) {
+            case '+':
             calc.add(number1, number2);
+            break;
+            case '-':
+                calc.sub(number1, number2);
+                break;
+            case '*':
+                calc.mul(number1, number2);
+                break;
+            case '/':
+                calc.div(number1, number2);
+                break;
+            case '^':
+                calc.exp(number1, number2);
+                break;
+            default:
+                prompt("Błąd: Nieprawidłowa operacja.");
+                break;
         }
     }
     
