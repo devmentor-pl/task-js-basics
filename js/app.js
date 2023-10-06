@@ -140,16 +140,25 @@ do {
         number1 = prompt('Podaj liczbę nr 1');
         number2 = prompt('Podaj liczbę nr 2');
 
-        if(action === '+') {
+        switch (action) {
+            case '+':
             calc.add(number1, number2);
-        } else if (action === '-') {
-            calc.sub(number1, number2);
-        } else if (action === '*') {
-            calc.mul(number1, number2);
-        } else if (action === '/') {
-            calc.div(number1, number2);
-        } else if (action === '^') {
-            calc.exp(number1, number2);
+            break;
+            case '-':
+                calc.sub(number1, number2);
+                break;
+            case '*':
+                calc.mul(number1, number2);
+                break;
+            case '/':
+                calc.div(number1, number2);
+                break;
+            case '^':
+                calc.exp(number1, number2);
+                break;
+            default:
+                prompt("Błąd: Nieprawidłowa operacja.");
+                break;
         }
 
 
