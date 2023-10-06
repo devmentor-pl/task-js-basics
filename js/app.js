@@ -160,11 +160,6 @@ do {
                 prompt("Błąd: Nieprawidłowa operacja.");
                 break;
         }
-
-
-
-
-
     }
     
 } while(calc.isCorrectAction(action));
