@@ -85,7 +85,12 @@ Calculator.prototype.div = function(num1, num2) {
     num2 = parseFloat(num2);
 
     if (!isNaN(num1) && !isNaN(num2)) {
-
+        
+        if (num2 === 0) {
+            prompt("Błąd: Nie można dzielić przez zero.");
+            return null;
+        }
+        
         const divisionResult = num1 / num2;
         this.history.push(`${num1} / ${num2} = ${divisionResult}`);
 
