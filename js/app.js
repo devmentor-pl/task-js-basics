@@ -26,6 +26,23 @@ Calculator.prototype.add = function(num1, num2) {
     }
 };
 
+Calculator.prototype.sub = function(num1, num2) {
+    num1 = parseFloat(num1);
+    num2 = parseFloat(num2);
+    if (!isNaN(num1) && !isNaN(num2)) {
+        const subtractionResult = num1 - num2;
+        this.history.push(`${num1} - ${num2} = ${subtractionResult}`)
+        const message = `${subtractionResult}`;
+        prompt("Wynik odejmowania:", message);
+        return subtractionResult;
+    } else {
+        prompt("Błąd: Podane wartości nie są liczbami.");
+        return null;
+    }
+};
+
+
+
 const calc = new Calculator();
 let action, promptContent, isCorrectAction, number1, number2;
 do { 
@@ -41,6 +58,8 @@ do {
 
         if(action === '+') {
             calc.add(number1, number2);
+        } else if (action === '-') {
+            calc.sub(number1, number2);
         }
 
 
