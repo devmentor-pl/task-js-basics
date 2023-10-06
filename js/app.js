@@ -57,6 +57,21 @@ Calculator.prototype.mul = function(num1, num2) {
     }
 };
 
+Calculator.prototype.div = function(num1, num2) {
+    num1 = parseFloat(num1);
+    num2 = parseFloat(num2);
+    if (!isNaN(num1) && !isNaN(num2)) {
+        const divisionResult = num1 / num2;
+        this.history.push(`${num1} / ${num2} = ${divisionResult}`)
+        const message = `${divisionResult}`;
+        prompt("Wynik dzielenia:", message);
+        return divisionResult;
+    } else {
+        prompt("Błąd: Podane wartości nie są liczbami.");
+        return null;
+    }
+};
+
 
 
 const calc = new Calculator();
@@ -78,6 +93,8 @@ do {
             calc.sub(number1, number2);
         } else if (action === '*') {
             calc.mul(number1, number2);
+        } else if (action === '/') {
+            calc.div(number1, number2);
         }
 
 
