@@ -76,7 +76,12 @@ Calculator.prototype.exp = function(num1, num2) {
     num1 = parseFloat(num1);
     num2 = parseFloat(num2);
     if (!isNaN(num1) && !isNaN(num2)) {
-        const exponationResult = num1 ** num2;
+        const exponationResult = {
+            let result = 1;
+            for (let i = 1; i <= num2; i++) {
+                result *= num1;
+            }
+        }
         this.history.push(`${num1} ** ${num2} = ${exponationResult}`)
         const message = `${exponationResult}`;
         prompt("Wynik potęgowania:", message);
