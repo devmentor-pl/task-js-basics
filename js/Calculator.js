@@ -16,6 +16,7 @@ export class Calculator {
         this.operationPowerHistory = []
         this.addLi = []
         this.interval = null;
+     
     }
 
     run(calc) {
@@ -181,7 +182,6 @@ export class Calculator {
         }
 
         this.historyResult(num1, num2, '-')
-
     }
 
 
@@ -208,7 +208,6 @@ export class Calculator {
         }
 
         this.historyResult(num1, num2, '*')
-
     }
 
 
@@ -343,11 +342,13 @@ export class Calculator {
                 }
             })
 
-        } while (calc.isCorrectAction(action));
+        } while ((calc.isCorrectAction(action))){
+          
+        };
     }
 }
 
-
+console.dir(Calculator)
 
 
 

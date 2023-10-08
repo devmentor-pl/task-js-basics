@@ -2,7 +2,7 @@ export class Timer {
     constructor() {
         this.seconds = 0;
         this.interval = null;
-
+        this.resultTime = ''
         this.timerElement = document.getElementById("timer");
         this.startElement = document.querySelector(".header__buttonStart");
     }
@@ -21,6 +21,20 @@ export class Timer {
     stop() {
         clearInterval(this.interval);
         this.interval = null;
+        this.resultTime = this.timerElement.textContent 
+    
+         const modal = document.querySelector("dialog");
+            modal.showModal()
+            modal.style.display = "block"
+           const mainResult = document.querySelector('.modal__timer')
+            mainResult.innerText = this.resultTime
+        
+         
+
+          
+    
+        message=message
+
     }
 
     reset() {
@@ -33,7 +47,7 @@ export class Timer {
 
         const minutes = Math.floor(this.seconds / 60);
         const seconds = this.seconds % 60;
-        this.timerElement.textContent =
+       this.timerElement.textContent =
             this.pad(minutes, 2) + ":" +
             this.pad(seconds, 2);
         this.seconds++;
@@ -41,11 +55,10 @@ export class Timer {
         const timer = document.querySelector('#timer')
 
         if (stop === null) {
-            this.stop()
+            this.stop('Show Time')
             timer.setAttribute('style', 'position:absolute; top:50%; left:50%')
-            const modal = document.querySelector("dialog");
-            modal.showModal();
-            modal.style.display = "block";
+      
+           
         }
     }
 
@@ -57,6 +70,9 @@ export class Timer {
         return s;
     }
 }
+
+export default Timer
+
 
 
 
