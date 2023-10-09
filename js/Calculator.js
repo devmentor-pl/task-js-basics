@@ -2,7 +2,7 @@
 
 export class Calculator {
     constructor() {
-        this.startElement = document.querySelector(".header__buttonStart");
+        this.startElement = document.querySelector(".buttonStart");
         this.operationsSection = document.querySelector(".main__operations");
         this.resultsSection = document.querySelector(".main__results");
         this.actions = ['+', '-', '*', '/', '**'];
@@ -304,7 +304,7 @@ export class Calculator {
             const buttonSubmit = document.querySelector('.main__buttonSubmit')
             buttonSubmit.addEventListener('click', (event) => {
                 event.preventDefault()
-                const action = document.querySelector('.operations--type').value
+                const action = document.querySelector('.operatorType').value
 
                 let val1 = document.querySelector('.number1').value
                 let val2 = document.querySelector('.number2').value

@@ -13,7 +13,7 @@
 .heading {
   color: #fff;
   text-transform: uppercase;
-  margin-bottom: 10rem;
+  margin-bottom: 3rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -35,17 +35,17 @@
     text-align: center;
     font-size: 1rem;
     font-weight: 700;
-    letter-spacing: 1rem;
-  }
-
-  &--sub {
+    letter-spacing: 0.6rem;
     position: relative;
 
     div {
       @include flexAbsoluteCenter;
     }
   }
+}
 
+.tooltip > * {
+  padding: 5px;
 }
 
 .tooltip--content {
@@ -55,35 +55,38 @@
 .tooltip--icon:hover+.tooltip--content {
   display: block;
   position: absolute;
-  top: 100%;
-  left: 50%;
-  font-size: 1rem;
+  top: 3%;
+  left: 70%;
+  font-size: 1.2rem;
   background: #fff;
   color: $color-grey;
   font-weight: 500;
-  text-transform: lowercase;
+  text-transform: none;
   letter-spacing: normal;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
-  width: 400px;
-  max-height: 130px;
+  width: 300px;
+  max-height: 200px;
   overflow: auto;
   padding: 10px;
+  .headline {
+    text-align: start;
+    padding-left: 40px;
+  }
 
-  ul {
-    list-style: none;
-
+  ol {
     li {
       text-align: start;
-      margin-bottom: 5px;
+      padding: 10px;
     }
   }
 }
 
 .fa.fa-info {
-  width: 20px;
-  height: 20px;
-  color: black;
+  width: 40px;
+  height: 40px;
+  font-size: 3rem;
+  color: $color-bisque;
 }
 
 .buttonStart {
@@ -92,13 +95,14 @@
   text-transform: uppercase;
   width: 200px;
   height: 60px;
-  font-size: 1.2rem;
-  font-weight: 600;
-  letter-spacing: 1rem;
+  font-size: 1.5rem;
+  font-weight: 800;
   border-radius: 10px;
   background-color: $color-bisque;
   border: 2px solid $color-bisque-dark;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-  color: white;
   background-color: $color-bisque;
+  a {
+   color: $color-turcoise-light; 
+  }
 }

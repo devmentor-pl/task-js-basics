@@ -11,39 +11,39 @@
 </head>
 
 <body>
-  <header class="header">
-    <h1 class="heading">
-      <span class="heading--main">Calculator Task</span>
-      <span class="heading--sub">
+  <header class="header" id="header">
+    <div class="heading">
+      <h1 class="heading--main">Calculator Task</h1>
+      <div class="heading--sub">
         <div class="tooltip">
           <h3>Instruction</h3>
           <i class="fa fa-info tooltip--icon"></i>
-           <span class="tooltip--content">
-          Try to do this task as soon as possible following the instruction below.
-          <ul>
-            <li>1. Press the button START and in the write your name.
-              The task will run and the aplication will start.
-            </li>
-            <li>2.In the section on the right try to give answers on the task as soon as possible.</li>
-            <li>3.The task will end if in the section on the left won't be any elements to collect results</li>
-          </ul>
-        </span>
+          <span class="tooltip--content">
+            <h5 class="headline">Try to do this task as soon as possible following the instruction below.</h5>
+            <ol>
+              <li>Press the button START and write your name.
+              </br>
+                The task will run and the aplication will start.
+              </li>
+              <li>In the section on the right try to give answers on the task as soon as possible.</li>
+              <li>The task will end if in the section on the left there won't be any elements to collect results</li>
+            </ol>
+          </span>
         </div>
-       
-      </span>
-    </h1>
-    <button class="buttonStart">Start</button>
+      </div>
+    </div>
+    <button class="buttonStart"><a href="#main">Start</a></button>
   </header>
-  <main class="main">
+  <main class="main" id="main">
     <h2 class="main__heading"></h2>
     <div class="main__container">
       <section class="main__operations operations"></section>
-      <section class="main__results">
+      <section class="main__results results">
         <div id="timer" class="main__timer">00:00:00
         </div>
         <form id="form" class="main__form">
           <label>'Enter the operation (+, -, *, /, **) you want to perform and confirm.
-            <input type="text" name="name" required class="operations--type" autocomplete="off" />
+            <input type="text" name="name" required class="operatorType" autocomplete="off" />
           </label>
           <label>podaj number 1
             <input type="text" name="name" required class="number1" autocomplete="off" />
