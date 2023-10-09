@@ -1,5 +1,3 @@
-
-
 export class Calculator {
     constructor() {
         this.startElement = document.querySelector(".buttonStart");
@@ -7,6 +5,10 @@ export class Calculator {
         this.resultsSection = document.querySelector(".main__results");
         this.actions = ['+', '-', '*', '/', '**'];
         this.calculateActions = ['add', 'subtract', 'multiply', 'divide', 'power']
+        this.operatorType = document.querySelector('.operatorType')
+        this.num1Input = document.querySelector('.number1')
+        this.num2Input = document.querySelector('.number2')
+        this.powerInput = document.querySelector('.powerNumber')
         this.history = [];
         this.operationHistory = []
         this.operationAddHistory = []
@@ -16,7 +18,7 @@ export class Calculator {
         this.operationPowerHistory = []
         this.addLi = []
         this.interval = null;
-     
+
     }
 
     run(calc) {
@@ -24,7 +26,7 @@ export class Calculator {
         this.createContentOfOperations(this.calculateActions)
     }
 
-      createUl(amount) {
+    createUl(amount) {
         for (let i = 0; i < amount; i++) {
             const ulElem = document.createElement("ul");
             ulElem.classList.add("operations__list");
@@ -98,46 +100,67 @@ export class Calculator {
     }
 
     result(num1, num2, operator) {
-        num1 = parseInt(num1)
-        num2 = parseInt(num2)
-        let result; 
+        if(num1) {
+          num1 = parseInt(num1)  
+        }else alert('pass the number 1')
+        
+        if(num2) {
+         num2 = parseInt(num2)   
+        }else alert('pass the number 2')
+        
+        let result;
 
         switch (operator) {
             case '+':
-               return result = num1 + num2;
+                return result = num1 + num2;
             case '-':
-              return result = num1 - num2;
+                return result = num1 - num2;
             case '*':
-              return result = num1 * num2;
+                return result = num1 * num2;
             case '/':
-              if (num2 !== 0) {
-                return result = num1 / num2;
-              } else {
-                return alert("Division by zero is not allowed.") 
-              }
+                if (num2 !== 0) {
+                    return result = num1 / num2;
+                } else {
+                    return alert("Division by zero is not allowed.")
+                }
             default:
-              return "Invalid operator";
-          }
-    
-}
+                return "Invalid operator";
+        }
+
+    }
 
     historyResult(num1, num2, action) {
         let historyResult;
-        historyResult = parseFloat(num1) + action + parseFloat(num2) + ' = ' + this.result(num1,num2,action)
-           this.history.push(historyResult)
+        historyResult = parseFloat(num1) + action + parseFloat(num2) + ' = ' + this.result(num1, num2, action)
+        this.history.push(historyResult)
         const history = document.querySelector(".main__history")
         history.innerText = `Lista poprzednich operacji: \n` + this.getHistoryAsString()
         return historyResult
     }
-        
-     
-     
+
+    setActiveInput(...params) {
+        this.clearActiveInputs()
+        params.forEach(function (el) {
+            el.style.backgroundColor = 'rgb(231, 98, 98)'
+        })
+    }
+
+    clearActiveInputs() {
+        const inputs = document.querySelectorAll('input')
+        inputs.forEach(function (el) {
+            el.style.backgroundColor = ''
+        })
+    }
+
+
+
     add(num1, num2, action, type) {
 
+        this.clearActiveInputs()
         const addParent = document.querySelector(`#${type}`).parentElement
         const li = addParent.querySelectorAll('li')
         const arrayli = [...li]
-        this.operationAddHistory.push(this.result(num1,num2, '+'))
+        this.operationAddHistory.push(this.result(num1, num2, '+'))
         const pairedArray = [];
 
         for (let i = 0; i < this.operationAddHistory.length; i++) {
@@ -153,13 +176,14 @@ export class Calculator {
             })
         }
 
-     this.historyResult(num1, num2, '+')
-
+        this.historyResult(num1, num2, '+')
+  
     }
 
-    
+
     subtract(num1, num2, action, type) {
 
+        this.clearActiveInputs() 
         const addParent = document.querySelector(`#${type}`).parentElement
         const li = addParent.querySelectorAll('li')
         const arrayli = [...li]
@@ -184,9 +208,9 @@ export class Calculator {
         this.historyResult(num1, num2, '-')
     }
 
-
     multiply(num1, num2, action, type) {
 
+        this.clearActiveInputs() ///
         const addParent = document.querySelector(`#${type}`).parentElement
         const li = addParent.querySelectorAll('li')
         const arrayli = [...li]
@@ -210,9 +234,9 @@ export class Calculator {
         this.historyResult(num1, num2, '*')
     }
 
-
     divide(num1, num2, action, type) {
 
+        this.clearActiveInputs() 
         const addParent = document.querySelector(`#${type}`).parentElement
         const li = addParent.querySelectorAll('li')
         const arrayli = [...li]
@@ -233,12 +257,12 @@ export class Calculator {
             })
         }
 
-      this.historyResult(num1, num2, '/')
+        this.historyResult(num1, num2, '/')
 
     }
 
     power(num1, num2, powerNumber, action, type) {
-
+        this.clearActiveInputs() 
         this.num1 = num1
         this.powerNumber = powerNumber
         let result
@@ -250,9 +274,7 @@ export class Calculator {
             let temp = num1;
             for (i = 0; i < powerNumber - 1; i++) {
                 num1 = num1 * temp;
-
                 result = num1
-
             }
         }
 
@@ -301,9 +323,39 @@ export class Calculator {
         do {
 
             const operations = ['+', '-', '*', '/', '**']
+            this.operatorType.addEventListener('input', function (event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                }
+                const input = this.operatorType
+
+                if (input.value !== '') {
+
+                    switch (input.value) {
+
+                        case '+': this.setActiveInput(this.num1Input, this.num2Input)
+                            break;
+
+                        case '-': this.setActiveInput(this.num1Input, this.num2Input)
+                            break;
+                        case '*': this.setActiveInput(this.num1Input, this.num2Input)
+                            break;
+                        case '/': this.setActiveInput(this.num1Input, this.num2Input);
+                            break;
+                        case '**': this.setActiveInput(this.num1Input, this.powerInput);
+                            break
+
+                    }
+                }
+            }.bind(this))
+
             const buttonSubmit = document.querySelector('.main__buttonSubmit')
-            buttonSubmit.addEventListener('click', (event) => {
+            buttonSubmit.addEventListener('click', function (event) {
                 event.preventDefault()
+                const inputsToSetActivity = [this.num1Input, this.num2Input, this.powerInput]
+                inputsToSetActivity.forEach(function (el) {
+                    el.style.backgroundColor = ''
+                })
                 const action = document.querySelector('.operatorType').value
 
                 let val1 = document.querySelector('.number1').value
@@ -312,7 +364,7 @@ export class Calculator {
 
                 isNumber = this.isCorrectNumber(val1, val2)
 
-                if (operations.includes((action))) {
+                if (isNumber && operations.includes((action))) {
                     let operator, type;
                     switch (action) {
                         case '+': if (isNumber) {
@@ -340,15 +392,15 @@ export class Calculator {
                 } else {
                     alert(`${action} is not in the array.`);
                 }
-            })
+            }.bind(this))
 
-        } while ((calc.isCorrectAction(action))){
-          
+        } while ((calc.isCorrectAction(action))) {
+
         };
     }
 }
 
-console.dir(Calculator)
+
 
 
 
