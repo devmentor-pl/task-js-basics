@@ -34,7 +34,7 @@
   flex-direction: column;
 }
 
-.header__heading {
+.heading {
   color: #fff;
   text-transform: uppercase;
   margin-bottom: 10rem;
@@ -44,7 +44,7 @@
   position: relative;
 }
 
-.header__heading--main {
+.heading--main {
   display: block;
   font-size: 3rem;
   font-weight: 400;
@@ -55,7 +55,7 @@
   margin-bottom: 3rem;
 }
 
-.header__heading--sub {
+.heading--sub {
   display: block;
   text-align: center;
   font-size: 1rem;
@@ -63,15 +63,21 @@
   letter-spacing: 1rem;
 }
 
-.header__heading--sub.tooltip {
+.heading--sub {
   position: relative;
 }
 
-.header__heading--sub.tooltip .tooltip--content {
+.heading--sub div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tooltip--content {
   display: none;
 }
 
-.header__heading--sub.tooltip:hover .tooltip--content {
+.tooltip--icon:hover + .tooltip--content {
   display: block;
   position: absolute;
   top: 100%;
@@ -90,16 +96,22 @@
   padding: 10px;
 }
 
-.header__heading--sub.tooltip:hover .tooltip--content ul {
+.tooltip--icon:hover + .tooltip--content ul {
   list-style: none;
 }
 
-.header__heading--sub.tooltip:hover .tooltip--content ul li {
+.tooltip--icon:hover + .tooltip--content ul li {
   text-align: start;
   margin-bottom: 5px;
 }
 
-.header__buttonStart {
+.fa.fa-info {
+  width: 20px;
+  height: 20px;
+  color: black;
+}
+
+.buttonStart {
   border: none;
   text-align: center;
   text-transform: uppercase;

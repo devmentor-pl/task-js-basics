@@ -2,94 +2,103 @@
 @import '../abstracts/';
 
 
-
 .header {
-    height: 95vh;
+  height: 95vh;
+  position: relative;
+  background-color: $color-turcoise-light;
+  @include flexAbsoluteCenter();
+  flex-direction: column;
+}
+
+.heading {
+  color: #fff;
+  text-transform: uppercase;
+  margin-bottom: 10rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+
+  &--main {
+    display: block;
+    font-size: 3rem;
+    font-weight: 400;
+    letter-spacing: 1.75rem;
+    animation-name: moveFromLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    margin-bottom: 3rem;
+  }
+
+  &--sub {
+    display: block;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 1rem;
+  }
+
+  &--sub {
     position: relative;
-    background-color: $color-turcoise-light;
-    @include flexAbsoluteCenter();
-    flex-direction: column;
-  
-    &__heading {
-      color: #fff;
-      text-transform: uppercase;
-      margin-bottom: 10rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: relative;
-  
-      &--main {
-        display: block;
-        font-size: 3rem;
-        font-weight: 400;
-        letter-spacing: 1.75rem;
-        animation-name: moveFromLeft;
-        animation-duration: 1s;
-        animation-timing-function: ease-out;
-        margin-bottom: 3rem;
-      }
-  
-      &--sub {
-        display: block;
-        text-align: center;
-        font-size: 1rem;
-        font-weight: 700;
-        letter-spacing: 1rem;
-      }
-  
-      &--sub.tooltip {
-        position: relative;
-  
-        .tooltip--content {
-          display: none;
-        }
-  
-        &:hover {
-          .tooltip--content {
-            display: block;
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            font-size: 1rem;
-            background: #fff;
-            color: $color-grey;
-            font-weight: 500;
-            text-transform: lowercase;
-            letter-spacing: normal;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
-            width: 400px;
-            max-height: 130px;
-            overflow: auto;
-            padding: 10px;
-            ul {
-              list-style: none;
-  
-              li {
-                text-align: start;
-                margin-bottom: 5px;
-              }
-            }
-          }
-        }
-      }
-    }
-  
-    &__buttonStart {
-      border: none;
-      text-align: center;
-      text-transform: uppercase;
-      width: 200px;
-      height: 60px;
-      font-size: 1.2rem;
-      font-weight: 600;
-      letter-spacing: 1rem;
-      border-radius: 10px;
-      background-color: $color-bisque;
-      border: 2px solid $color-bisque-dark;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-      color: white;
-      background-color: $color-bisque;
+
+    div {
+      @include flexAbsoluteCenter;
     }
   }
+
+}
+
+.tooltip--content {
+  display: none;
+}
+
+.tooltip--icon:hover+.tooltip--content {
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  font-size: 1rem;
+  background: #fff;
+  color: $color-grey;
+  font-weight: 500;
+  text-transform: lowercase;
+  letter-spacing: normal;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  max-height: 130px;
+  overflow: auto;
+  padding: 10px;
+
+  ul {
+    list-style: none;
+
+    li {
+      text-align: start;
+      margin-bottom: 5px;
+    }
+  }
+}
+
+.fa.fa-info {
+  width: 20px;
+  height: 20px;
+  color: black;
+}
+
+.buttonStart {
+  border: none;
+  text-align: center;
+  text-transform: uppercase;
+  width: 200px;
+  height: 60px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 1rem;
+  border-radius: 10px;
+  background-color: $color-bisque;
+  border: 2px solid $color-bisque-dark;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  color: white;
+  background-color: $color-bisque;
+}
