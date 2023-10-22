@@ -4,6 +4,7 @@ export class CalculatorTwo {
         this.random1 = document.querySelector('.random-1')
         this.random2 = document.querySelector('.random-2')
         this.operators = ['add', 'subtract', 'multiply', 'divide']
+        
         this.operations= {
             '+': this.add,
             '-': this.subtract,
@@ -131,7 +132,6 @@ multiply(a, b) {
         num2.innerText = randomNumber2
         
         const randomOperatorIndex = this.chooseRandom(array)
-      
       
         const randomOperator = array[randomOperatorIndex]
           this.circle.innerText = randomOperator
@@ -455,7 +455,7 @@ multiply(a, b) {
 
         
 
-       this.generateRandomOperation(this.random1, this.random2, this.operators)
+       this.generateRandomOperation(this.random1, this.random2, this.operations)
 
         do {
 
