@@ -34,7 +34,12 @@ a {
     transform: translate(0);
   }
 }
+body {
+  z-index: 10;
+}
+
 .header {
+  z-index: 8;
   height: 95vh;
   position: relative;
   background-color: rgb(154, 243, 243);
@@ -44,7 +49,7 @@ a {
   flex-direction: column;
 }
 
-.heading {
+.header__heading {
   color: #fff;
   text-transform: uppercase;
   margin-bottom: 3rem;
@@ -52,32 +57,35 @@ a {
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-}
-
-.heading--main {
-  display: block;
-  font-size: 3rem;
-  font-weight: 400;
-  letter-spacing: 1.75rem;
   animation-name: moveFromLeft;
   animation-duration: 1s;
   animation-timing-function: ease-out;
   margin-bottom: 3rem;
+  font-size: 3rem;
+  font-weight: 400;
+  letter-spacing: 1.75rem;
 }
 
-.heading--sub {
-  display: block;
-  text-align: center;
-  font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: 0.6rem;
-  position: relative;
-}
-
-.heading--sub div {
+.header__scores {
+  position: absolute;
+  bottom: 30px;
+  right: 0;
+  width: 300px;
+  height: 200px;
+  transform: translateX(40px);
+  background-color: bisque;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header__scores i {
+  font-size: 2rem;
 }
 
 .tooltip > * {
@@ -211,6 +219,22 @@ a {
   text-transform: uppercase;
   letter-spacing: normal;
   color: rgb(154, 243, 243);
+}
+
+.main__operation, .main__operators {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main__operation > *, .main__operators > * {
+  width: 100px;
+  height: 100px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem;
 }
 
 .main__container {

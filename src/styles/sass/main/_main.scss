@@ -15,8 +15,26 @@
     color: $color-turcoise-light;
 }
 
+.main__subheading {
+    text-align: center;
+}
+
+.main__operation, .main__operators {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+      & > * {
+        width: 100px;
+        height: 100px;
+        padding: 10px;
+        @include flexAbsoluteCenter();
+        font-size: 4rem;
+    }
+}
+
 .main__container {
     display: flex;
+  
 }
 
 .main__operations {

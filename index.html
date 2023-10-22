@@ -6,15 +6,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Mateusz Bogolubow">
   <title>JavaScript: Podstawy - devmentor.pl</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
   <link rel="stylesheet" href="./src/styles/sass/index.css">
 </head>
 
 <body>
+
   <header class="header" id="header">
-    <div class="heading">
-      <h1 class="heading--main">Calculator Task</h1>
-      <div class="heading--sub">
+    <h1 class="header__heading">
+      Calculator Task
+    </h1>
+    <div class="header__scores">
+      <i class="fa-regular fa-circle-play buttonStart"></i>
+      <h4>HIGH SCORE</h4>
+    </div>
+    <!-- <div class="heading--sub">
         <div class="tooltip">
           <h3>Instruction</h3>
           <i class="fa fa-info tooltip--icon"></i>
@@ -30,12 +36,28 @@
             </ol>
           </span>
         </div>
-      </div>
+      </div> -->
     </div>
-    <button class="buttonStart"><a href="#main">Start</a></button>
+    
+    <!-- <button class="buttonStart"><a href="#main">Start</a></button> -->
   </header>
   <main class="main" id="main">
-    <h2 class="main__heading"></h2>
+    <h2 class="main__heading">SCORE: <span></span></h2>
+    <h4 class="main__subheading"> BEST SCORE</h4>
+    <div class="timeline"></div>
+    <div class="main__operation">
+      <div class="random-1"></div>
+      <i class="fas fa-question-circle circle"></i>
+      <div class="random-2"></div>
+      <i class="fas fa-equals"></i>
+      <div class="result"></div>
+    </div>
+    <div class="main__operators">
+      <i class="fa-solid fa-plus userCheck" id="+"></i>
+      <i class="fa-solid fa-minus userCheck" id="-"></i>
+      <i class="fa-solid fa-xmark userCheck" id="*"></i>
+      <i class="fa-solid fa-divide userCheck" id="/"></i>
+    </div>
     <div class="main__container">
       <section class="main__operations operations"></section>
       <section class="main__results results">
@@ -68,6 +90,42 @@
       </dialog>
 
   </main>
+  <!-- <main class="main" id="main">
+    <h2 class="main__heading"></h2>
+    <div class="main__container">
+      <section class="main__operations operations"></section>
+      <section class="main__results results">
+        <div id="timer" class="main__timer">00:00:00
+        </div>
+        <form id="form" class="main__form">
+          <label>'Enter the operation (+, -, *, /, **) you want to perform and confirm.
+            <input type="text" name="name" required class="operatorType" autocomplete="off" />
+          </label>
+          <label>podaj number 1
+            <input type="text" name="name" required class="number1" autocomplete="off" />
+          </label>
+          <label>podaj number 2
+            <input type="text" name="name" class="number2" autocomplete="off" />
+          </label>
+          <label>podaj potęgę
+            <input type="text" name="name" class="powerNumber" autocomplete="off" />
+          </label>
+          <div class="main__history"></div>
+          <button class="main__buttonSubmit">Submit</button>
+        </form>
+      </section>
+      <dialog id="modal">
+        <h3 class="modal__headline">Your time is:</h3>
+        <div id="timer" class="modal__timer">00:00:00
+        </div>
+        <div>
+          <button id="cancel" type="reset">Cancel</button>
+        </div>
+      </dialog>
+
+  </main> -->
+  <h1>https://www.calculators.org/games/sinal/</h1>
+
   <script type="module" src="./js/app.js"></script>
 </body>
 
