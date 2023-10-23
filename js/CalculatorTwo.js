@@ -59,11 +59,13 @@ export class CalculatorTwo {
 
 this.operatorCheck.forEach(function(el){
     el.addEventListener('click', function(elel){
+        elel.stopPropagation()
         console.log(typeof elel.target.id)
                 if(Number(elel.target.id) === randomOperator) {
                   alert('+1')
                     this.number += 1
                     this.score.innerText = this.number
+                    randomOperator=null
                     this.generateRandomOperation(this.random1, this.random2, this.operators)
                   }
     }.bind(this))
@@ -81,11 +83,13 @@ this.operatorCheck.forEach(function(el){
         this.result.innerText = result
         this.operatorCheck.forEach(function(el){
             el.addEventListener('click', function(elel){
+                elel.stopPropagation()
                 console.log(typeof elel.target.id)
                         if(Number(elel.target.id) === randomOperator) {
                           alert('+1')
                             this.number += 1
                             this.score.innerText = this.number
+                            randomOperator=null
                             this.generateRandomOperation(this.random1, this.random2, this.operators)
                           }
             }.bind(this))
@@ -101,12 +105,15 @@ multiply(a, b, randomOperator) {
     result = a * b;
     this.result.innerText = result
     this.operatorCheck.forEach(function(el){
+        console.log(this.operatorCheck)
         el.addEventListener('click', function(elel){
+            elel.stopPropagation()
             console.log(typeof elel.target.id)
                     if(Number(elel.target.id) === randomOperator) {
                       alert('+1')
                         this.number += 1
                         this.score.innerText = this.number
+                        randomOperator=null
                         this.generateRandomOperation(this.random1, this.random2, this.operators)
                       }
         }.bind(this))
@@ -129,6 +136,7 @@ this.result.innerText = result
                           alert('+1')
                             this.number += 1
                             this.score.innerText = this.number
+                            randomOperator=null
                             this.generateRandomOperation(this.random1, this.random2, this.operators)
                           }
             }.bind(this))
@@ -206,13 +214,8 @@ this.result.innerText = result
      randomOperator = []
      let array = this.operators
      randomOperator = array
-    
-    
     randomOperator =  Math.floor(Math.random() * array.length);
-
-
-
-       num1.innerText = ''
+        num1.innerText = ''
        num2.innerText = ''
     
   
