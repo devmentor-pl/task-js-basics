@@ -21,7 +21,7 @@ export class CalculatorTwo {
         this.score = document.querySelector('.main__heading span')
         this.number = 0
         this.operatorCheck = document.querySelectorAll('.userCheck')
-        this.operatorCheckActive = document.querySelectorAll('.userCheck.active-btn')
+        this.operatorCheckActive = document.querySelector('.userCheck.active-btn')
     }
 
     run(calc) {
@@ -55,40 +55,43 @@ export class CalculatorTwo {
             result = ''
            result = a + b;
            this.result.innerText = result
-     
- this.operatorCheck.forEach(function(el){
-                el.addEventListener('click', function(elel){
-                console.log(typeof elel.target.id)
+           console.log(this.operatorCheckActive)
+
+this.operatorCheck.forEach(function(el){
+    el.addEventListener('click', function(elel){
+        console.log(typeof elel.target.id)
                 if(Number(elel.target.id) === randomOperator) {
                   alert('+1')
                     this.number += 1
                     this.score.innerText = this.number
-                    this.generateRandomOperation(this.random1, this.random2, this.randomElement(this.operators))
+                    this.generateRandomOperation(this.random1, this.random2, this.operators)
                   }
-            }.bind(this))
-        }.bind(this))
+    }.bind(this))
+}.bind(this))
+     }
 
-            };
+    
+
+            
   subtract(a, b, randomOperator) {
 
     let result; 
     result = ''
     result = (a - b);    
-    this.operatorCheck.forEach(function(el){
-                el.addEventListener('click', function(elel){
-                    console.log(elel.target.id)
-                    if(Number(elel.target.id) === randomOperator) {
-                      alert('+1')
-                        this.number += 1
-    
-                        this.score.innerText = this.number
-                     randomOperator=''
-                     this.generateRandomOperation(this.random1, this.random2, this.randomElement(this.operators))
-                      
-                    }
-                }.bind(this))
+        this.result.innerText = result
+        this.operatorCheck.forEach(function(el){
+            el.addEventListener('click', function(elel){
+                console.log(typeof elel.target.id)
+                        if(Number(elel.target.id) === randomOperator) {
+                          alert('+1')
+                            this.number += 1
+                            this.score.innerText = this.number
+                            this.generateRandomOperation(this.random1, this.random2, this.operators)
+                          }
             }.bind(this))
-    this.result.innerText = result
+        }.bind(this))
+ 
+
 
     }
 multiply(a, b, randomOperator) {
@@ -99,18 +102,17 @@ multiply(a, b, randomOperator) {
     this.result.innerText = result
     this.operatorCheck.forEach(function(el){
         el.addEventListener('click', function(elel){
-            console.log(elel.target.id)
-            if(Number(elel.target.id) === randomOperator) {
-              alert('+1')
-                this.number += 1
-
-                this.score.innerText = this.number
-             randomOperator=''
-             this.generateRandomOperation(this.random1, this.random2, this.randomElement(this.operators))
-              
-            }
+            console.log(typeof elel.target.id)
+                    if(Number(elel.target.id) === randomOperator) {
+                      alert('+1')
+                        this.number += 1
+                        this.score.innerText = this.number
+                        this.generateRandomOperation(this.random1, this.random2, this.operators)
+                      }
         }.bind(this))
     }.bind(this))
+ 
+ 
 
 this.result.innerText = result
     }
@@ -122,18 +124,17 @@ this.result.innerText = result
            this.result.innerText = result
            this.operatorCheck.forEach(function(el){
             el.addEventListener('click', function(elel){
-                console.log(elel.target.id)
-                if(Number(elel.target.id) === randomOperator) {
-                  alert('+1')
-                    this.number += 1
-
-                    this.score.innerText = this.number
-                 randomOperator=''
-                 this.generateRandomOperation(this.random1, this.random2, this.randomElement(this.operators))
-                  
-                }
+                console.log(typeof elel.target.id)
+                        if(Number(elel.target.id) === randomOperator) {
+                          alert('+1')
+                            this.number += 1
+                            this.score.innerText = this.number
+                            this.generateRandomOperation(this.random1, this.random2, this.operators)
+                          }
             }.bind(this))
         }.bind(this))
+         
+       
     
 this.result.innerText = result
     }
@@ -202,9 +203,18 @@ this.result.innerText = result
 
     generateRandomOperation(num1, num2, randomOperator) {
 
+     randomOperator = []
+     let array = this.operators
+     randomOperator = array
+    
+    
+    randomOperator =  Math.floor(Math.random() * array.length);
+
+
+
        num1.innerText = ''
        num2.innerText = ''
-   
+    
   
 
         this.randomOperatorIndex = []
@@ -292,13 +302,7 @@ this.result.innerText = result
 
     }
 
-randomElement(array) {
-    
-    let object;
-    object = ''
-    object =  Math.floor(Math.random() * array.length);
-    return object
-}
+
 
   
 
@@ -308,7 +312,7 @@ randomElement(array) {
 
         
 
-       this.generateRandomOperation(this.random1, this.random2, this.randomElement(this.operators))
+       this.generateRandomOperation(this.random1, this.random2, this.operators)
 
         // do {
 
