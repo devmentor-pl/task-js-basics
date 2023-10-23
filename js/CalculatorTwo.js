@@ -1,9 +1,12 @@
+
+
 export class CalculatorTwo {
     constructor() {
+    
         this.startElement = document.querySelector(".buttonStart");
         this.random1 = document.querySelector('.random-1')
         this.random2 = document.querySelector('.random-2')
-        this.operators = ['add', 'subtract', 'multiply', 'divide']
+        this.operators = ['+', '-', '*', '/']
         
         this.operations= {
             '+': this.add,
@@ -14,8 +17,13 @@ export class CalculatorTwo {
         this.res = []
         this.result = document.querySelector('.result')
         this.circle = document.querySelector('.circle')
+        this.circle2 = document.querySelector('.circle2')
+        this.score = document.querySelector('.main__heading span')
+        this.number = 0
         this.operatorCheck = document.querySelectorAll('.userCheck')
+        this.operatorCheckActive = document.querySelectorAll('.userCheck.active-btn')
         this.operationsSection = document.querySelector(".main__operations");
+        this.randomOperatorIndex = null
         this.resultsSection = document.querySelector(".main__results");
         this.actions = ['+', '-', '*', '/', '**'];
         this.calculateActions = ['add', 'subtract', 'multiply', 'divide', 'power']
@@ -41,89 +49,105 @@ export class CalculatorTwo {
     }
 
     chooseRandom(element) {
-     
+        console.log(element)
+   
+  let el;
+     let object; 
+   el=element
+       object = element
+
         if(typeof element === 'number'){
-            let el;
-            return Math.floor(Math.random() * element);
+          el=Math.floor(Math.random() * element);
+            return el
         } else if(typeof element === 'object') {
-          console.log(element)
-            return Math.floor(Math.random() * element.length);
-        }
+         
+        
+            object =  Math.floor(Math.random() * element.length);
+            return object
       
-    }
+    }}
 
 
-         add(a, b) {
-           let result; 
+         add(a, b, randomElement) {
+            randomElement = ''
+           let result
+            result = ''
            result = a + b;
            this.result.innerText = result
        
             };
-  subtract(a, b) {
+  subtract(a, b, randomElement) {
+    randomElement = ''
     let result; 
-    result = a - b;
+    result = ''
+    result = (a - b);
     this.result.innerText = result
     }
-multiply(a, b) {
+multiply(a, b, randomElement) {
+    randomElement = ''
     let result; 
+    result = ''
     result = a * b;
     this.result.innerText = result
     }
-    divide(a, b) {
+    divide(a, b, randomElement) {
+        randomElement = ''
         let result; 
+        result = ''
            result = a / b;
            this.result.innerText = result
     }
 
-  checkUserResult() {
-    this.operatorCheck.forEach(function(el){
-        el.addEventListener('click', function(el2){
+  checkUserResult(randomElement) {
 
+
+  
+     let currentScore = 0;
+    this.operatorCheck.forEach(function(el){
+
+        el.addEventListener('click', function(el2){
             const elementToMove = el2.target;
             const elem4 = el2.target.id
-            console.log(elem4)
-        console.log(el2.target.id)
-        var destination = document.querySelector(".circle");
+            var destination = document.querySelector(".circle");
     
          if (elementToMove && destination) {
-            alert('rr')
-            // Remove the element from its current parent
             const clone = elementToMove.cloneNode(true)
-           
             elementToMove.parentNode.appendChild(clone);
             clone.parentNode.removeChild(clone);
-            // Append the element to the destination
             destination.appendChild(clone);
-      
-        }
-    
-    //    if(String(randomElement)===String(elem4)){
-    //     alert('aqua')
-    
-    //    }
-       
-    })
-    
-    })
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+            if(String(randomElement)===String(elem4)){
+        alert('aqua')
      
+        this.number += 1
+
+        this.score.innerText = this.number
+
+        this.generateRandomOperation(this.random1, this.random2, this.operators, randomElement)
     
-  }
+       }
+    }
+
+     
+       
+       
+    }.bind(this))
+    
+    }.bind(this))
+    
+}
 
 
-    generateRandomOperation(num1, num2, array) {
+    generateRandomOperation(num1, num2, array, randomElement) {
+
+       num1.innerText = ''
+       num2.innerText = ''
+       console.log(randomElement)
+       randomElement = ''
+
+        this.randomOperatorIndex = []
+        console.log(this.randomOperatorIndex)
+      
+        this.circle.innerText = ''
         const randomNumber1 = this.chooseRandom(10)
        
         num1.innerText = randomNumber1 
@@ -131,23 +155,21 @@ multiply(a, b) {
         const randomNumber2 = this.chooseRandom(10)
         num2.innerText = randomNumber2
         
-        const randomOperatorIndex = this.chooseRandom(array)
-      
-        const randomOperator = array[randomOperatorIndex]
-          this.circle.innerText = randomOperator
-   
-
-        if(randomOperator === 'add') {
-            this.add(randomNumber1, randomNumber2)
-        } else if(randomOperator === 'substract'){
-            this.subtract(randomNumber1, randomNumber2)
-        } else if(randomOperator === 'multiply') {
-            this.multiply(randomNumber1, randomNumber2)
-        } else if(randomOperator === 'divide') {
-            this.divide(randomNumber1, randomNumber2)
+        this.randomOperatorIndex = this.chooseRandom(array)
+   console.log(this.randomOperatorIndex)
+        const randomOperator = array[this.randomOperatorIndex]
+         
+        if(randomOperator === '+') {
+            this.add(randomNumber1, randomNumber2, randomElement)
+        } else if(randomOperator === '-'){
+            this.subtract(randomNumber1, randomNumber2, randomElement)
+        } else if(randomOperator === '*') {
+            this.multiply(randomNumber1, randomNumber2, randomElement)
+        } else if(randomOperator === '/') {
+            this.divide(randomNumber1, randomNumber2, randomElement)
         }
 
-        this.checkUserResult()
+        this.checkUserResult(randomOperator)
      
         // this.res.push(randomNumber1, randomNumber2, randomOperator)
 
@@ -455,7 +477,7 @@ multiply(a, b) {
 
         
 
-       this.generateRandomOperation(this.random1, this.random2, this.operations)
+       this.generateRandomOperation(this.random1, this.random2, this.operators)
 
         do {
 

@@ -13,6 +13,10 @@
     text-transform: uppercase;
     letter-spacing: normal;
     color: $color-turcoise-light;
+    span {
+        height: 30px;
+        width: 30px
+    };
 }
 
 .main__subheading {
