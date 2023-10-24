@@ -1,3 +1,17 @@
+@import '../abstracts/';
+
+// .main-content {
+//     @include flexAbsoluteCenter();
+// }
+
+.header, .main {
+    display: none;
+}
+
+.active {
+    display: block;
+}
+
 a {
     text-decoration: none;
     color: white;

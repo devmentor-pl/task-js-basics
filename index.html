@@ -10,47 +10,26 @@
   <link rel="stylesheet" href="./src/styles/sass/index.css">
 </head>
 
-<body>
-
-  <header class="header" id="header">
-    <h1 class="header__heading">
-      Calculator Task
-    </h1>
-    <div class="header__scores">
-      <i class="fa-regular fa-circle-play buttonStart"></i>
-      <h4>HIGH SCORE</h4>
-    </div>
-    <!-- <div class="heading--sub">
-        <div class="tooltip">
-          <h3>Instruction</h3>
-          <i class="fa fa-info tooltip--icon"></i>
-          <span class="tooltip--content">
-            <h5 class="headline">Try to do this task as soon as possible following the instruction below.</h5>
-            <ol>
-              <li>Press the button START and write your name.
-              </br>
-                The task will run and the aplication will start.
-              </li>
-              <li>In the section on the right try to give answers on the task as soon as possible.</li>
-              <li>The task will end if in the section on the left there won't be any elements to collect results</li>
-            </ol>
-          </span>
-        </div>
-      </div> -->
-    </div>
-    
-    <!-- <button class="buttonStart"><a href="#main">Start</a></button> -->
+<body class="main-content">
+  <header class="header section active" id="header">
+      <h1 class="header__heading">
+        Calculator Task
+      </h1>
+      <div class="header__main">
+        <i class="fa-regular fa-circle-play header__main__start"></i>
+        <h4 class="header__main__headline">HIGH SCORE</h4>
+      </div>
   </header>
-  <main class="main" id="main">
+  <main class="main section" id="main">
     <h2 class="main__heading">SCORE: <span></span></h2>
     <h4 class="main__subheading"> BEST SCORE</h4>
     <div class="timeline"></div>
     <div class="main__operation">
       <div class="random-1"></div>
       <div class="circle2" name="operation" value="+">
-            <i class="fas fa-question-circle circle" ></i>
+        <i class="fas fa-question-circle circle"></i>
       </div>
-  
+
       <div class="random-2"></div>
       <i class="fas fa-equals"></i>
       <div class="result"></div>
@@ -93,41 +72,10 @@
       </dialog>
 
   </main>
-  <!-- <main class="main" id="main">
-    <h2 class="main__heading"></h2>
-    <div class="main__container">
-      <section class="main__operations operations"></section>
-      <section class="main__results results">
-        <div id="timer" class="main__timer">00:00:00
-        </div>
-        <form id="form" class="main__form">
-          <label>'Enter the operation (+, -, *, /, **) you want to perform and confirm.
-            <input type="text" name="name" required class="operatorType" autocomplete="off" />
-          </label>
-          <label>podaj number 1
-            <input type="text" name="name" required class="number1" autocomplete="off" />
-          </label>
-          <label>podaj number 2
-            <input type="text" name="name" class="number2" autocomplete="off" />
-          </label>
-          <label>podaj potęgę
-            <input type="text" name="name" class="powerNumber" autocomplete="off" />
-          </label>
-          <div class="main__history"></div>
-          <button class="main__buttonSubmit">Submit</button>
-        </form>
-      </section>
-      <dialog id="modal">
-        <h3 class="modal__headline">Your time is:</h3>
-        <div id="timer" class="modal__timer">00:00:00
-        </div>
-        <div>
-          <button id="cancel" type="reset">Cancel</button>
-        </div>
-      </dialog>
 
-  </main> -->
   <h1>https://www.calculators.org/games/sinal/</h1>
+
+
 
   <script type="module" src="./js/app.js"></script>
 </body>

@@ -3,7 +3,7 @@
 export class CalculatorTwo {
     constructor() {
     
-        this.startElement = document.querySelector(".buttonStart");
+        this.startElement = document.querySelector(".header__main__start");
         this.random1 = document.querySelector('.random-1')
         this.random2 = document.querySelector('.random-2')
         this.operators = ['+', '-', '*', '/']

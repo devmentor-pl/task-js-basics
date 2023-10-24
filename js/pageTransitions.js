@@ -1,4 +1,6 @@
 const operatorCheckActive = document.querySelector('.userCheck.active-btn')
+const allSections = document.querySelector('.main-content')
+const sections = document.querySelectorAll('.section')
 
 export function addActive(btns) {
     for (let i = 0; i < btns.length; i++) {
@@ -40,24 +42,31 @@ console.log(btns)
             //this.className += ' active-btn'
 }
 
-    // allSections.addEventListener('click', (e) => {
-    //     const id = e.target.dataset.id;
-    //     console.log(id)
-        
-    //     if (id) {
-          
-    //         btns.forEach((btn) => {
-    //             btn.classList.remove('active')
-    //         })
-    //         e.target.classList.add('active')
 
-    //         sections.forEach((section) => {
-    //             section.classList.remove('active')
-    //         })
-    //         const element = document.getElementById(id)
-    //         element.classList.add('active')
-    //     }
-    // })
+export function forwardPage() {
+  
+        allSections.addEventListener('click', (e) => {
+          
+        const id = e.target.closest('.section').id;
+        console.log(id)
+      
+        
+        if (id) {
+          
+            // btns.forEach((btn) => {
+            //     btn.classList.remove('active')
+            // })
+            // e.target.classList.add('active')
+
+            sections.forEach((section) => {
+                section.classList.remove('active')
+            })
+            const element = document.getElementById(id)
+            element.classList.add('active')
+        }
+    })
+}
+
 
 
 
