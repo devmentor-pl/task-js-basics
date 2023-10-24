@@ -1,6 +1,6 @@
 @import '../abstracts/';
 
-.header {
+.header.active {
   height: 90vh;
   width: 90%;
   margin-left: 5%;
@@ -14,7 +14,7 @@
   );
   background-size: 100% 200px;
 
-  &__heading {
+  .header__heading {
     font-size: 6rem;
     font-weight: 400;
     letter-spacing: 1.75rem;
@@ -29,7 +29,7 @@
     margin-bottom: 3rem;
   }
 
-  &__main {
+  .header__main {
     position: absolute;
     bottom: 30px;
     right: 0;

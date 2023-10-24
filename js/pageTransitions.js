@@ -2,7 +2,9 @@ const operatorCheckActive = document.querySelector('.userCheck.active-btn')
 const allSections = document.querySelector('.main-content')
 const sections = document.querySelectorAll('.section')
 const start = document.querySelector('.header__main__start')
+const header = document.querySelector('header')
 const main = document.querySelector('.main')
+const mainHome = document.querySelector('.main__footer__home')
 
 export function addActive(btns) {
     for (let i = 0; i < btns.length; i++) {
@@ -75,6 +77,14 @@ export function forwardPage() {
             })
             main.classList.add('active')
         })
+
+        mainHome.addEventListener('click', (e) => {
+            alert('click')
+            main.classList.remove('active')
+           header.classList.add('active')
+        })
+
+
 }
 
 

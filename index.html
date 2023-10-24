@@ -4,7 +4,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="Mateusz Bogolubow">
   <title>JavaScript: Podstawy - devmentor.pl</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
   <link rel="stylesheet" href="./src/styles/sass/index.css">
@@ -12,44 +11,44 @@
 
 <body class="main-content">
   <header class="header section active" id="header">
-      <h1 class="header__heading">
-        Calculator Task
-      </h1>
-      <div class="header__main">
-        <i class="fa-regular fa-circle-play header__main__start"></i>
-        <h4 class="header__main__headline">HIGH SCORE</h4>
-      </div>
+    <h1 class="header__heading">
+      Calculator Task
+    </h1>
+    <div class="header__main">
+      <i class="fa-regular fa-circle-play header__main__start"></i>
+      <h4 class="header__main__headline">HIGH SCORE</h4>
+    </div>
   </header>
   <main class="main section" id="main">
     <div class="main__content content">
-      <h2 class="content__heading">SCORE: <span></span></h2>
+      <h2 class="content__heading heading">SCORE: <span class="heading__result"></span></h2>
       <h4 class="content__subheading"> BEST SCORE</h4>
       <div class="content__timeline"></div>
-       <div class="main__operation">
-      <div class="random-1"></div>
-      <div class="circle2" name="operation" value="+">
-        <i class="fas fa-question-circle circle"></i>
-      </div>
+      <div class="main__operation">
+        <div class="random-1"></div>
+        <div class="circle2" name="operation" value="+">
+          <i class="fas fa-question-circle circle"></i>
+        </div>
 
-      <div class="random-2"></div>
-      <i class="fas fa-equals"></i>
-      <div class="result"></div>
+        <div class="random-2"></div>
+        <i class="fas fa-equals"></i>
+        <div class="result"></div>
+      </div>
+      <div class="main__operators">
+        <i class="fa-solid fa-plus userCheck" id='0'></i>
+        <i class="fa-solid fa-minus userCheck" id='1'></i>
+        <i class="fa-solid fa-xmark userCheck" id='2'></i>
+        <i class="fa-solid fa-divide userCheck" id='3'></i>
+      </div>
     </div>
-    <div class="main__operators">
-      <i class="fa-solid fa-plus userCheck" id='0'></i>
-      <i class="fa-solid fa-minus userCheck" id='1'></i>
-      <i class="fa-solid fa-xmark userCheck" id='2'></i>
-      <i class="fa-solid fa-divide userCheck" id='3'></i>
+    <div class="main__footer">
+      <div class="main__footer__home">
+        <i class="fa fa-home" aria-hidden="true"></i>
+      </div>
+      <div class="main__footer__refresh">
+        <i class="fa fa-refresh " aria-hidden="true"></i>
+      </div>
     </div>
-    </div>
-    
-   
-    
-   
-  <div class="main__footer">
-    <i class="fa fa-home main__footer__home" aria-hidden="true"></i>
-    <i class="fa fa-refresh main__footer__refresh" aria-hidden="true"></i>
-  </div>
   </main>
 
   <!-- <h1>https://www.calculators.org/games/sinal/</h1> -->
