@@ -138,8 +138,30 @@ a {
   }
 }
 .main {
-  background-color: bisque;
-  padding: 2rem;
+  height: 90vh;
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  position: relative;
+  background-image: repeating-linear-gradient(to right, rgb(245, 245, 182) 0, rgb(245, 245, 182) 60px, rgb(240, 240, 115) 30px, rgb(240, 240, 115) 70px);
+  background-size: 100% 200px;
+  display: grid;
+  grid-template-rows: 75% 25%;
+}
+
+.main__content {
+  grid-row: 1/2;
+  margin: 5% 10% 5% 10%;
+  border: 30px solid brown;
+  z-index: 8;
+  background-image: url("./blackboard.png");
+  background-repeat: no-repeat; /* Don't repeat the image */
+  background-size: contain; /* Scale the image to cover the entire element */
+  background-position: center center;
+}
+
+.main__footer {
+  grid-row: 2/3;
 }
 
 .main__heading {

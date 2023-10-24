@@ -21,10 +21,11 @@
       </div>
   </header>
   <main class="main section" id="main">
-    <h2 class="main__heading">SCORE: <span></span></h2>
-    <h4 class="main__subheading"> BEST SCORE</h4>
-    <div class="timeline"></div>
-    <div class="main__operation">
+    <div class="main__content content">
+      <h2 class="content__heading">SCORE: <span></span></h2>
+      <h4 class="content__subheading"> BEST SCORE</h4>
+      <div class="content__timeline"></div>
+       <div class="main__operation">
       <div class="random-1"></div>
       <div class="circle2" name="operation" value="+">
         <i class="fas fa-question-circle circle"></i>
@@ -40,40 +41,18 @@
       <i class="fa-solid fa-xmark userCheck" id='2'></i>
       <i class="fa-solid fa-divide userCheck" id='3'></i>
     </div>
-    <div class="main__container">
-      <section class="main__operations operations"></section>
-      <section class="main__results results">
-        <div id="timer" class="main__timer">00:00:00
-        </div>
-        <form id="form" class="main__form">
-          <label>'Enter the operation (+, -, *, /, **) you want to perform and confirm.
-            <input type="text" name="name" required class="operatorType" autocomplete="off" />
-          </label>
-          <label>podaj number 1
-            <input type="text" name="name" required class="number1" autocomplete="off" />
-          </label>
-          <label>podaj number 2
-            <input type="text" name="name" class="number2" autocomplete="off" />
-          </label>
-          <label>podaj potęgę
-            <input type="text" name="name" class="powerNumber" autocomplete="off" />
-          </label>
-          <div class="main__history"></div>
-          <button class="main__buttonSubmit">Submit</button>
-        </form>
-      </section>
-      <dialog id="modal">
-        <h3 class="modal__headline">Your time is:</h3>
-        <div id="timer" class="modal__timer">00:00:00
-        </div>
-        <div>
-          <button id="cancel" type="reset">Cancel</button>
-        </div>
-      </dialog>
-
+    </div>
+    
+   
+    
+   
+  <div class="main__footer">
+    <i class="fa fa-home main__footer__home" aria-hidden="true"></i>
+    <i class="fa fa-refresh main__footer__refresh" aria-hidden="true"></i>
+  </div>
   </main>
 
-  <h1>https://www.calculators.org/games/sinal/</h1>
+  <!-- <h1>https://www.calculators.org/games/sinal/</h1> -->
 
 
 

@@ -5,7 +5,7 @@ import { Timer } from "./Timer.js";
 import { addActive } from "./pageTransitions.js";
 import { forwardPage } from "./pageTransitions.js";
 import { pageTransitions } from "./pageTransitions.js";
-import './dialogClose.js'
+
 const operatorCheck = document.querySelectorAll('.userCheck')
 const operatorCheckActive = document.querySelector('.userCheck.active-btn')
 
@@ -18,8 +18,8 @@ const init = () => {
     calc2.start(calc2)
     addActive(operatorCheck)
     forwardPage()
-    const timer = new Timer()
-    timer.run(timer)
+    // const timer = new Timer()
+    // timer.run(timer)
 
 
 }

@@ -2,9 +2,41 @@
 @import '../abstracts/';
 
 .main {
-    background-color: $color-bisque;
-    padding: 2rem;
+    height: 90vh;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    position: relative;
+    background-image: repeating-linear-gradient(to right,
+        $color-citrine-dark 0,
+        $color-citrine-dark 60px,
+        $color-citrine-light 30px,
+        $color-citrine-light 70px
+    );
+    background-size: 100% 200px;
+    display: grid;
+    grid-template-rows: 75% 25%;
+    
+    &__content {
+        grid-row: 1/2;
+       
+        margin: 5% 10% 5% 10%;
+        border: 30px solid brown;
+        z-index: 8;
+        background-image: url('./blackboard.png');
+        background-repeat: no-repeat; /* Don't repeat the image */
+        background-size: contain; /* Scale the image to cover the entire element */
+        background-position: center center;
+
+     
+       
+    }
+    &__footer {
+        grid-row: 2/3;
+    }
 }
+
+
 .main__heading {
     font-size: 3rem;
     font-weight: 600;
