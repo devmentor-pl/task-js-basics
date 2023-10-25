@@ -2,99 +2,146 @@
 @import '../abstracts/';
 
 
-
 .main.active {
-    height: 100vh;
     width: 90%;
+    height: 100vh;
     margin-left: 5%;
     margin-right: 5%;
     position: relative;
     background-image: repeating-linear-gradient(to right,
-        $color-citrine-dark 0,
-        $color-citrine-dark 60px,
-        $color-citrine-light 30px,
-        $color-citrine-light 70px
-    );
+            $color-citrine-dark 0,
+            $color-citrine-dark 60px,
+            $color-citrine-light 30px,
+            $color-citrine-light 70px);
     background-size: 100% 200px;
     display: grid;
-    grid-template-rows: 75% 25%;
-    
-    .main__content {
+    grid-template-rows: 70% 30%;
+}
+.main__content {
         grid-row: 1/2;
-       
         margin: 5% 10% 5% 10%;
         border: 30px solid $color-brown;
         z-index: 8;
         background-color: $color-turcoise-dark;
-        background-image: url('./blackboard.png');
-        background-repeat: no-repeat; /* Don't repeat the image */
-        background-size: contain; /* Scale the image to cover the entire element */
-        background-position: center center;
-    }  
-       
-    .main__footer {
-        grid-row: 2/3;
-        display: flex;
-        justify-content: flex-start;
-        align-items: end;
-        &__home, &__refresh {
-            font-size: 3rem;
-            padding: 5px;
-            color: $color-grey;
-            width: 70px;
-            height: 70px;
-            margin: 10px;
-            border: 5px solid $color-grey;
-            border-radius: 50%;
-            @include flexAbsoluteCenter;
-        }
-        
+        display: grid;
+        grid-template-rows: 15% 10% 30% 45%;
     }
-}
 
-.content {
+    .content {
+
     &__heading {
-           font-size: 4rem;
-    font-weight: 800;
-    letter-spacing: 1rem;
-    text-align: center;
-    text-transform: uppercase;
-  
-    color: $color-light-grey;
+        grid-row: 1/2;
+        font-size: 3rem;
+        font-weight: 800;
+        letter-spacing: 1rem;
+        text-align: center;
+        text-transform: uppercase;
+        color: $color-light-grey;
     }
 
     .heading {
         &__result {
-             height: 30px;
-        width: 30px 
+            height: 30px;
+            width: 30px
         }
     }
+
     &__subheading {
+        grid-row: 2/3;
         text-align: center;
-             font-size: 2rem;
-    font-weight: 600;
-    letter-spacing: -0.1rem;
-    text-align: center;
-    text-transform: uppercase;
- 
-    color: $color-light-grey;
+        font-size: 2rem;
+        font-weight: 600;
+        letter-spacing: -0.1rem;
+        text-align: center;
+        text-transform: uppercase;
+        color: $color-light-grey;
+    }
+
+    &__operation {
+        grid-row: 4/5;
+        display: flex;
+        justify-content: center;
+        margin-top: 2rem;
+
+        & > * {
+            font-size: 5rem;
+            padding: 20px;
+            color: $color-grey;
+        }
     }
 }
 
 
+    .main__footer {
+        grid-row: 2/3;
+        display: flex;
+    }
+
+    .footer {
+
+        &__icons {
+            width: 30%;
+            height: 100%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-end;
+        }
+
+        .icons {
+
+            &__home,
+            &__refresh {
+                font-size: 3rem;
+                padding: 5px;
+                color: $color-grey;
+                width: 70px;
+                height: 70px;
+                margin: 10px;
+                border: 5px solid $color-grey;
+                border-radius: 50%;
+                @include flexAbsoluteCenter;
+            }
+        }
+
+        &__operators {
+            width: 70%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &__icons {
+               font-size: 5rem;
+                padding: 5px;
+                color: $color-citrine-light;
+                width: 140px;
+                height: 140px;
+                margin: 12px;
+                border-radius: 50%;
+                @include flexAbsoluteCenter;
+                background-color: $color-turcoise-dark;
+            }
+        }
+    }
 
 
- 
-
-    
 
 
 
-.main__operation, .main__operators {
+
+
+
+
+
+
+
+.main__operation,
+.main__operators {
     display: flex;
     justify-content: center;
     align-items: center;
-      & > * {
+
+    &>* {
         width: 100px;
         height: 100px;
         padding: 10px;
@@ -105,7 +152,7 @@
 
 .main__container {
     display: flex;
-  
+
 }
 
 .main__operations {

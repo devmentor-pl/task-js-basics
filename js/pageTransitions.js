@@ -4,7 +4,7 @@ const sections = document.querySelectorAll('.section')
 const start = document.querySelector('.header__main__start')
 const header = document.querySelector('header')
 const main = document.querySelector('.main')
-const mainHome = document.querySelector('.main__footer__home')
+const mainHome = document.querySelector('.icons__home')
 
 export function addActive(btns) {
     for (let i = 0; i < btns.length; i++) {
@@ -35,42 +35,12 @@ export function addActive(btns) {
 
 
 
-export function pageTransitions (btns) {
-   
-console.log(btns)
-          
-            
-            // let currentBtn = document.querySelectorAll('.active-btn')
 
-            // currentBtn[0].className = currentBtn[0].className.replace('active-btn', '')
-            //this.className += ' active-btn'
-}
 
 
 export function forwardPage() {
   
-    //     allSections.addEventListener('click', (e) => {
-          
-    //     const id = e.target.closest('.section').id;
-    //     console.log(id)
-      
-        
-    //     if (id) {
-          
-    //         // btns.forEach((btn) => {
-    //         //     btn.classList.remove('active')
-    //         // })
-    //         // e.target.classList.add('active')
-
-    //         sections.forEach((section) => {
-    //             section.classList.remove('active')
-    //         })
-    //         const element = document.getElementById(id)
-    //         element.classList.add('active')
-    //     }
-
-    
-    // })    
+  
     start.addEventListener('click', (e) => {
             sections.forEach((section) => {
                 section.classList.remove('active')
