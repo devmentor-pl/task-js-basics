@@ -261,6 +261,9 @@ export class CalculatorTwo {
             }.bind(this))
       }
       getResult()
+      if(getResult() === true){
+        this.start() /// to nie działa, a chciałabym żeby działalo
+      }
 
 }
 
