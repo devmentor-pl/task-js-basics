@@ -263,7 +263,10 @@ export class CalculatorTwo {
       getResult()
 
 }
-        start() {
-        this.generateRandomOperation(this.number1, this.number2, this.operators)
-    }
+
+
+start() {
+    this.generateRandomOperation(this.number1, this.number2, this.operators)
+}
+
 }
