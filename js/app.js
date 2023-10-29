@@ -11,7 +11,18 @@ Calculator.prototype.getHistoryAsString = function() {
     return this.history.join('\n');
 }
 
-Calculator.prototype.add = function(num1, num2) {
+Calculator.prototype.add = function(number1, number2) {
+    number1 = Number(number1)
+    number2 = Number(number2)
+    const result = number1 + number2
+    if(typeof number1 == Number || typeof number2 == Number) {
+       return result
+    }
+    else {
+       console.log('podane wartości są niepoprawne') ;
+
+    }
+    
     // 1. zamień wartości przekazane przez parametr na typ number
     // 2. sprawdź czy są one poprawne
     // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
