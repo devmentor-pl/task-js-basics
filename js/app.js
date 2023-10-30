@@ -99,7 +99,8 @@ do {
                 console.log(result)
             }
             else {
-                calc.expo(number1, number2);
+                result = calc.expo(number1, number2);
+                console.log(result)
             }
         }
         else{
