@@ -12,34 +12,34 @@ Calculator.prototype.getHistoryAsString = function () {
 }
 
 Calculator.prototype.add = function (number1, number2) {
-    number1 = Number(number1)
-    number2 = Number(number2)
+
     const result = number1 + number2
-    
-        return result
-    
+    this.history.push(number1 + ' + ' + number2 + ' = ' + result);
+
+    return result
+
 }
 Calculator.prototype.sub = function (number1, number2) {
-    number1 = Number(number1)
-    number2 = Number(number2)
+
     const result = number1 - number2;
+    this.history.push(number1 + ' -' + number2 + '=' + result);
     return result
 
-    
+
 }
 Calculator.prototype.multi = function (number1, number2) {
-    number1 = Number(number1)
-    number2 = Number(number2)
+
     const result = number1 * number2;
+    this.history.push(number1 + ' * ' + number2 + '=' + result);
     return result
 
-  
+
 }
 Calculator.prototype.div = function (number1, number2) {
-    number1 = Number(number1)
-    number2 = Number(number2)
-    const result = number1 / number2 ;
-    if( number1 !== 0 && number2 !== 0) {
+
+    const result = number1 / number2;
+    this.history.push(number1 + '/' + number2 + '=' + result);
+    if (number1 !== 0 && number2 !== 0) {
         return result
 
     }
@@ -47,15 +47,15 @@ Calculator.prototype.div = function (number1, number2) {
         console.log('nie dziel przez zero!')
     }
 
-    
+
 }
 Calculator.prototype.expo = function (number1, number2) {
-    number1 = Number(number1)
-    number2 = Number(number2)
+
     const result = number1 ** number2;
+    this.history.push(number1 + '^' + number2 + '=' + result);
     return result
 
-   
+
 }
 
 
@@ -103,7 +103,7 @@ do {
                 console.log(result)
             }
         }
-        else{
+        else {
             console.log('podane wartości są niepoprawne');
 
         }
