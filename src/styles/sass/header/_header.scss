@@ -1,0 +1,62 @@
+@import '../abstracts/';
+
+.header.active {
+  height: 90vh;
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  position: relative;
+  background: repeating-linear-gradient(to right,
+      $color-turcoise-light 0,
+      $color-turcoise-light 60px,
+      $color-turcoise-dark 30px,
+      $color-turcoise-dark 70px
+  );
+  background-size: 100% 200px;
+
+  .header__heading {
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 1.75rem;
+    color: $color-light-grey;
+    text-transform: uppercase;
+    position: absolute;
+    top: 6rem;
+    left: 1rem;
+    animation-name: moveFromLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    margin-bottom: 3rem;
+  }
+
+  .header__main {
+    position: absolute;
+    bottom: 30px;
+    right: 0;
+    width: 400px;
+    height: 300px;
+    background-color: $color-light-grey;
+    border: 1px solid $color-dark-grey;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 50px 0 0 50px;
+    
+    &__start {
+      font-size: 6rem;
+      color: $color-grey;
+    }
+
+    &__headline {
+      font-size: 1.2rem;
+      color: $color-grey;
+    }
+
+  }
+}
+
+
+
+
+
