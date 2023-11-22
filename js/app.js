@@ -7,8 +7,8 @@ function Calculator() {
     '*': multiply,
     '/': divide,
     '^': power,
-    history: [],
   };
+  this.history = [];
 }
 
 function add(a, b) {
@@ -32,7 +32,7 @@ Calculator.prototype.isCorrectAction = function (action) {
 };
 
 Calculator.prototype.getHistoryAsString = function () {
-  return this.actions['history'].join('\n');
+  return this.history.join('\n');
 };
 
 Calculator.prototype.makeCalculation = function (num1, num2, action) {
@@ -41,7 +41,7 @@ Calculator.prototype.makeCalculation = function (num1, num2, action) {
       const actionsType = this.actions[action];
       const result = actionsType(num1, num2);
       const historyResult = `${num1} ${action} ${num2} = ${result}`;
-      this.actions['history'].push(historyResult);
+      this.history.push(historyResult);
       return result;
     } else {
       console.log('Błędna operacja');
