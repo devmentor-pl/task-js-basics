@@ -37,25 +37,35 @@ Calculator.prototype.substract = function(num1, num2) {
 
 Calculator.prototype.multiply = function(num1, num2) {
 
-}
+    let result;
+
+    result = num1 * num2;
+    this.history.push(num1 + " * " + num2 + " = " + result);
+    return result;
+
+};
 
 Calculator.prototype.divide = function(num1, num2) {
+    let result;
 
-}
+    result = num1 / num2;
+    this.history.push(num1Par + " / " + num2Par + " = " + result);
+    console.log(this.history);
+    return result;
 
-Calculator.prototype.power = function(base, exponent) {
-    base = parseFloat(base);
-    exponent = parseInt(exponent);
+};
 
-    if(!isNaN(base) && !isNaN(exponent)) {
-        let result = 1;
+Calculator.prototype.power = function(num1, num2) {
 
-        for (let i = 0; i < exponent; i++) {
-            result *= base;
-        }
+    let result = 1;
+
+    for (let i = 1; i <= num2Par; i++) {
+        result = result * num1Par;
     }
-
-}
+    this.history.push(num1Par + " ^ " + num2Par + " = " + result);
+    return result;
+    
+};
 
 const calc = new Calculator();
 let action, promptContent, isCorrectAction, number1, number2;
