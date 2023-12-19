@@ -12,21 +12,21 @@ Calculator.prototype.getHistoryAsString = function() {
 }
 
 Calculator.prototype.add = function(num1, num2) {
-    num1 = parseFloat(num1);
-    num2 = parseFloat(num2);
+    const num1Par = parseInt(num1);
+    const num2Par = parseInt(num2); 
 
-    if(!isNaN(num1) && !isNaN(num2)) {
-        const result = num1 + num2;
-        this.history.push('${num1} + ${num2} = ${result}');
-        console.log('Wynik dodawania: ${result}'); 
-    } else {
-        console.log('To nie są liczby');
-    }
+    let result;
+
+    result = num1Par + num2Par;
+    this.history.push(num1Par + " + " + num2Par + " = " + result);
+    return result;
+
+    
     // 1. zamień wartości przekazane przez parametr na typ number
     // 2. sprawdź czy są one poprawne
     // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
     // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
-}
+};
 
 Calculator.prototype.substract = function(num1, num2) {
 
