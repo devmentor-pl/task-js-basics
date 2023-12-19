@@ -12,8 +12,8 @@ Calculator.prototype.getHistoryAsString = function() {
 }
 
 Calculator.prototype.add = function(num1, num2) {
-    const num1Par = parseInt(num1);
-    const num2Par = parseInt(num2); 
+    const num1Par = parseInt(num1); //parseFloat() jest używane do konwersji na liczby zmiennoprzecinkowe. 
+    const num2Par = parseInt(num2); //parseInt() jest używane do konwersji na liczby całkowite. 
 
     let result;
 
@@ -22,15 +22,18 @@ Calculator.prototype.add = function(num1, num2) {
     return result;
 
     
-    // 1. zamień wartości przekazane przez parametr na typ number
-    // 2. sprawdź czy są one poprawne
-    // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
-    // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
+
 };
 
 Calculator.prototype.substract = function(num1, num2) {
 
-}
+    let result;
+
+    result = num1 - num2;
+    this.history.push(num1 + " - " + num2 + " = " + result);
+    return result;
+
+};
 
 Calculator.prototype.multiply = function(num1, num2) {
 
@@ -73,3 +76,8 @@ do {
     }
     
 } while(calc.isCorrectAction(action));
+
+    // 1. zamień wartości przekazane przez parametr na typ number
+    // 2. sprawdź czy są one poprawne
+    // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
+    // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
