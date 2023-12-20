@@ -25,12 +25,14 @@ Calculator.prototype.add = function(num1, num2) {
 
 };
 
-Calculator.prototype.substract = function(num1, num2) {
+Calculator.prototype.substract = function (num1, num2) {
+    const num1Par = parseInt(num1); 
+    const num2Par = parseInt(num2); 
 
     let result;
-
-    result = num1 - num2;
-    this.history.push(num1 + " - " + num2 + " = " + result);
+    if (typeof num1Parsed === "number" && typeof num2Parsed === "number") 
+    result = num1Par - num2Par;
+    this.history.push(num1Par + " - " + num2Par + " = " + result);
     return result;
 
 };
@@ -80,14 +82,21 @@ do {
         number1 = prompt('Podaj liczbę nr 1');
         number2 = prompt('Podaj liczbę nr 2');
 
-        if(action === '+') {
-            calc.add(number1, number2);
-        }
-    }
-    
-} while(calc.isCorrectAction(action));
+        if (Number.isNaN(number1) || Number.isNaN(number2)) {
+            alert("To nie liczba!");
+        } else {
+			if (action === "+") {
+				calc.add(number1, number2);
+			} else if (action === "-") {
+				calc.subtract(number1, number2);
+			} else if (action === "*") {
+				calc.multiply(number1, number2);
+			} else if (action === "/") {
+				calc.divide(number1, number2);
+			} else if (action === "^") {
+				calc.power(number1, number2);
+			}
+		}
+	}
+} while (calc.isCorrectAction(action));
 
-    // 1. zamień wartości przekazane przez parametr na typ number
-    // 2. sprawdź czy są one poprawne
-    // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
-    // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
