@@ -98,27 +98,21 @@ do {
     }
 } while (calc.isCorrectAction(action));
 
-/*typeof zwraca typ danych. typeof num2Par === number sprawdza czy to liczba czyli generalnie
- kod sprawdza czy obydwie zmienne zawierają dane liczbowe. 
- 
- 
-Użycie symbolu $ w kodzie JavaScript jest związane z notacją zwana szablonami szeregów 
-znaków (template literals), wprowadzoną w standardzie ECMAScript 6 (ES6). Szablony szeregów 
-znaków pozwalają na łatwiejsze tworzenie ciągów znaków, w których można umieszczać zmienne 
-bez konieczności korzystania z konkatenacji lub dodatkowych operatorów.
+/*
+Calculator is one of the most popular projects we learn to create. 
+Often, mistakes such as not checking whether the number in division is zero or whether the provided values are actually numbers are made. 
+In the project, I used the $ symbol in JavaScript code, which was introduced in the ECMAScript 6 standard. This allows for easier 
+creation of strings where variables can be placed without the need for additional operators. 
+The $ symbol along with curly braces {} is used to embed variables inside a string.
+In this case, the values of the variables num1, num2, and result are dynamically inserted into the respective
+places in the string. This makes the code more readable and concise, especially when dealing with more complex strings.
 
-`${num1} + ${num2} = ${result}`   vs  num1 + ' + ' + num2 + ' = ' + result
+example:
+old code:
+num1 + ' + ' + num2 + ' = ' + result
 
-Symbol $ wraz z nawiasami klamrowymi {} używany jest do osadzania zmiennych wewnątrz ciągu znaków. 
-W tym przypadku, wartości zmiennych num1, num2 i result są dynamicznie wstawiane w odpowiednie 
-miejsca w łańcuchu znaków. To sprawia, że kod staje się bardziej czytelny i zwięzły, zwłaszcza 
-gdy mamy do czynienia z bardziej skomplikowanymi ciągami znaków.
+new one:
+`${num1} + ${num2} = ${result}`
 
-Użycie szablonów szeregów znaków sprawia, że kod jest bardziej czytelny i bardziej zwięzły, 
-zwłaszcza w przypadku tworzenia dłuższych ciągów znaków z wieloma zmiennymi.
-
-Ten kod powinien działać poprawnie i obsługiwać różne operacje matematyczne oraz sprawdzać, czy podane wartości są liczbami.
-
-Warto dodać sprawdzenie, czy druga liczba w dzieleniu nie jest zerem, aby uniknąć błędów.
-
+The use of template literals makes the code more readable and concise, especially when creating longer strings with multiple variables.
  */
