@@ -45,7 +45,7 @@ Calculator.prototype.divide = function(num1, num2) {
     let result;
 
     if (num2 === 0) {
-        console.log("Nie można dzielić przez zero.");
+        console.log("Nie można dzielić przez zero!");
         return NaN;
     }
 
