@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Mateusz Bogolubow">
+    <title>JavaScript: Podstawy - devmentor.pl</title>
+</head>
+<body>
+    <div class="calculator">
+        <form class="calculatorForm">
+            <label for="number1">Number 1:</label>
+            <input type="number" id="number1" name="number1" required>
+
+            <label for="operation">Operation:</label>
+            <select id="operation" name="operation" required>
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
+                <option value="%">%</option>
+            </select>
+
+            <label for="number2">Number 2:</label>
+            <input type="number" id="number2" name="number2" required>
+
+            <button type="submit">Calculate</button>
+        </form>
+
+        <div class="result">
+            Result: <span class="result-value">0</span>
+        </div>
+
+        <div class="history">
+            <h2>History</h2>
+            <ul class="history-list"></ul>
+        </div>
+    </div>
+    
+    <script src="./newCalc.js"></script>
+</body>
+</html>
