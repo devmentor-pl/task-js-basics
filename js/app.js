@@ -1,6 +1,7 @@
 function Calculator() {
     this.actions = ['+', '-', '*', '/', '^'];
     this.history = [];
+    this.result = 0;
 }
 
 Calculator.prototype.isCorrectAction = function(action) {
@@ -13,9 +14,20 @@ Calculator.prototype.getHistoryAsString = function() {
 
 Calculator.prototype.add = function(num1, num2) {
     // 1. zamień wartości przekazane przez parametr na typ number
+    const numOne = Number(num1);
+    const numTwo = Number(num2);
     // 2. sprawdź czy są one poprawne
+    if (isNaN(numOne) || isNaN(numTwo)) {
+        console.log('Podane wartości nie są liczbami.');
+        return NaN;
+    }
     // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
+    const result = numOne + numTwo;
+    this.result = result;
     // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
+    const operation = `${numOne} + ${numTwo} = ${result}`;
+    this.history.push(operation);
+    return result;
 }
 
 const calc = new Calculator();
