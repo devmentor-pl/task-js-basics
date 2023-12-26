@@ -43,9 +43,25 @@ do {
         number1 = prompt('Podaj liczbę nr 1');
         number2 = prompt('Podaj liczbę nr 2');
 
-        if(action === '+') {
-            calc.add(number1, number2);
+        switch (action) {
+            case '+':
+                calc.add(number1, number2);
+                break;
+            case '-':
+                calc.sub(number1, number2);
+                break;
+            case '*':
+                calc.multi(number1, number2);
+                break;
+            case '/':
+                calc.div(number1, number2);
+                break;
+            case '^':
+                calc.exp(number1, number2);
+                break;
+            default:
+                console.log('Nieprawidłowa operacja');
         }
     }
     
-} while(calc.isCorrectAction(action));
+} while (true);
