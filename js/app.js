@@ -18,7 +18,8 @@ Calculator.prototype.add = function(num1, num2) {
     const numTwo = Number(num2);
     // 2. sprawdź czy są one poprawne
     if (isNaN(numOne) || isNaN(numTwo)) {
-        console.log('Podane wartości nie są liczbami.');
+        promptContent += '\nPodane wartości nie są liczbami. \nWciśnij Ok aby kontynuować';
+        prompt(promptContent);
         return NaN;
     }
     // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
@@ -29,6 +30,26 @@ Calculator.prototype.add = function(num1, num2) {
     this.history.push(operation);
     return result;
 }
+
+Calculator.prototype.sub = function(num1, num2) {
+    const numOne = Number(num1);
+    const numTwo = Number(num2);
+
+    if (isNaN(numOne) || isNaN(numTwo)) {
+        promptContent += '\nPodane wartości nie są liczbami. \nWciśnij Ok aby kontynuować';
+        prompt(promptContent);
+        return NaN;
+    }
+
+    const result = numOne - numTwo;
+    this.result = result;
+
+    const operation = `${numOne} - ${numTwo} = ${result}`;
+    this.history.push(operation);
+    return result;
+}
+
+
 
 const calc = new Calculator();
 let action, promptContent, isCorrectAction, number1, number2;
