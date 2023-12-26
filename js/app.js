@@ -67,6 +67,24 @@ Calculator.prototype.multi = function(num1, num2) {
     return result;
 }
 
+Calculator.prototype.div = function(num1, num2) {
+    const numOne = Number(num1);
+    const numTwo = Number(num2);
+
+    if (isNaN(numOne) || isNaN(numTwo)) {
+        promptContent += '\nPodane wartości nie są liczbami. \nWciśnij Ok aby kontynuować';
+        prompt(promptContent);
+        return NaN;
+    }
+
+    const result = numOne / numTwo;
+    this.result = result;
+
+    const operation = `${numOne} / ${numTwo} = ${result}`;
+    this.history.push(operation);
+    return result;
+}
+
 
 
 const calc = new Calculator();
