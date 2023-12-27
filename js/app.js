@@ -139,9 +139,10 @@ do {
             case '^':
                 calc.power(number1, number2);
                 break;
-            default:
-                console.log('Nieprawidłowa operacja');
         }
+    } else {
+        promptContent += '\nNieprawidłowa operacja. \nWciśnij Ok aby kontynuować';
+        prompt(promptContent);
     }
     
 } while (true);
