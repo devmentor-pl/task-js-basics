@@ -85,6 +85,29 @@ Calculator.prototype.div = function(num1, num2) {
     return result;
 }
 
+Calculator.prototype.power = function (num1, num2) {
+    const base = Number(num1);
+    const exponent = Number(num2);
+
+    if (isNaN(base) || isNaN(exponent)) {
+        promptContent += '\nPodane wartości nie są liczbami. \nWciśnij Ok aby kontynuować';
+        prompt(promptContent);
+        return NaN;
+    }
+
+    let result = 1;
+
+    for (let i = 0; i < exponent; i++) {
+        result *= base;
+    }
+
+    this.result = result;
+
+    const operation = `${base} ^ ${exponent} = ${result}`;
+    this.history.push(operation);
+    return result;
+}
+
 
 
 const calc = new Calculator();
@@ -114,7 +137,7 @@ do {
                 calc.div(number1, number2);
                 break;
             case '^':
-                calc.exp(number1, number2);
+                calc.power(number1, number2);
                 break;
             default:
                 console.log('Nieprawidłowa operacja');
