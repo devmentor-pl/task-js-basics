@@ -1,0 +1,12 @@
+Calculator is one of the most popular projects we learn to create. Often, mistakes such as not checking whether the number in division is zero or 
+whether the provided values are actually numbers are made. In the project, I used the $ symbol in JavaScript code, 
+which was introduced in the ECMAScript 6 standard. This allows for easier creation of strings where variables can be 
+placed without the need for additional operators. The $ symbol along with curly braces {} is used to embed variables 
+inside a string. In this case, the values of the variables num1, num2, and result are dynamically inserted into the 
+respective places in the string. This makes the code more readable and concise, especially when dealing with more complex strings.
+
+example: old code: num1 + ' + ' + num2 + ' = ' + result
+
+new one: ${num1} + ${num2} = ${result}
+
+The use of template literals makes the code more readable and concise, especially when creating longer strings with multiple variables.
