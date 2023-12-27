@@ -12,14 +12,25 @@ Calculator.prototype.getHistoryAsString = function() {
     return this.history.join('\n');
 }
 
+Calculator.prototype.validateNumberInput = function(num1, num2) {
+    const isNum1Valid = !isNaN(Number(num1));
+    const isNum2Valid = !isNaN(Number(num2));
+
+    if (!isNum1Valid || !isNum2Valid) {
+        promptContent += '\nPodane wartości nie są liczbami. \nWciśnij Ok aby kontynuować';
+        prompt(promptContent);
+        return false;
+    }
+
+    return true;
+}
+
 Calculator.prototype.add = function(num1, num2) {
     // 1. zamień wartości przekazane przez parametr na typ number
     const numOne = Number(num1);
     const numTwo = Number(num2);
     // 2. sprawdź czy są one poprawne
-    if (isNaN(numOne) || isNaN(numTwo)) {
-        promptContent += '\nPodane wartości nie są liczbami. \nWciśnij Ok aby kontynuować';
-        prompt(promptContent);
+    if (!this.validateNumberInput(num1, num2)) {
         return NaN;
     }
     // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
@@ -35,9 +46,7 @@ Calculator.prototype.sub = function(num1, num2) {
     const numOne = Number(num1);
     const numTwo = Number(num2);
 
-    if (isNaN(numOne) || isNaN(numTwo)) {
-        promptContent += '\nPodane wartości nie są liczbami. \nWciśnij Ok aby kontynuować';
-        prompt(promptContent);
+    if (!this.validateNumberInput(num1, num2)) {
         return NaN;
     }
 
@@ -53,9 +62,7 @@ Calculator.prototype.multi = function(num1, num2) {
     const numOne = Number(num1);
     const numTwo = Number(num2);
 
-    if (isNaN(numOne) || isNaN(numTwo)) {
-        promptContent += '\nPodane wartości nie są liczbami. \nWciśnij Ok aby kontynuować';
-        prompt(promptContent);
+    if (!this.validateNumberInput(num1, num2)) {
         return NaN;
     }
 
@@ -71,9 +78,7 @@ Calculator.prototype.div = function(num1, num2) {
     const numOne = Number(num1);
     const numTwo = Number(num2);
 
-    if (isNaN(numOne) || isNaN(numTwo)) {
-        promptContent += '\nPodane wartości nie są liczbami. \nWciśnij Ok aby kontynuować';
-        prompt(promptContent);
+    if (!this.validateNumberInput(num1, num2)) {
         return NaN;
     }
 
@@ -89,9 +94,7 @@ Calculator.prototype.power = function (num1, num2) {
     const base = Number(num1);
     const exponent = Number(num2);
 
-    if (isNaN(base) || isNaN(exponent)) {
-        promptContent += '\nPodane wartości nie są liczbami. \nWciśnij Ok aby kontynuować';
-        prompt(promptContent);
+    if (!this.validateNumberInput(num1, num2)) {
         return NaN;
     }
 
