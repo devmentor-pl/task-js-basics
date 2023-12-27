@@ -1,5 +1,11 @@
 function Calculator() {
-    this.actions = ['+', '-', '*', '/', '^'];
+    this.actions = {
+        '+': this.add.bind(this),
+        '-': this.sub.bind(this),
+        '*': this.multi.bind(this),
+        '/': this.div.bind(this),
+        '^': this.power.bind(this),
+    };
     this.history = [];
     this.result = 0;
 }
@@ -126,27 +132,17 @@ do {
         break;
     }
 
-    isCorrectAction = calc.isCorrectAction(action);
-    if(isCorrectAction) {
+    const operationFunction = calc.actions[action];
+
+    if (operationFunction) {
         number1 = Number(prompt('Podaj liczbę nr 1'));
         number2 = Number(prompt('Podaj liczbę nr 2'));
 
-        switch (action) {
-            case '+':
-                calc.add(number1, number2);
-                break;
-            case '-':
-                calc.sub(number1, number2);
-                break;
-            case '*':
-                calc.multi(number1, number2);
-                break;
-            case '/':
-                calc.div(number1, number2);
-                break;
-            case '^':
-                calc.power(number1, number2);
-                break;
+        if (!isNaN(number1) && !isNaN(number2)) {
+            calc.actions[action](number1, number2);
+        } else {
+            promptContent += '\nPodane wartości nie są liczbami. \nWciśnij Ok aby kontynuować';
+            prompt(promptContent);
         }
     } else {
         promptContent += '\nNieprawidłowa operacja. \nWciśnij Ok aby kontynuować';
