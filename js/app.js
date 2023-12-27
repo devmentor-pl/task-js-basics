@@ -117,10 +117,15 @@ const calc = new Calculator();
 let action, promptContent, isCorrectAction, number1, number2;
 do { 
     promptContent = 'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n'; // \n - znak nowej linii
-    promptContent += 'Jeśli chcesz zrezygnować wciśnij Anuluj. \n';
+    promptContent += 'Jeśli chcesz zrezygnować wpisz Anuluj. \n';
     promptContent += 'Lista poprzednich operacji: \n' + calc.getHistoryAsString();
 
     action = prompt(promptContent);
+
+    if (action.toLowerCase() === 'anuluj') {
+        break;
+    }
+
     isCorrectAction = calc.isCorrectAction(action);
     if(isCorrectAction) {
         number1 = prompt('Podaj liczbę nr 1');
