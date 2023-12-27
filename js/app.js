@@ -82,6 +82,12 @@ Calculator.prototype.div = function(num1, num2) {
         return NaN;
     }
 
+    if (numTwo === 0) {
+        promptContent += '\nNie można dzielić przez zero. Wprowadź inną liczbę dla dzielnika.';
+        prompt(promptContent);
+        return NaN;
+    }
+
     const result = numOne / numTwo;
     this.result = result;
 
