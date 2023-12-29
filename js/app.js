@@ -32,86 +32,48 @@ Calculator.prototype.validateNumberInput = function(num1, num2) {
 }
 
 Calculator.prototype.add = function(num1, num2) {
-    // 1. zamień wartości przekazane przez parametr na typ number
-
-    // 2. sprawdź czy są one poprawne
-    if (!this.validateNumberInput(num1, num2)) {
-        return NaN;
-    }
-    // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
     const result = num1 + num2;
     this.result = result;
-    // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
     const operation = `${num1} + ${num2} = ${result}`;
     this.history.push(operation);
     return result;
 }
 
 Calculator.prototype.sub = function(num1, num2) {
-
-
-    if (!this.validateNumberInput(num1, num2)) {
-        return NaN;
-    }
-
     const result = num1 - num2;
     this.result = result;
-
     const operation = `${num1} - ${num2} = ${result}`;
     this.history.push(operation);
     return result;
 }
 
 Calculator.prototype.multi = function(num1, num2) {
-
-
-    if (!this.validateNumberInput(num1, num2)) {
-        return NaN;
-    }
-
     const result = num1 * num2;
     this.result = result;
-
     const operation = `${num1} * ${num2} = ${result}`;
     this.history.push(operation);
     return result;
 }
 
 Calculator.prototype.div = function(num1, num2) {
-
-
-    if (!this.validateNumberInput(num1, num2)) {
-        return NaN;
-    }
-
     if (num2 === 0) {
         promptContent += '\nNie można dzielić przez zero. Wprowadź inną liczbę dla dzielnika.';
         prompt(promptContent);
         return NaN;
     }
-
     const result = num1 / num2;
     this.result = result;
-
     const operation = `${num1} / ${num2} = ${result}`;
     this.history.push(operation);
     return result;
 }
 
 Calculator.prototype.power = function (num1, num2) {
-
-    if (!this.validateNumberInput(num1, num2)) {
-        return NaN;
-    }
-
     let result = 1;
-
     for (let i = 0; i < num2; i++) {
         result *= num1;
     }
-
     this.result = result;
-
     const operation = `${num1} ^ ${num2} = ${result}`;
     this.history.push(operation);
     return result;
