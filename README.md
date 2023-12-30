@@ -1,39 +1,49 @@
-> ⭐ ***README** to coś więcej niż opis. Poprzez nie **pokazujesz swoje mocne strony** – swoją dokładność, sposób myślenia i podejście do rozwiązywania problemów. Niech Twoje README pokaże, że masz **świetne predyspozycje do rozwoju!***
-> 
-> 🎁 *Zacznij od razu. Skorzystaj z **[szablonu README i wskazówek](https://github.com/devmentor-pl/readme-template)**.* 
+**Project: JS BASICS - Calculator**
 
-&nbsp;
+## What I Learned:
 
+Throughout the completion of these project, I gained valuable knowledge and experience in the following areas:
 
-# JavaScript: Podstawy
+- **JavaScript Basics:** Deepened understanding of fundamental JavaScript concepts, including functions, conditional statements, loops, and object-oriented programming.
 
-Twoim zadaniem będzie dopisanie do istniejącego kodu niezbędnych elementów, które pozwolą wykonywać obliczenia oraz przechowywać historię wykonanych operacji.
+- **Code Refactoring:** Improved code structure and readability through refactoring techniques, such as simplifying switch statements and reducing redundant code.
 
-Nasz **kalkulator** powinien posiadać następujące opcje:
+- **Dynamic Operation Handling:** Learned to handle dynamic operations using objects and methods, providing a more scalable and maintainable solution.
 
-* dodawanie (+)
-* odejmowanie (-)
-* mnożenie (*)
-* dzielenie (/)
-* potęgowanie (^) – wykonaj to przy pomocy pętli, nie korzystaj z `Math.pow()`.
+- **Advanced JavaScript Functions:** Explored advanced functions related to arithmetic operations, loops, conditional statements, and array manipulations.
 
-Gdy otworzysz plik `./js/app.js`, to zauważysz, że mamy tam już gotowy konstruktor o nazwie `Calculator`, który musimy uzupełnić odpowiednimi metodami.
+- **Refactoring and Code Optimization:** Practiced code refactoring techniques to improve code quality, readability, and efficiency.
 
-Wzoruj się na metodzie `Calculator.prototype.add`, w której znajdziesz rozpiskę kolejnych kroków do wykonania.
+- **Error Handling:** Implemented error handling strategies, such as preventing division by zero and checking for counter values to avoid potential issues.
 
-We naszym pliku `app.js` wykorzystujemy również pętlę [do...while](https://developer.mozilla.org/pl/docs/Web/JavaScript/Referencje/Polecenia/do...while), która w swoim wnętrzu pobiera dane od użytkownika. Na ich podstawie wykonywane są dalsze czynności. 
+## Solutions Implemented:
 
-To tam należy dopisać kilka instrukcji `if` oraz wywołać odpowiednie metody.
+- **Calculator Operations:** Added various mathematical operations (addition, subtraction, multiplication, division, exponentiation) to the calculator.
 
-## Refaktoryzacja ([definicja](https://pl.wikipedia.org/wiki/Refaktoryzacja))
+- **Switch Statement Refactoring:** Refactored the switch statement for dynamic operation selection, reducing redundancy and improving code clarity.
 
-Po napisaniu programu (lub jego części) zastanów się, czy możesz go usprawnić, np. zwiększyć czytelności kodu lub usunąć powielone operacje i zastąpić je funkcją. Zrób to przed wykonaniem *Pull Requesta*.
+- **Input Validation:** Enhanced input validation by using the `Number()` function, ensuring entered values are valid numbers.
 
-Refaktoryzacja to jedno z najważniejszych działań podczas procesu wytwarzania oprogramowania. Początkujący programiści często o niej zapominają.
+- **Loop Termination:** Implemented a loop termination condition when the user enters a specific word, allowing a clean exit from the calculator.
 
+- **Arithmetic Operations:** Added functions for arithmetic operations, multiplication tables, exponentiation, and summing the two largest numbers from three parameters.
 
-&nbsp;
+- **Array Manipulation:** Created functions to generate random numbers, retrieve the largest numbers from an array, and calculate the average of an array.
 
-> ⭐ ***README** to coś więcej niż opis. Poprzez nie **pokazujesz swoje mocne strony** – swoją dokładność, sposób myślenia i podejście do rozwiązywania problemów. Niech Twoje README pokaże, że masz **świetne predyspozycje do rozwoju!***
-> 
-> 🎁 *Zacznij od razu. Skorzystaj z **[szablonu README i wskazówek](https://github.com/devmentor-pl/readme-template)**.* 
+- **Student Grade Management:** Added a method to the `Student` constructor for managing grades and calculating the average grade for a specific subject or all subjects.
+
+## Key Considerations:
+
+During the projects, I identified several key aspects to pay attention to:
+
+1. **Validation in Dynamic Operations:** Ensure that the input validation logic is consistent and effective for all dynamic operations.
+
+2. **Code Scalability:** Consider the scalability of the code, especially in handling additional operations. Explore alternative approaches for dynamic operation selection.
+
+3. **Refactor Prompt Content Handling:** The handling of prompt content could be refactored for improved code readability and maintainability.
+
+4. **Variable and Function Naming:** Ensure consistent use of English variable and function names for better code readability.
+
+5. **Error Handling:** Double-check error handling mechanisms to avoid potential issues, especially when dealing with division and counter values.
+
+6. **Code Reusability:** Explore opportunities for code reusability, such as creating a common method for repetitive code segments.
