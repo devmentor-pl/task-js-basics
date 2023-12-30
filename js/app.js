@@ -10,6 +10,15 @@ function Calculator() {
     this.result = 0;
 }
 
+Calculator.prototype.handleInvalidNumberInput = function() {
+    promptContent += '\nPodane wartości nie są liczbami. \nWciśnij Ok aby kontynuować';
+    prompt(promptContent);
+}
+Calculator.prototype.handleInvalidOperationInput = function() {
+    promptContent += '\nNieprawidłowa operacja. \nWciśnij Ok aby kontynuować';
+    prompt(promptContent);
+}
+
 Calculator.prototype.isCorrectAction = function(action) {
     return this.actions.includes(action);
 }
@@ -22,13 +31,8 @@ Calculator.prototype.validateNumberInput = function(num1, num2) {
     const isNum1Valid = !isNaN(Number(num1));
     const isNum2Valid = !isNaN(Number(num2));
 
-    if (!isNum1Valid || !isNum2Valid) {
-        promptContent += '\nPodane wartości nie są liczbami. \nWciśnij Ok aby kontynuować';
-        prompt(promptContent);
-        return false;
-    }
+    return isNum1Valid && isNum2Valid;
 
-    return true;
 }
 
 Calculator.prototype.add = function(num1, num2) {
@@ -100,15 +104,14 @@ do {
         number1 = Number(prompt('Podaj liczbę nr 1'));
         number2 = Number(prompt('Podaj liczbę nr 2'));
 
-        if (!isNaN(number1) && !isNaN(number2)) {
+        if (calc.validateNumberInput(number1, number2)) {
             calc.actions[action](number1, number2);
         } else {
-            promptContent += '\nPodane wartości nie są liczbami. \nWciśnij Ok aby kontynuować';
-            prompt(promptContent);
+            calc.handleInvalidNumberInput();
+            
         }
     } else {
-        promptContent += '\nNieprawidłowa operacja. \nWciśnij Ok aby kontynuować';
-        prompt(promptContent);
+        calc.handleInvalidOperationInput();
     }
     
 } while (true);
