@@ -1,39 +1,29 @@
-> ⭐ ***README** to coś więcej niż opis. Poprzez nie **pokazujesz swoje mocne strony** – swoją dokładność, sposób myślenia i podejście do rozwiązywania problemów. Niech Twoje README pokaże, że masz **świetne predyspozycje do rozwoju!***
-> 
-> 🎁 *Zacznij od razu. Skorzystaj z **[szablonu README i wskazówek](https://github.com/devmentor-pl/readme-template)**.* 
+# Browser calculator in Javascript. Don't skip it, please!
 
-&nbsp;
+I know what you're thinking my employer. What's interesting about a calculator when writing it makes no sense today?! You're absolutely right! Nevertheless, this exercise helps a lot, especially at the beginning of the journey with JS, to memorize the basics of the language and use it properly.
 
+## Content:
+#####1) Challenges
+1. Test small chunks of code.
 
-# JavaScript: Podstawy
+#####2) Gained knowledge
 
-Twoim zadaniem będzie dopisanie do istniejącego kodu niezbędnych elementów, które pozwolą wykonywać obliczenia oraz przechowywać historię wykonanych operacji.
+### Test small chunks of code
+I wanted to check if `this.history.push(${num1} + ${num2} = ${result});` pushes values correctly to `Calculator.history` array.
 
-Nasz **kalkulator** powinien posiadać następujące opcje:
+![](./README-img/test-new-window(main).png)
 
-* dodawanie (+)
-* odejmowanie (-)
-* mnożenie (*)
-* dzielenie (/)
-* potęgowanie (^) – wykonaj to przy pomocy pętli, nie korzystaj z `Math.pow()`.
+It was uncomfortable to test it inside the core code because of other operations that occured when running it. I put the code into another window and tested it separately. It's always beneficial to examine complex code in small chunks, as it makes it much easier to handle:
 
-Gdy otworzysz plik `./js/app.js`, to zauważysz, że mamy tam już gotowy konstruktor o nazwie `Calculator`, który musimy uzupełnić odpowiednimi metodami.
-
-Wzoruj się na metodzie `Calculator.prototype.add`, w której znajdziesz rozpiskę kolejnych kroków do wykonania.
-
-We naszym pliku `app.js` wykorzystujemy również pętlę [do...while](https://developer.mozilla.org/pl/docs/Web/JavaScript/Referencje/Polecenia/do...while), która w swoim wnętrzu pobiera dane od użytkownika. Na ich podstawie wykonywane są dalsze czynności. 
-
-To tam należy dopisać kilka instrukcji `if` oraz wywołać odpowiednie metody.
-
-## Refaktoryzacja ([definicja](https://pl.wikipedia.org/wiki/Refaktoryzacja))
-
-Po napisaniu programu (lub jego części) zastanów się, czy możesz go usprawnić, np. zwiększyć czytelności kodu lub usunąć powielone operacje i zastąpić je funkcją. Zrób to przed wykonaniem *Pull Requesta*.
-
-Refaktoryzacja to jedno z najważniejszych działań podczas procesu wytwarzania oprogramowania. Początkujący programiści często o niej zapominają.
+![](./README-img/test-new-window(test).png)
 
 
-&nbsp;
-
-> ⭐ ***README** to coś więcej niż opis. Poprzez nie **pokazujesz swoje mocne strony** – swoją dokładność, sposób myślenia i podejście do rozwiązywania problemów. Niech Twoje README pokaże, że masz **świetne predyspozycje do rozwoju!***
-> 
-> 🎁 *Zacznij od razu. Skorzystaj z **[szablonu README i wskazówek](https://github.com/devmentor-pl/readme-template)**.* 
+### Gained Knowledge:
+1) Use constructor, functions, function expressions, arrays.
+2) Use prototypes for better RAM management.
+3) Use loops: for, do... while.
+4) Use JS built-in methods f.e.: join(), includes().
+5) Reduce code repetition.
+6) Create object with "new".
+7) Create small functionalities to be used in more complex code.
+8) Naming - good practice.

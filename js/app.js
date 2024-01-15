@@ -1,10 +1,36 @@
 function Calculator() {
-  this.actions = ["+", "-", "*", "/", "^"];
+  this.actions = {
+    "+": "add",
+    "-": "subtract",
+    "*": "multiply",
+    "/": "divide",
+    "^": "power",
+  };
   this.history = [];
 }
 
+Calculator.prototype.doOperation = function (action, num1, num2) {
+  num1 = Number(num1);
+  num2 = Number(num2);
+
+  if (action === "/") {
+    return this.divide(num1, num2);
+  } else if (!this.areNumbersNaN(num1, num2)) {
+    const nameOfAction = this.actions[action];
+    return this[nameOfAction](num1, num2);
+  }
+};
+
 Calculator.prototype.isCorrectAction = function (action) {
-  return this.actions.includes(action);
+  if (this.actions[action]) {
+    return true;
+  }
+};
+
+Calculator.prototype.areNumbersNaN = function (num1, num2) {
+  if (num1 === NaN && num2 === NaN) {
+    return true;
+  }
 };
 
 Calculator.prototype.getHistoryAsString = function () {
@@ -12,42 +38,24 @@ Calculator.prototype.getHistoryAsString = function () {
 };
 
 Calculator.prototype.add = function (num1, num2) {
-  num1 = Number(num1);
-  num2 = Number(num2);
-
-  if (num1 !== NaN && num2 !== NaN) {
-    const result = num1 + num2;
-    this.history.push(`${num1} + ${num2} = ${result}`);
-    return result;
-  }
+  const result = num1 + num2;
+  this.history.push(`${num1} + ${num2} = ${result}`);
+  return result;
 };
 
 Calculator.prototype.subtract = function (num1, num2) {
-  num1 = Number(num1);
-  num2 = Number(num2);
-
-  if (num1 !== NaN && num2 !== NaN) {
-    const result = num1 - num2;
-    this.history.push(`${num1} - ${num2} = ${result}`);
-    return result;
-  }
+  const result = num1 - num2;
+  this.history.push(`${num1} - ${num2} = ${result}`);
+  return result;
 };
 
 Calculator.prototype.multiply = function (num1, num2) {
-  num1 = Number(num1);
-  num2 = Number(num2);
-
-  if (num1 !== NaN && num2 !== NaN) {
-    const result = num1 * num2;
-    this.history.push(`${num1} * ${num2} = ${result}`);
-    return result;
-  }
+  const result = num1 * num2;
+  this.history.push(`${num1} * ${num2} = ${result}`);
+  return result;
 };
 
 Calculator.prototype.divide = function (num1, num2) {
-  num1 = Number(num1);
-  num2 = Number(num2);
-
   if (num1 !== NaN && num2) {
     const result = num1 / num2;
     this.history.push(`${num1} / ${num2} = ${result}`);
@@ -56,32 +64,27 @@ Calculator.prototype.divide = function (num1, num2) {
 };
 
 Calculator.prototype.power = function (num1, num2) {
-  num1 = Number(num1);
-  num2 = Number(num2);
-
-  if (num1 !== NaN && num2 !== NaN) {
-    if (num1 === 0 && num2 < 0) {
-      return null;
-    }
-    // It would be much easier to use ** or Math.pow() to do the job but here it is:
-    let result;
-    if (num2 === 0) {
-      result = 1;
-    } else if (num2 < 0) {
-      result = 1 / num1;
-      for (let i = 1; i < Math.abs(num2); i++) {
-        result *= 1 / num1;
-      }
-    } else {
-      result = num1;
-      for (let i = 1; i < num2; i++) {
-        result *= num1;
-      }
-    }
-
-    this.history.push(`${num1} ^ ${num2} = ${result}`);
-    return result;
+  if (num1 === 0 && num2 < 0) {
+    return null;
   }
+  // I used conditionals because in this task I was asked to use them.
+  let result;
+  if (num2 === 0) {
+    result = 1;
+  } else if (num2 < 0) {
+    result = 1 / num1;
+    for (let i = 1; i < Math.abs(num2); i++) {
+      result *= 1 / num1;
+    }
+  } else {
+    result = num1;
+    for (let i = 1; i < num2; i++) {
+      result *= num1;
+    }
+  }
+
+  this.history.push(`${num1} ^ ${num2} = ${result}`);
+  return result;
 };
 
 const calc = new Calculator();
@@ -98,16 +101,6 @@ do {
     number1 = prompt("Podaj liczbę nr 1");
     number2 = prompt("Podaj liczbę nr 2");
 
-    if (action === "+") {
-      calc.add(number1, number2);
-    } else if (action === "-") {
-      calc.subtract(number1, number2);
-    } else if (action === "*") {
-      calc.multiply(number1, number2);
-    } else if (action === "/") {
-      calc.divide(number1, number2);
-    } else if (action === "^") {
-      calc.power(number1, number2);
-    }
+    calc.doOperation(action, number1, number2);
   }
 } while (calc.isCorrectAction(action));
