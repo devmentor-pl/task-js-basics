@@ -10,14 +10,12 @@ function Calculator() {
 }
 
 Calculator.prototype.doOperation = function (action, num1, num2) {
-  num1 = Number(num1);
-  num2 = Number(num2);
+  const parsedNum1 = Number(num1);
+  const parsedNum2 = Number(num2);
 
-  if (action === "/") {
-    return this.divide(num1, num2);
-  } else if (!this.areNumbersNaN(num1, num2)) {
+  if (!this.areNumbersValid(parsedNum1, parsedNum2)) {
     const nameOfAction = this.actions[action];
-    return this[nameOfAction](num1, num2);
+    return this[nameOfAction](parsedNum1, parsedNum2);
   }
 };
 
@@ -27,9 +25,18 @@ Calculator.prototype.isCorrectAction = function (action) {
   }
 };
 
-Calculator.prototype.areNumbersNaN = function (num1, num2) {
-  if (num1 === NaN && num2 === NaN) {
+Calculator.prototype.areNumbersValid = function (num1, num2) {
+  if (isNaN(num1) && isNaN(num2)) {
+    alert('Both numbers are falsy.')
     return true;
+  } else if (isNaN(num1)) {
+    alert('First number is falsy.')
+    return true;
+  } else if (isNaN(num2)) {
+    alert('Second number is falsy.')
+    return true;
+  } else {
+    return false;
   }
 };
 
@@ -56,7 +63,7 @@ Calculator.prototype.multiply = function (num1, num2) {
 };
 
 Calculator.prototype.divide = function (num1, num2) {
-  if (num1 !== NaN && num2) {
+  if (num2) {
     const result = num1 / num2;
     this.history.push(`${num1} / ${num2} = ${result}`);
     return result;
@@ -67,7 +74,7 @@ Calculator.prototype.power = function (num1, num2) {
   if (num1 === 0 && num2 < 0) {
     return null;
   }
-  // I used conditionals because in this task I was asked to use them.
+  // I used conditionals because in this task I was asked to use loops for powers.
   let result;
   if (num2 === 0) {
     result = 1;
@@ -91,7 +98,7 @@ const calc = new Calculator();
 let action, promptContent, isCorrectAction, number1, number2;
 do {
   promptContent =
-    "Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n"; // \n - znak nowej linii
+    "Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n";
   promptContent += "Jeśli chcesz zrezygnować wciśnij Anuluj. \n";
   promptContent += "Lista poprzednich operacji: \n" + calc.getHistoryAsString();
 
