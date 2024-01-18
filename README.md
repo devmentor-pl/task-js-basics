@@ -3,10 +3,10 @@
 I know what you're thinking my employer. What's interesting about a calculator when writing it makes no sense today?! You're absolutely right! Nevertheless, this exercise helps a lot, especially at the beginning of the journey with JS, to memorize the basics of the language and use it properly.
 
 ## Content:
-#####1) Challenges
+##### 1) Challenges
 1. Test small chunks of code.
 
-#####2) Gained knowledge
+##### 2) Gained knowledge
 
 ### Test small chunks of code
 I wanted to check if `this.history.push(${num1} + ${num2} = ${result});` pushes values correctly to `Calculator.history` array.
