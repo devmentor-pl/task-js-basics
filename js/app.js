@@ -15,7 +15,23 @@ Calculator.prototype.doOperation = function (action, num1, num2) {
 
   if (!this.areNumbersValid(parsedNum1, parsedNum2)) {
     const nameOfAction = this.actions[action];
-    return this[nameOfAction](parsedNum1, parsedNum2);
+    const operationResult = this[nameOfAction](parsedNum1, parsedNum2);
+
+    if (operationResult) {
+      const resultToString = operationResult.toString();
+      const decimalPlaces = /\.\d{3,}$/;
+
+      if (decimalPlaces.test(resultToString)) {
+        const fixedResult = operationResult.toFixed(2);
+        return this.history.push(
+          `${parsedNum1} ${action} ${parsedNum2} = ${fixedResult}`
+        );
+      } else {
+        return this.history.push(
+          `${parsedNum1} ${action} ${parsedNum2} = ${operationResult}`
+        );
+      }
+    }
   }
 };
 
@@ -46,32 +62,28 @@ Calculator.prototype.getHistoryAsString = function () {
 
 Calculator.prototype.add = function (num1, num2) {
   const result = num1 + num2;
-  this.history.push(`${num1} + ${num2} = ${result}`);
   return result;
 };
 
 Calculator.prototype.subtract = function (num1, num2) {
   const result = num1 - num2;
-  this.history.push(`${num1} - ${num2} = ${result}`);
   return result;
 };
 
 Calculator.prototype.multiply = function (num1, num2) {
   const result = num1 * num2;
-  this.history.push(`${num1} * ${num2} = ${result}`);
   return result;
 };
 
 Calculator.prototype.divide = function (num1, num2) {
   if (num2) {
     const result = num1 / num2;
-    this.history.push(`${num1} / ${num2} = ${result}`);
     return result;
   }
 };
 
 Calculator.prototype.power = function (num1, num2) {
-  if (num1 === 0 && num2 < 0) {
+  if (num1 === 0 && num2 < 0 || !Number.isInteger(num2)) {
     return null;
   }
   // I used conditionals because in this task I was asked to use loops for powers.
@@ -80,7 +92,7 @@ Calculator.prototype.power = function (num1, num2) {
     result = 1;
   } else if (num2 < 0) {
     result = 1 / num1;
-    for (let i = 1; i < Math.abs(num2); i++) {
+    for (let i = 1; i < num2; i++) {
       result *= 1 / num1;
     }
   } else {
@@ -90,7 +102,6 @@ Calculator.prototype.power = function (num1, num2) {
     }
   }
 
-  this.history.push(`${num1} ^ ${num2} = ${result}`);
   return result;
 };
 
