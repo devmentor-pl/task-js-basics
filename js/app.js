@@ -47,8 +47,6 @@ do {
     number1 = prompt("Podaj liczbę nr 1");
     number2 = prompt("Podaj liczbę nr 2");
 
-    if (action === "+") {
-      calc.add(number1, number2);
-    }
+    calc.doAction(number1, number2);
   }
 } while (calc.isCorrectAction(action));
