@@ -13,7 +13,7 @@ Calculator.prototype.doOperation = function (action, num1, num2) {
   const parsedNum1 = Number(num1);
   const parsedNum2 = Number(num2);
 
-  if (!this.areNumbersValid(parsedNum1, parsedNum2)) {
+  if (this.areNumbersValid(parsedNum1, parsedNum2)) {
     const nameOfAction = this.actions[action];
     const operationResult = this[nameOfAction](parsedNum1, parsedNum2);
 
@@ -44,15 +44,15 @@ Calculator.prototype.isCorrectAction = function (action) {
 Calculator.prototype.areNumbersValid = function (num1, num2) {
   if (isNaN(num1) && isNaN(num2)) {
     alert("Both numbers are falsy.");
-    return true;
+    return false;
   } else if (isNaN(num1)) {
     alert("First number is falsy.");
-    return true;
+    return false;
   } else if (isNaN(num2)) {
     alert("Second number is falsy.");
-    return true;
-  } else {
     return false;
+  } else {
+    return true;
   }
 };
 
