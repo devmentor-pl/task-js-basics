@@ -43,13 +43,13 @@ Calculator.prototype.isCorrectAction = function (action) {
 
 Calculator.prototype.areNumbersValid = function (num1, num2) {
   if (isNaN(num1) && isNaN(num2)) {
-    alert('Both numbers are falsy.')
+    alert("Both numbers are falsy.");
     return true;
   } else if (isNaN(num1)) {
-    alert('First number is falsy.')
+    alert("First number is falsy.");
     return true;
   } else if (isNaN(num2)) {
-    alert('Second number is falsy.')
+    alert("Second number is falsy.");
     return true;
   } else {
     return false;
@@ -83,7 +83,7 @@ Calculator.prototype.divide = function (num1, num2) {
 };
 
 Calculator.prototype.power = function (num1, num2) {
-  if (num1 === 0 && num2 < 0 || !Number.isInteger(num2)) {
+  if ((num1 === 0 && num2 < 0) || !Number.isInteger(num2)) {
     return null;
   }
   // I used conditionals because in this task I was asked to use loops for powers.
@@ -109,15 +109,16 @@ const calc = new Calculator();
 let action, promptContent, isCorrectAction, number1, number2;
 do {
   promptContent =
-    "Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n";
-  promptContent += "Jeśli chcesz zrezygnować wciśnij Anuluj. \n";
-  promptContent += "Lista poprzednich operacji: \n" + calc.getHistoryAsString();
+    "Enter the operation you want to perform (+, -, *, /, ^) and confirm. \n";
+  promptContent += "If you want to cancel, press Cancel. \n";
+  promptContent +=
+    "List of previous operations: \n" + calc.getHistoryAsString();
 
   action = prompt(promptContent);
   isCorrectAction = calc.isCorrectAction(action);
   if (isCorrectAction) {
-    number1 = prompt("Podaj liczbę nr 1");
-    number2 = prompt("Podaj liczbę nr 2");
+    number1 = prompt("Enter number 1");
+    number2 = prompt("Enter number 2");
 
     calc.doOperation(action, number1, number2);
   }
