@@ -6,9 +6,9 @@ I know what you're thinking. What's interesting about a calculator when writing 
 ---
 ## Content:
 ##### [1) Challenges](#####Challenges)
-[1. Test small chunks of code.](#test-small-chunks-of-code)
-[2. Obviously NaN !== NaN.](#obviously-nan--nan)
-[3. Make code concise.](#make-code-concise)
+[1. Test small chunks of code.](#test-small-chunks-of-code)<br>
+[2. Obviously NaN !== NaN.](#obviously-nan--nan)<br>
+[3. Make code concise.](#make-code-concise)<br>
 [4. Regex usage to check for decimal places.](#regex-usage-to-check-for-decimal-places)
 
 ##### [2) Gained knowledge](#gained-knowledge)
