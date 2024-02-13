@@ -18,7 +18,7 @@ I know what you're thinking. What's interesting about a calculator when writing 
 I wanted to check if `this.history.push(${num1} + ${num2} = ${result});` pushes values correctly to `Calculator.history` array.
 It was uncomfortable to test it inside the core code because of other operations that occure when running it. I put the code into another file and tested it separately. It's always beneficial to examine complex code in small chunks, as it makes it much easier to handle:
 
-[You can check whole code here!](https://github.com/devmentor-pl/task-js-basics/blob/8e6069fe5f05b9c693ce10acb09b491add600976/js/app.js) // CHANGE TO THE RIGHT LINK
+[You can check whole code here!](https://github.com/devmentor-pl/task-js-basics/blob/8e6069fe5f05b9c693ce10acb09b491add600976/js/app.js)
 
 I've extracted this:
 ```
@@ -105,7 +105,7 @@ Calculator.prototype.add = function (num1, num2) {
 ```
 I've created special function in `Calculator.prototype` - `doOperation()` which does repeatable tasks.
 
-[Check the code out!](https://github.com/devmentor-pl/task-js-basics/blob/8e6069fe5f05b9c693ce10acb09b491add600976/js/app.js) // CHANGE TO THE RIGHT LINK
+[Check the code out!](https://github.com/devmentor-pl/task-js-basics/blob/8e6069fe5f05b9c693ce10acb09b491add600976/js/app.js)
 
 **`doOperation()`**:
 
@@ -147,10 +147,10 @@ The part of the code responsible for aboves looks like this:
 
 ---
 ### Gained Knowledge:
-:white_check_mark: Use constructor, functions, function expressions, arrays.
-:white_check_mark: Use prototypes for better RAM management.
-:white_check_mark: Use loops: for, do... while.
-:white_check_mark: Use JS built-in methods f.e.: join(), includes().
-:white_check_mark: Reduce code redundancy.
-:white_check_mark: Create object with "new".
+:white_check_mark: Use constructor, functions, function expressions, arrays.<br>
+:white_check_mark: Use prototypes for better RAM management.<br>
+:white_check_mark: Use loops: for, do... while.<br>
+:white_check_mark: Use JS built-in methods f.e.: join(), includes().<br>
+:white_check_mark: Reduce code redundancy.<br>
+:white_check_mark: Create object with "new".<br>
 :white_check_mark: Naming - good practice.
