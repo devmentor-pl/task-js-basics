@@ -48,10 +48,8 @@ Calculator.prototype.getHistoryAsString = function () {
 };
 
 Calculator.prototype.pushResultToArray = function (par1, act, par2, par3) {
-  if (par1 !== NaN && par2 !== NaN) {
-    const result = `${par1} ${act} ${par2} = ${par3}`;
-    this.history.push(result);
-  }
+  const result = `${par1} ${act} ${par2} = ${par3}`;
+  this.history.push(result);
 };
 
 Calculator.prototype.doAction = function (par1, par2) {
