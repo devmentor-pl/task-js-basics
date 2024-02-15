@@ -73,7 +73,13 @@ do {
   if (isCorrectAction) {
     number1 = Number(prompt("Podaj liczbę nr 1"));
     number2 = Number(prompt("Podaj liczbę nr 2"));
-
-    calc.doAction(number1, number2);
+    isCorrectNumber = calc.isCorrectNumber(number1, number2);
+    if (isCorrectNumber) {
+      calc.doAction(number1, number2, action);
+    } else {
+      alert("Błąd. Podaj liczbę!");
+    }
+  } else {
+    alert("Podano niewłaściwy typ operacji");
   }
 } while (calc.isCorrectAction(action));
