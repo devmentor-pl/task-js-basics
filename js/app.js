@@ -37,6 +37,12 @@ Calculator.prototype.isCorrectAction = function (action) {
   return this.actions.hasOwnProperty(action);
 };
 
+Calculator.prototype.isCorrectNumber = function (par1, par2) {
+  if (!isNaN(par1) && !isNaN(par2)) {
+    return par1, par2;
+  }
+};
+
 Calculator.prototype.getHistoryAsString = function () {
   return this.history.join("\n");
 };
