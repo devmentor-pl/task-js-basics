@@ -10,6 +10,29 @@ function Calculator() {
   this.history = [];
 }
 
+function add(par1, par2) {
+  return par1 + par2;
+}
+function subtract(par1, par2) {
+  return par1 - par2;
+}
+function multiply(par1, par2) {
+  return par1 * par2;
+}
+function divide(par1, par2) {
+  return par1 / par2;
+}
+function power(par1, par2) {
+  let total = 1;
+  for (let i = 1; i <= par2; i++) {
+    total *= par1;
+  }
+  return total;
+}
+function modulo(par1, par2) {
+  return par1 % par2;
+}
+
 Calculator.prototype.isCorrectAction = function (action) {
   return this.actions.hasOwnProperty(action);
 };
