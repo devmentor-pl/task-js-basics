@@ -52,26 +52,10 @@ Calculator.prototype.pushResultToArray = function (par1, act, par2, par3) {
   this.history.push(result);
 };
 
-Calculator.prototype.doAction = function (par1, par2) {
-  if (action === "+") {
-    const result = par1 + par2;
-    this.pushResultToArray(par1, action, par2, result);
-  } else if (action === "-") {
-    const result = par1 - par2;
-    this.pushResultToArray(par1, action, par2, result);
-  } else if (action === "*") {
-    const result = par1 * par2;
-    this.pushResultToArray(par1, action, par2, result);
-  } else if (action === "/") {
-    const result = par1 / par2;
-    this.pushResultToArray(par1, action, par2, result);
-  } else if (action === "^") {
-    let total = 1;
-    for (let i = 1; i <= par2; i++) {
-      total *= par1;
-    }
-    this.pushResultToArray(par1, action, par2, total);
-  }
+Calculator.prototype.doAction = function (par1, par2, act) {
+  const typeOfOperation = this.actions[act];
+  const result = typeOfOperation(par1, par2);
+  this.pushResultToArray(par1, act, par2, result);
 };
 
 const calc = new Calculator();
