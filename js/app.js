@@ -59,7 +59,9 @@ Calculator.prototype.doAction = function (par1, par2, act) {
 };
 
 const calc = new Calculator();
+
 let action, promptContent, isCorrectAction, isCorrectNumber, number1, number2;
+
 do {
   promptContent =
     "Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n"; // \n - znak nowej linii
@@ -69,8 +71,8 @@ do {
   action = prompt(promptContent);
   isCorrectAction = calc.isCorrectAction(action);
   if (isCorrectAction) {
-    number1 = prompt("Podaj liczbę nr 1");
-    number2 = prompt("Podaj liczbę nr 2");
+    number1 = Number(prompt("Podaj liczbę nr 1"));
+    number2 = Number(prompt("Podaj liczbę nr 2"));
 
     calc.doAction(number1, number2);
   }
