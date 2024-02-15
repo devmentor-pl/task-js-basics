@@ -11,7 +11,7 @@ function Calculator() {
 }
 
 Calculator.prototype.isCorrectAction = function (action) {
-  return this.actions.includes(action);
+  return this.actions.hasOwnProperty(action);
 };
 
 Calculator.prototype.getHistoryAsString = function () {
