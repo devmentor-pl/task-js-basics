@@ -1,5 +1,12 @@
 function Calculator() {
-  this.actions = ["+", "-", "*", "/", "^"];
+  this.actions = {
+    "+": add,
+    "-": subtract,
+    "*": multiply,
+    "/": divide,
+    "^": power,
+    "%": modulo,
+  };
   this.history = [];
 }
 
