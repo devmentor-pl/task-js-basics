@@ -10,36 +10,38 @@ function Calculator() {
   this.history = [];
 }
 
-function add(par1, par2) {
-  return par1 + par2;
+function add(a, b) {
+  return a + b;
 }
-function subtract(par1, par2) {
-  return par1 - par2;
+function subtract(a, b) {
+  return a - b;
 }
-function multiply(par1, par2) {
-  return par1 * par2;
+function multiply(a, b) {
+  return a * b;
 }
-function divide(par1, par2) {
-  return par1 / par2;
+function divide(a, b) {
+  return a / b;
 }
-function power(par1, par2) {
+function power(a, b) {
   let total = 1;
-  for (let i = 1; i <= par2; i++) {
-    total *= par1;
+  for (let i = 1; i <= b; i++) {
+    total *= a;
   }
   return total;
 }
-function modulo(par1, par2) {
-  return par1 % par2;
+function modulo(a, b) {
+  return a % b;
 }
 
 Calculator.prototype.isCorrectAction = function (action) {
   return this.actions.hasOwnProperty(action);
 };
 
-Calculator.prototype.isCorrectNumber = function (par1, par2) {
-  if (!isNaN(par1) && !isNaN(par2)) {
-    return par1, par2;
+Calculator.prototype.isCorrectNumber = function (num1, num2) {
+  if (!isNaN(num1) && !isNaN(num2)) {
+    return true;
+  } else {
+    return false;
   }
 };
 
@@ -47,15 +49,15 @@ Calculator.prototype.getHistoryAsString = function () {
   return this.history.join("\n");
 };
 
-Calculator.prototype.pushResultToArray = function (par1, act, par2, par3) {
-  const result = `${par1} ${act} ${par2} = ${par3}`;
-  this.history.push(result);
+Calculator.prototype.pushResultToArray = function (num1, action, num2, result) {
+  const str = `${num1} ${action} ${num2} = ${result}`;
+  this.history.push(str);
 };
 
-Calculator.prototype.doAction = function (par1, par2, act) {
-  const typeOfOperation = this.actions[act];
-  const result = typeOfOperation(par1, par2);
-  this.pushResultToArray(par1, act, par2, result);
+Calculator.prototype.doAction = function (num1, num2, action) {
+  const typeOfOperation = this.actions[action];
+  const result = typeOfOperation(num1, num2);
+  this.pushResultToArray(num1, action, num2, result);
 };
 
 const calc = new Calculator();
