@@ -12,15 +12,79 @@ Calculator.prototype.getHistoryAsString = function() {
 }
 
 Calculator.prototype.add = function(num1, num2) {
-    // 1. zamień wartości przekazane przez parametr na typ number
+
     const num1Converted = Number(num1);
     const num2Converted = Number(num2);
-    // 2. sprawdź czy są one poprawne
-    console.log(num1Converted, num2Converted);
-    // 3. jeśli tak to wykonaj działanie i zapisz jego rezultat
+
+    if(isNaN(num1) || isNaN(num2)) {
+        prompt('Podana została błędna dana');
+    }
+
     const result = num1Converted + num2Converted;
-    // 4. dodaj do historii operacji to działanie w formie: 1 + 1 = 2
-    this.history.push(num1Converted, action , num2Converted, ' = ', result);
+
+    this.history.push(num1Converted + action + num2Converted + ' = ' + result);
+    console.log(this.history);
+}
+
+Calculator.prototype.sub = function(num1, num2) {
+
+    const num1Converted = Number(num1);
+    const num2Converted = Number(num2);
+
+    if(isNaN(num1) || isNaN(num2)) {
+        prompt('Podana została błędna dana');
+    }
+
+    const result = num1Converted - num2Converted;
+
+    this.history.push(num1Converted + action + num2Converted + ' = ' + result);
+    console.log(this.history);
+}
+
+Calculator.prototype.mul = function(num1, num2) {
+
+    const num1Converted = Number(num1);
+    const num2Converted = Number(num2);
+
+    if(isNaN(num1) || isNaN(num2)) {
+        prompt('Podana została błędna dana');
+    }
+
+    const result = num1Converted * num2Converted;
+
+    this.history.push(num1Converted + action + num2Converted + ' = ' + result);
+    console.log(this.history);
+}
+
+Calculator.prototype.div = function(num1, num2) {
+
+    const num1Converted = Number(num1);
+    const num2Converted = Number(num2);
+
+    if(isNaN(num1) || isNaN(num2)) {
+        prompt('Podana została błędna dana');
+    }
+
+    const result = num1Converted / num2Converted;
+
+    this.history.push(num1Converted + action + num2Converted + ' = ' + result);
+    console.log(this.history);
+}
+
+Calculator.prototype.pow = function(num1, num2) {
+    const num1Converted = Number(num1);
+    const num2Converted = Number(num2);
+
+    if(isNaN(num1) || isNaN(num2)) {
+        prompt('Podana została błędna dana');
+    }
+    
+    let result = 1;
+    for(let i = 0; i < num2Converted; i ++) {
+        result *= num1Converted;
+    }
+
+    this.history.push(num1Converted + action + num2Converted + ' = ' + result);
     console.log(this.history);
 }
 
@@ -39,6 +103,16 @@ do {
 
         if(action === '+') {
             calc.add(number1, number2);
+        } else if(action === '-') {
+            calc.sub(number1, number2);
+        } else if(action === '*') {
+            calc.mul(number1, number2);
+        } else if(action === '/') {
+            calc.div(number1, number2);
+        } else if(action === '^') {
+            calc.pow(number1, number2);
+        } else {
+            prompt('Podana została błędna dana');
         }
     }
     
