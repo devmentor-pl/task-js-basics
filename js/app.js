@@ -11,12 +11,65 @@ Calculator.prototype.getHistoryAsString = function() {
     return this.history.join('\n');
 }
 
-Calculator.prototype.add = function(num1, num2) {
-    // 1. zamień wartości przekazane przez parametr na typ number
-    // 2. sprawdź czy są one poprawne
-    // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
+Calculator.prototype.add = function (num1, num2) {
+  // 1. zamień wartości przekazane przez parametr na typ number
+  num1 = Number(num1)
+  num2 = Number(num2)
+
+  // 2. sprawdź czy są one poprawne
+  // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
+  if (!isNaN(num1) && !isNaN(num2)) {
     // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
+    const result = num1 + num2
+    this.history.push(`${num1} + ${num2} = ${result}`)
+  }
 }
+
+Calculator.prototype.subtract = function (num1, num2) {
+  num1 = Number(num1)
+  num2 = Number(num2)
+
+  if (!isNaN(num1) && !isNaN(num2)) {
+    const result = num1 - num2
+    this.history.push(`${num1} - ${num2} = ${result}`)
+  }
+}
+
+Calculator.prototype.multiply = function (num1, num2) {
+  num1 = Number(num1)
+  num2 = Number(num2)
+
+  if (!isNaN(num1) && !isNaN(num2)) {
+    const result = num1 * num2
+    this.history.push(`${num1} * ${num2} = ${result}`)
+  }
+}
+
+Calculator.prototype.divide = function (num1, num2) {
+  num1 = Number(num1)
+  num2 = Number(num2)
+
+  if (!isNaN(num1) && !isNaN(num2) && num2 !== 0) {
+    const result = num1 / num2
+    this.history.push(`${num1} / ${num2} = ${result}`)
+  }
+}
+
+Calculator.prototype.power = function (num1, num2) {
+  num1 = Number(num1)
+  num2 = parseInt(num2) //Tylko dla całkowitych liczb!
+
+  if (!isNaN(num1) && !isNaN(num2) && num2 >= 0) {
+    const result = 1
+    for (let i = 0; i < num2; i++) {
+      result *= num1
+    }
+    this.history.push(`${num1} ^ ${num2} = ${result}`)
+  }
+}
+
+
+
 
 const calc = new Calculator();
 let action, promptContent, isCorrectAction, number1, number2;
