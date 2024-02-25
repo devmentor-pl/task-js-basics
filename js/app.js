@@ -12,95 +12,58 @@ Calculator.prototype.getHistoryAsString = function() {
 }
 
 
+Calculator.prototype.performOperation = function (num1, num2, operation) {
+  const parsedNum1 = Number(num1)
+  const parsedNum2 = Number(num2)
 
-
-
-Calculator.prototype.add = function (num1, num2) {
-  // 1. zamień wartości przekazane przez parametr na typ number
-  num1 = Number(num1)
-  num2 = Number(num2)
-
-  // 2. sprawdź czy są one poprawne
-  // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
-  if (!isNaN(num1) && !isNaN(num2)) {
-    // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
-    const result = num1 + num2
-    this.history.push(`${num1} + ${num2} = ${result}`)
+  if (isNaN(parsedNum1) || isNaN(parsedNum2)) {
+    alert("The given values must be numbers.")
+    return
   }
-}
-
-Calculator.prototype.subtract = function (num1, num2) {
-  num1 = Number(num1)
-  num2 = Number(num2)
-
-  if (!isNaN(num1) && !isNaN(num2)) {
-    const result = num1 - num2
-    this.history.push(`${num1} - ${num2} = ${result}`)
+  let result
+  switch (operation) {
+    case "+":
+      result = parsedNum1 + parsedNum2
+      break
+    case "-":
+      result = parsedNum1 - parsedNum2
+      break
+    case "*":
+      result = parsedNum1 * parsedNum2
+      break
+    case "/":
+      if (parsedNum2 === 0) {
+        alert("Can't divide by zero.")
+        return
+      }
+      result = parsedNum1 / parsedNum2
+      break
+    case "^":
+      result = 1
+      for (let i = 0; i < parsedNum2; i++) {
+        result *= parsedNum1
+      }
+      break
+    default:
+      alert("Unknown operation.")
+      return
   }
-}
-
-Calculator.prototype.multiply = function (num1, num2) {
-  num1 = Number(num1)
-  num2 = Number(num2)
-
-  if (!isNaN(num1) && !isNaN(num2)) {
-    const result = num1 * num2
-    this.history.push(`${num1} * ${num2} = ${result}`)
-  }
-}
-
-Calculator.prototype.divide = function (num1, num2) {
-  num1 = Number(num1)
-  num2 = Number(num2)
-
-  if (!isNaN(num1) && !isNaN(num2) && num2 !== 0) {
-    const result = num1 / num2
-    this.history.push(`${num1} / ${num2} = ${result}`)
-  }
-}
-
-Calculator.prototype.power = function (num1, num2) {
-  num1 = Number(num1)
-  num2 = parseInt(num2) // Tylko dla całkowitych wykładników
-  if (!isNaN(num1) && !isNaN(num2) && num2 >= 0) {
-    let result = 1
-    for (let i = 0; i < num2; i++) {
-      result *= num1
-    }
-    this.history.push(`${num1} ^ ${num2} = ${result}`)
-  }
+  this.history.push(`${parsedNum1} ${operation} ${parsedNum2} = ${result}`)
+  alert(`Result: ${result}`)
 }
 
 const calc = new Calculator()
 let action, promptContent, isCorrectAction, number1, number2
 do {
   promptContent =
-    "Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n" // \n - znak nowej linii
-  promptContent += "Jeśli chcesz zrezygnować wciśnij Anuluj. \n"
-  promptContent += "Lista poprzednich operacji: \n" + calc.getHistoryAsString()
-
+    "Specify the operation (+, -, *, /, ^) or Cancel, ending the action: \n"
+  promptContent += "List of previous operations: \n" + calc.getHistoryAsString()
   action = prompt(promptContent)
+
   isCorrectAction = calc.isCorrectAction(action)
   if (isCorrectAction) {
-    number1 = prompt("Podaj liczbę nr 1")
-    number2 = prompt("Podaj liczbę nr 2")
-
-    switch (action) {
-      case "+":
-        calc.add(number1, number2)
-        break
-      case "-":
-        calc.subtract(number1, number2)
-        break
-      case "*":
-        calc.multiply(number1, number2)
-        break
-      case "/":
-        calc.divide(number1, number2)
-        break
-      case "^":
-        calc.power(number1, number2)
-        break
-    }
+    number1 = prompt("Enter the first number:")
+    number2 = prompt("Enter the second number:")
+    calc.performOperation(number1, number2, action)
   }
 } while (calc.isCorrectAction(action))
