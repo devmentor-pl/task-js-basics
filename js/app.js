@@ -1,16 +1,33 @@
 function Calculator() {
-    this.actions = ['+', '-', '*', '/', '^'];
-    this.history = [];
+  this.history = []
+  this.operations = {
+    "+": (a, b) => a + b,
+    "-": (a, b) => a - b,
+    "*": (a, b) => a * b,
+    "/": (a, b) => {
+      if (b === 0) {
+        alert("Can't divide by zero.")
+        return undefined
+      }
+      return a / b
+    },
+    "^": (a, b) => {
+      let result = 1
+      for (let i = 0; i < b; i++) {
+        result *= a
+      }
+      return result
+    },
+  }
 }
 
-Calculator.prototype.isCorrectAction = function(action) {
-    return this.actions.includes(action);
+Calculator.prototype.isCorrectAction = function (action) {
+  return Object.keys(this.operations).includes(action)
 }
 
-Calculator.prototype.getHistoryAsString = function() {
-    return this.history.join('\n');
+Calculator.prototype.getHistoryAsString = function () {
+  return this.history.join("\n")
 }
-
 
 Calculator.prototype.performOperation = function (num1, num2, operation) {
   const parsedNum1 = Number(num1)
@@ -20,38 +37,22 @@ Calculator.prototype.performOperation = function (num1, num2, operation) {
     alert("The given values must be numbers.")
     return
   }
-  let result
-  switch (operation) {
-    case "+":
-      result = parsedNum1 + parsedNum2
-      break
-    case "-":
-      result = parsedNum1 - parsedNum2
-      break
-    case "*":
-      result = parsedNum1 * parsedNum2
-      break
-    case "/":
-      if (parsedNum2 === 0) {
-        alert("Can't divide by zero.")
-        return
-      }
-      result = parsedNum1 / parsedNum2
-      break
-    case "^":
-      result = 1
-      for (let i = 0; i < parsedNum2; i++) {
-        result *= parsedNum1
-      }
-      break
-    default:
-      alert("Unknown operation.")
-      return
+
+  const operationFunc = this.operations[operation]
+  if (!operationFunc) {
+    alert("Unknown operation.")
+    return
   }
-  this.history.push(`${parsedNum1} ${operation} ${parsedNum2} = ${result}`)
-  alert(`Result: ${result}`)
+
+  const result = operationFunc(parsedNum1, parsedNum2)
+  if (result !== undefined) {
+    // Sprawdzenie, czy wynik nie jest undefined (np. dzielenie przez zero)
+    this.history.push(`${parsedNum1} ${operation} ${parsedNum2} = ${result}`)
+    alert(`Result: ${result}`)
+  }
 }
 
+// Przykładowe użycie
 const calc = new Calculator()
 let action, promptContent, isCorrectAction, number1, number2
 do {
@@ -60,8 +61,7 @@ do {
   promptContent += "List of previous operations: \n" + calc.getHistoryAsString()
   action = prompt(promptContent)
 
-  isCorrectAction = calc.isCorrectAction(action)
-  if (isCorrectAction) {
+  if (calc.isCorrectAction(action)) {
     number1 = prompt("Enter the first number:")
     number2 = prompt("Enter the second number:")
     calc.performOperation(number1, number2, action)
