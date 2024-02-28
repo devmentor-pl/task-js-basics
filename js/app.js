@@ -1,17 +1,23 @@
 function Calculator() {
   this.history = []
   this.operations = {
-    "+": (a, b) => a + b,
-    "-": (a, b) => a - b,
-    "*": (a, b) => a * b,
-    "/": (a, b) => {
+    "+": function add(a, b) {
+      return a + b
+    },
+    "-": function subtract(a, b) {
+      return a - b
+    },
+    "*": function multiply(a, b) {
+      return a * b
+    },
+    "/": function divide(a, b) {
       if (b === 0) {
         alert("Can't divide by zero.")
-        return undefined
+        return
       }
       return a / b
     },
-    "^": (a, b) => {
+    "^": function power(a, b) {
       let result = 1
       for (let i = 0; i < b; i++) {
         result *= a
@@ -46,13 +52,11 @@ Calculator.prototype.performOperation = function (num1, num2, operation) {
 
   const result = operationFunc(parsedNum1, parsedNum2)
   if (result !== undefined) {
-    // Sprawdzenie, czy wynik nie jest undefined (np. dzielenie przez zero)
     this.history.push(`${parsedNum1} ${operation} ${parsedNum2} = ${result}`)
     alert(`Result: ${result}`)
   }
 }
 
-// Przykładowe użycie
 const calc = new Calculator()
 let action, promptContent, isCorrectAction, number1, number2
 do {
