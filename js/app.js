@@ -1,30 +1,42 @@
 function Calculator() {
   this.history = []
+
   this.operations = {
-    "+": function add(a, b) {
-      return a + b
-    },
-    "-": function subtract(a, b) {
-      return a - b
-    },
-    "*": function multiply(a, b) {
-      return a * b
-    },
-    "/": function divide(a, b) {
-      if (b === 0) {
-        alert("Can't divide by zero.")
-        return
-      }
-      return a / b
-    },
-    "^": function power(a, b) {
-      let result = 1
-      for (let i = 0; i < b; i++) {
-        result *= a
-      }
-      return result
-    },
+    "+": this.add.bind(this),
+    "-": this.subtract.bind(this),
+    "*": this.multiply.bind(this),
+    "/": this.divide.bind(this),
+    "^": this.power.bind(this),
   }
+}
+
+Calculator.prototype.add = function (a, b) {
+  return a + b
+}
+
+Calculator.prototype.subtract = function (a, b) {
+  return a - b
+}
+
+Calculator.prototype.multiply = function (a, b) {
+  return a * b
+}
+
+Calculator.prototype.divide = function (a, b) {
+  if (b === 0) {
+    alert("Can't divide by zero.")
+    zero
+    return
+  }
+  return a / b
+}
+
+Calculator.prototype.power = function (a, b) {
+  let result = 1
+  for (let i = 0; i < b; i++) {
+    result *= a
+  }
+  return result
 }
 
 Calculator.prototype.isCorrectAction = function (action) {
