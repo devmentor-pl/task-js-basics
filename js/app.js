@@ -11,24 +11,22 @@ Calculator.prototype.getHistoryAsString = function() {
     return this.history.join('\n');
 }
 
-Calculator.prototype.checkIsNan = function(num1, num2) {
-    if(isNaN(num1) || isNaN(num2)) {
-        return false;
+Calculator.prototype.checkIsNaN = function(num) {
+    if(isNaN(num)) {
+        return true;
     } 
-    return true;
+    return false;
 }
 
 Calculator.prototype.transform = function(operationType, num1, num2) {
-    calc.checkIsNan(Number(num1), Number(num2));
-    const result = operations[operationType](Number(num1), Number(num2));
-    this.history.push(Number(num1) + action + Number(num2) + ' = ' + result);
-    // if(calc.checkIsNaN(num1) && calc.checkIsNaN(num2)) { // kominikat o błędnych danych } else { // działanie 
-    //     alert('Wprowadzono błędne dane!'); 
-    // } else {
-    //     calc.checkIsNan(Number(num1), Number(num2));
-    //     const result = operations[operationType](Number(num1), Number(num2));
-    //     this.history.push(Number(num1) + action + Number(num2) + ' = ' + result);
-    // }
+    
+    if(this.checkIsNaN(num1) || this.checkIsNaN(num2)) { // kominikat o błędnych danych } else { // działanie 
+        alert('Wprowadzono błędne dane!'); 
+        return;
+    } else {
+        const result = operations[operationType](Number(num1), Number(num2));
+        this.history.push(Number(num1) + action + Number(num2) + ' = ' + result);
+    }
 }
 
 Calculator.prototype.add = function(num1, num2) {
