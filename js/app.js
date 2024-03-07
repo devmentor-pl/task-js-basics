@@ -22,7 +22,7 @@ Calculator.prototype.transform = function(operationType, num1, num2) {
     
     if(this.checkIsNaN(num1) || this.checkIsNaN(num2)) { // kominikat o błędnych danych } else { // działanie 
         alert('Wprowadzono błędne dane!'); 
-        return;
+        return; // nie musimy wstawiać return
     } else {
         const result = operations[operationType](Number(num1), Number(num2));
         this.history.push(Number(num1) + action + Number(num2) + ' = ' + result);
