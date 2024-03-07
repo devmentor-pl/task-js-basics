@@ -20,9 +20,9 @@ Calculator.prototype.checkIsNaN = function(num) {
 
 Calculator.prototype.transform = function(operationType, num1, num2) {
     
-    if(this.checkIsNaN(num1) || this.checkIsNaN(num2)) { // kominikat o błędnych danych } else { // działanie 
+    if(this.checkIsNaN(num1) || this.checkIsNaN(num2)) { 
         alert('Wprowadzono błędne dane!'); 
-        return; // nie musimy wstawiać return
+        // return; 
     } else {
         const result = operations[operationType](Number(num1), Number(num2));
         this.history.push(Number(num1) + action + Number(num2) + ' = ' + result);
