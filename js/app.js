@@ -61,29 +61,38 @@ do {
             alert('To nie liczba wynik będzie nie właściwy')
         }
 
-        if (action === '+') {
-            calc.add(number1, number2)
-        } else if (action === '-') {
-            calc.subtract(number1, number2)
-        } else if (action === '*') {
-            calc.multiply(number1, number2)
-        } else if (action === '/') {
-            if (number2 === 0) {
-                alert('Nie dzielimy przez 0 ;)')
-            } else {
-                calc.divide(number1, number2)
-            }
-
-        } else if (action === '^') {
-            if (number1 !== 0 && number2 === 0) {
-                result = number1 + ' ^ ' + number2 + ' = ' + '1'
-                alert('Każda liczba niezerowa poniesiona do potęgi zerowej równa się jeden')
-            } else if (number1 === 0 && number2 > 0) {
-                result = number1 + ' ^ ' + number2 + ' = ' + '0'
-                alert('Zero podniesione do każdej dodatniej potęgi równa się zero')
-            }
-            calc.powers(number1, number2)
+        switch (action) {
+            case '+':
+                calc.add(number1, number2)
+                break;
+            case '-':
+                calc.subtract(number1, number2)
+                break;
+            case '*':
+                calc.multiply(number1, number2)
+                break;
+            case '/':
+                if (number2 !== 0) {
+                    calc.divide(number1, number2)
+                } else {
+                    alert('Nie dzielimy przez 0 ;)')
+                }
+                break;
+            case '^':
+                if (number1 !== 0 && number2 === 0) {
+                    result = number1 + ' ^ ' + number2 + ' = ' + '1'
+                    alert('Każda liczba niezerowa poniesiona do potęgi zerowej równa się jeden')
+                } else if (number1 === 0 && number2 > 0) {
+                    result = number1 + ' ^ ' + number2 + ' = ' + '0'
+                    alert('Zero podniesione do każdej dodatniej potęgi równa się zero')
+                }
+                calc.powers(number1, number2)
+                break;
+            default:
+                break;
         }
+    } else {
+        alert('Błędny operator arytmetyczny wybierz jeden z nich => (+, -, *, /, ^)')
     }
 
 } while (calc.isCorrectAction(action));
