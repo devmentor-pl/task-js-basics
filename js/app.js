@@ -52,11 +52,37 @@ do {
     action = prompt(promptContent);
     isCorrectAction = calc.isCorrectAction(action);
     if (isCorrectAction) {
-        number1 = prompt('Podaj liczbę nr 1');
-        number2 = prompt('Podaj liczbę nr 2');
+        number1 = Number(prompt('Podaj liczbę nr 1'))
+        if (isNaN(number1)) {
+            alert('To nie liczba wynik będzie nie właściwy')
+        }
+        number2 = Number(prompt('Podaj liczbę nr 2'))
+        if (isNaN(number2)) {
+            alert('To nie liczba wynik będzie nie właściwy')
+        }
 
         if (action === '+') {
-            calc.add(number1, number2);
+            calc.add(number1, number2)
+        } else if (action === '-') {
+            calc.subtract(number1, number2)
+        } else if (action === '*') {
+            calc.multiply(number1, number2)
+        } else if (action === '/') {
+            if (number2 === 0) {
+                alert('Nie dzielimy przez 0 ;)')
+            } else {
+                calc.divide(number1, number2)
+            }
+
+        } else if (action === '^') {
+            if (number1 !== 0 && number2 === 0) {
+                result = number1 + ' ^ ' + number2 + ' = ' + '1'
+                alert('Każda liczba niezerowa poniesiona do potęgi zerowej równa się jeden')
+            } else if (number1 === 0 && number2 > 0) {
+                result = number1 + ' ^ ' + number2 + ' = ' + '0'
+                alert('Zero podniesione do każdej dodatniej potęgi równa się zero')
+            }
+            calc.powers(number1, number2)
         }
     }
 
