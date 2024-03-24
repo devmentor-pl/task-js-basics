@@ -53,7 +53,7 @@ Calculator.prototype.power = function(num1, num2) {
 }
 
 const calc = new Calculator();
-let action, promptContent, isCorrectAction, number1, number2;
+let action, promptContent, isCorrectAction, isCorrectValue, number1, number2;
 do { 
     promptContent = 'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n'; // \n - znak nowej linii
     promptContent += 'Jeśli chcesz zrezygnować wciśnij Anuluj. \n';
