@@ -64,7 +64,7 @@ do {
     if(isCorrectAction) {
         number1 = parseFloat(prompt('Podaj liczbę nr 1'));
         number2 = parseFloat(prompt('Podaj liczbę nr 2'));
-        
+
         isCorrectValue = calc.isValidValue(number1, number2);
 
         if(isCorrectValue) {
@@ -85,7 +85,7 @@ do {
             }
         }
         else {
-            prompt('Podano nieprawidłowe wartości');
+            alert('Podano nieprawidłowe wartości');
         }
     }
     
