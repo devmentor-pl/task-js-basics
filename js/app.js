@@ -13,8 +13,17 @@ Calculator.prototype.getHistoryAsString = function() {
 
 Calculator.prototype.add = function(num1, num2) {
     // 1. zamień wartości przekazane przez parametr na typ number
+    num1 = parseFloat(num1);
+    num2 = parseFloat(num2);
     // 2. sprawdź czy są one poprawne
     // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
+    if (Number.isNaN(num1) === true || Number.isNaN(num2) === true) {
+        prompt('Podano wartości niebędące liczbami');
+    }
+    else {
+        const result = num1 + num2;
+        this.history.push(num1+' + '+num2+' = '+result);
+    }
     // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
 }
 
