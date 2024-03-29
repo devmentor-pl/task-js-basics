@@ -15,6 +15,7 @@ Calculator.prototype.addToHistory = function (value) {
     return this.history.push(value)
 }
 
+
 // ADD
 Calculator.prototype.add = function (num1, num2) {
 	const number1 = Number(num1)
