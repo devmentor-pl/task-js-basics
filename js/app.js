@@ -4,37 +4,35 @@ function Calculator() {
 }
 
 Calculator.prototype.isCorrectAction = function (action) {
-    return this.actions.includes(action)
+	return this.actions.includes(action)
 }
 
 Calculator.prototype.getHistoryAsString = function () {
-    return this.history.join("\n")
+	return this.history.join("\n")
 }
-
 
 // ADD
 Calculator.prototype.add = function (num1, num2) {
-    const number1 = Number(num1)
+	const number1 = Number(num1)
 	const number2 = Number(num2)
-    
-	// console.log(typeof number1) 
-	// console.log(typeof number2) 
-    
-    const addResult = number1 + number2
-    
-    // console.log(addResult);
-    const addOperation = `${number1} + ${number2} = ${addResult}`
-    
-    // Calculator.prototype.addResultToHistory = function (result) {
-    //     this.history.push(result)
-    // }
-    
-    // Calculator.addResultToHistory(addOperation)
-    // console.log(this.history);
-    
-    return addResult
-    
-    
+
+	// console.log(typeof number1)
+	// console.log(typeof number2)
+
+	const addResult = number1 + number2
+
+	// console.log(addResult);
+	const addOperation = `${number1} + ${number2} = ${addResult}`
+
+	// Calculator.prototype.addResultToHistory = function (result) {
+	//     this.history.push(result)
+	// }
+
+	// Calculator.addResultToHistory(addOperation)
+	// console.log(this.history);
+
+	return addResult
+
 	// 1. zamień wartości przekazane przez parametr na typ number
 	// 2. sprawdź czy są one poprawne
 	// 3. jeśli tak to wykonaj działanie i zapisz jego resultat
@@ -43,25 +41,67 @@ Calculator.prototype.add = function (num1, num2) {
 
 //SUBSTRACT
 Calculator.prototype.substract = function (num1, num2) {
-    const number1 = Number(num1)
+	const number1 = Number(num1)
 	const number2 = Number(num2)
-    
-    const substractResult = number1 - number2
-    
-    const substractOperation = `${number1} - ${number2} = ${substractResult}`
-    
-    
-    console.log(substractResult);
-    return substractResult
+
+	const substractResult = number1 - number2
+
+	const substractOperation = `${number1} - ${number2} = ${substractResult}`
+
+	console.log(substractResult)
+	return substractResult
 }
 
+//multiply
+Calculator.prototype.multiply = function (num1, num2) {
+	const number1 = Number(num1)
+	const number2 = Number(num2)
 
+	const multiplyResult = number1 * number2
 
+	const multiplyOperation = `${number1} * ${number2} = ${multiplyResult}`
 
+	console.log(multiplyResult)
+	return multiplyResult
+}
 
+//divide
+Calculator.prototype.divide = function (num1, num2) {
+	const number1 = Number(num1)
+	const number2 = Number(num2)
 
+	const divideResult = number1 / number2
 
+	const divideOperation = `${number1} / ${number2} = ${divideResult}`
 
+	console.log(divideResult)
+	return divideResult
+}
+
+//exponentiation
+Calculator.prototype.expo = function (num1, num2) {
+	const number1 = Number(num1)
+	const number2 = Number(num2)
+
+	let iter = 0
+	let expoResult = 1
+	let info = ""
+
+	while (iter < number2) {
+		expoResult = expoResult * number1
+
+        if (iter > 0) {
+            info = info + " * "
+        }
+		info = info + number1
+		iter++
+	}
+	info = info + " = " + expoResult
+
+	console.log(expoResult)
+	console.log(info)
+	return expoResult
+}
 
 const calc = new Calculator()
 let action, promptContent, isCorrectAction, number1, number2
@@ -80,7 +120,13 @@ do {
 		if (action === "+") {
 			calc.add(number1, number2)
 		} else if (action === "-") {
-            calc.substract(number1, number2)
-        }
+			calc.substract(number1, number2)
+		} else if (action === "*") {
+			calc.multiply(number1, number2)
+		} else if (action === "/") {
+			calc.divide(number1, number2)
+		} else if (action === "^") {
+			calc.expo(number1, number2)
+		}
 	}
 } while (calc.isCorrectAction(action))
