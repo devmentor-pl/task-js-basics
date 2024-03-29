@@ -49,10 +49,12 @@ Calculator.prototype.substract = function (num1, num2) {
     const substractResult = number1 - number2
     
     const substractOperation = `${number1} - ${number2} = ${substractResult}`
+    console.log(number1);
     
     console.log(substractResult);
     return substractResult
 }
+
 
 
 
