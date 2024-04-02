@@ -37,6 +37,17 @@ Calculator.prototype.subtract = function(num1, num2) {
     } 
 }
 
+Calculator.prototype.multiply = function(num1, num2) {
+    num1 = Number(num1);
+    num2 = Number(num2);
+    if(!isNaN(num1) && !isNaN(num2)) {
+        const result = num1 * num2;
+        this.history.push(`${num1} * ${num2} = ${result}`)
+    } else { 
+        this.history.push('Niepoprawne dane!')
+    } 
+}
+
 const calc = new Calculator();
 let action, promptContent, isCorrectAction, number1, number2;
 do { 
