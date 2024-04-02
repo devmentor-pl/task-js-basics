@@ -48,6 +48,36 @@ Calculator.prototype.multiply = function(num1, num2) {
     } 
 }
 
+Calculator.prototype.divide = function(num1, num2) {
+    num1 = Number(num1);
+    num2 = Number(num2);
+    if(!isNaN(num1) && !isNaN(num2) && num2 !== 0) { // nie można dzielić przez 0
+        const result = num1 / num2;
+        this.history.push(`${num1} / ${num2} = ${result}`)
+    } else { 
+        this.history.push('Niepoprawne dane! Upewnij się, że nie dzielisz przez 0!')
+    } 
+}
+
+Calculator.prototype.power = function(num, exponent) {
+    num = Number(num);
+    exponent = Number(exponent);
+    if(!isNaN(num) && !isNaN(exponent)) { 
+        let result;
+        if(exponent === 0) {
+            result = 0; // każda liczba podniesiona do 0 wynosi 1
+        } else {
+            result = 1;
+            for(i = 0; i < exponent; i++) { 
+                result *= num
+            }
+        }
+        this.history.push(`${num} ^ ${exponent} = ${result}`)
+    } else { 
+        this.history.push('Niepoprawne dane!')
+    } 
+}
+
 const calc = new Calculator();
 let action, promptContent, isCorrectAction, number1, number2;
 do { 
