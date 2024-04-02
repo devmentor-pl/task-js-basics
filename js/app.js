@@ -93,6 +93,16 @@ do {
 
         if(action === '+') {
             calc.add(number1, number2);
+        } else if(action === '-') {
+            calc.subtract(number1, number2);
+        } else if(action === '*') {
+            calc.multiply(number1, number2);
+        } else if(action === '/') {
+            calc.divide(number1, number2);
+        } else if(action === '^') {
+            calc.power(number1, number2);
+        } else {
+            console.log('Niepoprawna operacja!');
         }
     }
     
