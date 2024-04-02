@@ -90,7 +90,7 @@ do {
     action = prompt(promptContent);
 
     if (action === null) {
-        alert('Anulowano operację. Do zobaczenia! \n PS Pamiętaj, żeby liczyć na siebie!')
+        alert('Anulowano operację. Do zobaczenia!')
         break;
     }
 
@@ -117,13 +117,13 @@ do {
             } else if (action === '^') {
                 calc.power(number1, number2);
             } else {
-                alert('Niepoprawna operacja!');
+                alert('Niepoprawna operacja! Wybierz spośród: +, -, *, /, ^');
             }
         } else {
-            alert('Podano niepoprawne liczby. Podaj dwie liczby.')
+            alert('Podano niepoprawne dane. Podaj dwie liczby.')
         }
     } else {
-        alert('Niepoprawna operacja!')
+        alert('Niepoprawna operacja! Wybierz spośród: +, -, *, /, ^')
     }
 
 } while (isCorrectAction);
