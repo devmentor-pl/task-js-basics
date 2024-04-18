@@ -10,8 +10,10 @@ Calculator.prototype.isCorrectAction = function (action) {
 Calculator.prototype.getHistoryAsString = function () {
     return this.history.join('\n');
 }
-
-Calculator.prototype.checkArguments = function (a, b, operation) {
+ // rename to validate
+Calculator.prototype.validateArguments = function (num1, num2, operation) {
+    const a = Number(num1);
+    const b = Number(num2);
     if (isNaN(a) || isNaN(b)) {
         throw console.error("Wprowadziłeś coś co nie jest liczbą");
     }
@@ -20,56 +22,43 @@ Calculator.prototype.checkArguments = function (a, b, operation) {
     } else if (operation === 'pow' && !Number.isInteger(b)) {
         throw console.error("Wykładnik musi być liczba całkowitą");
     }
-
+    return {a, b};
 }
 
 Calculator.prototype.saveToHistory = function (operand1, operand2, result, operator) {
     this.history.push(operand1 + ' ' + operator + ' ' + operand2 + ' = ' + result);
 }
 
-Calculator.prototype.add = function (num1, num2) {
-    const summand1 = Number(num1);
-    const summand2 = Number(num2);
-    this.checkArguments(summand1, summand2);
-    const sum = summand1 + summand2;
+Calculator.prototype.add = function (summand1, summand2) {    
+    const numbers = this.validateArguments(summand1, summand2);
+    const sum = numbers['a'] + numbers['b'];
     this.saveToHistory(summand1, summand2, sum, '+');
 }
 
-Calculator.prototype.subtract = function (num1, num2) {
-    const minuend = Number(num1);
-    const subtrahend = Number(num2);
-    this.checkArguments(minuend, subtrahend);
-    const difference = minuend - subtrahend;
+Calculator.prototype.subtract = function (minuend, subtrahend) {    
+    const numbers = this.validateArguments(minuend, subtrahend);
+    const difference = numbers['a'] - numbers['b'];
     this.saveToHistory(minuend, subtrahend, difference, '-');
 }
 
-Calculator.prototype.multiply = function (num1, num2) {
-    const factor1 = Number(num1);
-    const factor2 = Number(num2);
-    this.checkArguments(factor1, factor2);
-    const product = factor1 * factor2;
+Calculator.prototype.multiply = function (factor1, factor2) {
+    const numbers = this.validateArguments(factor1, factor2);
+    const product = numbers['a'] * numbers['b'];
     this.saveToHistory(factor1, factor2, product, '*');
 }
 
-Calculator.prototype.divide = function (num1, num2) {
-    const dividend = Number(num1);
-    const divisor = Number(num2);
-    this.checkArguments(dividend, divisor, 'div');
-    const quotient = dividend / divisor;
+Calculator.prototype.divide = function (dividend, divisor) {
+    const numbers = this.validateArguments(dividend, divisor, 'div');
+    const quotient = numbers['a'] / numbers['b'];
     this.saveToHistory(dividend, divisor, quotient, '/');
 }
 
-Calculator.prototype.power = function (num1, num2) {
-    const base = Number(num1);
-    const exponent = Number(num2);
-    this.checkArguments(base, exponent, 'pow');
+Calculator.prototype.power = function (base, exponent) {
+    const numbers = this.validateArguments(base, exponent, 'pow');
     let result = 1;
-
-    for (let i = 1; i <= Math.abs(exponent); i++) result *= base;
-
-    if (exponent < 0) result = 1 / result
-    
-    this.saveToHistory(base, exponent, result, '^');
+    for (let i = 1; i <= Math.abs(numbers['b']); i++) result *= numbers['a'];
+    if (numbers['b'] < 0) result = 1 / result
+    this.saveToHistory(numbers['a'], numbers['b'], result, '^');
 }
 
 
