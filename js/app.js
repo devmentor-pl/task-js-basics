@@ -1,6 +1,12 @@
 function Calculator() {
-    this.actions = ['+', '-', '*', '/', '^'];
     this.history = [];
+    this.operations = {
+        '+': this.add,
+        '-': this.subtract,
+        '*': this.multiply,
+        '/': this.divide,
+        '^': this.power
+    }
 }
 
 Calculator.prototype.toNumber = function (num1, num2) {
@@ -10,11 +16,13 @@ Calculator.prototype.toNumber = function (num1, num2) {
 Calculator.prototype.conditionCheck =function(num1, num2) {
     if (!isNaN(num1) && !isNaN(num2)) {
         return true;
+    } else {
+        return false;
     }
 }
 
 Calculator.prototype.isCorrectAction = function (action) {
-    return this.actions.includes(action);
+    return typeof this.operations[action] !== 'undefined';
 }
 
 Calculator.prototype.getHistoryAsString = function () {
@@ -22,61 +30,31 @@ Calculator.prototype.getHistoryAsString = function () {
 }
 
 Calculator.prototype.add = function (num1, num2) {
-    [num1, num2] = this.toNumber(num1, num2);
-
-    if (this.conditionCheck) {
         const result = num1 + num2;
         this.history.push(`${num1} + ${num2} = ${result}`);
-    } else {
-        alert('Niepoprawne dane');
-    }
 }
 
 Calculator.prototype.subtract = function (num1, num2) {
-    [num1, num2] = this.toNumber(num1, num2);
-
-    if (this.conditionCheck) {
         const result = num1 - num2;
         this.history.push(`${num1} - ${num2} = ${result}`);
-    } else {
-        alert('Niepoprawne dane');
-    }
 }
 
 Calculator.prototype.multiply = function (num1, num2) {
-    [num1, num2] = this.toNumber(num1, num2);
-
-    if (this.conditionCheck) {
         const result = num1 * num2;
         this.history.push(`${num1} * ${num2} = ${result}`);
-    } else {
-        alert('Niepoprawne dane');
-    }
 }
 
 Calculator.prototype.divide = function (num1, num2) {
-    [num1, num2] = this.toNumber(num1, num2);
-
-    if (this.conditionCheck) {
         const result = num1 / num2;
         this.history.push(`${num1} / ${num2} = ${result}`);
-    } else {
-        alert('Niepoprawne dane');
-    }
 }
 
-Calculator.prototype.pow = function (num1, num2) {
-    [num1, num2] = this.toNumber(num1, num2);
-
-    if (this.conditionCheck) {
+Calculator.prototype.power = function (num1, num2) {
         let result = 1;
         for (let i = 0; i < num2; i++) {
-            result += num1;
+            result *= num1;
         }
         this.history.push(`${num1} * ${num2} = ${result}`);
-    } else {
-        alert('Niepoprawne dane');
-    }
 }
 
 const calc = new Calculator();
@@ -92,16 +70,15 @@ do {
         number1 = prompt('Podaj liczbę nr 1');
         number2 = prompt('Podaj liczbę nr 2');
 
-        if (action === '+') {
-            calc.add(number1, number2);
-        } else if (action === '-') {
-            calc.subtract(number1, number2);
-        } else if (action === '*') {
-            calc.multiply(number1, number2);
-        } else if (action === '/') {
-            calc.divide(number1, number2);
-        } else if (action === '^') {
-            calc.pow(number1, number2);
-        }
+        if(calc.conditionCheck(number1, number2)) {
+            [number1, number2] = calc.toNumber(number1, number2);
+            const calculation = calc.operations[action].bind(calc);
+
+            if(typeof calculation === 'function') {
+                calculation(number1, number2);
+            }
+        } else {
+            alert('Niepoprawne dane');
+        }     
     }
 } while (calc.isCorrectAction(action));
