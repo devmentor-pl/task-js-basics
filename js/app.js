@@ -89,25 +89,23 @@ do {
         } catch (error) {
             alert(error.message)
         }
-
-        if(action === '+') {
-            calc.add(number1, number2);
-        }
         
-        if(action === '-') {
-            calc.sub(number1, number2)
-        }
-        
-        if(action === '*') {
-            calc.multi(number1, number2)
-        }
-        
-        if(action === '/') {
-            calc.div(number1, number2)
-        }
-        
-        if(action === '^') {
-            calc.exp(number1, number2)
+        switch (action) {
+            case '+':
+                calc.add(number1, number2);
+                break;
+            case '-':
+                calc.sub(number1, number2);
+                break;
+            case '*':
+                calc.multi(number1, number2);
+                break;
+            case '/':
+                calc.div(number1, number2);
+                break;
+            case '^':
+                calc.exp(number1, number2);
+                break;
         }
     }
     
