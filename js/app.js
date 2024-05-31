@@ -28,8 +28,20 @@ do {
     action = prompt(promptContent);
     isCorrectAction = calc.isCorrectAction(action);
     if(isCorrectAction) {
-        number1 = prompt('Podaj liczbę nr 1');
-        number2 = prompt('Podaj liczbę nr 2');
+        try {
+            number1 = prompt('Podaj liczbę nr 1');
+            number2 = prompt('Podaj liczbę nr 2');
+            
+            if(isNaN(Number(number1)) || isNaN(Number(number2))) {
+                throw new Error('Musisz podać liczby!')
+            }
+            
+            number1 = Number(number1);
+            number2 = Number(number2);
+            
+        } catch (error) {
+            alert(error.message)
+        }
 
         if(action === '+') {
             calc.add(number1, number2);
