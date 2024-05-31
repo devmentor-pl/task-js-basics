@@ -68,10 +68,11 @@ Calculator.prototype.exp = function(num1, num2) {
 
 const calc = new Calculator();
 let action, promptContent, isCorrectAction, number1, number2;
-do { 
-    promptContent = 'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n'; // \n - znak nowej linii
-    promptContent += 'Jeśli chcesz zrezygnować wciśnij Anuluj. \n';
-    promptContent += 'Lista poprzednich operacji: \n' + calc.getHistoryAsString();
+do {
+    promptContent = `Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź.
+Jeśli chcesz zrezygnować wciśnij Anuluj.
+Lista poprzednich operacji:
+${calc.getHistoryAsString()}`
 
     action = prompt(promptContent);
     isCorrectAction = calc.isCorrectAction(action);
