@@ -1,10 +1,11 @@
 function Calculator() {
     this.actions = ['+', '-', '*', '/', '^'];
-    this.history = [];
+    this.history = localStorage.getItem('history') ? JSON.parse(localStorage.getItem('history')) : [];
 }
 
 Calculator.prototype.addToHistory = function(number1, number2, action, result) {
     this.history.push(`${number1} ${action} ${number2} = ${result}`);
+    localStorage.setItem('history', JSON.stringify(this.history));
 }
 
 Calculator.prototype.isCorrectAction = function(action) {
