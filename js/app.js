@@ -27,6 +27,14 @@ Calculator.prototype.add = function(num1, num2) {
     // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
 }
 
+Calculator.prototype.sub = function(num1, num2) {
+    const result = num1 - num2;
+    
+    this.addToHistory(num1, num2, '-' , result);
+    
+    alert(`${number1} + ${number2} = ${result}`)
+}
+
 const calc = new Calculator();
 let action, promptContent, isCorrectAction, number1, number2;
 do { 
@@ -54,6 +62,10 @@ do {
 
         if(action === '+') {
             calc.add(number1, number2);
+        }
+        
+        if(action === '-') {
+            calc.sub(number1, number2)
         }
     }
     
