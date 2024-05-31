@@ -43,6 +43,14 @@ Calculator.prototype.multi = function(num1, num2) {
     alert(`${number1} * ${number2} = ${result}`)
 }
 
+Calculator.prototype.div = function(num1, num2) {
+    const result = num1 / num2;
+    
+    this.addToHistory(num1, num2, '/' , result);
+    
+    alert(`${number1} / ${number2} = ${result}`)
+}
+
 const calc = new Calculator();
 let action, promptContent, isCorrectAction, number1, number2;
 do { 
@@ -78,6 +86,10 @@ do {
         
         if(action === '*') {
             calc.multi(number1, number2)
+        }
+        
+        if(action === '/') {
+            calc.div(number1, number2)
         }
     }
     
