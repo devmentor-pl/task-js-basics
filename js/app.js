@@ -32,7 +32,15 @@ Calculator.prototype.sub = function(num1, num2) {
     
     this.addToHistory(num1, num2, '-' , result);
     
-    alert(`${number1} + ${number2} = ${result}`)
+    alert(`${number1} - ${number2} = ${result}`)
+}
+
+Calculator.prototype.multi = function(num1, num2) {
+    const result = num1 * num2;
+    
+    this.addToHistory(num1, num2, '*' , result);
+    
+    alert(`${number1} * ${number2} = ${result}`)
 }
 
 const calc = new Calculator();
@@ -66,6 +74,10 @@ do {
         
         if(action === '-') {
             calc.sub(number1, number2)
+        }
+        
+        if(action === '*') {
+            calc.multi(number1, number2)
         }
     }
     
