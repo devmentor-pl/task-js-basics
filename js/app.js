@@ -16,6 +16,11 @@ Calculator.prototype.getHistoryAsString = function() {
 }
 
 Calculator.prototype.add = function(num1, num2) {
+    const result = num1 + num2;
+    
+    this.addToHistory(num1, num2, '+' , result);
+    
+    alert(`${number1} + ${number2} = ${result}`)
     // 1. zamień wartości przekazane przez parametr na typ number
     // 2. sprawdź czy są one poprawne
     // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
