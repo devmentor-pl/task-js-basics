@@ -21,10 +21,6 @@ Calculator.prototype.add = function(num1, num2) {
     this.addToHistory(num1, num2, '+' , result);
     
     alert(`${number1} + ${number2} = ${result}`)
-    // 1. zamień wartości przekazane przez parametr na typ number
-    // 2. sprawdź czy są one poprawne
-    // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
-    // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
 }
 
 Calculator.prototype.sub = function(num1, num2) {
