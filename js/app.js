@@ -53,10 +53,15 @@ Calculator.prototype.exp = function(num1, num2) {
     
     /* solution with loop
     let result = 1
-    
-    if (num2 !== 0) {
+
+    if (num2 > 0) {
         for (let i = 1; i <= num2; i++) {
             result = result * num1;
+        }
+    } else if (num2 < 0) {
+        console.log('minus')
+        for (let i = -1; i >= num2; i--) {
+            result = result / num1;
         }
     }
     */
