@@ -49,6 +49,11 @@ Calculator.prototype.div = function(num1, num2) {
 }
 
 Calculator.prototype.exp = function(num1, num2) {
+    if (num1 < 0 && num2 !== parseInt(num2)) {
+        alert('Nie można wyciągnąć pierwiastka z liczby ujemnej')
+        return
+    }
+    
     const result = num1 ** num2;
     
     /* solution with loop
