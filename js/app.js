@@ -84,7 +84,7 @@ do {
             number2 = prompt('Podaj liczbę nr 2');
             
             if(isNaN(Number(number1)) || isNaN(Number(number2))) {
-                throw new Error('Musisz podać liczby!')
+                throw new Error('Musisz podać liczby! Pamiętaj, że w przypadku ułamków część dziesiętna powinna być oddzielona kropką (.)')
             }
             
             number1 = Number(number1);
