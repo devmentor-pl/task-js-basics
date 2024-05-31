@@ -3,6 +3,10 @@ function Calculator() {
     this.history = [];
 }
 
+Calculator.prototype.addToHistory = function(number1, number2, action, result) {
+    this.history.push(`${number1} ${action} ${number2} = ${result}`);
+}
+
 Calculator.prototype.isCorrectAction = function(action) {
     return this.actions.includes(action);
 }
