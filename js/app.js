@@ -4,7 +4,7 @@ function Calculator() {
 }
 
 Calculator.prototype.addToHistory = function(number1, number2, action, result) {
-    this.history.push(`${number1} ${action} ${number2} = ${result}`);
+    this.history.push(operationMessage(number1, number2, action, result));
     localStorage.setItem('history', JSON.stringify(this.history));
 }
 
@@ -22,36 +22,33 @@ Calculator.prototype.getHistoryAsString = function() {
     return history.join('\n');
 }
 
+const operationMessage = (number1, number2, action, result) => {
+    return `${number1} ${action} ${number2} = ${result}`
+}
+
+Calculator.prototype.operationAction = function (number1, number2, action, result) {
+    this.addToHistory(number1, number2, action , result);
+    alert(operationMessage(number1, number2, action , result));
+}
+
 Calculator.prototype.add = function(num1, num2) {
     const result = num1 + num2;
-    
-    this.addToHistory(num1, num2, '+' , result);
-    
-    alert(`${number1} + ${number2} = ${result}`);
+    this.operationAction(num1, num2, '+' , result);
 }
 
 Calculator.prototype.sub = function(num1, num2) {
     const result = num1 - num2;
-    
-    this.addToHistory(num1, num2, '-' , result);
-    
-    alert(`${number1} - ${number2} = ${result}`);
+    this.operationAction(num1, num2, '-' , result);
 }
 
 Calculator.prototype.multi = function(num1, num2) {
     const result = num1 * num2;
-    
-    this.addToHistory(num1, num2, '*' , result);
-    
-    alert(`${number1} * ${number2} = ${result}`);
+    this.operationAction(num1, num2, '*' , result);
 }
 
 Calculator.prototype.div = function(num1, num2) {
     const result = num1 / num2;
-    
-    this.addToHistory(num1, num2, '/' , result);
-    
-    alert(`${number1} / ${number2} = ${result}`);
+    this.operationAction(num1, num2, '/' , result);
 }
 
 Calculator.prototype.exp = function(num1, num2) {
@@ -92,9 +89,7 @@ Calculator.prototype.exp = function(num1, num2) {
     }
     */
     
-    this.addToHistory(num1, num2, '^' , result);
-    
-    alert(`${number1}^${number2} = ${result}`);
+    this.operationAction(num1, num2, '^' , result);
 }
 
 const calc = new Calculator();
