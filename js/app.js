@@ -21,7 +21,7 @@ Calculator.prototype.add = function(num1, num2) {
     
     this.addToHistory(num1, num2, '+' , result);
     
-    alert(`${number1} + ${number2} = ${result}`)
+    alert(`${number1} + ${number2} = ${result}`);
 }
 
 Calculator.prototype.sub = function(num1, num2) {
@@ -29,7 +29,7 @@ Calculator.prototype.sub = function(num1, num2) {
     
     this.addToHistory(num1, num2, '-' , result);
     
-    alert(`${number1} - ${number2} = ${result}`)
+    alert(`${number1} - ${number2} = ${result}`);
 }
 
 Calculator.prototype.multi = function(num1, num2) {
@@ -37,7 +37,7 @@ Calculator.prototype.multi = function(num1, num2) {
     
     this.addToHistory(num1, num2, '*' , result);
     
-    alert(`${number1} * ${number2} = ${result}`)
+    alert(`${number1} * ${number2} = ${result}`);
 }
 
 Calculator.prototype.div = function(num1, num2) {
@@ -45,35 +45,50 @@ Calculator.prototype.div = function(num1, num2) {
     
     this.addToHistory(num1, num2, '/' , result);
     
-    alert(`${number1} / ${number2} = ${result}`)
+    alert(`${number1} / ${number2} = ${result}`);
 }
 
 Calculator.prototype.exp = function(num1, num2) {
     if (num1 < 0 && num2 !== parseInt(num2)) {
-        alert('Nie można wyciągnąć pierwiastka z liczby ujemnej')
-        return
+        alert('Nie można wyciągnąć pierwiastka z liczby ujemnej');
+        return;
     }
     
     const result = num1 ** num2;
     
     /* solution with loop
-    let result = 1
-
-    if (num2 > 0) {
-        for (let i = 1; i <= num2; i++) {
-            result = result * num1;
+    let result = 1;
+    
+    function exponentPositive(number, exp) {
+        let result = 1
+        for (let i = 1; i <= exp; i++) {
+            result = result * number;
         }
-    } else if (num2 < 0) {
-        console.log('minus')
+        
+        return result;
+    }
+    
+    function exponentNegative(number, exp) {
+        let result = 1
         for (let i = -1; i >= num2; i--) {
             result = result / num1;
         }
+        
+        return result;
+    }
+
+    if (num2 !== parseInt(num2)) {
+        result = num1 ** num2;
+    } else if (num2 > 0) {
+        exponentPositive(num1, num2);
+    } else if (num2 < 0) {
+        exponentNegative(num1, num2);
     }
     */
     
     this.addToHistory(num1, num2, '^' , result);
     
-    alert(`${number1}^${number2} = ${result}`)
+    alert(`${number1}^${number2} = ${result}`);
 }
 
 const calc = new Calculator();
