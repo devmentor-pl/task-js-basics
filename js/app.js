@@ -52,44 +52,47 @@ Calculator.prototype.div = function(num1, num2) {
 }
 
 Calculator.prototype.exp = function(num1, num2) {
-    if (num1 < 0 && num2 !== parseInt(num2)) {
-        alert('Nie można wyciągnąć pierwiastka z liczby ujemnej');
-        return;
-    }
-    
-    const result = num1 ** num2;
-    
-    /* solution with loop
-    let result = 1;
-    
-    function exponentPositive(number, exp) {
-        let result = 1
-        for (let i = 1; i <= exp; i++) {
-            result = result * number;
+    try {
+        if (num1 < 0 && num2 !== parseInt(num2)) {
+            throw new Error('Nie można wyciągnąć pierwiastka z liczby ujemnej')
+        }
+        const result = num1 ** num2;
+        
+        /* solution with loop
+        let result = 1;
+        
+        function exponentPositive(number, exp) {
+            let result = 1
+            for (let i = 1; i <= exp; i++) {
+                result = result * number;
+            }
+            
+            return result;
         }
         
-        return result;
-    }
+        function exponentNegative(number, exp) {
+            let result = 1
+            for (let i = -1; i >= num2; i--) {
+                result = result / num1;
+            }
+            
+            return result;
+        }
     
-    function exponentNegative(number, exp) {
-        let result = 1
-        for (let i = -1; i >= num2; i--) {
-            result = result / num1;
+        if (num2 !== parseInt(num2)) {
+            result = num1 ** num2;
+        } else if (num2 > 0) {
+            exponentPositive(num1, num2);
+        } else if (num2 < 0) {
+            exponentNegative(num1, num2);
         }
         
-        return result;
+        */
+        this.operationAction(num1, num2, '^', result);
+        
+    } catch (error) {
+        alert(error.message);
     }
-
-    if (num2 !== parseInt(num2)) {
-        result = num1 ** num2;
-    } else if (num2 > 0) {
-        exponentPositive(num1, num2);
-    } else if (num2 < 0) {
-        exponentNegative(num1, num2);
-    }
-    */
-    
-    this.operationAction(num1, num2, '^' , result);
 }
 
 const calc = new Calculator();
