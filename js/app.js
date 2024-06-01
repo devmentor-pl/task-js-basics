@@ -13,7 +13,13 @@ Calculator.prototype.isCorrectAction = function(action) {
 }
 
 Calculator.prototype.getHistoryAsString = function() {
-    return this.history.join('\n');
+    let history = this.history;
+    
+    if (this.history.length > 20) {
+        history = history.slice(-19);
+        history.unshift('(...)')
+    }
+    return history.join('\n');
 }
 
 Calculator.prototype.add = function(num1, num2) {
