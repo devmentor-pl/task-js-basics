@@ -5,8 +5,7 @@ function Calculator() {
 
 Calculator.prototype.isCorrectAction = function (action) {
   if (!this.actions.includes(action)) {
-    alert("Podano błędny operator");
-    return false;
+    alert("BŁĄD: Podano błędny operator");
   }
   return this.actions.includes(action);
 };
@@ -24,56 +23,62 @@ Calculator.prototype.verifyInputs = function (num1, num2) {
 };
 
 Calculator.prototype.add = function (num1, num2) {
-  if (this.verifyInputs(num1, num2)) {
-    return alert(this.verifyInputs(num1, num2));
-  }
-  this.history.push(`${+num1} + ${+num2} = ${+num1 + +num2}`);
+  const error = this.verifyInputs(num1, num2);
+  return error
+    ? alert(error)
+    : this.history.push(`${+num1} + ${+num2} = ${+num1 + +num2}`);
 };
 
 Calculator.prototype.substract = function (num1, num2) {
-  if (this.verifyInputs(num1, num2)) {
-    return alert(this.verifyInputs(num1, num2));
-  }
-  this.history.push(`${+num1} - ${+num2} = ${+num1 - +num2}`);
+  const error = this.verifyInputs(num1, num2);
+  return error
+    ? alert(error)
+    : this.history.push(`${+num1} - ${+num2} = ${+num1 - +num2}`);
 };
 
 Calculator.prototype.multiply = function (num1, num2) {
-  if (this.verifyInputs(num1, num2)) {
-    return alert(this.verifyInputs(num1, num2));
-  }
-  this.history.push(`${+num1} * ${+num2} = ${+num1 * +num2}`);
+  const error = this.verifyInputs(num1, num2);
+  return error
+    ? alert(error)
+    : this.history.push(`${+num1} * ${+num2} = ${+num1 * +num2}`);
 };
 
 Calculator.prototype.divide = function (num1, num2) {
-  if (this.verifyInputs(num1, num2)) {
-    return alert(this.verifyInputs(num1, num2));
-  }
-  this.history.push(`${+num1} / ${+num2} = ${+num1 / +num2}`);
+  const error = this.verifyInputs(num1, num2);
+  return error
+    ? alert(error)
+    : this.history.push(`${+num1} / ${+num2} = ${+num1 / +num2}`);
 };
 
 Calculator.prototype.power = function (num1, num2) {
-  if (this.verifyInputs(num1, num2)) {
-    return alert(this.verifyInputs(num1, num2));
+  const error = this.verifyInputs(num1, num2);
+  if (error) {
+    alert(error);
+    return;
   }
+  if (num2 < 0) {
+    alert("Wykładnik nie może być liczbą ujemną");
+    return;
+  }
+
   let i = num2;
   let result = 1;
   while (i > 0) {
     result *= num1;
     i--;
   }
-  if (num2 < 0) {
-    return alert("Potęga nie może być ujemna");
-  }
   this.history.push(`${+num1} ^ ${+num2} = ${result}`);
 };
 
 const calc = new Calculator();
 let action, promptContent, isCorrectAction, number1, number2;
+
 do {
-  promptContent =
-    "Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n"; // \n - znak nowej linii
-  promptContent += "Jeśli chcesz zrezygnować wciśnij Anuluj. \n";
-  promptContent += "Lista poprzednich operacji: \n" + calc.getHistoryAsString();
+  promptContent = `
+Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź.
+Jeśli chcesz zrezygnować wciśnij Anuluj.
+Lista poprzednich operacji:
+${calc.getHistoryAsString()}`;
 
   action = prompt(promptContent);
   isCorrectAction = calc.isCorrectAction(action);
@@ -104,4 +109,4 @@ do {
       }
     }
   }
-} while (calc.isCorrectAction(action));
+} while (calc.actions.includes(action));
