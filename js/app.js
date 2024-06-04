@@ -109,4 +109,4 @@ ${calc.getHistoryAsString()}`;
       }
     }
   }
-} while (calc.actions.includes(action));
+} while (calc.isCorrectAction(action));
