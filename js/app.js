@@ -58,36 +58,6 @@ Calculator.prototype.exp = function(num1, num2) {
         }
         const result = num1 ** num2;
         
-        /* solution with loop
-        let result = 1;
-        
-        function exponentPositive(number, exp) {
-            let result = 1
-            for (let i = 1; i <= exp; i++) {
-                result = result * number;
-            }
-            
-            return result;
-        }
-        
-        function exponentNegative(number, exp) {
-            let result = 1
-            for (let i = -1; i >= num2; i--) {
-                result = result / num1;
-            }
-            
-            return result;
-        }
-    
-        if (num2 !== parseInt(num2)) {
-            result = num1 ** num2;
-        } else if (num2 > 0) {
-            exponentPositive(num1, num2);
-        } else if (num2 < 0) {
-            exponentNegative(num1, num2);
-        }
-        
-        */
         this.operationAction(num1, num2, '^', result);
         
     } catch (error) {
