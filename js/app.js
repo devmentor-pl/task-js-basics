@@ -31,64 +31,34 @@ Calculator.prototype.operationAction = function (number1, number2, action, resul
     alert(operationMessage(number1, number2, action , result));
 }
 
-Calculator.prototype.add = function(num1, num2) {
-    const result = num1 + num2;
-    this.operationAction(num1, num2, '+' , result);
+Calculator.prototype.add = function(number1, number2) {
+    const result = number1 + number2;
+    this.operationAction(number1, number2, '+' , result);
 }
 
-Calculator.prototype.sub = function(num1, num2) {
-    const result = num1 - num2;
-    this.operationAction(num1, num2, '-' , result);
+Calculator.prototype.sub = function(number1, number2) {
+    const result = number1 - number2;
+    this.operationAction(number1, number2, '-' , result);
 }
 
-Calculator.prototype.multi = function(num1, num2) {
-    const result = num1 * num2;
-    this.operationAction(num1, num2, '*' , result);
+Calculator.prototype.multi = function(number1, number2) {
+    const result = number1 * number2;
+    this.operationAction(number1, number2, '*' , result);
 }
 
-Calculator.prototype.div = function(num1, num2) {
-    const result = num1 / num2;
-    this.operationAction(num1, num2, '/' , result);
+Calculator.prototype.div = function(number1, number2) {
+    const result = number1 / number2;
+    this.operationAction(number1, number2, '/' , result);
 }
 
-Calculator.prototype.exp = function(num1, num2) {
+Calculator.prototype.exp = function(number1, number2) {
     try {
-        if (num1 < 0 && num2 !== parseInt(num2)) {
+        if (number1 < 0 && number2 !== parseInt(number2)) {
             throw new Error('Nie można wyciągnąć pierwiastka z liczby ujemnej')
         }
-        const result = num1 ** num2;
+        const result = number1 ** number2;
         
-        /* solution with loop
-        let result = 1;
-        
-        function exponentPositive(number, exp) {
-            let result = 1
-            for (let i = 1; i <= exp; i++) {
-                result = result * number;
-            }
-            
-            return result;
-        }
-        
-        function exponentNegative(number, exp) {
-            let result = 1
-            for (let i = -1; i >= num2; i--) {
-                result = result / num1;
-            }
-            
-            return result;
-        }
-    
-        if (num2 !== parseInt(num2)) {
-            result = num1 ** num2;
-        } else if (num2 > 0) {
-            exponentPositive(num1, num2);
-        } else if (num2 < 0) {
-            exponentNegative(num1, num2);
-        }
-        
-        */
-        this.operationAction(num1, num2, '^', result);
+        this.operationAction(number1, number2, '^', result);
         
     } catch (error) {
         alert(error.message);
