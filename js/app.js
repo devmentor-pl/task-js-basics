@@ -16,8 +16,12 @@ Calculator.prototype.getHistoryAsString = function () {
 
 Calculator.prototype.verifyInputs = function (num1, num2) {
   let error = "";
-  if (isNaN(+num1)) error += "Pierwszy argument nie jest liczbą \n";
-  if (isNaN(+num2)) error += "Drugi argument nie jest liczbą";
+  if (isNaN(+num1))
+    error +=
+      "Pierwszy argument nie jest liczbą (w przypadku ułamków należy oddzielić część dziesiątną kropką (.) )\n";
+  if (isNaN(+num2))
+    error +=
+      "Drugi argument nie jest liczbą (w przypadku ułamków należy oddzielić część dziesiątną kropką (.) )";
 
   return error;
 };
