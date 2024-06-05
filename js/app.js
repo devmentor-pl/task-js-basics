@@ -56,18 +56,32 @@ Calculator.prototype.power = function (num1, num2) {
     alert(error);
     return;
   }
+
   if (num2 < 0) {
-    alert("Wykładnik nie może być liczbą ujemną");
+    let i = num2;
+    let j = 1 / num1;
+    let result = 1;
+    while (i < 0) {
+      result *= j;
+      i++;
+    }
+    this.history.push(`${+num1} ^ ${+num2} = ${result}`);
     return;
   }
 
-  let i = num2;
-  let result = 1;
-  while (i > 0) {
-    result *= num1;
-    i--;
+  if (num2 > 0) {
+    let i = num2;
+    let j = num1;
+    let result = 1;
+    while (i > 0) {
+      result *= j;
+      i--;
+    }
+    this.history.push(`${+num1} ^ ${+num2} = ${result}`);
+    return;
   }
-  this.history.push(`${+num1} ^ ${+num2} = ${result}`);
+
+  this.history.push(`${+num1} ^ ${+num2} = 1`);
 };
 
 const calc = new Calculator();
