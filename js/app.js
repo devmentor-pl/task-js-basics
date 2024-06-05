@@ -1,11 +1,16 @@
 function Calculator() {
-  this.actions = ["+", "-", "*", "/", "^"];
+  this.actions = ["+", "-", "*", "/", "^", "CLEAR"];
   this.history = sessionStorage.getItem("history")
     ? JSON.parse(sessionStorage.getItem("history"))
     : [];
 }
 
 Calculator.prototype.isCorrectAction = function (action) {
+  if (action === "CLEAR") {
+    sessionStorage.removeItem("history");
+    return;
+  }
+
   if (!this.actions.includes(action)) {
     alert("BŁĄD: Podano błędny operator");
   }
@@ -18,8 +23,8 @@ Calculator.prototype.getHistoryAsString = function () {
 
 Calculator.prototype.verifyInputs = function (num1, num2) {
   let error = "";
-  if (isNaN(+num1)) error += "Pierwszy argument nie jest liczbą\n";
-  if (isNaN(+num2)) error += "Drugi argument nie jest liczbą";
+  if (isNaN(+num1) || !num1) error += "Pierwszy argument nie jest liczbą\n";
+  if (isNaN(+num2) || !num2) error += "Drugi argument nie jest liczbą";
   return error;
 };
 
