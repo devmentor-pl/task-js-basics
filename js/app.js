@@ -90,7 +90,7 @@ Calculator.prototype.power = function (num1, num2) {
     return;
   }
 
-  this.history.push(`${+num1} ^ ${+num2} = 1`);
+  this.addToHistory(num1, num2, "^", 1);
 };
 
 const calc = new Calculator();
