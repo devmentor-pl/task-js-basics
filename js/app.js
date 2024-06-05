@@ -26,32 +26,32 @@ Calculator.prototype.verifyInputs = function (num1, num2) {
   return error;
 };
 
+Calculator.prototype.addToHistory = function (num1, num2, action, result) {
+  this.history.push(`${+num1} ${action} ${num2} = ${result}`);
+};
+
 Calculator.prototype.add = function (num1, num2) {
   const error = this.verifyInputs(num1, num2);
-  return error
-    ? alert(error)
-    : this.history.push(`${+num1} + ${+num2} = ${+num1 + +num2}`);
+  const result = +num1 + +num2;
+  return error ? alert(error) : this.addToHistory(num1, num2, "+", result);
 };
 
 Calculator.prototype.substract = function (num1, num2) {
   const error = this.verifyInputs(num1, num2);
-  return error
-    ? alert(error)
-    : this.history.push(`${+num1} - ${+num2} = ${+num1 - +num2}`);
+  const result = +num1 - +num2;
+  return error ? alert(error) : this.addToHistory(num1, num2, "-", result);
 };
 
 Calculator.prototype.multiply = function (num1, num2) {
   const error = this.verifyInputs(num1, num2);
-  return error
-    ? alert(error)
-    : this.history.push(`${+num1} * ${+num2} = ${+num1 * +num2}`);
+  const result = +num1 * +num2;
+  return error ? alert(error) : this.addToHistory(num1, num2, "*", result);
 };
 
 Calculator.prototype.divide = function (num1, num2) {
   const error = this.verifyInputs(num1, num2);
-  return error
-    ? alert(error)
-    : this.history.push(`${+num1} / ${+num2} = ${+num1 / +num2}`);
+  const result = +num1 / +num2;
+  return error ? alert(error) : this.addToHistory(num1, num2, "/", result);
 };
 
 Calculator.prototype.power = function (num1, num2) {
@@ -74,7 +74,7 @@ Calculator.prototype.power = function (num1, num2) {
       result *= j;
       i++;
     }
-    this.history.push(`${+num1} ^ ${+num2} = ${result}`);
+    this.addToHistory(num1, num2, "^", result);
     return;
   }
 
@@ -86,7 +86,7 @@ Calculator.prototype.power = function (num1, num2) {
       result *= j;
       i--;
     }
-    this.history.push(`${+num1} ^ ${+num2} = ${result}`);
+    this.addToHistory(num1, num2, "^", result);
     return;
   }
 
