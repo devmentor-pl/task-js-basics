@@ -13,20 +13,20 @@ Calculator.prototype.isCorrectAction = function (action) {
 };
 
 Calculator.prototype.getHistoryAsString = function () {
-  console.log(this.history);
   return this.history.slice(-10).join("\n");
 };
 
 Calculator.prototype.verifyInputs = function (num1, num2) {
   let error = "";
-  if (isNaN(+num1))
-    error +=
-      "Pierwszy argument nie jest liczbą (w przypadku ułamków należy oddzielić część dziesiątną kropką (.) )\n";
-  if (isNaN(+num2))
-    error +=
-      "Drugi argument nie jest liczbą (w przypadku ułamków należy oddzielić część dziesiątną kropką (.) )";
-
+  if (isNaN(+num1)) error += "Pierwszy argument nie jest liczbą\n";
+  if (isNaN(+num2)) error += "Drugi argument nie jest liczbą";
   return error;
+};
+
+Calculator.prototype.covertCommaToDot = function (num1, num2) {
+  const correctNum1 = num1.includes(",") ? num1.replace(",", ".") : num1;
+  const correctNum2 = num2.includes(",") ? num2.replace(",", ".") : num2;
+  return [correctNum1, correctNum2];
 };
 
 Calculator.prototype.addToHistory = function (num1, num2, action, result) {
@@ -35,24 +35,28 @@ Calculator.prototype.addToHistory = function (num1, num2, action, result) {
 };
 
 Calculator.prototype.add = function (num1, num2) {
+  [num1, num2] = this.covertCommaToDot(num1, num2);
   const error = this.verifyInputs(num1, num2);
   const result = +num1 + +num2;
   return error ? alert(error) : this.addToHistory(num1, num2, "+", result);
 };
 
 Calculator.prototype.substract = function (num1, num2) {
+  [num1, num2] = this.covertCommaToDot(num1, num2);
   const error = this.verifyInputs(num1, num2);
   const result = +num1 - +num2;
   return error ? alert(error) : this.addToHistory(num1, num2, "-", result);
 };
 
 Calculator.prototype.multiply = function (num1, num2) {
+  [num1, num2] = this.covertCommaToDot(num1, num2);
   const error = this.verifyInputs(num1, num2);
   const result = +num1 * +num2;
   return error ? alert(error) : this.addToHistory(num1, num2, "*", result);
 };
 
 Calculator.prototype.divide = function (num1, num2) {
+  [num1, num2] = this.covertCommaToDot(num1, num2);
   const error = this.verifyInputs(num1, num2);
   const result = +num1 / +num2;
   return error ? alert(error) : this.addToHistory(num1, num2, "/", result);
