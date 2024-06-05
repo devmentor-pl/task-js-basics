@@ -1,6 +1,8 @@
 function Calculator() {
   this.actions = ["+", "-", "*", "/", "^"];
-  this.history = [];
+  this.history = sessionStorage.getItem("history")
+    ? JSON.parse(sessionStorage.getItem("history"))
+    : [];
 }
 
 Calculator.prototype.isCorrectAction = function (action) {
@@ -11,7 +13,8 @@ Calculator.prototype.isCorrectAction = function (action) {
 };
 
 Calculator.prototype.getHistoryAsString = function () {
-  return this.history.join("\n");
+  console.log(this.history);
+  return this.history.slice(-10).join("\n");
 };
 
 Calculator.prototype.verifyInputs = function (num1, num2) {
@@ -28,6 +31,7 @@ Calculator.prototype.verifyInputs = function (num1, num2) {
 
 Calculator.prototype.addToHistory = function (num1, num2, action, result) {
   this.history.push(`${+num1} ${action} ${num2} = ${result}`);
+  sessionStorage.setItem("history", JSON.stringify(this.history));
 };
 
 Calculator.prototype.add = function (num1, num2) {
@@ -100,7 +104,7 @@ do {
   promptContent = `
 Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź.
 Jeśli chcesz zrezygnować wciśnij Anuluj.
-Lista poprzednich operacji:
+Lista poprzednich 10 operacji:
 ${calc.getHistoryAsString()}`;
 
   action = prompt(promptContent);
