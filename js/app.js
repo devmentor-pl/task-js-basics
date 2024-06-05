@@ -57,6 +57,11 @@ Calculator.prototype.power = function (num1, num2) {
     return;
   }
 
+  if (!Number.isInteger(+num2)) {
+    alert("Wykładnik powinien być liczbą całkowitą");
+    return;
+  }
+
   if (num2 < 0) {
     let i = num2;
     let j = 1 / num1;
