@@ -8,7 +8,7 @@ function Calculator() {
 Calculator.prototype.isCorrectAction = function (action) {
   if (action === "CLEAR") {
     sessionStorage.removeItem("history");
-    return false;
+    return;
   }
 
   return this.actions.includes(action);
@@ -19,6 +19,10 @@ Calculator.prototype.getHistoryAsString = function () {
 };
 
 Calculator.prototype.verifyInputs = function (num1, num2) {
+  return !isNaN(+num1) && !isNaN(+num2);
+};
+
+Calculator.prototype.errorGenerator = function (num1, num2) {
   let error = "";
   if (isNaN(+num1) || !num1) error += "Pierwszy argument nie jest liczbą\n";
   if (isNaN(+num2) || !num2) error += "Drugi argument nie jest liczbą";
@@ -32,40 +36,48 @@ Calculator.prototype.covertCommaToDot = function (num1, num2) {
 };
 
 Calculator.prototype.addToHistory = function (num1, num2, action, result) {
-  this.history.push(`${+num1} ${action} ${num2} = ${result}`);
+  this.history.push(`${+num1} ${action} ${+num2} = ${result}`);
   sessionStorage.setItem("history", JSON.stringify(this.history));
 };
 
 Calculator.prototype.add = function (num1, num2) {
-  [num1, num2] = this.covertCommaToDot(num1, num2);
-  const error = this.verifyInputs(num1, num2);
+  [num1Coverted, num2Coverted] = this.covertCommaToDot(num1, num2);
   const result = +num1 + +num2;
-  return error ? alert(error) : this.addToHistory(num1, num2, "+", result);
+  const error = this.errorGenerator(num1, num2);
+  return this.verifyInputs(num1, num2)
+    ? this.addToHistory(num1, num2, "+", result)
+    : alert(error);
 };
 
 Calculator.prototype.substract = function (num1, num2) {
-  [num1, num2] = this.covertCommaToDot(num1, num2);
-  const error = this.verifyInputs(num1, num2);
+  [num1Coverted, num2Coverted] = this.covertCommaToDot(num1, num2);
   const result = +num1 - +num2;
-  return error ? alert(error) : this.addToHistory(num1, num2, "-", result);
+  const error = this.errorGenerator(num1, num2);
+  return this.verifyInputs(num1, num2)
+    ? this.addToHistory(num1, num2, "-", result)
+    : alert(error);
 };
 
 Calculator.prototype.multiply = function (num1, num2) {
-  [num1, num2] = this.covertCommaToDot(num1, num2);
-  const error = this.verifyInputs(num1, num2);
+  [num1Coverted, num2Coverted] = this.covertCommaToDot(num1, num2);
   const result = +num1 * +num2;
-  return error ? alert(error) : this.addToHistory(num1, num2, "*", result);
+  const error = this.errorGenerator(num1, num2);
+  return this.verifyInputs(num1, num2)
+    ? this.addToHistory(num1, num2, "*", result)
+    : alert(error);
 };
 
 Calculator.prototype.divide = function (num1, num2) {
-  [num1, num2] = this.covertCommaToDot(num1, num2);
-  const error = this.verifyInputs(num1, num2);
+  [num1Coverted, num2Coverted] = this.covertCommaToDot(num1, num2);
   const result = +num1 / +num2;
-  return error ? alert(error) : this.addToHistory(num1, num2, "/", result);
+  const error = this.errorGenerator(num1, num2);
+  return this.verifyInputs(num1, num2)
+    ? this.addToHistory(num1, num2, "/", result)
+    : alert(error);
 };
 
 Calculator.prototype.power = function (num1, num2) {
-  const error = this.verifyInputs(num1, num2);
+  const error = this.errorGenerator(num1, num2);
   if (error) {
     alert(error);
     return;
