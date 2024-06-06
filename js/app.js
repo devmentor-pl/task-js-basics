@@ -8,12 +8,9 @@ function Calculator() {
 Calculator.prototype.isCorrectAction = function (action) {
   if (action === "CLEAR") {
     sessionStorage.removeItem("history");
-    return;
+    return false;
   }
 
-  if (!this.actions.includes(action)) {
-    alert("BŁĄD: Podano błędny operator");
-  }
   return this.actions.includes(action);
 };
 
@@ -144,5 +141,7 @@ ${calc.getHistoryAsString()}`;
         break;
       }
     }
+  } else {
+    alert("BŁĄD: Podano błędny operator");
   }
 } while (calc.isCorrectAction(action));
