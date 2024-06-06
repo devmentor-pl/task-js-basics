@@ -6,11 +6,6 @@ function Calculator() {
 }
 
 Calculator.prototype.isCorrectAction = function (action) {
-  if (action === "CLEAR") {
-    sessionStorage.removeItem("history");
-    return;
-  }
-
   return this.actions.includes(action);
 };
 
@@ -78,41 +73,10 @@ Calculator.prototype.divide = function (num1, num2) {
 
 Calculator.prototype.power = function (num1, num2) {
   const error = this.errorGenerator(num1, num2);
-  if (error) {
-    alert(error);
-    return;
-  }
-
-  if (!Number.isInteger(+num2)) {
-    alert("Wykładnik powinien być liczbą całkowitą");
-    return;
-  }
-
-  if (num2 < 0) {
-    let i = num2;
-    let j = 1 / num1;
-    let result = 1;
-    while (i < 0) {
-      result *= j;
-      i++;
-    }
-    this.addToHistory(num1, num2, "^", result);
-    return;
-  }
-
-  if (num2 > 0) {
-    let i = num2;
-    let j = num1;
-    let result = 1;
-    while (i > 0) {
-      result *= j;
-      i--;
-    }
-    this.addToHistory(num1, num2, "^", result);
-    return;
-  }
-
-  this.addToHistory(num1, num2, "^", 1);
+  const result = num1 ** num2;
+  return this.verifyInputs(num1, num2)
+    ? this.addToHistory(num1, num2, "^", result)
+    : alert(error);
 };
 
 const calc = new Calculator();
@@ -127,6 +91,13 @@ ${calc.getHistoryAsString()}`;
 
   action = prompt(promptContent);
   isCorrectAction = calc.isCorrectAction(action);
+
+  if (action === "CLEAR") {
+    sessionStorage.removeItem("history");
+    alert("Historia wyników została wyczyszczona");
+    break;
+  }
+
   if (isCorrectAction) {
     number1 = prompt("Podaj liczbę nr 1");
     number2 = prompt("Podaj liczbę nr 2");
