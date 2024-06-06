@@ -31,8 +31,10 @@ Calculator.prototype.covertCommaToDot = function (num1, num2) {
 };
 
 Calculator.prototype.addToHistory = function (num1, num2, action, result) {
-  this.history.push(`${+num1} ${action} ${+num2} = ${result}`);
+  const record = `${+num1} ${action} ${+num2} = ${result}`;
+  this.history.push(record);
   sessionStorage.setItem("history", JSON.stringify(this.history));
+  alert(record);
 };
 
 Calculator.prototype.add = function (num1, num2) {
