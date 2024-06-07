@@ -114,8 +114,9 @@ ${calc.getHistoryAsString()}`;
 
   if (action === "CLEAR") {
     sessionStorage.removeItem("history");
+    calc.history = [];
     alert("Historia wyników została wyczyszczona");
-    break;
+    continue;
   }
 
   if (isCorrectAction) {
@@ -129,4 +130,4 @@ ${calc.getHistoryAsString()}`;
   } else {
     alert("BŁĄD: Podano błędny operator");
   }
-} while (calc.isCorrectAction(action));
+} while (true);
