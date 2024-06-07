@@ -94,6 +94,14 @@ Calculator.prototype.power = function (num1, num2) {
 const calc = new Calculator();
 let action, promptContent, isCorrectAction, number1, number2;
 
+const operations = {
+  "+": (num1, num2) => calc.add(num1, num2),
+  "-": (num1, num2) => calc.substract(num1, num2),
+  "*": (num1, num2) => calc.multiply(num1, num2),
+  "/": (num1, num2) => calc.divide(num1, num2),
+  "^": (num1, num2) => calc.power(num1, num2),
+};
+
 do {
   promptContent = `
 Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź.
@@ -114,27 +122,9 @@ ${calc.getHistoryAsString()}`;
     number1 = prompt("Podaj liczbę nr 1");
     number2 = prompt("Podaj liczbę nr 2");
 
-    switch (action) {
-      case "+": {
-        calc.add(number1, number2);
-        break;
-      }
-      case "-": {
-        calc.substract(number1, number2);
-        break;
-      }
-      case "*": {
-        calc.multiply(number1, number2);
-        break;
-      }
-      case "/": {
-        calc.divide(number1, number2);
-        break;
-      }
-      case "^": {
-        calc.power(number1, number2);
-        break;
-      }
+    const operation = operations[action];
+    if (operation) {
+      operation(number1, number2);
     }
   } else {
     alert("BŁĄD: Podano błędny operator");
