@@ -91,43 +91,51 @@ Calculator.prototype.power = function (num1, num2) {
     : alert(error);
 };
 
-const calc = new Calculator();
-let action, promptContent, isCorrectAction, number1, number2;
-
-const operations = {
-  "+": (num1, num2) => calc.add(num1, num2),
-  "-": (num1, num2) => calc.substract(num1, num2),
-  "*": (num1, num2) => calc.multiply(num1, num2),
-  "/": (num1, num2) => calc.divide(num1, num2),
-  "^": (num1, num2) => calc.power(num1, num2),
+Calculator.prototype.clearHistory = function () {
+  sessionStorage.removeItem("history");
+  this.history = [];
+  alert("Historia wyników została wyczyszczona");
 };
 
-do {
-  promptContent = `
+Calculator.prototype.promptUser = function () {
+  let action, promptContent, isCorrectAction, number1, number2;
+
+  const operations = {
+    "+": (num1, num2) => this.add(num1, num2),
+    "-": (num1, num2) => this.substract(num1, num2),
+    "*": (num1, num2) => this.multiply(num1, num2),
+    "/": (num1, num2) => this.divide(num1, num2),
+    "^": (num1, num2) => this.power(num1, num2),
+  };
+
+  do {
+    promptContent = `
 Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź.
 Jeśli chcesz zrezygnować wciśnij Anuluj.
 Lista poprzednich 10 operacji:
-${calc.getHistoryAsString()}`;
+${this.getHistoryAsString()}`;
 
-  action = prompt(promptContent);
-  isCorrectAction = calc.isCorrectAction(action);
+    action = prompt(promptContent);
+    isCorrectAction = this.isCorrectAction(action);
 
-  if (action === "CLEAR") {
-    sessionStorage.removeItem("history");
-    calc.history = [];
-    alert("Historia wyników została wyczyszczona");
-    continue;
-  }
-
-  if (isCorrectAction) {
-    number1 = prompt("Podaj liczbę nr 1");
-    number2 = prompt("Podaj liczbę nr 2");
-
-    const operation = operations[action];
-    if (operation) {
-      operation(number1, number2);
+    if (action === "CLEAR") {
+      this.clearHistory();
+      continue;
     }
-  } else {
-    alert("BŁĄD: Podano błędny operator");
-  }
-} while (true);
+
+    if (isCorrectAction) {
+      number1 = prompt("Podaj liczbę nr 1");
+      number2 = prompt("Podaj liczbę nr 2");
+
+      const operation = operations[action];
+      if (operation) {
+        operation(number1, number2);
+      }
+    } else {
+      alert("BŁĄD: Podano błędny operator");
+    }
+  } while (true);
+};
+
+const calc = new Calculator();
+calc.promptUser();
