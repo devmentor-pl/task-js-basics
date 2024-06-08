@@ -13,7 +13,7 @@ Calculator.prototype.getHistoryAsString = function() {
 
 Calculator.prototype.add = function(num1, num2) {
     
-    result = num1 + num2;
+    result = (num1 + num2);
     return result;
     // 1. zamień wartości przekazane przez parametr na typ number
     // 2. sprawdź czy są one poprawne
@@ -22,7 +22,19 @@ Calculator.prototype.add = function(num1, num2) {
 }
 Calculator.prototype.min = function(num1, num2) {
     
-    result = num1 - num2;
+    result = (num1 - num2);
+    return result;
+}
+
+Calculator.prototype.multi = function(num1, num2) {
+    
+    result = (num1 * num2);
+    return result;
+}
+
+Calculator.prototype.div = function(num1, num2) {
+    
+    result = (num1 / num2);
     return result;
 }
 
@@ -38,31 +50,34 @@ do {
     if(isCorrectAction) {
         number1 = prompt('Podaj liczbę nr 1');
         number2 = prompt('Podaj liczbę nr 2');
+        number1 = Number(number1);
+        number2 = Number(number2);
+        if(isNaN(number1) || isNaN(number2)){
+        alert('Podane wartości nie są liczbami!');
+        }else{
+            switch(action){
+                case "+":
+                    calc.add(number1, number2);
+                    calc.history.push(number1 +'+'+ number2 +'='+ result);
+                    alert("Wynik: "+calc.add(number1, number2));
+                    break;
+                case "-":
+                    calc.min(number1, number2);
+                    calc.history.push(number1 +'-'+ number2 +'='+ result);
+                    alert("Wynik: "+calc.min(number1, number2));
+                    break;
+                case "*":
+                    calc.multi(number1, number2);
+                    calc.history.push(number1 +'*'+ number2 +'='+ result);
+                    alert("Wynik: "+calc.multi(number1, number2));
+                    break;
+            }
 
-        if(action === '+') {
-            number1 = Number(number1);
-            number2 = Number(number2);
-            if(isNaN(number1) || isNaN(number2)){
-                alert('Podane wartości nie są liczbami!');
-            }else{
-                calc.add(number1, number2);
-                calc.history.push(number1 +'+'+ number2 +'='+ result);
-                alert("Wynik: "+calc.add(number1, number2));
-            }
-            
-        }else if(action === '-'){
-            number1 = Number(number1);
-            number2 = Number(number2);
-            if(isNaN(number1) || isNaN(number2)){
-                alert('Podane wartości nie są liczbami!');
-            }else{
-                calc.min(number1, number2);
-                calc.history.push(number1 +'-'+ number2 +'='+ result);
-                alert("Wynik: "+calc.min(number1, number2));
-            }
         }
+     
             
-        
-    }
+     }else{
+        alert("Nie wybrano właściwego znaku działania! Odśwież stronę i spróbuj ponownie:)");
+     }
     
 } while(calc.isCorrectAction(action));
