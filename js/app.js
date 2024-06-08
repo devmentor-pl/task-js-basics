@@ -37,6 +37,14 @@ Calculator.prototype.div = function(num1, num2) {
     result = (num1 / num2);
     return result;
 }
+Calculator.prototype.pow = function(num1, num2) {
+    result = num1;
+    for(i=0; i<(num2 -1); i++){
+        result = (result * num1);
+    
+    }
+    return result;
+}
 
 const calc = new Calculator();
 let action, promptContent, isCorrectAction, number1, number2;
@@ -70,6 +78,16 @@ do {
                     calc.multi(number1, number2);
                     calc.history.push(number1 +'*'+ number2 +'='+ result);
                     alert("Wynik: "+calc.multi(number1, number2));
+                    break;
+                case "/":
+                    calc.div(number1, number2);
+                    calc.history.push(number1 +'/'+ number2 +'='+ result);
+                    alert("Wynik: "+calc.div(number1, number2));
+                    break;
+                case "^":
+                    calc.pow(number1, number2);
+                    calc.history.push(number1 +'^'+ number2 +'='+ result);
+                    alert("Wynik: "+calc.pow(number1, number2));
                     break;
             }
 
