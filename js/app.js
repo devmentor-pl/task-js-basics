@@ -20,6 +20,11 @@ Calculator.prototype.add = function(num1, num2) {
     // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
     // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
 }
+Calculator.prototype.min = function(num1, num2) {
+    
+    result = num1 - num2;
+    return result;
+}
 
 const calc = new Calculator();
 let action, promptContent, isCorrectAction, number1, number2;
@@ -42,10 +47,19 @@ do {
             }else{
                 calc.add(number1, number2);
                 calc.history.push(number1 +'+'+ number2 +'='+ result);
-                //console.log (wynik);
                 alert("Wynik: "+calc.add(number1, number2));
             }
             
+        }else if(action === '-'){
+            number1 = Number(number1);
+            number2 = Number(number2);
+            if(isNaN(number1) || isNaN(number2)){
+                alert('Podane wartości nie są liczbami!');
+            }else{
+                calc.min(number1, number2);
+                calc.history.push(number1 +'-'+ number2 +'='+ result);
+                alert("Wynik: "+calc.min(number1, number2));
+            }
         }
             
         
