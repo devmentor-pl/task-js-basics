@@ -12,6 +12,9 @@ Calculator.prototype.getHistoryAsString = function() {
 }
 
 Calculator.prototype.add = function(num1, num2) {
+    
+    result = num1 + num2;
+    return result;
     // 1. zamień wartości przekazane przez parametr na typ number
     // 2. sprawdź czy są one poprawne
     // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
@@ -32,8 +35,20 @@ do {
         number2 = prompt('Podaj liczbę nr 2');
 
         if(action === '+') {
-            calc.add(number1, number2);
+            number1 = Number(number1);
+            number2 = Number(number2);
+            if(isNaN(number1) || isNaN(number2)){
+                alert('Podane wartości nie są liczbami!');
+            }else{
+                calc.add(number1, number2);
+                calc.history.push(number1 +'+'+ number2 +'='+ result);
+                //console.log (wynik);
+                alert("Wynik: "+calc.add(number1, number2));
+            }
+            
         }
+            
+        
     }
     
 } while(calc.isCorrectAction(action));
