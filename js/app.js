@@ -18,13 +18,11 @@ Calculator.prototype.isCorrectAction = function(action) {
 }
 
 Calculator.prototype.getHistoryAsString = function() {
-    let history = this.history;
+    const history = this.history;
+    const shortenHistory = history.slice(-19);
+    shortenHistory.unshift('(...)')
     
-    if (this.history.length > 20) {
-        history = history.slice(-19);
-        history.unshift('(...)')
-    }
-    return history.join('\n');
+    return history.length > 20 ? shortenHistory.join('\n') : history.join('\n');
 }
 
 Calculator.prototype.clearHistory = function() {
@@ -76,32 +74,27 @@ Calculator.prototype.exp = function(number1, number2) {
 }
 
 const calc = new Calculator();
-let action, promptContent, isCorrectAction, number1, number2;
 
 if (confirm('Wyczyścić historię operacji?')) {
     calc.clearHistory()
 }
 
 do {
-    promptContent = `Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź.
+    const promptContent = `Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź.
 Jeśli chcesz zrezygnować wciśnij Anuluj.
 Lista poprzednich operacji:
 ${calc.getHistoryAsString()}`
 
-    action = prompt(promptContent);
-    isCorrectAction = calc.isCorrectAction(action);
+    const action = prompt(promptContent);
+    const isCorrectAction = calc.isCorrectAction(action);
+    const number1 = Number(prompt('Podaj liczbę nr 1'));
+    const number2 = Number(prompt('Podaj liczbę nr 2'));
     
     if(isCorrectAction) {
         try {
-            number1 = prompt('Podaj liczbę nr 1');
-            number2 = prompt('Podaj liczbę nr 2');
-            
             if(isNaN(Number(number1)) || isNaN(Number(number2))) {
                 throw new Error('Musisz podać liczby! Pamiętaj, że w przypadku ułamków część dziesiętna powinna być oddzielona kropką (.)')
             }
-            
-            number1 = Number(number1);
-            number2 = Number(number2);
             
         } catch (error) {
             alert(error.message)
