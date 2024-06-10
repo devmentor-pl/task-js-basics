@@ -9,17 +9,25 @@ Calculator.prototype.addToHistory = function(number1, number2, action, result) {
 }
 
 Calculator.prototype.isCorrectAction = function(action) {
+    if (!this.actions.includes(action) && action !== null) {
+        console.error(
+          'Podano niepoprawny symbol działania.'
+        )
+    }
     return this.actions.includes(action);
 }
 
 Calculator.prototype.getHistoryAsString = function() {
-    let history = this.history;
+    const history = this.history;
+    const shortenHistory = history.slice(-19);
+    shortenHistory.unshift('(...)')
     
-    if (this.history.length > 20) {
-        history = history.slice(-19);
-        history.unshift('(...)')
-    }
-    return history.join('\n');
+    return history.length > 20 ? shortenHistory.join('\n') : history.join('\n');
+}
+
+Calculator.prototype.clearHistory = function() {
+    localStorage.clear();
+    this.history = [];
 }
 
 const operationMessage = (number1, number2, action, result) => {
@@ -31,64 +39,34 @@ Calculator.prototype.operationAction = function (number1, number2, action, resul
     alert(operationMessage(number1, number2, action , result));
 }
 
-Calculator.prototype.add = function(num1, num2) {
-    const result = num1 + num2;
-    this.operationAction(num1, num2, '+' , result);
+Calculator.prototype.add = function(number1, number2) {
+    const result = number1 + number2;
+    this.operationAction(number1, number2, '+' , result);
 }
 
-Calculator.prototype.sub = function(num1, num2) {
-    const result = num1 - num2;
-    this.operationAction(num1, num2, '-' , result);
+Calculator.prototype.sub = function(number1, number2) {
+    const result = number1 - number2;
+    this.operationAction(number1, number2, '-' , result);
 }
 
-Calculator.prototype.multi = function(num1, num2) {
-    const result = num1 * num2;
-    this.operationAction(num1, num2, '*' , result);
+Calculator.prototype.multi = function(number1, number2) {
+    const result = number1 * number2;
+    this.operationAction(number1, number2, '*' , result);
 }
 
-Calculator.prototype.div = function(num1, num2) {
-    const result = num1 / num2;
-    this.operationAction(num1, num2, '/' , result);
+Calculator.prototype.div = function(number1, number2) {
+    const result = number1 / number2;
+    this.operationAction(number1, number2, '/' , result);
 }
 
-Calculator.prototype.exp = function(num1, num2) {
+Calculator.prototype.exp = function(number1, number2) {
     try {
-        if (num1 < 0 && num2 !== parseInt(num2)) {
+        if (number1 < 0 && number2 !== parseInt(number2)) {
             throw new Error('Nie można wyciągnąć pierwiastka z liczby ujemnej')
         }
-        const result = num1 ** num2;
+        const result = number1 ** number2;
         
-        /* solution with loop
-        let result = 1;
-        
-        function exponentPositive(number, exp) {
-            let result = 1
-            for (let i = 1; i <= exp; i++) {
-                result = result * number;
-            }
-            
-            return result;
-        }
-        
-        function exponentNegative(number, exp) {
-            let result = 1
-            for (let i = -1; i >= num2; i--) {
-                result = result / num1;
-            }
-            
-            return result;
-        }
-    
-        if (num2 !== parseInt(num2)) {
-            result = num1 ** num2;
-        } else if (num2 > 0) {
-            exponentPositive(num1, num2);
-        } else if (num2 < 0) {
-            exponentNegative(num1, num2);
-        }
-        
-        */
-        this.operationAction(num1, num2, '^', result);
+        this.operationAction(number1, number2, '^', result);
         
     } catch (error) {
         alert(error.message);
@@ -96,26 +74,27 @@ Calculator.prototype.exp = function(num1, num2) {
 }
 
 const calc = new Calculator();
-let action, promptContent, isCorrectAction, number1, number2;
+
+if (confirm('Wyczyścić historię operacji?')) {
+    calc.clearHistory()
+}
+
 do {
-    promptContent = `Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź.
+    const promptContent = `Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź.
 Jeśli chcesz zrezygnować wciśnij Anuluj.
 Lista poprzednich operacji:
 ${calc.getHistoryAsString()}`
 
-    action = prompt(promptContent);
-    isCorrectAction = calc.isCorrectAction(action);
+    const action = prompt(promptContent);
+    const isCorrectAction = calc.isCorrectAction(action);
+    const number1 = Number(prompt('Podaj liczbę nr 1'));
+    const number2 = Number(prompt('Podaj liczbę nr 2'));
+    
     if(isCorrectAction) {
         try {
-            number1 = prompt('Podaj liczbę nr 1');
-            number2 = prompt('Podaj liczbę nr 2');
-            
             if(isNaN(Number(number1)) || isNaN(Number(number2))) {
                 throw new Error('Musisz podać liczby! Pamiętaj, że w przypadku ułamków część dziesiętna powinna być oddzielona kropką (.)')
             }
-            
-            number1 = Number(number1);
-            number2 = Number(number2);
             
         } catch (error) {
             alert(error.message)
