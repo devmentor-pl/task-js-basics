@@ -9,7 +9,7 @@ Calculator.prototype.addToHistory = function(number1, number2, action, result) {
 }
 
 Calculator.prototype.isCorrectAction = function(action) {
-    if (!this.actions.includes(action)) {
+    if (!this.actions.includes(action) && action !== null) {
         console.error(
           'Podano niepoprawny symbol działania.'
         )
