@@ -121,10 +121,17 @@ ${this.getHistoryAsString()}`
 					this.exp(number1, number2);
 					break;
 			}
-		} else {
+		} else if (userInput.action !== null){
 			alert(
 				'Podano niepoprawny symbol działania.'
 			)
+		} else {
+			const message = `Dziękujemy za skorzystanie z kalkulatora!
+${this.history.length ? `
+Lista wykonanych operacji:
+${this.getHistoryAsString()}` : '' }`;
+			
+			alert(message)
 		}
 		
 	} while(this.isCorrectAction(userInput.action));
