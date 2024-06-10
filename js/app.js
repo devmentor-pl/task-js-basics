@@ -27,6 +27,11 @@ Calculator.prototype.getHistoryAsString = function() {
     return history.join('\n');
 }
 
+Calculator.prototype.clearHistory = function() {
+    localStorage.clear();
+    this.history = [];
+}
+
 const operationMessage = (number1, number2, action, result) => {
     return `${number1} ${action} ${number2} = ${result}`
 }
@@ -72,6 +77,11 @@ Calculator.prototype.exp = function(number1, number2) {
 
 const calc = new Calculator();
 let action, promptContent, isCorrectAction, number1, number2;
+
+if (confirm('Wyczyścić historię operacji?')) {
+    calc.clearHistory()
+}
+
 do {
     promptContent = `Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź.
 Jeśli chcesz zrezygnować wciśnij Anuluj.
@@ -80,6 +90,7 @@ ${calc.getHistoryAsString()}`
 
     action = prompt(promptContent);
     isCorrectAction = calc.isCorrectAction(action);
+    
     if(isCorrectAction) {
         try {
             number1 = prompt('Podaj liczbę nr 1');
