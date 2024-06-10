@@ -9,11 +9,6 @@ Calculator.prototype.addToHistory = function(number1, number2, action, result) {
 }
 
 Calculator.prototype.isCorrectAction = function(action) {
-    if (!this.actions.includes(action) && action !== null) {
-        console.error(
-          'Podano niepoprawny symbol działania.'
-        )
-    }
     return this.actions.includes(action);
 }
 
@@ -79,25 +74,36 @@ if (confirm('Wyczyścić historię operacji?')) {
     calc.clearHistory()
 }
 
+const userInput = {
+    action: null,
+    number1: null,
+    number2: null,
+}
+
 do {
     const promptContent = `Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź.
 Jeśli chcesz zrezygnować wciśnij Anuluj.
 Lista poprzednich operacji:
 ${calc.getHistoryAsString()}`
 
-    const action = prompt(promptContent);
-    const isCorrectAction = calc.isCorrectAction(action);
-    const number1 = Number(prompt('Podaj liczbę nr 1'));
-    const number2 = Number(prompt('Podaj liczbę nr 2'));
+    userInput.action = prompt(promptContent);
+    const isCorrectAction = calc.isCorrectAction(userInput.action);
     
     if(isCorrectAction) {
+        
+        userInput.number1 = Number(prompt('Podaj liczbę nr 1'));
+        userInput.number2 = Number(prompt('Podaj liczbę nr 2'));
+        
+        const { action, number1, number2} = userInput
+        
         try {
-            if(isNaN(Number(number1)) || isNaN(Number(number2))) {
+            if(isNaN(number1) || isNaN(number2)) {
                 throw new Error('Musisz podać liczby! Pamiętaj, że w przypadku ułamków część dziesiętna powinna być oddzielona kropką (.)')
             }
             
         } catch (error) {
             alert(error.message)
+            break
         }
         
         switch (action) {
@@ -117,6 +123,10 @@ ${calc.getHistoryAsString()}`
                 calc.exp(number1, number2);
                 break;
         }
+    } else {
+        alert(
+          'Podano niepoprawny symbol działania.'
+        )
     }
     
-} while(calc.isCorrectAction(action));
+} while(calc.isCorrectAction(userInput.action));
