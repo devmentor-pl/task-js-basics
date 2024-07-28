@@ -15,37 +15,26 @@ Calculator.prototype.add = function (num1, num2) {
   // 1. zamień wartości przekazane przez parametr na typ number
   // zmieniono w do ... while
   // 2. sprawdź czy są one poprawne
-  if (isNaN(num1) || isNaN(num2)) {
-    this.history.push("Dane niepoprawne");
-  } else {
-    // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
-    const result = num1 + num2;
-    // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
-    this.history.push(num1 + " + " + num2 + " = " + result);
-  }
+
+  // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
+  const result = num1 + num2;
+  // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
+  this.history.push(num1 + " + " + num2 + " = " + result);
 };
 
 Calculator.prototype.diff = function (num1, num2) {
-  if (isNaN(num1) || isNaN(num2)) {
-    this.history.push("Dane niepoprawne");
-  } else {
-    const result = num1 - num2;
-    this.history.push(num1 + " - " + num2 + " = " + result);
-  }
+  const result = num1 - num2;
+  this.history.push(num1 + " - " + num2 + " = " + result);
 };
 
 Calculator.prototype.multiply = function (num1, num2) {
-  if (isNaN(num1) || isNaN(num2)) {
-    this.history.push("Dane niepoprawne");
-  } else {
-    const result = num1 * num2;
-    this.history.push(num1 + " x " + num2 + " = " + result);
-  }
+  const result = num1 * num2;
+  this.history.push(num1 + " x " + num2 + " = " + result);
 };
 
 Calculator.prototype.divide = function (num1, num2) {
-  if (num2 === 0 || isNaN(num1) || isNaN(num2)) {
-    this.history.push("Dane niepoprawne");
+  if (num2 === 0) {
+    this.history.push("Nie można dzielić przez 0");
   } else {
     const result = num1 / num2;
     this.history.push(num1 + " : " + num2 + " = " + result);
@@ -53,8 +42,8 @@ Calculator.prototype.divide = function (num1, num2) {
 };
 
 Calculator.prototype.exp = function (num1, num2) {
-  if (isNaN(num1) || isNaN(num2)) {
-    this.history.push("Dane niepoprawne");
+  if (num1 === 0 && num2 === 0) {
+    this.history.push(num1 + "^" + num2 + " = " + "Niezdefiniowane");
   } else {
     let result = 1;
     for (let i = 0; i < num2; i++) {
@@ -78,7 +67,9 @@ do {
     number1 = Number(prompt("Podaj liczbę nr 1"));
     number2 = Number(prompt("Podaj liczbę nr 2"));
 
-    if (action === "+") {
+    if (isNaN(number1) || isNaN(number2)) {
+      calc.history.push("Dane niepoprawne");
+    } else if (action === "+") {
       calc.add(number1, number2);
     } else if (action === "-") {
       calc.diff(number1, number2);
