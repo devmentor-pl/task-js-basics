@@ -1,124 +1,63 @@
 function Calculator() {
-    this.actions = ['+', '-', '*', '/', '^'];
+    this.actions = {
+        '+': (a, b) => a + b,
+        '-': (a, b) => a - b,
+        '*': (a, b) => a * b,
+        '/': (a, b) => {
+            if (b === 0) {
+                alert('Nie można dzielić przez 0. Spróbuj ponownie.');
+                return null;
+            }
+            return a / b;
+        },
+        '^': (a, b) => Math.pow(a, b)
+    };
     this.history = [];
 }
 
 Calculator.prototype.isCorrectAction = function(action) {
-    return this.actions.includes(action);
+    return action in this.actions;
 }
 
 Calculator.prototype.getHistoryAsString = function() {
     return this.history.join('\n');
 }
 
-Calculator.prototype.add = function(num1, num2) {
-    // 1. zamień wartości przekazane przez parametr na typ number
+Calculator.prototype.performOperation = function(action, num1, num2) {
+    // Zamień wartości przekazane przez parametr na typ number i sprawdź czy są poprawne
     num1 = Number(num1);
     num2 = Number(num2);
-    // 2. sprawdź czy są one poprawne
+    
     if (isNaN(num1) || isNaN(num2)) {
         alert('Podane wartości są niepoprawne');
         return;
     }
-    // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
-    const result = num1 + num2;
-    // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
-    this.history.push(`${num1} + ${num2} = ${result}`);
+
+    // Wykonaj operację
+    const result = this.actions[action](num1, num2);
+
+    // Sprawdź, czy operacja była poprawna (np. dzielenie przez 0)
+    if (result !== null && result !== undefined) {
+        // Dodaj do historii operacji
+        this.history.push(`${num1} ${action} ${num2} = ${result}`);
+    }
 }
 
-Calculator.prototype.subtract = function(num1, num2) {
-    num1 = Number(num1);
-    num2 = Number(num2);
-    
-    if (isNaN(num1) || isNaN(num2)) {
-        alert('Podano niepoprawne wartości. Spróbuj ponownie.');
-        return;
-    }
-
-    const result = num1 - num2;
-    this.history.push(`${num1} - ${num2} = ${result}`);
-};
-
-Calculator.prototype.multiply = function(num1, num2) {
-    num1 = Number(num1);
-    num2 = Number(num2);
-
-    if (isNaN(num1) || isNaN(num2)) {
-        alert('Podano niepoprawne wartości. Spróbuj ponownie.');
-        return;
-    }
-
-    const result = num1 * num2;
-    this.history.push(`${num1} * ${num2} = ${result}`);
-};
-
-Calculator.prototype.divide = function(num1, num2) {
-    num1 = Number(num1);
-    num2 = Number(num2);
-
-    if (isNaN(num1) || isNaN(num2)) {
-        alert('Podano niepoprawne wartości. Spróbuj ponownie.');
-        return;
-    }
-
-    if (num2 === 0) {
-        alert('Nie można dzielić przez 0. Spróbuj ponownie.');
-        return;
-    }
-
-    const result = num1 / num2;
-    this.history.push(`${num1} / ${num2} = ${result}`);
-};
-
-Calculator.prototype.power = function(num1, num2) {
-    num1 = Number(num1);
-    num2 = Number(num2);
-
-    if (isNaN(num1) || isNaN(num2)) {
-        alert('Podano niepoprawne wartości. Spróbuj ponownie.');
-        return;
-    }
-
-    let result = 1;
-    for (let i = 0; i < Math.abs(num2); i++) {
-        result *= num1;
-    }
-
-    this.history.push(`${num1} ^ ${num2} = ${result}`);
-};
-
-
-
 const calc = new Calculator();
-let action, promptContent, isCorrectAction, number1, number2;
+let action, promptContent, number1, number2;
+
 do { 
-    promptContent = 'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n'; // \n - znak nowej linii
+    promptContent = 'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n'; 
     promptContent += 'Jeśli chcesz zrezygnować wciśnij Anuluj. \n';
     promptContent += 'Lista poprzednich operacji: \n' + calc.getHistoryAsString();
 
     action = prompt(promptContent);
-    isCorrectAction = calc.isCorrectAction(action);
-    if(isCorrectAction) {
+
+    if (calc.isCorrectAction(action)) {
         number1 = prompt('Podaj liczbę nr 1');
         number2 = prompt('Podaj liczbę nr 2');
-
-        switch (action) {
-            case '+':
-                calc.add(number1, number2);
-                break;
-            case '-':
-                calc.subtract(number1, number2);
-                break;
-            case '*':
-                calc.multiply(number1, number2);
-                break;
-            case '/':
-                calc.divide(number1, number2);
-                break;
-            case '^':
-                calc.power(number1, number2);
-                break;
-        }
+        
+        calc.performOperation(action, number1, number2);
     }
-    
+
 } while(calc.isCorrectAction(action));
