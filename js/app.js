@@ -11,6 +11,57 @@ Calculator.prototype.getHistoryAsString = function() {
     return this.history.join('\n');
 }
 
+Calculator.prototype.getNumber = function(num1, num2){
+    return [parseFloat(num1), parseFloat(num2)];
+}
+
+Calculator.prototype.checkCorrect = function(arr){
+    return !(arr.some(item => isNaN(item)));
+}
+
+Calculator.prototype.expo = function(num1, num2){
+    let i = 0;
+    let result = 1;
+    while(i < parseFloat(num2)){
+        result *= parseFloat(num1)
+        i++
+    }
+    return result;
+}
+
+Calculator.prototype.getResult = function(num1, num2){
+    let result;
+    switch (action){
+        case '+':
+            result = parseFloat(num1) + parseFloat(num2);
+            break;
+        case '-':
+            result = parseFloat(num1) - parseFloat(num2);
+            break;
+        case '*':
+            result = parseFloat(num1) * parseFloat(num2);
+            break;
+        case '/':
+            result = parseFloat(num1) / parseFloat(num2);
+            break;
+        case '^':
+            result = this.expo(num1, num2);
+            break;
+        default:
+            break;
+    }
+    return result
+}
+
+Calculator.prototype.calculate = function(num1, num2){
+    const array = this. getNumber(num1, num2);
+    const ifCorrect = this.checkCorrect(array);
+    if(ifCorrect){
+        const result = this.getResult(num1, num2);
+        this.history.push(`${num1} ${action} ${num2} = ${result}`);
+    }
+}
+
 Calculator.prototype.add = function(num1, num2) {
     // 1. zamień wartości przekazane przez parametr na typ number
     // 2. sprawdź czy są one poprawne
@@ -34,6 +85,8 @@ do {
         if(action === '+') {
             calc.add(number1, number2);
         }
+
+        calc.calculate(number1, number2);
     }
     
 } while(calc.isCorrectAction(action));
