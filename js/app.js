@@ -11,11 +11,31 @@ Calculator.prototype.getHistoryAsString = function() {
     return this.history.join('\n');
 }
 
-Calculator.prototype.add = function(num1, num2) {
-    // 1. zamień wartości przekazane przez parametr na typ number
-    // 2. sprawdź czy są one poprawne
-    // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
-    // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
+Calculator.prototype.mathOperation = function(num1, num2, action) {
+    num1 = Number(num1)
+    num2 = Number(num2)
+        if (action === "+") {
+            result = num1 + num2
+        } else if (action === "-") {
+            result = num1 - num2
+        } else if (action === "*") {
+            result = num1 * num2 
+        } else if (action === "/") {
+            result = num1 / num2
+        } else if (action === "^") {
+            let result = 1
+            let multiplier = 1
+            let multiplierString = ''
+            while (multiplier <= num2) {
+                result = result * num1
+                multiplierString = num1 + ' '
+                if (multiplier < num2) multiplierString = multiplierString + '*'
+                if (multiplier === num2) multiplierString = multiplierString + '=' + result
+                multiplier++
+            }
+
+            this.history.push(multiplierString)
+        } this.history.push(result)
 }
 
 const calc = new Calculator();
@@ -30,10 +50,8 @@ do {
     if(isCorrectAction) {
         number1 = prompt('Podaj liczbę nr 1');
         number2 = prompt('Podaj liczbę nr 2');
-
-        if(action === '+') {
-            calc.add(number1, number2);
-        }
+        
+        calc.mathOperation(number1, number2, action)
     }
     
 } while(calc.isCorrectAction(action));
