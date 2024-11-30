@@ -11,29 +11,96 @@ Calculator.prototype.getHistoryAsString = function() {
     return this.history.join('\n');
 }
 
+Calculator.prototype.checkNaN = function (n) {
+    return Number.isNaN(n)
+}
+
 Calculator.prototype.add = function(num1, num2) {
-    // 1. zamień wartości przekazane przez parametr na typ number
-    // 2. sprawdź czy są one poprawne
-    // 3. jeśli tak to wykonaj działanie i zapisz jego resultat
-    // 4. dodaj do historii operacji to działanie w fomie: 1 + 1 = 2
+    const result = parseFloat((num1 + num2).toFixed(10));
+    this.history.push(`${(num1)} + ${num2} = ${result}`)
+}
+Calculator.prototype.subtract = function (num1, num2) {
+    const result = parseFloat((num1 - num2).toFixed(10));
+    this.history.push(`${num1} - ${num2} = ${result}`)
+}
+Calculator.prototype.multiply = function (num1, num2) {
+    const result = parseFloat((num1 * num2).toFixed(10));
+    this.history.push(`${num1} * ${num2} = ${result}`)
+}
+Calculator.prototype.divide = function (num1, num2) {
+    if (num2 === 0) {
+        alert('You can\'t divide by 0.')
+    } else {
+        const result = parseFloat((num1 / num2).toFixed(10));
+        this.history.push(`${num1} / ${num2} = ${result}`)
+    }
+}
+Calculator.prototype.power = function (num1, num2) {
+    let pow = Math.round(num2)
+    if (num2 < 1 || !Number.isInteger(num2)) {
+        alert(`The power of ${num2} is not an integer or/and is too small for this Calculator. It will be rounded to ${pow}.`)
+    }
+    let i = 0;
+    let base = 1;
+    while (i < num2) {
+        base *= num1
+        i++
+    }
+    const result = parseFloat((base).toFixed(10));
+    this.history.push(`${num1} ^ ${pow} = ${result}`)
 }
 
 const calc = new Calculator();
-let action, promptContent, isCorrectAction, number1, number2;
+let history, action, promptContent, isCorrectAction, number1, number2;
 do { 
-    promptContent = 'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n'; // \n - znak nowej linii
-    promptContent += 'Jeśli chcesz zrezygnować wciśnij Anuluj. \n';
-    promptContent += 'Lista poprzednich operacji: \n' + calc.getHistoryAsString();
+    history = calc.getHistoryAsString()
+    history === '' ? history = 'no previous operations' : history;
+    promptContent = 'Choose an operand (+, -, *, /, ^) and confirm. \n';
+    promptContent += 'If you want to quit press \"Anuluj\". \n';
+    promptContent += 'Previous operations: \n' + history;
 
     action = prompt(promptContent);
-    isCorrectAction = calc.isCorrectAction(action);
-    if(isCorrectAction) {
-        number1 = prompt('Podaj liczbę nr 1');
-        number2 = prompt('Podaj liczbę nr 2');
 
-        if(action === '+') {
-            calc.add(number1, number2);
+
+    while (action === '') {
+        alert('You are supposed to choose one of these: +, -, *, /, ^.');
+        action = prompt(promptContent)
+    }
+
+    while (action === null) {
+        if (!confirm('Czy zakończyć działanie kalkulatora?')) {
+            action = prompt(promptContent);
+        } else { break };
+    }
+
+    isCorrectAction = calc.isCorrectAction(action);
+    if (isCorrectAction) {
+        number1 = parseFloat(prompt('Podaj liczbę nr 1'));
+        while (calc.checkNaN(number1) || prompt === 'null') {
+            alert('You can\'t use characters that are not numbers or live an empty slot.')
+            number1 = parseFloat(prompt('Podaj liczbę nr 1'));
+        }
+        number2 = parseFloat(prompt('Podaj liczbę nr 2'));
+        while (calc.checkNaN(number2)) {
+            alert('You can\'t use characters that are not numbers or live an empty slot.')
+            number2 = parseFloat(prompt('Podaj liczbę nr 2'));
+        }
+        switch (action) {
+            case '+':
+                calc.add(number1, number2)
+                break;
+            case '-':
+                calc.subtract(number1, number2)
+                break;
+            case '*':
+                calc.multiply(number1, number2)
+                break;
+            case '/':
+                calc.divide(number1, number2)
+                break;
+            case '^':
+                calc.power(number1, number2)
         }
     }
-    
+
 } while(calc.isCorrectAction(action));
