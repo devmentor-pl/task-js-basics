@@ -11,55 +11,49 @@ Calculator.prototype.getHistoryAsString = function () {
     return this.history.join('\n');
 };
 
-Calculator.prototype.add = function (num1, num2) {
-    number1 = parseInt(num1);
-    number2 = parseInt(num2);
-    if (isNaN(number1) && isNaN(number2)) {
-        this.history.push(
-            `obie z podanych danych nie są liczbami, spróbuj ponownie 😎`
-        );
-    } else if (isNaN(number1) || isNaN(number2)) {
-        this.history.push(
-            `jedna z podanych danych nie jest liczbą, spróbuj ponownie 😎`
-        );
-    } else {
-        const result = `${number1} + ${number2} = ${number1 + number2}`;
-        return this.history.push(result);
-    }
-};
+Calculator.prototype.calculate = function (action, num1, num2) {
+    const number1 = parseInt(num1);
+    const number2 = parseInt(num2);
 
-Calculator.prototype.subtract = function (num1, num2) {
-    number1 = parseInt(num1);
-    number2 = parseInt(num2);
     if (isNaN(number1) && isNaN(number2)) {
         this.history.push(
-            `obie z podanych danych nie są liczbami, spróbuj ponownie 😎`
+            `Obie z podanych danych nie są liczbami, spróbuj ponownie 😎`
         );
+        return;
     } else if (isNaN(number1) || isNaN(number2)) {
         this.history.push(
-            `jedna z podanych danych nie jest liczbą, spróbuj ponownie 😎`
+            `Jedna z podanych danych nie jest liczbą, spróbuj ponownie 😎`
         );
-    } else {
-        const result = `${number1} - ${number2} = ${number1 - number2}`;
-        return this.history.push(result);
+        return;
     }
-};
-Calculator.prototype.multiply = function (num1, num2) {
-    number1 = parseInt(num1);
-    number2 = parseInt(num2);
-    if (isNaN(number1) && isNaN(number2)) {
-        this.history.push(
-            `obie z podanych danych nie są liczbami, spróbuj ponownie 😎`
-        );
-    } else if (isNaN(number1) || isNaN(number2)) {
-        this.history.push(
-            `jedna z podanych danych nie jest liczbą, spróbuj ponownie 😎`
-        );
-    } else {
-        const result = `${number1} * ${number2} = ${number1 * number2}`;
-        return this.history.push(result);
+    let result;
+    switch (action) {
+        case '+':
+            result = number1 + number2;
+            break;
+        case '-':
+            result = number1 - number2;
+            break;
+        case '*':
+            result = number1 * number2;
+            break;
+        case '/':
+            if (number2 === 0) {
+                this.history.push(`Nigdy 🤬 nie dziel przez zero!!!`);
+                return result;
+            } else {
+                result = number1 / number2;
+                break;
+            }
+        case '^':
+            result = 1;
+            for (i = 0; i < number2; i++) {
+                result *= number1;
+            }
+            break;
+        default:
     }
-};
+}
 Calculator.prototype.divide = function (num1, num2) {
     number1 = parseInt(num1);
     number2 = parseInt(num2);
