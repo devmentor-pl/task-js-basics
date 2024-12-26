@@ -1,10 +1,16 @@
 function Calculator() {
-  this.actions = ["+", "-", "*", "/", "^"];
+  this.actions = {
+    "+": this.add,
+    "-": this.substract,
+    "*": this.multiply,
+    "/": this.divide,
+    "^": this.power,
+  };
   this.history = [];
 }
 
 Calculator.prototype.isCorrectAction = function (action) {
-  return this.actions.includes(action);
+  return typeof calc.actions[action] === "function";
 };
 
 Calculator.prototype.getHistoryAsString = function () {
@@ -45,50 +51,25 @@ Calculator.prototype.divide = function (num1, num2) {
 };
 
 Calculator.prototype.power = function (num1, num2) {
-  // Works only for integers
-  if (!Number.isInteger(num1) || !Number.isInteger(num2)) return null;
+  // Works only when num2 is integer
+  if (!Number.isInteger(num2)) return;
 
   if (num2 === 0) return 1;
-  let result;
 
-  for (let i = 0; i < Math.abs(num2); i++) {
-    if (i === 0) result = num1;
-    else result = result * num1;
+  let result = num1;
+  for (let i = 1; i < Math.abs(num2); i++) {
+    result = result * num1;
   }
 
   return num2 < 0 ? 1 / result : result;
 };
 
 Calculator.prototype.calculate = function (num1, num2, operator) {
-  const number1 = Number(num1);
-  const number2 = Number(num2);
+  const result = this.actions[operator](num1, num2);
 
-  if (!this.areInputsValid(number1, number2)) return null;
+  if (!Number.isFinite(result)) return;
 
-  let result;
-
-  switch (operator) {
-    case "+":
-      result = calc.add(number1, number2);
-      break;
-    case "-":
-      result = calc.subtract(number1, number2);
-      break;
-    case "*":
-      result = calc.multiply(number1, number2);
-      break;
-    case "/":
-      result = calc.divide(number1, number2);
-      break;
-    case "^":
-      result = calc.power(number1, number2);
-      break;
-    default:
-      null;
-  }
-
-  if (Number.isFinite(result))
-    this.addToHistory(`${number1} ${operator} ${number2} = ${result}`);
+  this.addToHistory(`${number1} ${operator} ${number2} = ${result}`);
 
   return result;
 };
@@ -108,6 +89,13 @@ do {
     number1 = prompt("Podaj liczbę nr 1");
     number2 = prompt("Podaj liczbę nr 2");
 
-    calc.calculate(number1, number2, action);
+    if (number1 && number2) {
+      number1 = Number(number1);
+      number2 = Number(number2);
+
+      if (calc.areInputsValid(number1, number2)) {
+        calc.calculate(number1, number2, action);
+      }
+    }
   }
 } while (calc.isCorrectAction(action));
