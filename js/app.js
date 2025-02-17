@@ -1,56 +1,64 @@
-function Calculator() {
-    this.operations = {
-        '+': this.add,
-        '-': this.subtract,
-        '*': this.multiply,
-        '/': this.divide,
-        '^': this.power,
-        '%': this.modulo
+class Operation {
+    constructor(symbol, fn) {
+        if (typeof symbol !== 'string' || symbol.trim() === '') {
+            throw new Error('Operation symbol must be a non-empty string');
+        }
+        if (typeof fn !== 'function') {
+            throw new Error('Operation function must be a function');
+        }
+        this.symbol = symbol;
+        this.fn = fn;
+    }
+}
+class Calculator {
+    constructor() {
+        this.operations = {};
+        this.history = [];
+    }
+    addOperation(operation) {
+        if (operation instanceof Operation) {
+            this.operations[operation.symbol] = operation.fn;
+        } else {
+            throw new Error('Invalid parameter');
+        }
+    }
+    validateOperands(operands) {
+        const parsed = operands.map(op => parseFloat(op));
+        return parsed.every(op => isFinite(op)) ? parsed : null;
+    }
+    performOperation(symbol, operands) {
+        if (!this.isCorrectAction(symbol)) throw new Error(`Operation "${symbol}" is not defined`);
+
+        const parsedOperands = this.validateOperands(operands);
+        if (!parsedOperands) {
+            this.history.push(`Invalid input: "${operands.join(', ')}"`);
+            return;
+        }
+
+        const result = this.operations[symbol](...parsedOperands);
+        this.history.push(`${parsedOperands.join(` ${symbol} `)} = ${result}`);
+
+        return result;
+    }
+
+    isCorrectAction(symbol) {
+        return typeof symbol === 'string' && symbol in this.operations;
     };
-    this.history = [];
+    getOperations() {
+        return Object.keys(this.operations).join(', ');
+    }
+    getHistory() {
+        return this.history.length > 0 ? this.history.join('\n') : 'No operations performed yet.';
+    }
 }
 
-Calculator.prototype.isCorrectAction = function (action) {
-    return typeof action === 'string' && Object.prototype.hasOwnProperty.call(this.operations, action);
-};
-
-Calculator.prototype.getHistoryAsString = function () {
-    return this.history.length > 0 ? this.history.join('\n') : 'No operations performed yet.';
-};
-
-Calculator.prototype.performOperation = function (action, num1, num2) {
-    const a = parseFloat(num1);
-    const b = parseFloat(num2);
-
-    if (!isFinite(a) || !isFinite(b)) {
-        this.history.push(`Invalid input: "${num1}" and "${num2}"`);
-        return;
-    }
-
-    const result = this.operations[action].call(this, a, b);
-    this.history.push(`${a} ${action} ${b} = ${result}`);
-};
-
-Calculator.prototype.add = function (a, b) {
-    return a + b;
-};
-
-Calculator.prototype.subtract = function (a, b) {
-    return a - b;
-};
-
-Calculator.prototype.multiply = function (a, b) {
-    return a * b;
-};
-
-Calculator.prototype.divide = function (a, b) {
-    return b === 0 ? 'Cannot divide by zero' : a / b;
-};
-
-Calculator.prototype.power = function (base, exponent) {
-    if (base === 0 && exponent < 0) {
-        return 'Undefined (0 cannot be raised to a negative power)';
-    }
+const sumOperation = new Operation('+', (a, b) => a + b);
+const subtractOperation = new Operation('-', (a, b) => a - b);
+const multiplyOperation = new Operation('*', (a, b) => a * b);
+const divideOperation = new Operation('/', (a, b) => (b === 0 ? 'Cannot divide by zero' : a / b));
+const moduloOperation = new Operation('%', (a, b) => (b === 0 ? 'Cannot modulo by zero' : a % b));
+const powerOperation = new Operation('^', (base, exponent) => {
+    if (base === 0 && exponent < 0) return 'Undefined (0 cannot be raised to a negative power)';
 
     const absExponent = Math.floor(Math.abs(exponent));
     let result = 1;
@@ -60,25 +68,29 @@ Calculator.prototype.power = function (base, exponent) {
     }
 
     return exponent < 0 ? 1 / result : result;
-};
-
-Calculator.prototype.modulo = function (a, b) {
-    return b === 0 ? 'Cannot modulo by zero' : a % b;
-};
+});
 
 const calc = new Calculator();
-let action, promptContent, isCorrectAction, number1, number2;
+
+calc.addOperation(sumOperation);
+calc.addOperation(subtractOperation);
+calc.addOperation(multiplyOperation);
+calc.addOperation(divideOperation);
+calc.addOperation(moduloOperation);
+calc.addOperation(powerOperation);
+
+let action, promptContent, number1, number2;
 do {
-    promptContent = `Podaj jaką operację chcesz wykonać (${Object.keys(calc.operations).join(', ')}) i potwierdź.\n`; // \n - znak nowej linii
+    promptContent = `Podaj jaką operację chcesz wykonać (${calc.getOperations()}) i potwierdź.\n`; // \n - znak nowej linii
     promptContent += 'Jeśli chcesz zrezygnować wciśnij Anuluj. \n';
-    promptContent += 'Lista poprzednich operacji: \n' + calc.getHistoryAsString();
+    promptContent += 'Lista poprzednich operacji: \n' + calc.getHistory();
 
     action = prompt(promptContent);
 
     if (calc.isCorrectAction(action)) {
         number1 = prompt('Podaj liczbę nr 1');
         number2 = prompt('Podaj liczbę nr 2');
-        calc.performOperation(action, number1, number2);
+        calc.performOperation(action, [number1, number2]);
     }
-    
-} while(calc.isCorrectAction(action));
+
+} while (calc.isCorrectAction(action));
