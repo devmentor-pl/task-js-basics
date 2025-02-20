@@ -11,26 +11,26 @@ Calculator.prototype.getHistoryAsString = function() {
     return this.history.join('\n');
 }
 
-Calculator.prototype.add = function(num1, num2) {
+Calculator.prototype.add = function(number1, number2) {
     const result = number1 + number2;
     this.history.push(number1 + ' + ' + number2 + ' = ' + result);
 }
-Calculator.prototype.subtract = function(num1, num2) {
+Calculator.prototype.subtract = function(number1, number2) {
     const result = number1 - number2;
     this.history.push(number1 + ' - ' + number2 + ' = ' + result);
 }
-Calculator.prototype.multiply = function(num1, num2) {
+Calculator.prototype.multiply = function(number1, number2) {
     const result = number1 * number2;
     this.history.push(number1 + ' * ' + number2 + ' = ' + result);
 }
-Calculator.prototype.divide = function(num1, num2) {
+Calculator.prototype.divide = function(number1, number2) {
     if(number2 === 0) {
         return 'Nie można dzielić przez 0';
     }
     const result = number1 / number2;
     this.history.push(number1 + ' / ' + number2 + ' = ' + result);
 }
-Calculator.prototype.pow = function(num1, num2) {
+Calculator.prototype.pow = function(number1, number2) {
     let result = 1;
     for(let i = 0; i < number2; i++) {
         result *= number1;
@@ -42,6 +42,15 @@ Calculator.prototype.pow = function(num1, num2) {
 
 const calc = new Calculator();
 let action, promptContent, isCorrectAction, number1, number2;
+
+const operations = {
+    '+': calc.add.bind(calc),
+    '-': calc.subtract.bind(calc),
+    '*': calc.multiply.bind(calc),
+    '/': calc.divide.bind(calc),
+    '^': calc.pow.bind(calc)
+};
+
 do { 
     promptContent = 'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n'; // \n - znak nowej linii
     promptContent += 'Jeśli chcesz zrezygnować wciśnij Anuluj. \n';
@@ -61,18 +70,29 @@ do {
             continue;
         }
 
-        if(action === '+') {
-            calc.add(number1, number2);
-        } else if(action === '-') {
-            calc.subtract(number1, number2);
-        } else if(action === '*') {
-            calc.multiply(number1, number2);
-        } else if(action === '/') {
-            calc.divide(number1, number2);
-        } else if(action === '^') {
-            calc.pow(number1, number2);
-        }  
-            
+        // if(action === '+') {
+        //     calc.add(number1, number2);
+        // } else if(action === '-') {
+        //     calc.subtract(number1, number2);
+        // } else if(action === '*') {
+        //     calc.multiply(number1, number2);
+        // } else if(action === '/') {
+        //     calc.divide(number1, number2);
+        // } else if(action === '^') {
+        //     calc.pow(number1, number2);
+        // }  
+
+       
+
+        // const operation = operations[action];
+        // if (operation) {
+        //     operation(num1, num2);
+        // }
+   
+
+        const result = operations[action](num1, num2);
+
+
     } else if(action !== null) {
         alert('Nieprawidłowy operator - dozwolone operatory to: +, -, *, /, ^');
         const isConfirmed = confirm('Czy chcesz spróbować jeszcze raz?');
