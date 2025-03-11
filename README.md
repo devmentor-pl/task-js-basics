@@ -1,4 +1,4 @@
-# Project 02 - Calculator 
+# Project 03 - Calculator 
 
 See the live version of [Responsive Web Design (RWD) project](https://code-mike-code.github.io/project-02/).
 
