@@ -1,39 +1,56 @@
-> ⭐ ***README** to coś więcej niż opis. Poprzez nie **pokazujesz swoje mocne strony** – swoją dokładność, sposób myślenia i podejście do rozwiązywania problemów. Niech Twoje README pokaże, że masz **świetne predyspozycje do rozwoju!***
-> 
-> 🎁 *Zacznij od razu. Skorzystaj z **[szablonu README i wskazówek](https://github.com/devmentor-pl/readme-template)**.* 
+# Project 02 - Calculator 
 
-&nbsp;
+See the live version of [Responsive Web Design (RWD) project](https://code-mike-code.github.io/project-02/).
+
+Project made during learning process with my mentor program [devmentor.pl](https://devmentor.pl/). The project is a simple calculator implemented in JavaScript, which allows users to perform basic arithmetic operations such as addition, subtraction, multiplication, division, and exponentiation. The calculator also keeps a history of all operations performed, which can be displayed to the user. The program prompts the user for input, validates the operations, and handles errors such as division by zero or invalid inputs. The main functionalities include performing calculations, storing operation history, and providing user feedback.
 
 
-# JavaScript: Podstawy
+# Refactoring
+During the refactoring process, the code was optimized to improve readability and reduce redundancy. 
+The main changes included:
 
-Twoim zadaniem będzie dopisanie do istniejącego kodu niezbędnych elementów, które pozwolą wykonywać obliczenia oraz przechowywać historię wykonanych operacji.
+Replacing multiple if-else statements with a dictionary (operations): This allowed for a more concise and maintainable way to map operations to their corresponding methods.
 
-Nasz **kalkulator** powinien posiadać następujące opcje:
+Binding methods to the Calculator instance: This ensured that the correct context (this) was maintained when calling the methods from the operations dictionary.
 
-* dodawanie (+)
-* odejmowanie (-)
-* mnożenie (*)
-* dzielenie (/)
-* potęgowanie (^) – wykonaj to przy pomocy pętli, nie korzystaj z `Math.pow()`.
-
-Gdy otworzysz plik `./js/app.js`, to zauważysz, że mamy tam już gotowy konstruktor o nazwie `Calculator`, który musimy uzupełnić odpowiednimi metodami.
-
-Wzoruj się na metodzie `Calculator.prototype.add`, w której znajdziesz rozpiskę kolejnych kroków do wykonania.
-
-We naszym pliku `app.js` wykorzystujemy również pętlę [do...while](https://developer.mozilla.org/pl/docs/Web/JavaScript/Referencje/Polecenia/do...while), która w swoim wnętrzu pobiera dane od użytkownika. Na ich podstawie wykonywane są dalsze czynności. 
-
-To tam należy dopisać kilka instrukcji `if` oraz wywołać odpowiednie metody.
-
-## Refaktoryzacja ([definicja](https://pl.wikipedia.org/wiki/Refaktoryzacja))
-
-Po napisaniu programu (lub jego części) zastanów się, czy możesz go usprawnić, np. zwiększyć czytelności kodu lub usunąć powielone operacje i zastąpić je funkcją. Zrób to przed wykonaniem *Pull Requesta*.
-
-Refaktoryzacja to jedno z najważniejszych działań podczas procesu wytwarzania oprogramowania. Początkujący programiści często o niej zapominają.
+Simplifying the user input validation: The code now directly checks if the action is valid and if the inputs are numbers, reducing the complexity of the logic.
 
 
 &nbsp;
+ 
+## 💡 Technologies
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![JavaScript](https://img.shields.io/badge/logo-javascript-blue?logo=javascript)
 
-> ⭐ ***README** to coś więcej niż opis. Poprzez nie **pokazujesz swoje mocne strony** – swoją dokładność, sposób myślenia i podejście do rozwiązywania problemów. Niech Twoje README pokaże, że masz **świetne predyspozycje do rozwoju!***
-> 
-> 🎁 *Zacznij od razu. Skorzystaj z **[szablonu README i wskazówek](https://github.com/devmentor-pl/readme-template)**.* 
+
+&nbsp;
+ 
+## 🔗 See also
+
+Are you interested in **SCSS** and **JavaScript**? See my other project [Landing Page MGUU](https://code-mike-code.github.io/landing_page_project/).
+
+&nbsp;
+ 
+## 💿 Installation
+
+No Required
+
+
+&nbsp;
+
+## 💭 Conclusions for future projects
+
+The refactoring made the code more modular and easier to extend. In the future, additional operations could be added by simply extending the operations dictionary and adding corresponding methods to the Calculator class. Furthermore, the code could be further improved by adding more robust error handling and possibly a user interface for a better user experience.
+
+
+&nbsp;
+
+## 🙋‍♂️ Feel free to Reach Out!
+If you have questions, ideas, or just want to chat about code (or the meaning of life), don’t hesitate to contact me. Open an issue, drop me a pull request, or send a message—carrier pigeon works too, but GitHub might be faster. Let’s build something awesome together! 🚀
+
+
+&nbsp;
+
+## 👏 Thanks / Special thanks / Credits
+Thanks to my [Mentor - devmentor.pl](https://devmentor.pl/) – for providing me with this task and for code review.
+
