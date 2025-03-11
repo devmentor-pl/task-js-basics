@@ -20,7 +20,7 @@ Simplifying the user input validation: The code now directly checks if the actio
  
 ## 💡 Technologies
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
-![JavaScript](https://img.shields.io/badge/logo-javascript-blue?logo=javascript)
+![JavaScript](https://img.shields.io/badge/logo=javascript)
 
 
 &nbsp;
