@@ -86,6 +86,15 @@ Calculator.prototype.exponent = function (num1, num2) {
 };
 
 const calc = new Calculator();
+
+const operations = {
+  '+': calc.add,
+  '-': calc.substract,
+  '*': calc.multiply,
+  '/': calc.divide,
+  '^': calc.exponent,
+};
+
 let action, promptContent, isCorrectAction, number1, number2;
 do {
   promptContent = 'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n'; // \n - znak nowej linii
@@ -93,29 +102,16 @@ do {
   promptContent += 'Lista poprzednich operacji: \n' + calc.getHistoryAsString();
 
   action = prompt(promptContent);
+
   isCorrectAction = calc.isCorrectAction(action);
+
   if (isCorrectAction) {
     number1 = prompt('Podaj liczbę nr 1');
     number2 = prompt('Podaj liczbę nr 2');
+    const operationFunc = operations[action].bind(calc);
 
-    if (action === '+') {
-      calc.add(number1, number2);
-    }
-
-    if (action === '-') {
-      calc.substract(number1, number2);
-    }
-
-    if (action === '*') {
-      calc.multiply(number1, number2);
-    }
-
-    if (action === '/') {
-      calc.divide(number1, number2);
-    }
-
-    if (action === '^') {
-      calc.exponent(number1, number2);
+    if (typeof operationFunc === 'function') {
+      operationFunc(number1, number2);
     }
   }
 } while (calc.isCorrectAction(action));
