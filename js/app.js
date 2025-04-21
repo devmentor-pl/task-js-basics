@@ -1,10 +1,16 @@
 function Calculator() {
-  this.actions = ['+', '-', '*', '/', '^'];
+  this.actions = {
+    '+': this.add,
+    '-': this.substract,
+    '*': this.multiply,
+    '/': this.divide,
+    '^': this.exponent,
+  };
   this.history = [];
 }
 
 Calculator.prototype.isCorrectAction = function (action) {
-  return this.actions.includes(action);
+  return this.actions.hasOwnProperty(action);
 };
 
 Calculator.prototype.getHistoryAsString = function () {
@@ -87,14 +93,6 @@ Calculator.prototype.exponent = function (num1, num2) {
 
 const calc = new Calculator();
 
-const operations = {
-  '+': calc.add,
-  '-': calc.substract,
-  '*': calc.multiply,
-  '/': calc.divide,
-  '^': calc.exponent,
-};
-
 let action, promptContent, isCorrectAction, number1, number2;
 do {
   promptContent = 'Podaj jaką operację chcesz wykonać (+, -, *, /, ^) i potwierdź. \n'; // \n - znak nowej linii
@@ -104,11 +102,11 @@ do {
   action = prompt(promptContent);
 
   isCorrectAction = calc.isCorrectAction(action);
+  const operationFunc = this.actions[action].bind(calc);
 
   if (isCorrectAction) {
     number1 = prompt('Podaj liczbę nr 1');
     number2 = prompt('Podaj liczbę nr 2');
-    const operationFunc = operations[action].bind(calc);
 
     if (typeof operationFunc === 'function') {
       operationFunc(number1, number2);
