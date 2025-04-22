@@ -25,10 +25,6 @@ Calculator.prototype.performOperation = function (
     return;
   }
 
-  if (operator === '/' && num2 === 0) {
-    alert('Nie można dzielić przez 0!');
-    return;
-  }
   const result = operationFn(num1, num2);
   const operation = `${num1} ${operator} ${num2} = ${result}`;
   this.history.push(operation);
@@ -47,7 +43,13 @@ Calculator.prototype.multiply = function (num1, num2) {
 };
 
 Calculator.prototype.divide = function (num1, num2) {
-  this.performOperation(num1, num2, '/', (a, b) => a / b);
+  this.performOperation(num1, num2, '/', (a, b) => {
+    if (b === 0) {
+      alert('Nie można dzielić przez 0');
+      return 'Błąd';
+    }
+    return a / b;
+  });
 };
 
 Calculator.prototype.pow = function (num1, num2) {
@@ -60,6 +62,14 @@ Calculator.prototype.pow = function (num1, num2) {
   });
 };
 const calc = new Calculator();
+
+const operationMap = {
+  '+': calc.add.bind(calc),
+  '-': calc.subtract.bind(calc),
+  '*': calc.multiply.bind(calc),
+  '/': calc.divide.bind(calc),
+  '^': calc.pow.bind(calc),
+};
 let action, promptContent, isCorrectAction, number1, number2;
 do {
   promptContent =
@@ -73,16 +83,9 @@ do {
     number1 = prompt('Podaj liczbę nr 1');
     number2 = prompt('Podaj liczbę nr 2');
 
-    if (action === '+') {
-      calc.add(number1, number2);
-    } else if (action === '-') {
-      calc.subtract(number1, number2);
-    } else if (action === '*') {
-      calc.multiply(number1, number2);
-    } else if (action === '/') {
-      calc.divide(number1, number2);
-    } else if (action === '^') {
-      calc.pow(number1, number2);
+    const operation = operationMap[action];
+    if (operation) {
+      operation(number1, number2);
     }
   }
 } while (calc.isCorrectAction(action));
