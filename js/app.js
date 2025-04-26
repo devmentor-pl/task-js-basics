@@ -102,9 +102,14 @@ do {
   action = prompt(promptContent);
 
   isCorrectAction = calc.isCorrectAction(action);
-  const operationFunc = this.actions[action].bind(calc);
 
   if (isCorrectAction) {
+    Calculator.prototype.getAction = function (action) {
+      return this.actions[action].bind(calc);
+    };
+
+    operationFunc = calc.getAction(action);
+
     number1 = prompt('Podaj liczbę nr 1');
     number2 = prompt('Podaj liczbę nr 2');
 
