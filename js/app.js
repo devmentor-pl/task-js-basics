@@ -1,10 +1,16 @@
 function Calculator() {
-  this.actions = ['+', '-', '*', '/', '^'];
+  this.actions = {
+    '+': this.add.bind(this),
+    '-': this.subtract.bind(this),
+    '*': this.multiply.bind(this),
+    '/': this.divide.bind(this),
+    '^': this.pow.bind(this),
+  };
   this.history = [];
 }
 
 Calculator.prototype.isCorrectAction = function (action) {
-  return this.actions.includes(action);
+  return Object.keys(this.actions).includes(action);
 };
 
 Calculator.prototype.getHistoryAsString = function () {
@@ -63,13 +69,6 @@ Calculator.prototype.pow = function (num1, num2) {
 };
 const calc = new Calculator();
 
-const operationMap = {
-  '+': calc.add.bind(calc),
-  '-': calc.subtract.bind(calc),
-  '*': calc.multiply.bind(calc),
-  '/': calc.divide.bind(calc),
-  '^': calc.pow.bind(calc),
-};
 let action, promptContent, isCorrectAction, number1, number2;
 do {
   promptContent =
@@ -83,7 +82,7 @@ do {
     number1 = prompt('Podaj liczbę nr 1');
     number2 = prompt('Podaj liczbę nr 2');
 
-    const operation = operationMap[action];
+    const operation = calc.actions[action];
     if (operation) {
       operation(number1, number2);
     }
