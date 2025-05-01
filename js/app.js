@@ -91,6 +91,10 @@ Calculator.prototype.exponent = function (num1, num2) {
   }
 };
 
+Calculator.prototype.getAction = function (action) {
+  return this.actions[action].bind(calc);
+};
+
 const calc = new Calculator();
 
 let action, promptContent, isCorrectAction, number1, number2;
@@ -104,10 +108,6 @@ do {
   isCorrectAction = calc.isCorrectAction(action);
 
   if (isCorrectAction) {
-    Calculator.prototype.getAction = function (action) {
-      return this.actions[action].bind(calc);
-    };
-
     operationFunc = calc.getAction(action);
 
     number1 = prompt('Podaj liczbę nr 1');
