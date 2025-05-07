@@ -1,8 +1,8 @@
-# Project 03 - Calculator 
+# Browser Calculator 
 
-See the live version of [Calculator project](https://code-mike-code.github.io/task-js-basics/).
+See the live version of [Browser Calculator project](https://code-mike-code.github.io/browser-calculator/).
 
-Project made during learning process with my mentor program [devmentor.pl](https://devmentor.pl/). The project is a simple calculator implemented in JavaScript, which allows users to perform basic arithmetic operations such as addition, subtraction, multiplication, division, and exponentiation. The calculator also keeps a history of all operations performed, which can be displayed to the user. The program prompts the user for input, validates the operations, and handles errors such as division by zero or invalid inputs. The main functionalities include performing calculations, storing operation history, and providing user feedback.
+Project made during learning process with my mentor program [devmentor.pl](https://devmentor.pl/). The project is a simple browser calculator implemented in JavaScript, which allows users to perform basic arithmetic operations such as addition, subtraction, multiplication, division, and exponentiation. The calculator also keeps a history of all operations performed, which can be displayed to the user. The program prompts the user for input, validates the operations, and handles errors such as division by zero or invalid inputs. The main functionalities include performing calculations, storing operation history, and providing user feedback.
 
 
 # Refactoring
